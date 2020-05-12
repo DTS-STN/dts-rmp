@@ -1,0 +1,14 @@
+FROM node:11.15.0-alpine
+WORKDIR /home/dts-kmp
+COPY package*.json ./
+RUN npm install --production
+COPY . .
+RUN npm run build
+ENV NUXT_HOST=0.0.0.0
+ENV NUXT_PORT=3000
+ARG VUE_APP_CONNECTION_STRING=placeholder
+ENV VUE_APP_CONNECTION_STRING=${VUE_APP_CONNECTION_STRING}
+ARG VUE_APP_KMP_DB_PASSWORD=placeholder
+ENV VUE_APP_KMP_DB_PASSWORD=${VUE_APP_KMP_DB_PASSWORD}
+EXPOSE ${NUXT_PORT}
+CMD [ "npm", "start" ]

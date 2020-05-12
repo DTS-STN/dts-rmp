@@ -19,6 +19,9 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
+#cypress reports
+cypress/reports/
+
 # nyc test coverage
 .nyc_output
 
@@ -88,3 +91,10 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# MongoDB
+data/
+database/
+
+#vscode
+.vscode
