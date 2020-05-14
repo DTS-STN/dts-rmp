@@ -7,7 +7,6 @@ services:
       dockerfile: Dockerfile
       args:
         VUE_APP_CONNECTION_STRING: ${VUE_APP_CONNECTION_STRING}
-        VUE_APP_KMP_DB_PASSWORD: ${VUE_APP_KMP_DB_PASSWORD}
     container_name: dts-kmp
     restart: always
     ports:
