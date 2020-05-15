@@ -32,8 +32,8 @@ jobs:
     - uses: azure/docker-login@v1
       with:
         login-server: mtscontainers.azurecr.io
-        username: ${{ secrets.DTS_AZURE_USERNAME }}
-        password: ${{ secrets.DTS_AZURE_PASSWORD }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
     - uses: actions/checkout@v1
     - name: docker build and push client server
       run: |
@@ -44,4 +44,4 @@ jobs:
     - name: jenkins client server deployment job
       uses: wei/curl@v1
       with:
-        args: -X POST https://jenkins.dts-stn.com/job/dts-kmp/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.DTS_JENKINS_TOKEN }}
+        args: -X POST https://jenkins.dts-stn.com/job/dts-kmp/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.JENKINS_SP_TOKEN }}
