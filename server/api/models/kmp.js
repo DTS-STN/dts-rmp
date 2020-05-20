@@ -27,7 +27,7 @@ const kmpSchema = new mongoose.Schema(
       type: String,
       validate: {
         validator(v) {
-          return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v)
+          return /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v)
         }
       }
     },
