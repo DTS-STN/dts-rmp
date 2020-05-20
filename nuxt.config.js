@@ -46,6 +46,9 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+
+  serverMiddleware: ['~/server/api/routes/index'],
+
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

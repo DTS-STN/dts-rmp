@@ -14,34 +14,35 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Run Full e2e Tests using Docker Compose
-      run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_KMP_DB_PASSWORD=${{ secrets.VUE_APP_KMP_DB_PASSWORD }} docker-compose up --exit-code-from e2e
+      - uses: actions/checkout@v1
+      - name: Run Full e2e Tests using Docker Compose
+        run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_KMP_DB_PASSWORD=`${{ secrets.VUE_APP_KMP_DB_PASSWORD }}` docker-compose up --exit-code-from e2e
 
   publish_Deploy:
     name: Publish and Deploy
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-    - name: Generate build number
-      uses: einaregilsson/build-number@v1
-      with:
-        token: ${{secrets.github_token}}
-    - name: Print new build number
-      run: echo Build number is $BUILD_NUMBER
-    - uses: azure/docker-login@v1
-      with:
-        login-server: mtscontainers.azurecr.io
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
-    - uses: actions/checkout@v1
-    - name: docker build and push client server
-      run: |
-        docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-kmp:latest .
-        docker tag mtscontainers.azurecr.io/dts-kmp:latest mtscontainers.azurecr.io/dts-kmp:$BUILD_NUMBER
-        docker push mtscontainers.azurecr.io/dts-kmp:latest
-        docker push mtscontainers.azurecr.io/dts-kmp:$BUILD_NUMBER
-    - name: jenkins client server deployment job
-      uses: wei/curl@v1
-      with:
-        args: -X POST https://jenkins.dts-stn.com/job/KMP/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.JENKINS_SP_TOKEN }}
+      - name: Generate build number
+        uses: einaregilsson/build-number@v1
+        with:
+          token: ${{secrets.github_token}}
+      - name: Print new build number
+        run: echo Build number is $BUILD_NUMBER
+      - uses: azure/docker-login@v1
+        with:
+          login-server: mtscontainers.azurecr.io
+          username: ${{ secrets.DTS_AZURE_USERNAME }}
+          password: ${{ secrets.DTS_AZURE_PASSWORD }}
+      - uses: actions/checkout@v1
+      - name: docker build and push client server
+        run: |
+          docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-kmp:latest .
+          docker tag mtscontainers.azurecr.io/dts-kmp:latest mtscontainers.azurecr.io/dts-kmp:$BUILD_NUMBER
+          docker push mtscontainers.azurecr.io/dts-kmp:latest
+          docker push mtscontainers.azurecr.io/dts-kmp:$BUILD_NUMBER
+      - name: jenkins client server deployment job
+        uses: wei/curl@v1
+        with:
+          args: -X POST https://jenkins.dts-stn.com/job/dts-kmp/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.DTS_JENKINS_TOKEN }}
+

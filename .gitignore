@@ -98,3 +98,5 @@ database/
 
 #vscode
 .vscode
+
+package-lock.json
