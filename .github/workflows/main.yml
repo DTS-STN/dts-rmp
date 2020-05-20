@@ -45,3 +45,4 @@ jobs:
         uses: wei/curl@v1
         with:
           args: -X POST https://jenkins.dts-stn.com/job/dts-kmp/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.DTS_JENKINS_TOKEN }}
+
