@@ -23,7 +23,7 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - name: Generate build numbergit 
+      - name: Generate build number
         uses: einaregilsson/build-number@v1
         with:
           token: ${{secrets.github_token}}
