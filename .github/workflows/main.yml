@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Run Full e2e Tests using Docker Compose
-        run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_KMP_DB_PASSWORD="${{ secrets.VUE_APP_KMP_DB_PASSWORD }}" docker-compose up --exit-code-from e2e
+        run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_KMP_DB_PASSWORD=`${{ secrets.VUE_APP_KMP_DB_PASSWORD }}` docker-compose up --exit-code-from e2e
 
   publish_Deploy:
     name: Publish and Deploy
