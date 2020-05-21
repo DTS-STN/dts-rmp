@@ -1,7 +1,7 @@
 FROM node:11.15.0-alpine
 WORKDIR /home/dts-kmp
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm i
 COPY . .
 RUN npm run build
 ENV NUXT_HOST=0.0.0.0
