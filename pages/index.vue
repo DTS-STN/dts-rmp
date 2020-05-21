@@ -6,7 +6,7 @@
         dts-rmp
       </h1>
       <h2 class="subtitle">
-        knowledge management portal proof of concept!
+        relationship management portal proof of concept!
       </h2>
 
       <div v-if="!$auth.loggedIn">
