@@ -6,7 +6,7 @@
         dts-kmp
       </h1>
       <h2 class="subtitle">
-        knowledge management portal proof of concept
+        knowledge management portal proof of concept!
       </h2>
       <div class="links">
         <a href="https://nuxtjs.org/" target="_blank" class="button--green">
