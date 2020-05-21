@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const kmpSchema = new mongoose.Schema(
+const rmpSchema = new mongoose.Schema(
   {
     // Allows for alpha only string of at least 3 characters
     fname: {
@@ -42,7 +42,7 @@ const kmpSchema = new mongoose.Schema(
       }
     }
   },
-  { collection: 'kmp' }
+  { collection: 'rmp' }
 )
 
-module.exports = mongoose.model('Kmp', kmpSchema)
+module.exports = mongoose.model('Rmp', rmpSchema)

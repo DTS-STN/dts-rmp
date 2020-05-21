@@ -1,6 +1,6 @@
-# dts-kmp 
+# dts-rmp
 
-> knowledge management portal proof of concept
+> relationship management portal proof of concept
 
 ## Build Setup
 
