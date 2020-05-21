@@ -32,8 +32,8 @@ jobs:
       - uses: azure/docker-login@v1
         with:
           login-server: mtscontainers.azurecr.io
-          username: ${{ secrets.DTS_AZURE_USERNAME }}
-          password: ${{ secrets.DTS_AZURE_PASSWORD }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
       - uses: actions/checkout@v1
       - name: docker build and push client server
         run: |
