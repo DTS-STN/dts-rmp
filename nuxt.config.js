@@ -19,7 +19,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#39b982' },
   /*
    ** Global CSS
    */
@@ -44,8 +44,14 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    // Nuxt Authorization module
+    '@nuxtjs/auth'
   ],
+
+  auth: {
+    // Options
+  },
 
   serverMiddleware: ['~/server/api/routes/index'],
 

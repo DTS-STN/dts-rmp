@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="main">
     <div>
       <logo />
       <h1 class="title">
@@ -8,18 +8,14 @@
       <h2 class="subtitle">
         relationship management portal proof of concept!
       </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+
+      <div v-if="!$auth.loggedIn">
+        If you do not have an account, <a href="register">Register</a> or
+        <a href="login">login</a>
       </div>
+
+      <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
+      <div v-else>welcome... {{ $auth.user.name }}</div>
     </div>
   </div>
 </template>
@@ -40,13 +36,8 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-.container {
-  margin: 0 auto;
+.main {
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 .title {
@@ -57,6 +48,7 @@ export default {
   font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
+  @apply pt-12 text-center;
 }
 
 .subtitle {

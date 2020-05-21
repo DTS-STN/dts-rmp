@@ -1,8 +1,30 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="main-container">
+    <header>
+      <!-- <Header />    placeholder for the Header -->
+
+      <!-- Temporary navbar containing   home, login/logout buttons -->
+      <NavBar />
+    </header>
+
+    <main>
+      <nuxt />
+    </main>
+
+    <footer>
+      <!-- <Footer />    placeholderfor the footer -->
+    </footer>
   </div>
 </template>
+
+<script>
+import NavBar from '@/components/NavBar.vue'
+export default {
+  components: {
+    NavBar
+  }
+}
+</script>
 
 <style>
 html {
@@ -16,12 +38,8 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.main-container {
+  min-height: 100vh;
 }
 
 .button--green {
