@@ -1,14 +1,14 @@
 const express = require('express')
 const consola = require('consola')
 const app = express()
-const Kmp = require('../models/kmp')
+const Rmp = require('../models/rmp')
 
 // @route   GET api/allpocs
 // @desc    Gets all existing PoC's in database
 // @access  Public
-app.get('/allkmps', function(_req, res) {
-  Kmp.find((_err, kmp) => {
-    res.json(kmp)
+app.get('/allrmps', function(_req, res) {
+  Rmp.find((_err, rmp) => {
+    res.json(rmp)
   }).catch((err) => {
     consola.log(err)
   })
@@ -17,17 +17,17 @@ app.get('/allkmps', function(_req, res) {
 // @route   POST api/insertpoc
 // @desc    Saves our form data
 // @access  Public
-app.post('/insertkmp', function(req, res) {
-  const savekmp = new Kmp({
+app.post('/insertrmp', function(req, res) {
+  const savermp = new Rmp({
     fname: `${req.query.fname}`,
     lname: `${req.query.lname}`,
     email: `${req.query.email}`,
     message: `${req.query.message}`
   })
-  savekmp
+  savermp
     .save()
     .then(() => {
-      res.status(200).json({ kmp: 'your form was saved' })
+      res.status(200).json({ rmp: 'your form was saved' })
     })
     .catch((err) => {
       // catches mongoose validation (SS Validation)

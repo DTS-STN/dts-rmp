@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Run Full e2e Tests using Docker Compose
-        run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_KMP_DB_PASSWORD=`${{ secrets.VUE_APP_KMP_DB_PASSWORD }}` docker-compose up --exit-code-from e2e
+        run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_RMP_DB_PASSWORD=`${{ secrets.VUE_APP_RMP_DB_PASSWORD }}` docker-compose up --exit-code-from e2e
 
   publish_Deploy:
     name: Publish and Deploy
@@ -37,12 +37,12 @@ jobs:
       - uses: actions/checkout@v1
       - name: docker build and push client server
         run: |
-          docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-kmp:latest .
-          docker tag mtscontainers.azurecr.io/dts-kmp:latest mtscontainers.azurecr.io/dts-kmp:$BUILD_NUMBER
-          docker push mtscontainers.azurecr.io/dts-kmp:latest
-          docker push mtscontainers.azurecr.io/dts-kmp:$BUILD_NUMBER
+          docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-rmp:latest .
+          docker tag mtscontainers.azurecr.io/dts-rmp:latest mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
+          docker push mtscontainers.azurecr.io/dts-rmp:latest
+          docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
       - name: jenkins client server deployment job
         uses: wei/curl@v1
         with:
-          args: -X POST https://jenkins.dts-stn.com/job/kmp/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.JENKINS_SP_TOKEN }}
+          args: -X POST https://jenkins.dts-stn.com/job/rmp/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.JENKINS_SP_TOKEN }}
 

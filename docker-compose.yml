@@ -1,14 +1,14 @@
 version: '3.3'
 services:
 
-  dts-kmp:
+  dts-rmp:
     build:
       context: ./
       dockerfile: Dockerfile
       args:
         VUE_APP_CONNECTION_STRING: ${VUE_APP_CONNECTION_STRING}
-        VUE_APP_KMP_DB_PASSWORD: ${VUE_APP_KMP_DB_PASSWORD}
-    container_name: dts-kmp
+        VUE_APP_RMP_DB_PASSWORD: ${VUE_APP_RMP_DB_PASSWORD}
+    container_name: dts-rmp
     restart: always
     ports:
      - "80:3000"
@@ -19,7 +19,7 @@ services:
       dockerfile: Cypress.Dockerfile
     container_name: cypress
     depends_on:
-      - dts-kmp
+      - dts-rmp
     environment:
       - CYPRESS_baseUrl=http://localhost
     restart: always
