@@ -3,7 +3,7 @@
     <div>
       <logo />
       <h1 class="title">
-        dts-kmp
+        dts-rmp
       </h1>
       <h2 class="subtitle">
         knowledge management portal proof of concept!
