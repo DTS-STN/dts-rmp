@@ -1,7 +1,7 @@
 {
-  "name": "dts-rmp",
+  "name": "dts-kmp",
   "version": "1.0.0",
-  "description": "relationship management portal proof of concept",
+  "description": "knowledge management portal proof of concept",
   "author": "dts",
   "private": true,
   "scripts": {
