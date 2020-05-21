@@ -44,5 +44,5 @@ jobs:
       - name: jenkins client server deployment job
         uses: wei/curl@v1
         with:
-          args: -X POST https://jenkins.dts-stn.com/job/dts-kmp/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.JENKINS_SP_TOKEN }}
+          args: -X POST https://jenkins.dts-stn.com/job/kmp/buildWithParameters?docker_tag=$BUILD_NUMBER --user jenkinsbot:${{ secrets.JENKINS_SP_TOKEN }}
 
