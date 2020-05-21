@@ -1,5 +1,9 @@
 version: '3.3'
 services:
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   dts-rmp:
     build:
       context: ./
