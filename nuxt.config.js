@@ -50,7 +50,32 @@ module.exports = {
   ],
 
   auth: {
-    // Options
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '~/server/api/auth/login',
+            method: 'post',
+            propertyName: 'token'
+          },
+
+          logout: {
+            url: '~/server/api/auth/logout',
+            method: 'delete'
+          },
+
+          user: {
+            url: '~/server/api/auth/user',
+            method: 'get',
+            propertyName: 'data'
+          }
+        },
+        // tokenRequired: true,
+        tokenType: 'bearer'
+        // globalToken: true,
+        // autoFetchUser: true
+      }
+    }
   },
 
   serverMiddleware: ['~/server/api/routes/index'],
@@ -59,7 +84,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.baseURL || 'http://localhost:3000/api'
+  },
   /*
    ** Build configuration
    */

@@ -13,9 +13,14 @@
             Register
           </nuxt-link>
         </li>
+        <li v-if="!$auth.loggedIn" class="nav-item">
+          <nuxt-link to="/login">
+            Login
+          </nuxt-link>
+        </li>
         <li v-else class="nav-item">
           welcome: {{ $auth.user.name }}
-          <AppButton :data_cypress="logout">
+          <AppButton :data_cypress="logout" @click="$auth.logout()">
             Logout
           </AppButton>
         </li>

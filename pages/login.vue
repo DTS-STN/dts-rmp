@@ -1,10 +1,11 @@
 <template>
+  <!-- eslint-disable vue/attribute-hyphenation -->
   <div class="login-container">
     <h1 class="title">
       Login
     </h1>
 
-    <AuthForm button_text="Login" :submit-form="loginUser" />
+    <AuthForm buttonText="Login" :submitForm="loginUser" />
   </div>
 </template>
 
@@ -16,9 +17,18 @@ export default {
     AuthForm
   },
   methods: {
-    loginUser(logininfo) {
-      // eslint-disable-next-line no-console
-      console.log('You pressed a button')
+    async loginUser(loginInfo) {
+      try {
+        await this.$auth.loginWith('local', {
+          data: { loginInfo }
+        })
+        // eslint-disable-next-line no-console
+        console.log(`Login correct, ${this.$auth.user.name}`)
+        this.$router.push('/welcome')
+      } catch {
+        // eslint-disable-next-line no-console
+        console.log('Login Failed')
+      }
     }
   }
 }
