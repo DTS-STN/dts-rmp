@@ -6,9 +6,8 @@
       <!-- Temporary navbar containing   home, login/logout buttons -->
       <NavBar />
     </header>
-
-    <main class="background-col">
-      <HeaderImg />
+    <HeaderImg />
+    <main>
       <nuxt />
     </main>
 
@@ -43,6 +42,7 @@ html {
 }
 .main-container {
   min-height: 100vh;
+  background-color: rgb(216, 241, 248);
 }
 
 .button--green {
@@ -72,8 +72,5 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
-}
-.background-col {
-  background-color: rgb(216, 241, 248);
 }
 </style>
