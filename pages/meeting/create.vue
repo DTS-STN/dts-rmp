@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>Create a meeting</h1>
-  </div>
+  <div />
 </template>
 <script>
 export default {
@@ -19,3 +17,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.headerImg {
+  @apply w-full;
+  height: 648px;
+}
+</style>

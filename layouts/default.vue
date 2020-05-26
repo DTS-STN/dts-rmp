@@ -7,7 +7,8 @@
       <NavBar />
     </header>
 
-    <main>
+    <main class="background-col">
+      <HeaderImg />
       <nuxt />
     </main>
 
@@ -19,9 +20,11 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import HeaderImg from '@/components/Header.vue'
 export default {
   components: {
-    NavBar
+    NavBar,
+    HeaderImg
   }
 }
 </script>
@@ -69,5 +72,8 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+.background-col {
+  background-color: rgb(216, 241, 248);
 }
 </style>
