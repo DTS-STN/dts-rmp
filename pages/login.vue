@@ -18,6 +18,8 @@ export default {
   },
   methods: {
     async loginUser(loginInfo) {
+      // eslint-disable-next-line no-console
+      console.log(loginInfo)
       try {
         await this.$auth.loginWith('local', {
           data: { loginInfo }
@@ -28,6 +30,7 @@ export default {
       } catch {
         // eslint-disable-next-line no-console
         console.log('Login Failed')
+        this.$router.push('/index')
       }
     }
   }
@@ -36,6 +39,7 @@ export default {
 
 <style scoped>
 .login-container {
+  @apply bg-orange-100;
 }
 
 .subtitle {

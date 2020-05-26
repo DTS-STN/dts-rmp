@@ -49,14 +49,21 @@ module.exports = {
     '@nuxtjs/auth'
   ],
 
+  /*
+   ** Future use IF safe
+   */
+  jwt: {
+    jwtSecret: process.env.VUE_APP_JWT_SECRET || 'default'
+  },
+
   auth: {
     strategies: {
       local: {
         endpoints: {
           login: {
-            url: '~/server/api/auth/login',
+            url: '/api/auth/login',
             method: 'post',
-            propertyName: 'token'
+            propertyName: 'accessToken'
           },
 
           logout: {
@@ -78,14 +85,18 @@ module.exports = {
     }
   },
 
-  serverMiddleware: ['~/server/api/routes/index'],
+  serverMiddleware: [
+    { path: '/api', handler: '~/server/api/routes/index' },
+    { path: '/api/auth', handler: '~/server/api/auth/index' }
+    // { path: '/api/user', handler: '~/server/api/user/index' }
+  ],
 
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.baseURL || 'http://localhost:3000/api'
+    // baseURL: process.env.baseURL || 'http://localhost:3000/'
   },
   /*
    ** Build configuration
