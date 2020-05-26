@@ -1,13 +1,14 @@
 <template>
+  <!-- eslint-disable vue/attribute-hyphenation -->
   <div class="container">
     <h1 class="title">
       Register
     </h1>
 
     <AuthForm
-      button_text="Register"
-      register="true"
-      :submit-form="registerUser"
+      buttonText="Register"
+      :register="true"
+      :submitForm="registerUser"
     />
   </div>
 </template>
@@ -20,9 +21,25 @@ export default {
     AuthForm
   },
   methods: {
-    registerUser(registrationinfo) {
+    async registerUser(registrationInfo) {
       // eslint-disable-next-line no-console
-      console.log('You pressed a button')
+      console.log(registrationInfo)
+
+      try {
+        await await this.$axios.post('/users', registrationInfo)
+
+        // eslint-disable-next-line no-console
+        console.log(`Registration correct`)
+
+        await this.$auth.loginWith('local', {
+          data: registrationInfo
+        })
+
+        this.$router.push('/welcome')
+      } catch {
+        // eslint-disable-next-line no-console
+        console.log('Registration Failed')
+      }
     }
   }
 }
