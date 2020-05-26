@@ -17,15 +17,23 @@
       <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
       <div v-else>welcome... {{ $auth.user.name }}</div>
     </div>
+    <div
+      class="flex sm:content-start flex-wrap sm:justify-around justify-center"
+    >
+      <StartBoxes title="title" message="Description goes here" />
+      <StartBoxes title="title2" message="Description goes here2" />
+      <StartBoxes title="title3" message="Description goes here3" />
+    </div>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
-
+import StartBoxes from '~/components/StartBoxes'
 export default {
   components: {
-    Logo
+    Logo,
+    StartBoxes
   }
 }
 </script>
