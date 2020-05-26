@@ -63,18 +63,18 @@ module.exports = {
           login: {
             url: '/api/auth/login',
             method: 'post',
-            propertyName: 'accessToken'
+            propertyName: 'token'
           },
 
           logout: {
-            url: '~/server/api/auth/logout',
+            url: '/api/auth/logout',
             method: 'delete'
           },
 
           user: {
-            url: '~/server/api/auth/user',
+            url: '/api/auth/user',
             method: 'get',
-            propertyName: 'data'
+            propertyName: 'token.user' // 'token.user'
           }
         },
         // tokenRequired: true,

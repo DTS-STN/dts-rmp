@@ -12,6 +12,21 @@ consola.ready(JWT_SECRET)
 const app = Router()
 app.use(json())
 
+function createAccessToken(id, name, email, role) {
+  return jwt.sign(
+    {
+      id,
+      name,
+      email,
+      role
+    },
+    JWT_SECRET,
+    {
+      expiresIn: 60
+    }
+  )
+}
+
 // @route   POST api/auth/login
 // @desc    Verifies the user exist and password matches
 // @access  Public
@@ -19,25 +34,44 @@ app.use(json())
 app.post('/login', async (req, res) => {
   const { email, password } = req.body.loginInfo
 
-  consola.log('email = ', req.body)
-  consola.log('password = ', password)
+  consola.log('req.body = ', req.body)
 
   try {
     const user = await User.findOne({ email })
 
     if (!user) {
-      consola.error('Invalid email/password')
-      throw new Error('Invalid email/password')
+      consola.error('Invalid email, account not found ')
+      throw new Error('Invalid email/password combination')
     }
     consola.log('user found ')
 
-    if (user && !user.check_password({ password })) {
-      consola.error('Invalid email/password')
-      throw new Error('Invalid email/password')
+    const isMatch = await bcrypt.compare(password, user.password)
+    if (!isMatch) {
+      consola.error('Invalid password')
+      throw new Error('Invalid email/password combination')
     }
 
+    const accessToken = createAccessToken(
+      user._id,
+      user.name,
+      user.email,
+      user.role
+    )
+
+    consola.ready('user logged in ')
+
     // implicit else
-    res.json(user)
+    res.json({
+      token: {
+        accessToken,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role
+        }
+      }
+    })
   } catch (e) {
     res.status(400)
     consola.log(e.message)
@@ -92,26 +126,22 @@ app.post('/register', async (req, res) => {
       consola.ready(' Success ')
     }
 
-    const accessToken = jwt.sign(
-      {
-        id: savedUser._id,
-        name: User.name,
-        email: User.email,
-        role: User.role
-      },
-      JWT_SECRET,
-      {
-        expiresIn: 60
-      }
+    const accessToken = createAccessToken(
+      savedUser._id,
+      savedUser.name,
+      savedUser.email,
+      savedUser.role
     )
 
     res.status(200).json({
-      accessToken: { accessToken },
+      // token: {
+      token: { accessToken },
       user: {
-        id: savedUser.id,
+        id: savedUser._id,
         name: savedUser.name,
         email: savedUser.email
       }
+      // }
     })
   } catch (e) {
     consola.error(e.message)
@@ -119,6 +149,23 @@ app.post('/register', async (req, res) => {
       .status(400)
       .json({ message: 'There was a problem with the registration' })
   }
+})
+
+// @route   GET api/auth/user
+// @desc    Required by Auth.loginWith
+// @access  Private
+
+app.get('/user', (req, res) => {
+  consola.log(' User .get  ')
+  res.status(200).json({ user: '' })
+})
+
+// @route   POST api/auth/logout
+// @desc    Logs the user out Required by Auth
+// @access  Public
+
+app.post('/logout', (_req, res) => {
+  res.json({ status: 'OK' })
 })
 
 // @route   GET api/auth/users
@@ -130,14 +177,14 @@ app.get('/users', async (req, res) => {
     const users = await User.find()
 
     if (!users) {
-      consola.log('No users exist')
+      consola.error('No users exist')
       throw new Error('No users exist')
     }
     // implicit else
     res.json(users)
   } catch (e) {
     res.status(400)
-    consola.log(e.message)
+    consola.error(e.message)
   }
 })
 
