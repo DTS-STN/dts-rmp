@@ -1,8 +1,14 @@
 <template>
-  <div />
+  <div>
+    <GeneralInformation />
+  </div>
 </template>
 <script>
+import GeneralInformation from '@/components/GeneralInfo'
 export default {
+  components: {
+    GeneralInformation
+  },
   head() {
     return {
       title: 'Create a Meeting',

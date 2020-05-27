@@ -4,16 +4,22 @@
     <img class="headerImg" src="../assets/images/u1.png" />
     <div class="text-container">
       <div class="grid grid-cols-4 gap-1">
-        <div class="col-span-2 ...">
+        <div
+          v-if="this.$nuxt.$route.name === 'meeting-create'"
+          class="col-span-2 ..."
+        >
           <span class="newTxt">New</span>
           <span class="newODGD">OGD</span>
           <span class="newTxt">meeting</span>
         </div>
-        <div class="col-end-5 col-span-1 text-right text-white">
-          <a href="">Log Out</a>
+        <div v-if="this.$nuxt.$route.name === 'index'" class="col-span-2 ...">
+          <span class="newTxt">Stakeholder engager</span>
+        </div>
+        <div class="col-end-5 col-span-1 text-right text-white underline">
+          <a href>Log Out</a>
         </div>
       </div>
-      <div class="grid grid-cols-7 gap-1 pt-4">
+      <div class="grid grid-cols-7 gap-1 pt-4 flex-shrink-0">
         <div class="col-span-4 ...">
           <p class="text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
@@ -24,12 +30,24 @@
             tempor.
           </p>
         </div>
-        <div class="col-end-8 col-span-2 text-right">
-          <div class="greyCircle">
+        <div class="col-end-8 col-span-3 text-right">
+          <div
+            v-if="this.$nuxt.$route.name === 'meeting-create'"
+            class="greyCircle"
+          >
             1
           </div>
-          <div class="rectangle " />
-          <div class="whiteCircle">
+          <div v-if="this.$nuxt.$route.name === 'index'" class="whiteCircle">
+            1
+          </div>
+          <div class="rectangle" />
+          <div
+            v-if="this.$nuxt.$route.name === 'meeting-create'"
+            class="whiteCircle"
+          >
+            2
+          </div>
+          <div v-if="this.$nuxt.$route.name === 'index'" class="greyCircle">
             2
           </div>
           <div class="rectangle" />
@@ -38,6 +56,8 @@
           </div>
         </div>
       </div>
+      <!-- <h1 v-if="this.$nuxt.$route.name === 'meeting-create'">
+      Vue is awesome!-->
     </div>
   </div>
 </template>
@@ -46,10 +66,9 @@
   position: relative;
   text-align: center;
 }
-
 .headerImg {
   @apply w-full;
-  height: 648px;
+  height: 550px;
 }
 .text-container {
   position: absolute;
@@ -71,23 +90,24 @@
 .greyCircle {
   background-color: grey;
   margin: -2px;
-  @apply rounded-full h-16 w-16 flex items-center justify-center text-black inline-flex font-medium;
+  @apply rounded-full h-16 w-16 flex items-center justify-center text-black inline-flex font-bold;
 }
 .whiteCircle {
   background-color: orange;
   border: 3px solid white;
-  @apply rounded-full h-16 w-16 flex items-center justify-center text-white inline-flex font-medium;
+  @apply rounded-full h-16 w-16 flex items-center justify-center text-white inline-flex font-bold;
 }
 .whiteCircle3 {
   background-color: white;
   margin: -2px;
-  @apply rounded-full h-16 w-16 flex items-center justify-center text-orange-500 inline-flex font-medium;
+  @apply rounded-full h-16 w-16 flex items-center justify-center text-orange-500 inline-flex font-bold;
 }
 .rectangle {
   height: 3px;
   width: 15px;
   background-color: white;
   margin: -4.5px;
+  margin-bottom: auto;
   @apply inline-flex items-center justify-center;
 }
 </style>
