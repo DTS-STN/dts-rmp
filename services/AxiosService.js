@@ -4,10 +4,10 @@ class AxiosService {
   static insertEngagement(engagement) {
     return axios.post(`/api/insertengagement`, null, {
       params: {
-        fname: engagement.fname,
-        lname: engagement.lname,
-        email: engagement.email,
-        message: engagement.message
+        subject: engagement.subject,
+        notes: engagement.notes,
+        contactname: engagement.contactname,
+        type: engagement.type
       }
     })
   }
