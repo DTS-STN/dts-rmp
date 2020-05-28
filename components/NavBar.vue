@@ -44,7 +44,7 @@ export default {
 .navbar-container {
   height: 60px;
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   justify-content: space-around;
   align-items: center;

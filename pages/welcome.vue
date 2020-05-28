@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1 class="title">Welcome, {{ this.$auth.user.name }}</h1>
-
     <h2 class="subtitle">
       this page is user who are logged-in
     </h2>
@@ -18,7 +16,7 @@
 <script>
 import StartBoxes from '~/components/StartBoxes'
 export default {
-  middleware: 'auth',
+  // middleware: 'auth',
   components: {
     StartBoxes
   }
