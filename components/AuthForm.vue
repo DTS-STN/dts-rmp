@@ -1,5 +1,6 @@
 <template>
   <!-- eslint-disable vue/html-self-closing -->
+  <!-- eslint-disable vue/prop-name-casing -->
   <div class="form-container">
     <form @submit.prevent="submit">
       <div>
@@ -14,7 +15,7 @@
       </div>
 
       <div>
-        <label for="userInfoEmail" class="formLabel">Email</label>
+        <label for="userInfoEmail" class="formLabel mt-6">Email</label>
         <input
           v-model="userInfo.email"
           class="formInput"
@@ -25,7 +26,7 @@
       </div>
 
       <div>
-        <label for="userInfoPassword" class="formLabel">Password</label>
+        <label for="userInfoPassword" class="formLabel mt-6">Password</label>
         <input
           v-model="userInfo.password"
           class="formInput"
@@ -35,13 +36,15 @@
         />
       </div>
 
-      <AppButton
-        custom_style="btn-extra"
-        :data_cypress="formButton"
-        @click="submitform(userInfo)"
-      >
-        {{ button_text }}
-      </AppButton>
+      <div class="center-button">
+        <AppButton
+          custom_style="btn-extra"
+          data_cypress="formButton"
+          @click="submitForm(userInfo)"
+        >
+          {{ buttonText }}
+        </AppButton>
+      </div>
     </form>
   </div>
 </template>
@@ -60,8 +63,7 @@ export default {
       type: Function,
       required: true
     },
-    // eslint-disable-next-line vue/prop-name-casing
-    button_text: {
+    buttonText: {
       type: String,
       required: true
     },
@@ -87,7 +89,13 @@ export default {
   margin: auto;
   @apply bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4;
 }
+.center-button {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .btn-extra {
+  width: 100%;
 }
 .formLabel {
   @apply block text-gray-700 text-sm font-bold mb-2;

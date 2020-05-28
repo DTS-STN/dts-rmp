@@ -3,8 +3,8 @@ const consola = require('consola')
 const app = express()
 const Rmp = require('../models/rmp')
 
-// @route   GET api/allpocs
-// @desc    Gets all existing PoC's in database
+// @route   GET api/allrmps
+// @desc    Gets all existing RMP's in database
 // @access  Public
 app.get('/allrmps', function(_req, res) {
   Rmp.find((_err, rmp) => {
@@ -14,7 +14,7 @@ app.get('/allrmps', function(_req, res) {
   })
 })
 
-// @route   POST api/insertpoc
+// @route   POST api/insertrmp
 // @desc    Saves our form data
 // @access  Public
 app.post('/insertrmp', function(req, res) {
