@@ -6,7 +6,7 @@
       <!-- Temporary navbar containing   home, login/logout buttons -->
       <NavBar />
     </header>
-    <HeaderImg />
+    <TitleComponent />
     <main>
       <nuxt />
     </main>
@@ -19,11 +19,11 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import HeaderImg from '@/components/Header.vue'
+import TitleComponent from '@/components/TitleComponent.vue'
 export default {
   components: {
     NavBar,
-    HeaderImg
+    TitleComponent
   }
 }
 </script>

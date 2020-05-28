@@ -1,14 +1,8 @@
 <template>
-  <div>
-    <GeneralInformation />
-  </div>
+  <div />
 </template>
 <script>
-import GeneralInformation from '@/components/GeneralInfo'
 export default {
-  components: {
-    GeneralInformation
-  },
   head() {
     return {
       title: 'Create a Meeting',
@@ -23,9 +17,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.headerImg {
-  @apply w-full;
-  height: 648px;
-}
-</style>
