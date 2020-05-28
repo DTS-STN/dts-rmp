@@ -1,33 +1,33 @@
 const express = require('express')
 const consola = require('consola')
 const app = express()
-const Rmp = require('../models/rmp')
+const Engagement = require('../models/engagement')
 
-// @route   GET api/allrmps
-// @desc    Gets all existing RMP's in database
+// @route   GET api/allengagements
+// @desc    Gets all existing engagement's in database
 // @access  Public
-app.get('/allrmps', function(_req, res) {
-  Rmp.find((_err, rmp) => {
-    res.json(rmp)
+app.get('/allengagements', function(_req, res) {
+  Engagement.find((_err, Engagement) => {
+    res.json(Engagement)
   }).catch((err) => {
     consola.log(err)
   })
 })
 
-// @route   POST api/insertrmp
+// @route   POST api/insertengagement
 // @desc    Saves our form data
 // @access  Public
-app.post('/insertrmp', function(req, res) {
-  const savermp = new Rmp({
-    fname: `${req.query.fname}`,
-    lname: `${req.query.lname}`,
-    email: `${req.query.email}`,
-    message: `${req.query.message}`
+app.post('/insertengagement', function(req, res) {
+  const saveengagement = new Engagement({
+    subject: `${req.query.subject}`,
+    contactname: `${req.query.contactname}`,
+    notes: `${req.query.notes}`,
+    type: `${req.query.type}`
   })
-  savermp
+  saveengagement
     .save()
     .then(() => {
-      res.status(200).json({ rmp: 'your form was saved' })
+      res.status(200).json({ engagement: 'your form was saved' })
     })
     .catch((err) => {
       // catches mongoose validation (SS Validation)

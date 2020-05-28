@@ -4,12 +4,12 @@
     <div class="text-container">
       <div class="grid grid-cols-4 gap-1">
         <div
-          v-if="this.$nuxt.$route.name === 'meeting-create'"
+          v-if="this.$nuxt.$route.name === 'engagement-create'"
           class="col-span-2 ..."
         >
           <span class="newTxt">{{ newtxt }}</span>
           <span class="newODGD">{{ ogd }}</span>
-          <span class="newTxt">{{ meeting }}</span>
+          <span class="newTxt">{{ engagement }}</span>
         </div>
         <div v-if="this.$nuxt.$route.name === 'index'" class="col-span-2 ...">
           <span class="newTxt">{{ stakeholder }}</span>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-end-8 col-span-3 text-right">
           <div
-            v-if="this.$nuxt.$route.name === 'meeting-create'"
+            v-if="this.$nuxt.$route.name === 'engagement-create'"
             class="greyCircle"
           >
             1
@@ -36,7 +36,7 @@
           </div>
           <div class="rectangle" />
           <div
-            v-if="this.$nuxt.$route.name === 'meeting-create'"
+            v-if="this.$nuxt.$route.name === 'engagement-create'"
             class="orangeCircle"
           >
             2
@@ -65,7 +65,7 @@ export default {
       default: 'OGD ',
       type: String
     },
-    meeting: {
+    engagement: {
       default: 'New',
       type: String
     },

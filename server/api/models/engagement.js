@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
-const rmpSchema = new mongoose.Schema(
+const engagementSchema = new mongoose.Schema(
   {
     // Allows for alpha only string of at least 3 characters
-    fname: {
+    subject: {
       type: String,
       validate: {
         validator(v) {
@@ -11,9 +11,16 @@ const rmpSchema = new mongoose.Schema(
         }
       }
     },
-
+    notes: {
+      type: String,
+      validate: {
+        validator(v) {
+          return /^(?=[a-zA-Z]{3,}$)/.test(v)
+        }
+      }
+    },
     // Allows for alpha only string of at least 3 characters
-    lname: {
+    contactname: {
       type: String,
       validate: {
         validator(v) {
@@ -22,18 +29,7 @@ const rmpSchema = new mongoose.Schema(
       }
     },
 
-    // valid email address
-    email: {
-      type: String,
-      validate: {
-        validator(v) {
-          return /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v)
-        }
-      }
-    },
-
-    // Allows for alpha, numbers, space ',' and '.' with a minimum lenght of 3
-    message: {
+    type: {
       type: String,
       validate: {
         validator(v) {
@@ -42,7 +38,19 @@ const rmpSchema = new mongoose.Schema(
       }
     }
   },
-  { collection: 'rmp' }
+  // valid email address
+  // email: {
+  //   type: String,
+  //   validate: {
+  //     validator(v) {
+  //       return /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v)
+  //     }
+  //   }
+  // },
+
+  // Allows for alpha, numbers, space ',' and '.' with a minimum lenght of 3
+
+  { collection: 'engagement' }
 )
 
-module.exports = mongoose.model('Rmp', rmpSchema)
+module.exports = mongoose.model('engagement', engagementSchema)

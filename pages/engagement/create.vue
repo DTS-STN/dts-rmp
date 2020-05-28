@@ -1,6 +1,6 @@
 <template>
   <div id="form">
-    <h1>Create a meeting</h1>
+    <h1>Create a engagement</h1>
     <Form />
   </div>
 </template>
@@ -12,12 +12,12 @@ export default {
   },
   head() {
     return {
-      title: 'Create a Meeting',
+      title: 'Create a engagement',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Create a new meeting!'
+          content: 'Create a new engagement!'
         }
       ]
     }
