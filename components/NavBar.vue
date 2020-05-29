@@ -18,7 +18,7 @@
             Login
           </nuxt-link>
         </li>
-        <li v-else class="nav-item">
+        <li v-else class="nav-item text-white">
           welcome: {{ $auth.user.name }}
           <AppButton :data_cypress="logout" @click="$auth.logout()">
             Logout
@@ -44,7 +44,7 @@ export default {
 .navbar-container {
   height: 60px;
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   justify-content: space-around;
   align-items: center;
