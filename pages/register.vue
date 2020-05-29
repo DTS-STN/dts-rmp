@@ -9,6 +9,7 @@
       buttonText="Register"
       :register="true"
       :submitForm="registerUser"
+      :errorMessage="error"
     />
   </div>
 </template>
@@ -20,11 +21,12 @@ export default {
   components: {
     AuthForm
   },
+  data() {
+    return { error: null }
+  },
   methods: {
     async registerUser(registrationInfo) {
-      const { name, email, password } = registrationInfo
-      // eslint-disable-next-line no-console
-      console.log('name : ', name, ' | pass : ', password, ' | email : ', email)
+      const { email, password } = registrationInfo
 
       try {
         await await this.$axios.post('/api/auth/register', { registrationInfo })
@@ -32,18 +34,24 @@ export default {
         // eslint-disable-next-line no-console
         console.log(`Registration correct`)
 
-        // await this.$auth.loginWith('local', {
-        //   data: registrationInfo
-        // })
-
-        this.$router.push('/welcome')
-      } catch {
+        await this.$auth.loginWith('local', {
+          data: { email, password }
+        })
+      } catch (e) {
         // eslint-disable-next-line no-console
         console.log('Registration Failed')
+        this.error = e.response.data.message
       }
     }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.form-container {
+  width: 800px;
+  min-height: 30px;
+  margin: auto;
+  @apply bg-gray-300 shadow-md rounded px-8  mb-4;
+}
+</style>

@@ -39,13 +39,17 @@ app.post('/login', async (req, res) => {
 
     if (!user) {
       consola.error('Invalid email, account not found ')
-      throw new Error('Invalid email/password combination')
+      return res
+        .status(401)
+        .json({ message: 'Invalid email / password combination (email)' })
     }
 
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) {
       consola.error('Invalid password')
-      throw new Error('Invalid email/password combination')
+      return res
+        .status(401)
+        .json({ message: 'Invalid email / password combination (password)' })
     }
 
     const accessToken = createAccessToken(
@@ -66,7 +70,7 @@ app.post('/login', async (req, res) => {
       }
     })
   } catch (e) {
-    res.status(400)
+    res.status(401).json({ message: 'Invalid email / password combination' })
     consola.log(e.message)
   }
 })
@@ -80,7 +84,7 @@ app.post('/register', async (req, res) => {
 
   if (!req.body) {
     consola.error('please enter all fields')
-    return res.status(400).json({ message: 'Please enter all fields' })
+    return res.status(400).json({ message: 'All fields are required' })
   }
 
   try {
@@ -88,19 +92,25 @@ app.post('/register', async (req, res) => {
 
     if (user) {
       consola.error('Email already exist')
-      throw new Error(' There was a problem with the registration')
+      return res.status(401).json({
+        message: 'There was a problem (email already exist)'
+      })
     }
 
     const salt = await bcrypt.genSalt(10)
     if (!salt) {
       consola.error('There was an error with bcrypt')
-      throw new Error(' There was a problem with the registration')
+      return res
+        .status(401)
+        .json({ message: 'There was a problem with the registration (bcrypt)' })
     }
 
     const hash = await bcrypt.hash(password, salt)
     if (!hash) {
       consola.error('There was an error with the password hashing')
-      throw new Error(' There was a problem with the registration')
+      return res.status(401).json({
+        message: 'There was a problem with the registration (hash)'
+      })
     }
 
     const newUser = new User({
@@ -113,7 +123,9 @@ app.post('/register', async (req, res) => {
 
     if (!savedUser) {
       consola.error('There was an error creating the user')
-      throw new Error('There was a problem with the registration')
+      return res.status(401).json({
+        message: 'A new account could not be created try again later'
+      })
     } else {
       consola.ready(' Success ')
     }
@@ -137,8 +149,8 @@ app.post('/register', async (req, res) => {
   } catch (e) {
     consola.error(e.message)
     res
-      .status(400)
-      .json({ message: 'There was a problem with the registration' })
+      .status(401)
+      .json({ message: 'There was a server problem during the registration' })
   }
 })
 
@@ -150,7 +162,9 @@ app.get('/user', (req, res) => {
   const authToken = req.headers.authorization
   if (!authToken) {
     consola.error(' invalid token ')
-    throw new Error('There was a problem with the authorization')
+    return res.status(401).json({
+      message: 'Invalid authorization '
+    })
   }
 
   const accessToken = authToken.split(' ')
@@ -162,7 +176,9 @@ app.get('/user', (req, res) => {
 
     res.status(200).json({ user: req.user })
   } catch (e) {
-    res.status(400)
+    res.status(401).json({
+      message: 'Invalid authorization account not found'
+    })
     consola.log(e.message)
   }
 })
@@ -172,7 +188,7 @@ app.get('/user', (req, res) => {
 // @access  Public
 
 app.post('/logout', (_req, res) => {
-  res.json({ status: 'OK' })
+  res.status(200).json({ message: 'OK' })
 })
 
 export default app

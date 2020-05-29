@@ -82,12 +82,18 @@ module.exports = {
         // globalToken: true,
         // autoFetchUser: true
       }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/welcome'
     }
   },
 
   serverMiddleware: [
     { path: '/api', handler: '~/server/api/routes/index' },
-    { path: '/api/auth', handler: '~/server/api/auth/index' }
+    { path: '/api/auth', handler: '~/server/api/auth/index' },
     { path: '/api/user', handler: '~/server/api/user/index' }
   ],
 

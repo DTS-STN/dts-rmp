@@ -2,7 +2,7 @@
   <!-- eslint-disable vue/html-self-closing -->
   <!-- eslint-disable vue/prop-name-casing -->
   <div class="form-container">
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submitForm">
       <div>
         <label v-if="register" class="formLabel" for="userInfoName">Name</label>
         <input
@@ -36,6 +36,10 @@
         />
       </div>
 
+      <div class="errorBox">
+        <span v-if="errorMessage">{{ errorMessage }}</span>
+      </div>
+
       <div class="center-button">
         <AppButton
           custom_style="btn-extra"
@@ -66,6 +70,10 @@ export default {
     buttonText: {
       type: String,
       required: true
+    },
+    errorMessage: {
+      type: String,
+      default: ''
     },
     register: Boolean
   },
@@ -105,5 +113,8 @@ export default {
 }
 .formInput:focus {
   @apply outline-none shadow-outline;
+}
+.errorBox {
+  @apply h-6 min-h-0 mt-2 text-red-700;
 }
 </style>

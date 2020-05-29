@@ -5,7 +5,11 @@
       Login
     </h1>
 
-    <AuthForm buttonText="Login" :submitForm="loginUser" />
+    <AuthForm
+      buttonText="Login"
+      :submitForm="loginUser"
+      :errorMessage="error"
+    />
   </div>
 </template>
 
@@ -16,21 +20,19 @@ export default {
   components: {
     AuthForm
   },
+  data() {
+    return { error: null }
+  },
   methods: {
     async loginUser(loginInfo) {
       try {
         await this.$auth.loginWith('local', {
           data: { loginInfo }
         })
+      } catch (e) {
         // eslint-disable-next-line no-console
-        console.log(
-          `Login correct ??? current user is : ${this.$auth.user.name}`
-        )
-        this.$router.push('/welcome')
-      } catch {
-        // eslint-disable-next-line no-console
-        console.log('Login Failed')
-        this.$router.push('/')
+        console.log('error : ', e.response.data.message)
+        this.error = e.response
       }
     }
   }
