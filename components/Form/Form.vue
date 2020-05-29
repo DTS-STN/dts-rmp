@@ -1,5 +1,5 @@
 <template>
-  <div class="px-5">
+  <div class="px-32">
     <form @submit.prevent="createEngagement">
       <h1 class="text-4xl font-semibold">
         General Information
