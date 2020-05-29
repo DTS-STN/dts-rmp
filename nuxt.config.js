@@ -88,7 +88,7 @@ module.exports = {
   serverMiddleware: [
     { path: '/api', handler: '~/server/api/routes/index' },
     { path: '/api/auth', handler: '~/server/api/auth/index' }
-    // { path: '/api/user', handler: '~/server/api/user/index' }
+    { path: '/api/user', handler: '~/server/api/user/index' }
   ],
 
   /*
