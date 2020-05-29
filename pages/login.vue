@@ -23,7 +23,9 @@ export default {
           data: { loginInfo }
         })
         // eslint-disable-next-line no-console
-        console.log(`Login correct, ${this.$auth.user.name}`)
+        console.log(
+          `Login correct ??? current user is : ${this.$auth.user.name}`
+        )
         this.$router.push('/welcome')
       } catch {
         // eslint-disable-next-line no-console

@@ -34,8 +34,6 @@ function createAccessToken(id, name, email, role) {
 app.post('/login', async (req, res) => {
   const { email, password } = req.body.loginInfo
 
-  consola.log('req.body = ', req.body)
-
   try {
     const user = await User.findOne({ email })
 
@@ -43,7 +41,6 @@ app.post('/login', async (req, res) => {
       consola.error('Invalid email, account not found ')
       throw new Error('Invalid email/password combination')
     }
-    consola.log('user found ')
 
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) {
@@ -58,18 +55,14 @@ app.post('/login', async (req, res) => {
       user.role
     )
 
-    consola.ready('user logged in ')
-
     // implicit else
     res.json({
-      token: {
-        accessToken,
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-          role: user.role
-        }
+      token: accessToken,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
       }
     })
   } catch (e) {
@@ -83,7 +76,6 @@ app.post('/login', async (req, res) => {
 // @access  Public
 
 app.post('/register', async (req, res) => {
-  consola.log(req.body)
   const { name, email, password } = req.body.registrationInfo
 
   if (!req.body) {
@@ -134,14 +126,13 @@ app.post('/register', async (req, res) => {
     )
 
     res.status(200).json({
-      // token: {
-      token: { accessToken },
+      token: accessToken,
       user: {
         id: savedUser._id,
         name: savedUser.name,
-        email: savedUser.email
+        email: savedUser.email,
+        role: savedUser.role
       }
-      // }
     })
   } catch (e) {
     consola.error(e.message)
@@ -156,8 +147,24 @@ app.post('/register', async (req, res) => {
 // @access  Private
 
 app.get('/user', (req, res) => {
-  consola.log(' User .get  ')
-  res.status(200).json({ user: '' })
+  const authToken = req.headers.authorization
+  if (!authToken) {
+    consola.error(' invalid token ')
+    throw new Error('There was a problem with the authorization')
+  }
+
+  const accessToken = authToken.split(' ')
+
+  try {
+    const decoded = jwt.verify(accessToken[1], JWT_SECRET)
+
+    req.user = decoded
+
+    res.status(200).json({ user: req.user })
+  } catch (e) {
+    res.status(400)
+    consola.log(e.message)
+  }
 })
 
 // @route   POST api/auth/logout
@@ -166,26 +173,6 @@ app.get('/user', (req, res) => {
 
 app.post('/logout', (_req, res) => {
   res.json({ status: 'OK' })
-})
-
-// @route   GET api/auth/users
-// @desc    Gets all users
-// @access  Public
-
-app.get('/users', async (req, res) => {
-  try {
-    const users = await User.find()
-
-    if (!users) {
-      consola.error('No users exist')
-      throw new Error('No users exist')
-    }
-    // implicit else
-    res.json(users)
-  } catch (e) {
-    res.status(400)
-    consola.error(e.message)
-  }
 })
 
 export default app

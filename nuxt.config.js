@@ -74,11 +74,11 @@ module.exports = {
           user: {
             url: '/api/auth/user',
             method: 'get',
-            propertyName: 'token.user' // 'token.user'
+            propertyName: 'user'
           }
-        },
+        }
         // tokenRequired: true,
-        tokenType: 'bearer'
+        // tokenType: 'bearer'
         // globalToken: true,
         // autoFetchUser: true
       }
