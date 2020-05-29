@@ -35,11 +35,11 @@ export default {
         console.log(`Registration correct`)
 
         await this.$auth.loginWith('local', {
-          data: { email, password }
+          data: { loginInfo: { email, password } }
         })
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.log('Registration Failed')
+        console.log('Registration Failed ==> ', e.response)
         this.error = e.response.data.message
       }
     }

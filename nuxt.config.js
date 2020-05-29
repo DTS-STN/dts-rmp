@@ -53,14 +53,9 @@ module.exports = {
     // Nuxt Authorization module
     '@nuxtjs/auth'
   ],
-
   /*
-   ** Future use IF safe
+   ** NuxtAuth  - attribs
    */
-  jwt: {
-    jwtSecret: process.env.VUE_APP_JWT_SECRET || 'default'
-  },
-
   auth: {
     strategies: {
       local: {
@@ -91,7 +86,7 @@ module.exports = {
     redirect: {
       login: '/login',
       logout: '/',
-      callback: '/login',
+      // callback: '/welcome',
       home: '/welcome'
     }
   },

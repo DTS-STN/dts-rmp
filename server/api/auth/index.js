@@ -7,7 +7,7 @@ import consola from 'consola'
 import User from '../models/user'
 
 const JWT_SECRET = process.env.VUE_APP_JWT_SECRET
-consola.ready(JWT_SECRET)
+consola.ready('this is the jwt : ', JWT_SECRET)
 
 const app = Router()
 app.use(json())
@@ -32,24 +32,24 @@ function createAccessToken(id, name, email, role) {
 // @access  Public
 
 app.post('/login', async (req, res) => {
-  const { email, password } = req.body.loginInfo
+  let errMessage = ''
 
   try {
+    const { email, password } = req.body.loginInfo
+
     const user = await User.findOne({ email })
 
     if (!user) {
       consola.error('Invalid email, account not found ')
-      return res
-        .status(401)
-        .json({ message: 'Invalid email / password combination (email)' })
+      errMessage = 'Invalid email / password combination (email) '
+      throw new Error(errMessage)
     }
 
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) {
       consola.error('Invalid password')
-      return res
-        .status(401)
-        .json({ message: 'Invalid email / password combination (password)' })
+      errMessage = 'Invalid email / password combination (wrong password) '
+      throw new Error(errMessage)
     }
 
     const accessToken = createAccessToken(
@@ -59,7 +59,6 @@ app.post('/login', async (req, res) => {
       user.role
     )
 
-    // implicit else
     res.json({
       token: accessToken,
       user: {
@@ -70,7 +69,7 @@ app.post('/login', async (req, res) => {
       }
     })
   } catch (e) {
-    res.status(401).json({ message: 'Invalid email / password combination' })
+    res.status(401).json({ message: errMessage })
     consola.log(e.message)
   }
 })
@@ -80,37 +79,37 @@ app.post('/login', async (req, res) => {
 // @access  Public
 
 app.post('/register', async (req, res) => {
-  const { name, email, password } = req.body.registrationInfo
-
-  if (!req.body) {
-    consola.error('please enter all fields')
-    return res.status(400).json({ message: 'All fields are required' })
-  }
+  let errMessage = ''
 
   try {
+    const { name, email, password } = req.body.registrationInfo
+
+    if (!name || !email || !password) {
+      consola.log(req.body.registrationInfo)
+      errMessage = 'All fields are required - xxxxxx '
+      throw new Error(errMessage)
+    }
+
     const user = await User.findOne({ email })
 
     if (user) {
       consola.error('Email already exist')
-      return res.status(401).json({
-        message: 'There was a problem (email already exist)'
-      })
+      errMessage = 'There was a problem (email already exist)'
+      throw new Error(errMessage)
     }
 
     const salt = await bcrypt.genSalt(10)
     if (!salt) {
       consola.error('There was an error with bcrypt')
-      return res
-        .status(401)
-        .json({ message: 'There was a problem with the registration (bcrypt)' })
+      errMessage('There was a problem with the registration (bcrypt)')
+      throw new Error(errMessage)
     }
 
     const hash = await bcrypt.hash(password, salt)
     if (!hash) {
       consola.error('There was an error with the password hashing')
-      return res.status(401).json({
-        message: 'There was a problem with the registration (hash)'
-      })
+      errMessage = 'There was a problem with the registration (hash)'
+      throw new Error(errMessage)
     }
 
     const newUser = new User({
@@ -123,11 +122,8 @@ app.post('/register', async (req, res) => {
 
     if (!savedUser) {
       consola.error('There was an error creating the user')
-      return res.status(401).json({
-        message: 'A new account could not be created try again later'
-      })
-    } else {
-      consola.ready(' Success ')
+      errMessage = 'A new account could not be created try again later'
+      throw new Error(errMessage)
     }
 
     const accessToken = createAccessToken(
@@ -148,9 +144,7 @@ app.post('/register', async (req, res) => {
     })
   } catch (e) {
     consola.error(e.message)
-    res
-      .status(401)
-      .json({ message: 'There was a server problem during the registration' })
+    res.status(401).json({ message: errMessage })
   }
 })
 

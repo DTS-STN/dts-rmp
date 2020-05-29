@@ -18,9 +18,13 @@
             Login
           </nuxt-link>
         </li>
-        <li v-else class="nav-item text-white">
-          welcome: {{ $auth.user.name }}
-          <AppButton :data_cypress="logout" @click="$auth.logout()">
+        <li v-if="$auth.loggedIn" class="nav-item text-white">
+          Welcome {{ $auth.user.name }}
+          <AppButton
+            :data_cypress="logout"
+            class="customBtn"
+            @click="$auth.logout()"
+          >
             Logout
           </AppButton>
         </li>
@@ -98,5 +102,11 @@ export default {
 .nav-item a:active,
 .nav-item a.nuxt-link-active {
   color: bg-gray-300;
+}
+.customBtn {
+  @apply mt-0 ml-4 bg-teal-600;
+}
+.customBtn:hover {
+  @apply bg-teal-400;
 }
 </style>

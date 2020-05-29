@@ -31,8 +31,8 @@ export default {
         })
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.log('error : ', e.response.data.message)
-        this.error = e.response
+        console.log('error : ', e.response)
+        this.error = e.response.data.message
       }
     }
   }
