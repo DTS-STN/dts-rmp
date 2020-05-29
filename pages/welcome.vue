@@ -20,7 +20,7 @@
 <script>
 import StartBoxes from '~/components/StartBoxes'
 export default {
-  // middleware: 'auth',
+  middleware: 'auth',
   components: {
     StartBoxes
   }

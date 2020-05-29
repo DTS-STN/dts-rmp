@@ -81,9 +81,9 @@ module.exports = {
             method: 'get',
             propertyName: 'user'
           }
-        }
+        },
         // tokenRequired: true,
-        // tokenType: 'bearer'
+        tokenType: 'bearer'
         // globalToken: true,
         // autoFetchUser: true
       }
