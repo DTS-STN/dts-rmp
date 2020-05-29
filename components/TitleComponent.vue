@@ -4,7 +4,7 @@
     <div class="text-container">
       <div class="grid grid-cols-4 gap-1">
         <div
-          v-if="this.$nuxt.$route.name === 'meeting-create'"
+          v-if="this.$nuxt.$route.name === 'meeting-create___en'"
           class="col-span-2 ..."
         >
           <span class="newTxt">{{ newtxt }}</span>
@@ -26,22 +26,28 @@
         </div>
         <div class="col-end-8 col-span-3 text-right">
           <div
-            v-if="this.$nuxt.$route.name === 'meeting-create'"
+            v-if="this.$nuxt.$route.name === 'meeting-create___en'"
             class="greyCircle"
           >
             1
           </div>
-          <div v-if="this.$nuxt.$route.name === 'index'" class="orangeCircle">
+          <div
+            v-if="this.$nuxt.$route.name === 'index___en'"
+            class="orangeCircle"
+          >
             1
           </div>
           <div class="rectangle" />
           <div
-            v-if="this.$nuxt.$route.name === 'meeting-create'"
+            v-if="this.$nuxt.$route.name === 'meeting-create___en'"
             class="orangeCircle"
           >
             2
           </div>
-          <div v-if="this.$nuxt.$route.name === 'index'" class="greyCircle">
+          <div
+            v-if="this.$nuxt.$route.name === 'index___en'"
+            class="greyCircle"
+          >
             2
           </div>
           <div class="rectangle" />

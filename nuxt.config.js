@@ -46,36 +46,35 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          {
+            name: 'Français',
+            code: 'fr',
+            iso: 'fr-FR',
+            file: 'fr-FR.js'
+          },
+          {
+            name: 'English',
+            code: 'en',
+            iso: 'en-CA',
+            file: 'en-CA.js'
+          }
+        ],
+        lazy: true,
+        langDir: 'lang/',
+        defaultLocale: 'en'
+      }
+    ],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Nuxt Authorization module
-    '@nuxtjs/auth',
-
-    'nuxt-i18n',
-    {
-      locales: [
-        {
-          name: 'Français',
-          code: 'fr',
-          iso: 'fr-FR',
-          file: 'fr-FR.js'
-        },
-        {
-          name: 'English',
-          code: 'en',
-          iso: 'en-CA',
-          file: 'en-CA.js'
-        }
-      ],
-      lazy: true,
-      langDir: 'lang/',
-      strategy: 'prefix_and_default',
-      defaultLocale: 'en'
-    }
+    '@nuxtjs/auth'
   ],
-
   auth: {
     strategies: {
       local: {
@@ -121,6 +120,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) { }
+    extend(config, ctx) {}
   }
 }
