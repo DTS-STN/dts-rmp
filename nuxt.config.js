@@ -27,7 +27,12 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    {
+      src: '~/plugins/Vuelidate.js',
+      ssr: false
+    }
+  ],
   /*
    ** Nuxt.js dev-modules
    */

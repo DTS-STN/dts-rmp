@@ -6,7 +6,7 @@
       <!-- Temporary navbar containing   home, login/logout buttons -->
       <NavBar />
     </header>
-
+    <TitleComponent />
     <main>
       <nuxt />
     </main>
@@ -19,9 +19,11 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import TitleComponent from '@/components/TitleComponent.vue'
 export default {
   components: {
-    NavBar
+    NavBar,
+    TitleComponent
   }
 }
 </script>
@@ -40,6 +42,7 @@ html {
 }
 .main-container {
   min-height: 100vh;
+  background-color: rgb(216, 241, 248);
 }
 
 .button--green {
