@@ -72,10 +72,9 @@
       <br />
       <!-- Previous Button -->
       <div class="sm:float-right">
-        <AppFormButton
-          text="Previous"
+        <AppButton
           btntype="button"
-          class="
+          custom_style="
           bg-white 
           hover:bg-blue-200 
           border-2 
@@ -85,10 +84,12 @@
           px-10 
           text-blue-800 
           font-semibold mr-3"
-        />
+        >
+          Previous
+        </AppButton>
         <!-- Submit Button -->
-        <AppFormButton
-          class="
+        <AppButton
+          custom_style="
           bg-orange-500 
           hover:bg-orange-700 
           rounded 
@@ -99,7 +100,9 @@
           px-10 
           text-white 
           font-semibold"
-        />
+        >
+          Submit
+        </AppButton>
       </div>
     </form>
   </div>

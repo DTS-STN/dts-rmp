@@ -7,9 +7,8 @@
       <br />
       <div class="flex flex-wrap justify-start">
         <AppTextBox placeholder="Search engagements..." classes="p-3" />
-        <AppFormButton
-          text="Search"
-          class="
+        <AppButton
+          custom_style="
           bg-orange-500 
           hover:bg-orange-700 
           rounded 
@@ -20,7 +19,9 @@
           px-10 
           text-white 
           font-semibold"
-        />
+        >
+          Search
+        </AppButton>
       </div>
     </form>
   </div>
@@ -28,6 +29,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      search: ''
+    }
+  },
   methods: {
     filterEngagements() {
       this.$emit('FilterEngagements', ['arguments', 'go', 'here'])
