@@ -31,6 +31,9 @@ module.exports = {
     {
       src: '~/plugins/Vuelidate.js',
       ssr: false
+    },
+    {
+      src: '~/plugins/global.js'
     }
   ],
   /*
