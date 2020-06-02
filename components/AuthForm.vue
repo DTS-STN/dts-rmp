@@ -38,7 +38,18 @@
 
       <div class="center-button">
         <AppButton
-          custom_style="btn-extra"
+          custom_style="
+          btn-extra 
+          shadow 
+          bg-teal-800 
+          text-white 
+          font-bold 
+          mt-12 
+          py-2 
+          px-4 
+          rounded 
+          focus:shadow-outline 
+          hover:bg-teal-600"
           data_cypress="formButton"
           @click="submitForm(userInfo)"
         >
@@ -50,14 +61,8 @@
 </template>
 
 <script>
-import AppButton from '@/components/AppButton.vue'
 export default {
   name: 'AuthForm',
-
-  components: {
-    AppButton
-  },
-
   props: {
     submitForm: {
       type: Function,
