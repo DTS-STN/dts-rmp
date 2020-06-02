@@ -5,7 +5,7 @@
       Register
     </h1>
 
-    <AuthForm
+    <AuthRegister
       buttonText="Register"
       :register="true"
       :submitForm="registerUser"
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import AuthForm from '@/components/AuthForm.vue'
+import AuthRegister from '@/components/AuthRegister.vue'
 
 export default {
   components: {
-    AuthForm
+    AuthRegister
   },
   data() {
     return { error: null }

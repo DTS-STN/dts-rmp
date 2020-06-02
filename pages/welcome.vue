@@ -27,4 +27,22 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.title {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: white;
+  letter-spacing: 1px;
+  @apply pt-12 text-center;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+</style>

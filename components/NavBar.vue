@@ -8,26 +8,30 @@
     <div class="spacer" />
     <div class="navigation-items">
       <ul class="nav-list">
-        <li v-if="!$auth.loggedIn" class="nav-item">
-          <nuxt-link to="/register">
-            Register
-          </nuxt-link>
-        </li>
-        <li v-if="!$auth.loggedIn" class="nav-item">
-          <nuxt-link to="/login">
-            Login
-          </nuxt-link>
-        </li>
-        <li v-if="$auth.loggedIn" class="nav-item text-white">
-          Welcome {{ $auth.user.name }}
-          <AppButton
-            :data_cypress="logout"
-            class="customBtn"
-            @click="$auth.logout()"
-          >
-            Logout
-          </AppButton>
-        </li>
+        <template v-if="!$auth.loggedIn">
+          <li class="nav-item">
+            <nuxt-link to="/register">
+              Register
+            </nuxt-link>
+          </li>
+          <li class="nav-item">
+            <nuxt-link to="/login">
+              Login
+            </nuxt-link>
+          </li>
+        </template>
+        <template v-if="$auth.loggedIn">
+          <li class="nav-item text-white">
+            Welcome {{ $auth.user.name }}
+            <AppButton
+              :data_cypress="logout"
+              class="customBtn"
+              @click="$auth.logout()"
+            >
+              Logout
+            </AppButton>
+          </li>
+        </template>
       </ul>
     </div>
   </div>

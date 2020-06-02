@@ -63,12 +63,12 @@ module.exports = {
           login: {
             url: '/api/auth/login',
             method: 'post',
-            propertyName: 'token'
+            propertyName: ''
           },
 
           logout: {
             url: '/api/auth/logout',
-            method: 'delete'
+            method: 'post'
           },
 
           user: {

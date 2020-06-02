@@ -1,12 +1,8 @@
 <template>
   <!-- eslint-disable vue/attribute-hyphenation -->
   <div class="login-container">
-    <h1 class="title">
-      Login
-    </h1>
-
-    <AuthForm
-      buttonText="Login"
+    <AuthLogin
+      buttonText="Log in"
       :submitForm="loginUser"
       :errorMessage="error"
     />
@@ -14,11 +10,11 @@
 </template>
 
 <script>
-import AuthForm from '@/components/AuthForm.vue'
+import AuthLogin from '@/components/AuthLogin.vue'
 
 export default {
   components: {
-    AuthForm
+    AuthLogin
   },
   data() {
     return { error: null }
@@ -41,17 +37,8 @@ export default {
 
 <style scoped>
 .login-container {
-  @apply bg-orange-100;
+  color: cyan;
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
 .links {
   padding-top: 15px;
 }

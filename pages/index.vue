@@ -4,14 +4,10 @@
       <h1 class="title">
         dts-rmp
       </h1>
+
       <h2 class="subtitle">
         relationship management portal proof of concept!
       </h2>
-
-      <!-- <div v-if="!$auth.loggedIn">
-        If you do not have an account, <a href="register">Register</a> or
-        <a href="login">login</a>
-      </div> -->
     </div>
   </div>
 </template>
