@@ -1,6 +1,6 @@
 <template>
-  <!-- eslint-disable vue/prop-name-casing -->
   <button
+    class="appButton"
     :class="custom_style"
     :data-cy="data_cypress"
     :type="btntype"
@@ -14,8 +14,11 @@
 export default {
   name: 'AppButton',
   props: {
+    // eslint-disable-next-line vue/prop-name-casing
     data_cypress: { type: String, default: 'button-cy' },
+    // eslint-disable-next-line vue/prop-name-casing
     custom_style: { type: String, default: '' },
+    // eslint-disable-next-line vue/prop-name-casing
     btntype: { type: String, default: 'submit' }
   }
 }

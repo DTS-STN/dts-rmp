@@ -1,13 +1,16 @@
 <template>
   <!-- eslint-disable vue/attribute-hyphenation -->
-  <div class="container">
-    <h1 class="title">
-      Register
+  <div class="register-container">
+    <h1 class="subtitle">
+      Create an account
     </h1>
-
+    <div class="text-white">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quod
+      fugit nam veniam est eum, id labore odio, itaque harum officia eaque
+      explicabo neque sapiente facere ullam eius fugiat enim.
+    </div>
     <AuthRegister
-      buttonText="Register"
-      :register="true"
+      buttonText="Create account"
       :submitForm="registerUser"
       :errorMessage="error"
     />
@@ -48,10 +51,7 @@ export default {
 </script>
 
 <style scoped>
-.form-container {
-  width: 800px;
-  min-height: 30px;
-  margin: auto;
-  @apply bg-gray-300 shadow-md rounded px-8  mb-4;
+.subtitle {
+  @apply text-white;
 }
 </style>

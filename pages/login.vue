@@ -35,11 +35,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.login-container {
-  color: cyan;
-}
-.links {
-  padding-top: 15px;
-}
-</style>
+<style scoped></style>
