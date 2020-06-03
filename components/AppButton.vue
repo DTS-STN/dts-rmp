@@ -1,24 +1,22 @@
 <template>
+  <!-- eslint-disable vue/prop-name-casing -->
   <button
-    class="appButton"
     :class="custom_style"
     :data-cy="data_cypress"
+    :type="btntype"
     v-bind="$attrs"
     v-on="$listeners"
   >
     <slot />
   </button>
 </template>
-
 <script>
 export default {
   name: 'AppButton',
-
   props: {
-    // eslint-disable-next-line vue/prop-name-casing
     data_cypress: { type: String, default: 'button-cy' },
-    // eslint-disable-next-line vue/prop-name-casing
-    custom_style: { type: String, default: '' }
+    custom_style: { type: String, default: '' },
+    btntype: { type: String, default: 'submit' }
   }
 }
 </script>

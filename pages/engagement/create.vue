@@ -1,14 +1,13 @@
 <template>
-  <div id="form">
-    <h1>Create a engagement</h1>
-    <Form />
+  <div>
+    <CreateForm />
   </div>
 </template>
 <script>
-import Form from '~/components/Form/Form'
+import CreateForm from '@/components/Forms/CreateForm'
 export default {
   components: {
-    Form
+    CreateForm
   },
   head() {
     return {
@@ -24,3 +23,4 @@ export default {
   }
 }
 </script>
+<style></style>

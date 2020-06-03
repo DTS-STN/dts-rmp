@@ -1,7 +1,5 @@
 <template>
   <div>
-    <label for="KeyNotes">Key notes</label>
-    <br />
     <textarea
       type="text"
       name="KeyNotes"

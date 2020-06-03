@@ -1,10 +1,17 @@
 <template>
   <div>
-    <label for="Engagement">Type of Engagement</label>
-    <br />
-    <select name="Engagement">
+    <select
+      name="Status"
+      class="
+      bg-white
+      border 
+      border-blue-400 
+      hover:border-blue-800 
+      rounded 
+      p-2"
+    >
       <option value="-1">
-        Select an Engagement
+        Select a Status
       </option>
       <option value="item1">
         item1
@@ -24,7 +31,7 @@
 
 <script>
 export default {
-  name: 'Engagement'
+  name: 'Status'
 }
 </script>
 
