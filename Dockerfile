@@ -1,4 +1,4 @@
-FROM node:10.7
+FROM node:lts-alpine
 WORKDIR /home/dts-rmp
 COPY package*.json ./
 RUN npm i
