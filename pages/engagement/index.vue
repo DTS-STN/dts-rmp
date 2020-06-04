@@ -3,17 +3,7 @@
     <nuxt-link to="engagement/create">
       <AppButton
         btntype="button"
-        custom_style="
-          bg-orange-500 
-          hover:bg-orange-700 
-          rounded 
-          border-2 
-          border-orange-500 
-          hover:border-orange-700 
-          py-2 
-          px-10 
-          text-white 
-          font-semibold"
+        class="buttons hover:border-orange-700 hover:bg-orange-700 "
       >
         Create an Engagament
       </AppButton>
@@ -21,19 +11,9 @@
     <nuxt-link to="engagement/list">
       <AppButton
         btntype="button"
-        custom_style="
-          bg-orange-500 
-          hover:bg-orange-700 
-          rounded 
-          border-2 
-          border-orange-500 
-          hover:border-orange-700 
-          py-2 
-          px-10 
-          text-white 
-          font-semibold"
+        class="buttons hover:border-orange-700 hover:bg-orange-700 "
       >
-        List or search Engagement
+        Search Contact or Engagement
       </AppButton>
     </nuxt-link>
   </div>
@@ -43,4 +23,15 @@
 export default {}
 </script>
 
-<style></style>
+<style>
+.buttons {
+  @apply bg-orange-500 
+          rounded 
+          border-2 
+          border-orange-500  
+          py-2 
+          px-10 
+          text-white 
+          font-semibold;
+}
+</style>
