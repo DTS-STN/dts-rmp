@@ -14,9 +14,9 @@
         <div v-if="this.$nuxt.$route.name === 'index'" class="col-span-2 ...">
           <span class="newTxt">{{ stakeholder }}</span>
         </div>
-        <div class="col-end-5 col-span-1 text-right text-white underline">
+        <!-- <div class="col-end-5 col-span-1 text-right text-white underline">
           <a href>Log Out</a>
-        </div>
+        </div> -->
       </div>
       <div class="grid grid-cols-7 gap-1 pt-4 flex-shrink-0">
         <div class="col-span-4 ...">

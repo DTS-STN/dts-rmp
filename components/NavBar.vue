@@ -8,22 +8,30 @@
     <div class="spacer" />
     <div class="navigation-items">
       <ul class="nav-list">
-        <li v-if="!$auth.loggedIn" class="nav-item">
-          <nuxt-link to="/register">
-            Register
-          </nuxt-link>
-        </li>
-        <li v-if="!$auth.loggedIn" class="nav-item">
-          <nuxt-link to="/login">
-            Login
-          </nuxt-link>
-        </li>
-        <li v-else class="nav-item">
-          welcome: {{ $auth.user.name }}
-          <AppButton :data_cypress="logout" @click="$auth.logout()">
-            Logout
-          </AppButton>
-        </li>
+        <template v-if="!$auth.loggedIn">
+          <li class="nav-item">
+            <nuxt-link to="/register">
+              Register
+            </nuxt-link>
+          </li>
+          <li class="nav-item">
+            <nuxt-link to="/login">
+              Login
+            </nuxt-link>
+          </li>
+        </template>
+        <template v-if="$auth.loggedIn">
+          <li class="nav-item text-white">
+            Welcome {{ $auth.user.name }}
+            <AppButton
+              :data_cypress="logout"
+              class="customBtn"
+              @click="$auth.logout()"
+            >
+              Logout
+            </AppButton>
+          </li>
+        </template>
       </ul>
     </div>
   </div>
@@ -98,5 +106,11 @@ export default {
 .nav-item a:active,
 .nav-item a.nuxt-link-active {
   color: bg-gray-300;
+}
+.customBtn {
+  @apply mt-0 ml-4 bg-teal-600;
+}
+.customBtn:hover {
+  @apply bg-teal-400;
 }
 </style>

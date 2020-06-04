@@ -36,6 +36,7 @@ const db = process.env.VUE_APP_CONNECTION_STRING
       process.env.VUE_APP_RMP_DB_PASSWORD
     )
   : 'empty connection string check environment vars'
+
 function connectDb() {
   mongoose.set('useCreateIndex', true)
   mongoose
@@ -44,10 +45,10 @@ function connectDb() {
       useUnifiedTopology: true
     })
     .then(() => {
-      consola.log('Database is connected')
+      consola.ready({ message: 'Database is connected', badge: true })
     })
     .catch((err) => {
-      consola.log({ database_error: err })
+      consola.error(new Error(err))
     })
 }
 
