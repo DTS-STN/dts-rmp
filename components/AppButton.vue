@@ -1,5 +1,6 @@
 <template>
   <button
+    class="appButton"
     :class="custom_style"
     :data-cy="data_cypress"
     :type="btntype"
@@ -22,9 +23,9 @@ export default {
   }
 }
 </script>
+
 <style scoped>
-/* I commented out the default styling because not all custum_style were applied */
-/* .appButton {
+.appButton {
   @apply shadow bg-teal-800 text-white font-bold mt-12 py-2 px-4 rounded;
 }
 .appButton:hover {
@@ -32,5 +33,5 @@ export default {
 }
 .appButton:focus {
   @apply shadow-outline;
-} */
+}
 </style>

@@ -1,48 +1,57 @@
 <template>
   <!-- eslint-disable vue/attribute-hyphenation -->
-  <div class="container">
-    <h1 class="title">
-      Register
+  <div class="register-container">
+    <h1 class="subtitle">
+      Create an account
     </h1>
-
-    <AuthForm
-      buttonText="Register"
-      :register="true"
+    <div class="text-white">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quod
+      fugit nam veniam est eum, id labore odio, itaque harum officia eaque
+      explicabo neque sapiente facere ullam eius fugiat enim.
+    </div>
+    <AuthRegister
+      buttonText="Create account"
       :submitForm="registerUser"
+      :errorMessage="error"
     />
   </div>
 </template>
 
 <script>
-import AuthForm from '@/components/AuthForm.vue'
+import AuthRegister from '@/components/AuthRegister.vue'
 
 export default {
   components: {
-    AuthForm
+    AuthRegister
+  },
+  data() {
+    return { error: null }
   },
   methods: {
     async registerUser(registrationInfo) {
-      // eslint-disable-next-line no-console
-      console.log(registrationInfo)
+      const { email, password } = registrationInfo
 
       try {
-        await await this.$axios.post('/users', registrationInfo)
+        await await this.$axios.post('/api/auth/register', { registrationInfo })
 
         // eslint-disable-next-line no-console
         console.log(`Registration correct`)
 
         await this.$auth.loginWith('local', {
-          data: registrationInfo
+          data: { loginInfo: { email, password } }
         })
-
-        this.$router.push('/welcome')
-      } catch {
+      } catch (e) {
         // eslint-disable-next-line no-console
-        console.log('Registration Failed')
+        console.log('Registration Failed ==> ', e.response)
+        this.error = e.response.data.message
       }
     }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.subtitle {
+  @apply text-white;
+}
+</style>

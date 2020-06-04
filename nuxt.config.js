@@ -56,26 +56,28 @@ module.exports = {
     // Nuxt Authorization module
     '@nuxtjs/auth'
   ],
-
+  /*
+   ** NuxtAuth  - attribs
+   */
   auth: {
     strategies: {
       local: {
         endpoints: {
           login: {
-            url: '~/server/api/auth/login',
+            url: '/api/auth/login',
             method: 'post',
-            propertyName: 'token'
+            propertyName: ''
           },
 
           logout: {
-            url: '~/server/api/auth/logout',
-            method: 'delete'
+            url: '/api/auth/logout',
+            method: 'post'
           },
 
           user: {
-            url: '~/server/api/auth/user',
+            url: '/api/auth/user',
             method: 'get',
-            propertyName: 'data'
+            propertyName: 'user'
           }
         },
         // tokenRequired: true,
@@ -83,17 +85,27 @@ module.exports = {
         // globalToken: true,
         // autoFetchUser: true
       }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      // callback: '/welcome',
+      home: '/welcome'
     }
   },
 
-  serverMiddleware: ['~/server/api/routes/index'],
+  serverMiddleware: [
+    { path: '/api', handler: '~/server/api/routes/index' },
+    { path: '/api/auth', handler: '~/server/api/auth/index' },
+    { path: '/api/user', handler: '~/server/api/user/index' }
+  ],
 
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.baseURL || 'http://localhost:3000/api'
+    // baseURL: process.env.baseURL || 'http://localhost:3000/'
   },
   /*
    ** Build configuration
