@@ -19,6 +19,7 @@
     "@nuxtjs/axios": "5.10.2",
     "@nuxtjs/dotenv": "1.4.1",
     "@nuxtjs/tailwindcss": "2.0.0",
+    "@nuxtjs/vuetify": "^1.11.2",
     "bcryptjs": "^2.4.3",
     "core-js": "2.6.11",
     "cors": "2.8.5",
