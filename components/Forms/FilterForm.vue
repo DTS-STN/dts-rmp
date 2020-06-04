@@ -1,12 +1,16 @@
 <template>
-  <div class="px-5 h-auto">
+  <div>
     <form @submit.prevent="filterEngagements">
+      <br />
       <h1 class="text-4xl font-semibold">
         Search Engagements
       </h1>
-      <br />
       <div class="flex flex-wrap justify-start">
-        <AppTextBox placeholder="Search engagements..." classes="p-3" />
+        <AppTextBox
+          v-model="search"
+          placeholder="Search engagements..."
+          classes="p-3"
+        />
         <AppButton
           custom_style="
           bg-orange-500 
@@ -36,8 +40,8 @@ export default {
   },
   methods: {
     filterEngagements() {
-      this.$emit('FilterEngagements', ['arguments', 'go', 'here'])
-      // display filtered engagements
+      this.$emit('FilterEngagements', this.search)
+      this.search = ''
     }
   }
 }

@@ -22,11 +22,11 @@
           <br />
           <AppTextBox texttype="date" />
         </div>
-        <!-- Engagement div -->
+        <!-- EngagementType div -->
         <div class="w-full sm:w-1/3 mb-4">
-          <label>Type of Engagement</label>
+          <label>Type of EngagementType</label>
           <br />
-          <Engagement />
+          <EngagementType />
         </div>
         <!-- Status div -->
         <div class="w-full sm:w-1/3 mb-4">
