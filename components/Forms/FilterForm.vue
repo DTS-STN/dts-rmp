@@ -12,17 +12,7 @@
           classes="p-3"
         />
         <AppButton
-          custom_style="
-          bg-orange-500 
-          hover:bg-orange-700 
-          rounded 
-          border-2 
-          border-orange-500 
-          hover:border-orange-700 
-          py-2 
-          px-10 
-          text-white 
-          font-semibold"
+          class="search-button hover:bg-orange-700 hover:border-orange-700"
         >
           Search
         </AppButton>
@@ -47,4 +37,15 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.search-button {
+  @apply bg-orange-500
+          rounded 
+          border-2 
+          border-orange-500 
+          py-2 
+          px-10 
+          text-white 
+          font-semibold;
+}
+</style>

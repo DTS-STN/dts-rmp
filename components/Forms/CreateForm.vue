@@ -72,34 +72,13 @@
       <br />
       <!-- Previous Button -->
       <div class="sm:float-right">
-        <AppButton
-          btntype="button"
-          custom_style="
-          bg-white 
-          hover:bg-blue-200 
-          border-2 
-          border-blue-800 
-          rounded 
-          py-2 
-          px-10 
-          text-blue-800 
-          font-semibold mr-3"
-        >
+        <AppButton btntype="button" class="previous-button hover:bg-blue-200 ">
           Previous
         </AppButton>
         <!-- Submit Button -->
         <AppButton
-          custom_style="
-          bg-orange-500 
-          hover:bg-orange-700 
-          rounded 
-          border-2 
-          border-orange-500 
-          hover:border-orange-700 
-          py-2 
-          px-10 
-          text-white 
-          font-semibold"
+          class="
+          submit-button hover:bg-orange-700 hover:border-orange-700 "
         >
           Submit
         </AppButton>
@@ -120,4 +99,25 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.submit-button {
+  @apply bg-orange-500
+  rounded
+  border-2
+  border-orange-500
+  py-2
+  px-10
+  text-white
+  font-semibold;
+}
+.previous-button {
+  @apply bg-white 
+  border-2 
+  border-blue-800 
+  rounded 
+  py-2 
+  px-10 
+  text-blue-800 
+  font-semibold mr-3;
+}
+</style>
