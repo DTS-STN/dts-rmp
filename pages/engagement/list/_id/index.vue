@@ -33,7 +33,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .back-button {
   @apply bg-white
     border-2

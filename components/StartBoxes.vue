@@ -8,7 +8,7 @@
     <p class="content-text">
       {{ message }}
     </p>
-    <AppButton class="start-button hover:bg-orange-700">
+    <AppButton class="start-button">
       Start
     </AppButton>
   </div>
@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .start-button {
   @apply bg-orange-500
   rounded
@@ -38,5 +38,8 @@ export default {
   px-10
   text-white
   font-semibold;
+}
+.start-button:hover {
+  @apply bg-orange-700;
 }
 </style>

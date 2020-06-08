@@ -1,18 +1,12 @@
 <template>
   <div>
     <nuxt-link to="engagement/create">
-      <AppButton
-        btntype="button"
-        class="buttons hover:border-orange-700 hover:bg-orange-700 "
-      >
+      <AppButton btntype="button" class="buttons">
         Create an Engagament
       </AppButton>
     </nuxt-link>
     <nuxt-link to="engagement/list">
-      <AppButton
-        btntype="button"
-        class="buttons hover:border-orange-700 hover:bg-orange-700 "
-      >
+      <AppButton btntype="button" class="buttons">
         Search Contact or Engagement
       </AppButton>
     </nuxt-link>
@@ -23,7 +17,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 .buttons {
   @apply bg-orange-500 
           rounded 
@@ -33,5 +27,8 @@ export default {}
           px-10 
           text-white 
           font-semibold;
+}
+.buttons:hover {
+  @apply border-orange-700 bg-orange-700;
 }
 </style>

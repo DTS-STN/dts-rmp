@@ -11,9 +11,7 @@
           placeholder="Search engagements..."
           classes="p-3"
         />
-        <AppButton
-          class="search-button hover:bg-orange-700 hover:border-orange-700"
-        >
+        <AppButton class="search-button">
           Search
         </AppButton>
       </div>
@@ -37,7 +35,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .search-button {
   @apply bg-orange-500
           rounded 
@@ -46,6 +44,10 @@ export default {
           py-2 
           px-10 
           text-white 
-          font-semibold;
+          font-semibold
+          mt-0;
+}
+.search-button:hover {
+  @apply bg-orange-700 border-orange-700;
 }
 </style>

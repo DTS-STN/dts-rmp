@@ -72,13 +72,13 @@
       <br />
       <!-- Previous Button -->
       <div class="sm:float-right">
-        <AppButton btntype="button" class="previous-button hover:bg-blue-200 ">
+        <AppButton btntype="button" class="previous-button">
           Previous
         </AppButton>
         <!-- Submit Button -->
         <AppButton
           class="
-          submit-button hover:bg-orange-700 hover:border-orange-700 "
+          submit-button"
         >
           Submit
         </AppButton>
@@ -110,6 +110,9 @@ export default {
   text-white
   font-semibold;
 }
+.submit-button:hover {
+  @apply bg-orange-700 border-orange-700;
+}
 .previous-button {
   @apply bg-white 
   border-2 
@@ -119,5 +122,8 @@ export default {
   px-10 
   text-blue-800 
   font-semibold mr-3;
+}
+.previous-button:hover {
+  @apply bg-blue-200;
 }
 </style>
