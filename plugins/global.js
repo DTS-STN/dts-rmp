@@ -8,6 +8,7 @@ import Status from '@/components/Forms/FormComponents/Status'
 import KeyNotes from '@/components/Forms/FormComponents/KeyNotes'
 import Engagement from '@/components/Engagement'
 import ShareButtons from '@/components/ShareButtons'
+import CreateForm from '@/components/Forms/CreateForm'
 
 Vue.component('AppTextBox', AppTextBox)
 Vue.component('AppButton', AppButton)
@@ -16,3 +17,4 @@ Vue.component('Status', Status)
 Vue.component('KeyNotes', KeyNotes)
 Vue.component('Engagement', Engagement)
 Vue.component('ShareButtons', ShareButtons)
+Vue.component('CreateForm', CreateForm)
