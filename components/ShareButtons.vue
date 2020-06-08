@@ -6,48 +6,26 @@
     <h1 class="text-2xl">
       Share
     </h1>
-    <ul class="underline cursor-pointer">
-      <li>
-        <a id="facebook-button" target="_blank" @click="facebookShare">
-          Facebook
-        </a>
-      </li>
-      <li>
-        <a id="twitter-button" target="_blank" @click="twitterShare">
-          Twitter
-        </a>
-      </li>
-      <li>
-        <a id="linkedIn-button" target="_blank" @click="linkedInShare">
-          LinkedIn
-        </a>
-      </li>
-    </ul>
+    <ul id="share-buttons" class="underline cursor-pointer" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'ShareButtons',
-  methods: {
-    // For more info on sharing: https://css-tricks.com/simple-social-sharing-links/
-    // We might want to encode the URl before sharing.
-    facebookShare() {
-      document.getElementById(
-        'facebook-button'
-      ).href = `https://www.facebook.com/sharer.php?u=${document.URL}`
-    },
-    twitterShare() {
-      document.getElementById(
-        'twitter-button'
-      ).href = `https://twitter.com/intent/tweet?url=${document.URL}`
-    },
-    linkedInShare() {
-      document.getElementById(
-        'linkedIn-button'
-      ).href = `https://www.linkedin.com/shareArticle
-                ?mini=true
-                &url=${document.URL}`
+  mounted() {
+    const links = {
+      Facebook: 'https://www.facebook.com/sharer.php?u=',
+      Twitter: 'https://twitter.com/intent/tweet?url=',
+      LinkedIn: 'https://www.linkedin.com/shareArticle?mini=true&url='
+    }
+    const ul = document.querySelector('#share-buttons')
+    for (const [key, value] of Object.entries(links)) {
+      const li = document.createElement('li')
+      ul.appendChild(li)
+      li.innerHTML += `<a href="${value + document.URL}" target="_blank"">
+          ${key}
+        </a>`
     }
   }
 }
