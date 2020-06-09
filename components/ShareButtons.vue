@@ -6,26 +6,42 @@
     <h1 class="text-2xl">
       Share
     </h1>
-    <ul id="share-buttons" class="underline cursor-pointer" />
+    <ul id="share-buttons" class="underline cursor-pointer">
+      <li v-for="link in links" :key="link.id">
+        <a :href="link.href + getUrl()" target="_blank">{{ link.text }}</a>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ShareButtons',
-  mounted() {
-    const links = {
-      Facebook: 'https://www.facebook.com/sharer.php?u=',
-      Twitter: 'https://twitter.com/intent/tweet?url=',
-      LinkedIn: 'https://www.linkedin.com/shareArticle?mini=true&url='
+  data() {
+    return {
+      links: [
+        {
+          id: 1,
+          href: 'https://www.facebook.com/sharer.php?u=',
+          text: 'Facebook'
+        },
+        {
+          id: 2,
+          href: 'https://twitter.com/intent/tweet?url=',
+          text: 'Twitter'
+        },
+        {
+          id: 3,
+          href: 'https://www.linkedin.com/shareArticle?mini=true&url=',
+          text: 'LinkedIn'
+        }
+      ]
     }
-    const ul = document.querySelector('#share-buttons')
-    for (const [key, value] of Object.entries(links)) {
-      const li = document.createElement('li')
-      ul.appendChild(li)
-      li.innerHTML += `<a href="${value + document.URL}" target="_blank"">
-          ${key}
-        </a>`
+  },
+  methods: {
+    getUrl() {
+      // This does not return the full URL.
+      return this.$route.fullPath
     }
   }
 }
