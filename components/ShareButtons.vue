@@ -8,6 +8,7 @@
     </h1>
     <ul id="share-buttons" class="underline cursor-pointer">
       <li v-for="link in links" :key="link.id">
+        <!-- For now each share "buttons" are <a> tags. This will probably change to images later on.  -->
         <a :href="link.href + getUrl()" target="_blank">{{ link.text }}</a>
       </li>
     </ul>
