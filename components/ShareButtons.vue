@@ -40,8 +40,7 @@ export default {
   },
   methods: {
     getUrl() {
-      // This does not return the full URL.
-      return this.$route.fullPath
+      return this.$axios.defaults.baseURL + this.$route.fullPath
     }
   }
 }
