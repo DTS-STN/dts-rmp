@@ -6,10 +6,16 @@
         Search Engagements
       </h1>
       <div class="flex flex-wrap justify-start">
-        <AppTextBox
+        <!-- <AppTextBox
           v-model="search"
           placeholder="Search engagements..."
           classes="p-3"
+        /> -->
+        <input
+          v-model="search"
+          type="text"
+          class="border border-blue-400 hover:border-blue-800 rounded p-3"
+          placeholder="Search..."
         />
         <AppButton class="search-button">
           Search
