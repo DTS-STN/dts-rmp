@@ -18,14 +18,8 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
 // import TitleComponent from '@/components/TitleComponent.vue'
-export default {
-  components: {
-    NavBar
-    // TitleComponent
-  }
-}
+export default {}
 </script>
 
 <style>
