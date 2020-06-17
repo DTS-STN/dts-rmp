@@ -11,6 +11,8 @@
     "cypress": "npx cypress open",
     "cypress-cli": "npx cypress run",
     "generate": "nuxt generate",
+    "mongodb": "docker run --rm -p 27017:27017 mongo",
+    "seed": "babel-node --no-deprecation Tools/dataSeeder/DataSeeder.js",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest"
   },
