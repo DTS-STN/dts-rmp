@@ -1,5 +1,5 @@
 <template>
-  <div class="text-right">
+  <div id="lang-toggle-button" class="text-right">
     <nuxt-link v-if="this.$i18n.locale !== 'en'" :to="switchLocalePath('en')">
       {{ en }}
     </nuxt-link>
