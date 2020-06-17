@@ -55,6 +55,7 @@ module.exports = {
     '@nuxtjs/dotenv',
     // Nuxt Authorization module
     '@nuxtjs/auth',
+    // https://nuxt-community.github.io/nuxt-i18n/
     'nuxt-i18n'
   ],
   i18n: {
@@ -79,7 +80,7 @@ module.exports = {
     strategy: 'prefix_and_default',
     detectBrowserLanguage: {
       useCookie: false,
-      cookieKey: 'i18n_redirected',
+      // cookieKey: 'i18n_redirected',
       alwaysRedirect: true,
       fallbackLocale: 'en'
     }
