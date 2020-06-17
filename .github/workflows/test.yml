@@ -1,0 +1,29 @@
+name: Lint and Test
+
+on: pull_request
+
+jobs:
+  test:
+    name: Test on node 10 and ubuntu-latest
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1      
+      
+      - name: Use node 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+          registry-url: https://registry.npmjs.org      
+
+      - name: install
+        run: npm install      
+
+      - name: lint
+        run: npm run lint      
+
+      - name: build
+        run: npm run build      
+
+      - name: test
+        run: npm test
