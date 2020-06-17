@@ -2,7 +2,7 @@
 export default {
   hello: 'Hello World',
   dts: 'dts-rmp',
-  welcome: 'Welcome Page',
+  welcome: 'relationship management portal proof of concept!',
   getstarted: 'Get Started',
   form: {
     test: 'test'

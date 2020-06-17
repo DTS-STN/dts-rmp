@@ -72,9 +72,17 @@ module.exports = {
         file: 'en-CA.js'
       }
     ],
+    // strategy: 'no_prefix',
     lazy: true,
+    parsePages: true,
     langDir: 'lang/',
-    defaultLocale: 'en',
+    strategy: 'prefix_and_default',
+    detectBrowserLanguage: {
+      useCookie: false,
+      cookieKey: 'i18n_redirected',
+      alwaysRedirect: true,
+      fallbackLocale: 'en'
+    }
   },
   /*
    ** NuxtAuth  - attribs
