@@ -10,27 +10,25 @@ module.exports = {
   extends: [
     '@nuxtjs',
     // 'prettier',
-    'plugin:vue/recommended',
-    'eslint:recommended',
-    //   'prettier/vue',
-    //   'plugin:prettier/recommended',
-    'plugin:nuxt/recommended'
+    // 'prettier/vue',
+    'plugin:prettier/recommended'
+    // 'plugin:nuxt/recommended'
   ],
-  plugins: [ 'vue'],
+  plugins: ['prettier'],
   // add your custom rules here
   rules: {
-    'semi': [2, 'never'],
-    'no-console': 'off',
-     'vue/max-attributes-per-line': 'off',
-   // 'prettier/prettier': ['error', { 'semi': false }],
     'nuxt/no-cjs-in-config': 'off',
-    'vue/html-self-closing': [
-      'error',
-      {
-        html: {
-          void: 'always'
-        }
+    "vue/html-self-closing": ["error", {
+      "html": {
+        "void": "always",
       }
-    ]
+    }],
+    
+      "vue/singleline-html-element-content-newline": ["error", {
+        "ignoreWhenNoAttributes": false,
+        "ignoreWhenEmpty": false,
+        "ignores": ["pre", "textarea", ...INLINE_ELEMENTS]
+      }]
+    
   }
 }

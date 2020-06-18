@@ -2,10 +2,10 @@
   <div class="main">
     <div>
       <h1 class="title">
-        {{ $t('dts') }}
+        {{ $t('app.dts') }}
       </h1>
       <h2 class="subtitle">
-        {{ $t('welcome') }}
+        {{ $t('app.welcome') }}
       </h2>
     </div>
   </div>
@@ -33,7 +33,8 @@ export default {}
   font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
-  @apply pt-12 text-center;
+  @apply pt-12;
+  @apply text-center;
 }
 
 .subtitle {
