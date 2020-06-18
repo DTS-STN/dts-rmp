@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import AppFooterLandscape from '@/components/layout/AppFooterLandscape'
 import AppFooterLinks from '@/components/layout/AppFooterLinks'
+import AppHeader from '@/components/layout/AppHeader'
 // import EngagementType from '@/components/Forms/FormComponents/EngagementType'
 // import Status from '@/components/Forms/FormComponents/Status'
 // import KeyNotes from '@/components/Forms/FormComponents/KeyNotes'
@@ -12,6 +13,7 @@ import AppFooterLinks from '@/components/layout/AppFooterLinks'
 
 Vue.component('AppFooterLandscape', AppFooterLandscape)
 Vue.component('AppFooterLinks', AppFooterLinks)
+Vue.component('AppHeader', AppHeader)
 // Vue.component('EngagementType', EngagementType)
 // Vue.component('Status', Status)
 // Vue.component('KeyNotes', KeyNotes)

@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <header>
-      <!-- <Header />    placeholder for the Header -->
+      <AppHeader />
 
       <!-- Temporary navbar containing   home, login/logout buttons -->
       <NavBar />
