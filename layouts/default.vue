@@ -4,7 +4,6 @@
       <AppHeader />
       <!-- <Header />    placeholder for the Header -->
       <!-- Temporary navbar containing   home, login/logout buttons -->
-      <NavBar />
     </header>
     <main>
       <!-- <TitleComponent /> -->

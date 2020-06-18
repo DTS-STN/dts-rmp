@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="sm:flex justify-between p-4">
-      <div>
-        <div v-if="this.$i18n.locale === 'en'" id="canadaImg">
+      <div id="canadaImg">
+        <div v-if="this.$i18n.locale === 'en'">
           <a :alt="$t('header.linkAlt')" :href="$t('header.link')">
             <img
               class="w-64 sm:w-full"
