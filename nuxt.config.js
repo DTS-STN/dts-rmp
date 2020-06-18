@@ -74,16 +74,11 @@ module.exports = {
       }
     ],
     // strategy: 'no_prefix',
+    rootRedirect: 'en/search/engagement',
     lazy: true,
     parsePages: true,
     langDir: 'lang/',
-    strategy: 'prefix_and_default',
-    detectBrowserLanguage: {
-      useCookie: false,
-      // cookieKey: 'i18n_redirected',
-      alwaysRedirect: true,
-      fallbackLocale: 'en'
-    }
+    strategy: 'prefix_and_default'
   },
   /*
    ** NuxtAuth  - attribs

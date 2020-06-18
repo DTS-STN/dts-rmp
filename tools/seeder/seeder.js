@@ -7,7 +7,6 @@ import * as Randomizers from './randomizers'
 // User defined number of appointments and location documents to create
 const numContacts = process.env.NUM_CONTACTS || 10
 const numEngagements = process.env.NUM_ENGAGEMENTS || 5
-const numTags = process.env.NUM_TAGS || 10
 
 const populateDatabase = async () => {
   for (let i = 0; i < numContacts; i++) {
