@@ -54,8 +54,37 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Nuxt Authorization module
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    // https://nuxt-community.github.io/nuxt-i18n/
+    'nuxt-i18n'
   ],
+  i18n: {
+    locales: [
+      {
+        name: 'Français',
+        code: 'fr',
+        iso: 'fr-FR',
+        file: 'fr-FR.js'
+      },
+      {
+        name: 'English',
+        code: 'en',
+        iso: 'en-CA',
+        file: 'en-CA.js'
+      }
+    ],
+    // strategy: 'no_prefix',
+    lazy: true,
+    parsePages: true,
+    langDir: 'lang/',
+    strategy: 'prefix_and_default',
+    detectBrowserLanguage: {
+      useCookie: false,
+      // cookieKey: 'i18n_redirected',
+      alwaysRedirect: true,
+      fallbackLocale: 'en'
+    }
+  },
   /*
    ** NuxtAuth  - attribs
    */

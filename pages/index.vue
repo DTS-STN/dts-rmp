@@ -1,5 +1,14 @@
 <template>
-  <div />
+  <div class="main">
+    <div>
+      <h1 class="title">
+        {{ $t('dts') }}
+      </h1>
+      <h2 class="subtitle">
+        {{ $t('welcome') }}
+      </h2>
+    </div>
+  </div>
 </template>
 
 <script>
