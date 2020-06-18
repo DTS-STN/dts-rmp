@@ -12,7 +12,8 @@
     </main>
 
     <footer>
-      <!-- <Footer />    placeholderfor the footer -->
+      <AppFooterLandscape />
+      <AppFooterLinks />
     </footer>
   </div>
 </template>
