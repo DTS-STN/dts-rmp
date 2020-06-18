@@ -10,11 +10,7 @@ describe('open to the Index page', function() {
     cy.url().should('include', '/')
   })
 
-
-    it('should show the Language toggle link', () => {  
-      cy.get('[data-cy=lang-tog-fr]').should('be.visible', 'Français')
-   
-     })
-
-
+  it('should show the Language toggle link', () => {
+    cy.get('[data-cy=lang-tog-fr]').should('be.visible', 'Français')
+  })
 })

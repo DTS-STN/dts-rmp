@@ -5,7 +5,8 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+ 
   },
   extends: [
     '@nuxtjs',
@@ -18,17 +19,30 @@ module.exports = {
   // add your custom rules here
   rules: {
     'nuxt/no-cjs-in-config': 'off',
-    "vue/html-self-closing": ["error", {
-      "html": {
-        "void": "always",
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'always'
+        }
       }
-    }],
-    
-      "vue/singleline-html-element-content-newline": ["error", {
-        "ignoreWhenNoAttributes": false,
-        "ignoreWhenEmpty": false,
-        "ignores": ["pre", "textarea", ...INLINE_ELEMENTS]
-      }]
-    
-  }
+    ],
+    'linebreak-style': 0,
+    'vue/singleline-html-element-content-newline': [
+      'error',
+      {
+        ignoreWhenNoAttributes: false,
+        ignoreWhenEmpty: false,
+        ignores: ['pre', 'textarea']
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*-test.js","*.spec.js"],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
 }

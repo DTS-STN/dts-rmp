@@ -13,13 +13,9 @@ export default {
     fivehundredmessage:
       'Désoler...Quelque chose s’est mal passé. S’il vous plaît essayer à nouveau plus tard.'
   },
-    // contact
-    contact: {
+  // contact
+  contact: {},
 
-    },
-  
-    // engagement
-    engagement: {
-      
-    }
+  // engagement
+  engagement: {}
 }

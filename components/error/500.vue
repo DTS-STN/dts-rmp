@@ -11,8 +11,12 @@
           />
         </div>
         <div class="message col" data-cy="fiveOO-error">
-          <p class="text">{{ $t('error.fivehundredmessage') }}</p>
-          <p class="text2">{{ $t('error.fivehundred') }}</p>
+          <p class="text">
+            {{ $t('error.fivehundredmessage') }}
+          </p>
+          <p class="text2">
+            {{ $t('error.fivehundred') }}
+          </p>
         </div>
       </div>
     </div>

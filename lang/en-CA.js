@@ -13,12 +13,8 @@ export default {
     fivehundredmessage: 'Oops something went wrong. Please try again later.'
   },
   // contact
-  contact: {
-
-  },
+  contact: {},
 
   // engagement
-  engagement: {
-    
-  }
+  engagement: {}
 }

@@ -2,7 +2,7 @@
   <div class="main">
     <div>
       <h1 class="title">
-       {{ $t('app.dts') }}
+        {{ $t('app.dts') }}
       </h1>
       <h2 class="subtitle">
         Engagement
@@ -34,7 +34,7 @@ export default {}
   color: #35495e;
   letter-spacing: 1px;
   @apply pt-12;
-   @apply text-center;
+  @apply text-center;
 }
 
 .subtitle {

@@ -9,7 +9,7 @@ import Error404 from '~/components/error/404.vue'
 import Error500 from '~/components/error/500.vue'
 
 export default {
-  name: 'nuxt-error',
+  name: 'NuxtError',
   layout: 'default', // optional
   props: {
     error: {
