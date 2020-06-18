@@ -11,6 +11,8 @@
     "cypress": "npx cypress open",
     "cypress-cli": "npx cypress run",
     "generate": "nuxt generate",
+    "mongodb": "docker run --rm -p 27017:27017 mongo",
+    "seed": "node -r esm tools/seeder/seeder.js",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest"
   },
@@ -23,6 +25,7 @@
     "core-js": "2.6.11",
     "cors": "2.8.5",
     "cross-env": "7.0.2",
+    "esm": "^3.2.25",
     "express": "4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "5.9.10",
@@ -48,13 +51,13 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "4.2.5",
     "jest": "^24.1.0",
-    "nodemon": "^1.18.9",
+    "nodemon": "^2.0.4",
     "prettier": "^1.19.1",
     "vue-jest": "^4.0.0-beta.3"
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm test"
+      "pre-push": "npm run lint"
     }
   }
 }
