@@ -2,11 +2,10 @@
   <div class="main">
     <div>
       <h1 class="title">
-        dts-rmp
+        {{ $t('dts') }}
       </h1>
-
       <h2 class="subtitle">
-        relationship management portal proof of concept!
+        {{ $t('welcome') }}
       </h2>
     </div>
   </div>

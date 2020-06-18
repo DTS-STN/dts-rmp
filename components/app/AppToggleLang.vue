@@ -16,7 +16,7 @@ export default {
       type: String
     },
     fr: {
-      default: 'French',
+      default: 'Français',
       type: String
     }
   }

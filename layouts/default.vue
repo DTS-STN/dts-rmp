@@ -1,6 +1,7 @@
 <template>
   <div class="main-container">
     <header>
+      <ToggLang />
       <!-- <Header />    placeholder for the Header -->
 
       <!-- Temporary navbar containing   home, login/logout buttons -->
@@ -19,7 +20,12 @@
 
 <script>
 // import TitleComponent from '@/components/TitleComponent.vue'
-export default {}
+import ToggLang from '~/components/app/AppToggleLang'
+export default {
+  components: {
+    ToggLang
+  }
+}
 </script>
 
 <style>
