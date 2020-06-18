@@ -46,39 +46,50 @@ const populateDatabase = async () => {
 
   const engagementDocs = await Engagements.find()
   const contactDocs = await Contacts.find()
-  const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
-  engagementDocs.forEach(async (engagement) => {
-    let contactList = []
-    await waitFor(50)
-    for (let k = 0; k < engagement.numParticipants; k++) {
-      const randomContact =
-        contactDocs[Math.floor(Math.random() * contactDocs.length)]
-      contactList.push(randomContact._id)
-    }
-    console.log(contactList)
-    engagement.contacts = contactList
-    await engagement.save((err, document) => {
-      if (err) return console.log(err)
-      contactList = []
-      console.log(document)
+  const waitFor = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+  const createRelations = function() {
+    return new Promise((resolve, reject) => {
+      engagementDocs.forEach(async (engagement, index) => {
+        const contactList = []
+        await waitFor(50)
+        for (let k = 0; k < engagement.numParticipants; k++) {
+          const randomContact =
+            contactDocs[Math.floor(Math.random() * contactDocs.length)]
+          contactList.push(randomContact._id)
+        }
+        engagement.contacts = contactList
+        await saveEngagement(engagement).then((document) => {
+          if (index === engagementDocs.length - 1) {
+            resolve()
+          }
+        })
+      })
+      // await Contacts.find()
+      //   .where('_id')
+      //   .in(engagement.contacts)
+      //   .exec((err, records) => {
+      //     console.log(err)
+      //     records.forEach(async (contact) => {
+      //       contact.engagements.push(engagement._id)
+      //       await contact.save()
+      //     })
+      //   })
     })
-    // await Contacts.find()
-    //   .where('_id')
-    //   .in(engagement.contacts)
-    //   .exec((err, records) => {
-    //     console.log(err)
-    //     records.forEach(async (contact) => {
-    //       contact.engagements.push(engagement._id)
-    //       await contact.save()
-    //     })
-    //   })
+  }
+
+  createRelations().then(() => {
+    db.close()
   })
+}
+
+const saveEngagement = (document) => {
+  return document.save()
 }
 
 async function main() {
   await db.init().then(async () => {
     await populateDatabase()
-    db.close()
   })
 }
 
