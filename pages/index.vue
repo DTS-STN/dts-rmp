@@ -9,22 +9,29 @@
         relationship management portal proof of concept!
       </h2>
     </div>
-    <div class="nav-cmp">
-      <AppButton class="create">
-        New engagement
-      </AppButton>
-      <AppButton class="search">
-        Search contacts & engagement
-      </AppButton>
+    <div class="nav-btn">
+      <nav-button />
     </div>
   </div>
 </template>
 
 <script>
-import AppButton from '../components/app/AppButton.vue'
+import navButton from '../components/app/AppNavBtn.vue'
 export default {
   components: {
-    AppButton
+    navButton
+  },
+  data() {
+    return {
+      bgColor: '',
+      txtColor: ''
+    }
+  },
+  methods: {
+    colorChange() {
+      this.bgColor = 'white'
+      this.txtColor = '#e65c00'
+    }
   }
 }
 </script>
@@ -60,29 +67,5 @@ export default {
 
 .links {
   padding-top: 15px;
-}
-
-.create {
-  float: left;
-  margin: 0;
-  font-size: 50px;
-  background-color: white;
-  color: orangered;
-  width: 50%;
-  border: none;
-  text-align: center;
-  padding: 40px;
-}
-
-.search {
-  float: right;
-  margin: 0;
-  font-size: 50px;
-  background-color: orangered;
-  color: white;
-  width: 50%;
-  border: none;
-  text-align: center;
-  padding: 40px;
 }
 </style>
