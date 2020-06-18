@@ -1,7 +1,7 @@
 // fr-CA.js with French translations
 export default {
   app: {
-    dts: 'dts-rmp',
+    dts: 'dts-rmp-French',
     welcome: 'relationship management portal proof of concept!'
   },
 
