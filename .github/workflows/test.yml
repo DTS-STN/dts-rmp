@@ -4,16 +4,16 @@ on: pull_request
 
 jobs:
   test:
-    name: Test on node 10 and ubuntu-latest
+    name: Test on node 12 and ubuntu-latest
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1      
       
-      - name: Use node 10
+      - name: Use node 12
         uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 12
           registry-url: https://registry.npmjs.org      
 
       - name: install
@@ -25,5 +25,16 @@ jobs:
       - name: build
         run: npm run build      
 
-      - name: test
+      - name: unit test
         run: npm test
+
+      - name: integration test
+        uses: cypress-io/github-action@v1
+        env:
+          VUE_APP_CONNECTION_STRING: ${{ secrets.VUE_APP_CONNECTION_STRING }}
+          VUE_APP_RMP_DB_PASSWORD: ${{ secrets.VUE_APP_RMP_DB_PASSWORD }}
+        with:
+          browser: chrome
+        # run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_RMP_DB_PASSWORD=`${{ secrets.VUE_APP_RMP_DB_PASSWORD }}` docker-compose up --exit-code-from e2e
+        # Deploy to staging
+
