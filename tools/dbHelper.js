@@ -1,38 +1,28 @@
 import mongoose from 'mongoose'
 import consola from 'consola'
-import locationModel from '../src/models/location.model'
 require('dotenv').config()
-
-const mongoUser = process.env.MONGO_USER || ''
-const mongoPassword = process.env.MONGO_PASSWORD || ''
-const mongoURI = process.env.MONGO_URI
-const mongoPort = process.env.MONGO_PORT
-const mongoDB = process.env.MONGO_DATABASE
 
 // Initialise connection to database
 export const init = () => {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect(
-        `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`,
-        {
-          useNewUrlParser: true
-        }
-      )
-      .catch((err) => consola(err))
+      .connect(process.env.VUE_APP_CONNECTION_STRING, {
+        useNewUrlParser: true
+      })
+      .catch((err) => consola.ready({ message: err }))
 
     mongoose.set('useCreateIndex', true)
     return mongoose.connection
       .once('open', () => {
-        consola('Connection to the database established')
+        consola.ready({ message: 'Connection to the database established' })
         resolve()
       })
       .on('error', (error) => {
-        consola(`Connection error: ${error}`)
+        consola.ready({ message: `Connection error: ${error}` })
         reject(new Error('Could not connect to mongoDb'))
       })
       .on('disconnected', () => {
-        consola('Database disconnected')
+        consola.ready({ message: 'Database disconnected' })
       })
   })
 }
@@ -43,17 +33,4 @@ export const dropLocationsCollection = () => {
 
 export const close = () => {
   mongoose.connection.close()
-}
-
-// Insert an itterable collection of documents to the database
-export const insert = (locationModels) => {
-  return locationModel.collection.insertMany(locationModels, onInsert)
-}
-
-const onInsert = (err) => {
-  if (err) {
-    consola(err)
-  } else {
-    consola(`Location documents were successfully stored.`)
-  }
 }

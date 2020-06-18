@@ -1,5 +1,3 @@
-import BiokitModel from '../../src/models/biokits.model'
-
 // Returns a random integer within the given integer range
 export function randomInt(min, max) {
   min = Math.ceil(min)
@@ -7,11 +5,56 @@ export function randomInt(min, max) {
   return Math.round(Math.floor(Math.random() * (max - min + 1)) + min)
 }
 
+export function randomContactType() {
+  const types = [
+    'Federal Governments and Agencies',
+    'External Stakeholders',
+    'Provincial Teritories/Municipal and Indigenous entities'
+  ]
+  return types[Math.floor(Math.random() * types.length)]
+}
+
+export function randomEngagementType() {
+  const types = [
+    'One-On-One',
+    'Conference',
+    'Conference Call',
+    'Task Team',
+    'Workshop',
+    'Webinar',
+    'Phone Call',
+    'Committee meeting',
+    'Working Group',
+    'Senior management Briefing',
+    'Minister Office briefing, Scrum/Sprint',
+    'Advisory Board/Council Meeting'
+  ]
+  return types[Math.floor(Math.random() * types.length)]
+}
+
+export function randomOrgName() {
+  const names = [
+    'Generic Charity',
+    'Private Compant Ltd.',
+    'Indigenous Awareness Committee',
+    'International Committee',
+    'Accomodations Committee',
+    'Waste Management Organization'
+  ]
+  return names[Math.floor(Math.random() * names.length)]
+}
+
 // Returns a random date within the given range of Date objects
-export function randomDate(start, end) {
-  return new Date(
-    start.getTime() + Math.random() * (end.getTime() - start.getTime())
-  )
+export function randomOrgSector() {
+  const orgs = [
+    'Not For Profit',
+    'Private',
+    'Indigenous',
+    'Internation',
+    'Accomodations',
+    'Waste Management'
+  ]
+  return orgs[Math.floor(Math.random() * orgs.length)]
 }
 
 // Return a random ID from the array of IDs
