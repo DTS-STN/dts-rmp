@@ -59,7 +59,10 @@ const populateDatabase = async () => {
           contactList.push(randomContact._id)
         }
         engagement.contacts = contactList
-        await saveEngagement(engagement).then((document) => {
+        await saveDocument(engagement).then(async () => {
+          await getEngagementContacts(engagement).then(async (contacts) => {
+            await createContactRelations(contacts, engagement)
+          })
           if (index === engagementDocs.length - 1) {
             resolve()
           }
@@ -78,12 +81,33 @@ const populateDatabase = async () => {
     })
   }
 
+  const getEngagementContacts = (engagement) => {
+    return Contacts.find()
+      .where('_id')
+      .in(engagement.contacts)
+      .exec()
+  }
+
+  const createContactRelations = (contacts, engagement) => {
+    return new Promise((resolve, reject) => {
+      contacts.forEach(async (contact, index) => {
+        waitFor(50)
+        contact.engagements.push(engagement._id)
+        await saveDocument(contact).then(() => {
+          if (index === contacts.length - 1) {
+            resolve()
+          }
+        })
+      })
+    })
+  }
+
   createRelations().then(() => {
     db.close()
   })
 }
 
-const saveEngagement = (document) => {
+const saveDocument = (document) => {
   return document.save()
 }
 
