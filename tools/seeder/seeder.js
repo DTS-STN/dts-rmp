@@ -1,0 +1,129 @@
+import Contacts from '../../server/api/models/contact'
+import Engagements from '../../server/api/models/engagement'
+import Tags from '../../server/api/models/tags'
+import * as db from '../dbHelper'
+import * as Randomizers from './randomizers'
+
+// User defined number of appointments and location documents to create
+const numContacts = process.env.NUM_CONTACTS || 10
+const numEngagements = process.env.NUM_ENGAGEMENTS || 5
+const numTags = process.env.NUM_TAGS || 10
+
+const populateDatabase = async () => {
+  for (let i = 0; i < numContacts; i++) {
+    await Contacts.create({
+      type: Randomizers.randomContactType(),
+      orgName: Randomizers.randomOrgName(),
+      orgSector: Randomizers.randomOrgSector(),
+      orgEmail: `${Randomizers.randomString(10)}@example.com`,
+      orgPhone: Randomizers.randomInt(1000000000, 9999999999),
+      orgAddress: Randomizers.randomString(15),
+      orgWebsite: `http://${Randomizers.randomString(8)}.com`,
+      keyContactName: `${Randomizers.randomString(
+        6
+      )} ${Randomizers.randomString(8)}`,
+      keyContactTitle: Randomizers.randomString(8),
+      keyContactEmail: `${Randomizers.randomString(10)}@example.com`,
+      keyContactAddress: Randomizers.randomString(15),
+      department: Randomizers.randomString(4).toUpperCase(),
+      branch: Randomizers.randomString(4).toUpperCase(),
+      directorate: Randomizers.randomString(15),
+      provTerritory: Randomizers.randomProvince(),
+      contributionRefNo: Randomizers.randomInt(1000000, 999999),
+      serviceContrNo: Randomizers.randomInt(10000, 99999),
+      onStandingOffer: !(i % 2),
+      engagements: []
+    })
+  }
+
+  for (let j = 0; j < numEngagements; j++) {
+    await Engagements.create({
+      type: Randomizers.randomEngagementType(),
+      date: Date(),
+      description: Randomizers.randomString(150),
+      numParticipants: Randomizers.randomInt(2, 5),
+      contacts: [],
+      tags: Randomizers.randomTagArray()
+    })
+  }
+
+  Randomizers.tags.forEach(async (tag) => {
+    await Tags.create({
+      name: tag
+    })
+  })
+
+  const engagementDocs = await Engagements.find()
+  const contactDocs = await Contacts.find()
+  const waitFor = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+  const createRelations = function() {
+    return new Promise((resolve, reject) => {
+      engagementDocs.forEach(async (engagement, index) => {
+        const contactList = []
+        await waitFor(50)
+        for (let k = 0; k < engagement.numParticipants; k++) {
+          const randomContact =
+            contactDocs[Math.floor(Math.random() * contactDocs.length)]
+          contactList.push(randomContact._id)
+        }
+        engagement.contacts = contactList
+        await saveDocument(engagement).then(async () => {
+          await getEngagementContacts(engagement).then(async (contacts) => {
+            await createContactRelations(contacts, engagement)
+          })
+          if (index === engagementDocs.length - 1) {
+            resolve()
+          }
+        })
+      })
+      // await Contacts.find()
+      //   .where('_id')
+      //   .in(engagement.contacts)
+      //   .exec((err, records) => {
+      //     console.log(err)
+      //     records.forEach(async (contact) => {
+      //       contact.engagements.push(engagement._id)
+      //       await contact.save()
+      //     })
+      //   })
+    })
+  }
+
+  const getEngagementContacts = (engagement) => {
+    return Contacts.find()
+      .where('_id')
+      .in(engagement.contacts)
+      .exec()
+  }
+
+  const createContactRelations = (contacts, engagement) => {
+    return new Promise((resolve, reject) => {
+      contacts.forEach(async (contact, index) => {
+        waitFor(50)
+        contact.engagements.push(engagement._id)
+        await saveDocument(contact).then(() => {
+          if (index === contacts.length - 1) {
+            resolve()
+          }
+        })
+      })
+    })
+  }
+
+  createRelations().then(() => {
+    db.close()
+  })
+}
+
+const saveDocument = (document) => {
+  return document.save()
+}
+
+async function main() {
+  await db.init().then(async () => {
+    await populateDatabase()
+  })
+}
+
+main()
