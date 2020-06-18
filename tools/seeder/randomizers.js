@@ -26,7 +26,8 @@ export function randomEngagementType() {
     'Committee meeting',
     'Working Group',
     'Senior management Briefing',
-    'Minister Office briefing, Scrum/Sprint',
+    'Minister Office briefing',
+    'Scrum/Sprint',
     'Advisory Board/Council Meeting'
   ]
   return types[Math.floor(Math.random() * types.length)]
