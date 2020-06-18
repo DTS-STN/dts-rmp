@@ -34,7 +34,8 @@ export default {}
   font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
-  @apply pt-12 text-center;
+  @apply pt-12;
+  @apply text-center;
 }
 
 .subtitle {
