@@ -2,7 +2,7 @@
   <div class="main-container">
     <header>
       <AppHeader />
-
+      <!-- <Header />    placeholder for the Header -->
       <!-- Temporary navbar containing   home, login/logout buttons -->
       <NavBar />
     </header>
@@ -20,6 +20,7 @@
 
 <script>
 // import TitleComponent from '@/components/TitleComponent.vue'
+
 export default {}
 </script>
 

@@ -8,54 +8,49 @@
         >
           <li>
             <a href="https://www.canada.ca/en/social.html">
-              <!-- {{ $t('footer.social') }} -->
-              Social media
+              {{ $t('footer.social') }}
             </a>
           </li>
           <li>
             <a href="https://www.canada.ca/en/mobile.html">
-              <!-- {{ $t('footer.mobile') }} -->
-              Mobile applications
+              {{ $t('footer.mobile') }}
             </a>
           </li>
           <li>
             <a href="https://www.canada.ca/en/government/about.html">
-              <!-- {{ $t('footer.about') }} -->
-              About canada.ca
+              {{ $t('footer.about') }}
             </a>
           </li>
           <li>
             <a href="https://www.canada.ca/en/transparency/terms.html">
-              <!-- {{ $t('footer.terms') }} -->
-              Terms and conditions
+              {{ $t('footer.terms') }}
             </a>
           </li>
           <li>
             <a href="https://www.canada.ca/en/transparency/privacy.html">
-              <!-- {{ $t('footer.privacy') }} -->
-              Privacy
+              {{ $t('footer.privacy') }}
             </a>
           </li>
           <li>
             <a href="https://home.dts-stn.com/start.html">
-              <!-- {{ $t('footer.dts') }} -->
-              Digital Technology Solutions
+              {{ $t('footer.dts') }}
             </a>
           </li>
         </ul>
         <div class="flex justify-between xl:inline-block">
           <div class="pt-6 pl-2 xl:hidden">
             <a href="#nav-top-page">
-              <span class="glyphicon glyphicon-chevron-up">Top of Page</span>
+              <span class="glyphicon glyphicon-chevron-up">{{
+                $t('footer.top')
+              }}</span>
             </a>
-            <!-- <a href="#nav-top-page">{{ $t('footer.top') }}<span class="glyphicon glyphicon-chevron-up"></span></a> -->
           </div>
           <div id="footer-img" class="mr-6 float-right">
             <img
               id="cnd-img"
               src="../../assets/images/canada_footer_logo.svg"
-              alt="Canada logo"
-              title="Canada logo"
+              :alt="$t('footer.symbol')"
+              :title="$t('footer.symbol')"
               class="h-10 mb-2 mt-4"
             />
             <!-- <img id="cnd-img" src="~/assets/img/canada_footer_logo.svg" :alt=" $t('footer.symbol') " :title=" $t('footer.symbol') " /> -->
