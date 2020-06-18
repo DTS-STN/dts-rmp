@@ -125,6 +125,23 @@ export function randomProvince() {
   return provinces[Math.floor(Math.random() * provinces.length)]
 }
 
+export const tags = [
+  'Business Delivery',
+  'Development',
+  'Architercture',
+  'Planning',
+  'DevOps',
+  'Project Management'
+]
+
+export function randomTagArray() {
+  const tagArray = []
+  for (let i = 0; i < 3; i++) {
+    tagArray.push(tags[Math.floor(Math.random() * tags.length)])
+  }
+  return tagArray
+}
+
 // Returns random timeslot for use in generating appointment date objects
 export function randomTimeSlot() {
   const timeslots = [0, 15, 30, 45]

@@ -1,11 +1,13 @@
 import Contacts from '../../server/api/models/contact'
 import Engagements from '../../server/api/models/engagement'
+import Tags from '../../server/api/models/tags'
 import * as db from '../dbHelper'
 import * as Randomizers from './randomizers'
 
 // User defined number of appointments and location documents to create
 const numContacts = process.env.NUM_CONTACTS || 10
 const numEngagements = process.env.NUM_ENGAGEMENTS || 5
+const numTags = process.env.NUM_TAGS || 10
 
 const populateDatabase = async () => {
   for (let i = 0; i < numContacts; i++) {
@@ -33,6 +35,7 @@ const populateDatabase = async () => {
       engagements: []
     })
   }
+
   for (let j = 0; j < numEngagements; j++) {
     await Engagements.create({
       type: Randomizers.randomEngagementType(),
@@ -40,9 +43,15 @@ const populateDatabase = async () => {
       description: Randomizers.randomString(150),
       numParticipants: Randomizers.randomInt(2, 5),
       contacts: [],
-      tags: []
+      tags: Randomizers.randomTagArray()
     })
   }
+
+  Randomizers.tags.forEach(async (tag) => {
+    await Tags.create({
+      name: tag
+    })
+  })
 
   const engagementDocs = await Engagements.find()
   const contactDocs = await Contacts.find()
