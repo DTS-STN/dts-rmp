@@ -28,13 +28,13 @@ jobs:
       - name: unit test
         run: npm test
 
-      - name: integration test
+      - name: end to end test
         uses: cypress-io/github-action@v1
         env:
           VUE_APP_CONNECTION_STRING: ${{ secrets.VUE_APP_CONNECTION_STRING }}
           VUE_APP_RMP_DB_PASSWORD: ${{ secrets.VUE_APP_RMP_DB_PASSWORD }}
         with:
           browser: chrome
-        # run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_RMP_DB_PASSWORD=`${{ secrets.VUE_APP_RMP_DB_PASSWORD }}` docker-compose up --exit-code-from e2e
+          start: npm run start
         # Deploy to staging
 
