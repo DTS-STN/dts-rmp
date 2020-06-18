@@ -37,4 +37,3 @@ jobs:
           browser: chrome
           start: npm run start
         # Deploy to staging
-
