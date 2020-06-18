@@ -74,6 +74,7 @@ module.exports = {
       }
     ],
     // strategy: 'no_prefix',
+    rootRedirect: 'en/search/engagement',
     lazy: true,
     parsePages: true,
     langDir: 'lang/',

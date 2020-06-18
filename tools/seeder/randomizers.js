@@ -69,6 +69,7 @@ export function generateSampleBioKits(number) {
   const bioKits = []
   for (let index = 1; index <= number; index++) {
     bioKits.push(
+      // eslint-disable-next-line no-undef
       new BiokitModel({
         bioKitId: index,
         accessible: index % 2,
