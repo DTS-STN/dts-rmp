@@ -19,6 +19,8 @@ $ npm run start
 $ npm run generate
 ```
 
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
 ## Setup and Seed Local Database
 
 **Required .env variables:**
@@ -37,5 +39,3 @@ For local development, use a mongo docker container with no config.
 
 1. npm run mongodb
 2. npm run seed
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
