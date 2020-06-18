@@ -46,16 +46,22 @@ const populateDatabase = async () => {
 
   const engagementDocs = await Engagements.find()
   const contactDocs = await Contacts.find()
+  const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
   engagementDocs.forEach(async (engagement) => {
+    let contactList = []
+    await waitFor(50)
     for (let k = 0; k < engagement.numParticipants; k++) {
       const randomContact =
         contactDocs[Math.floor(Math.random() * contactDocs.length)]
-      engagement.contacts.push(randomContact._id)
-      await engagement.save((err, document) => {
-        if (err) return console.log(err)
-        console.log(document)
-      })
+      contactList.push(randomContact._id)
     }
+    console.log(contactList)
+    engagement.contacts = contactList
+    await engagement.save((err, document) => {
+      if (err) return console.log(err)
+      contactList = []
+      console.log(document)
+    })
     // await Contacts.find()
     //   .where('_id')
     //   .in(engagement.contacts)
