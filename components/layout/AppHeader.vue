@@ -26,13 +26,17 @@
     <div id="blue-background" class="relative">
       <div class="flex justify-between absolute bottom-0 w-full">
         <span class="pt-5">
-          Hello 'name', Select what you want to do
+          {{ $t('header.welcomeOne') }} 'Name'{{ $t('header.welcomeTwo') }}
         </span>
         <div id="userInfo">
           <div class="flex p-6">
             <ul class="underline mr-2">
-              <li><a href="#">Dashboard</a></li>
-              <li><a href="#">Logout</a></li>
+              <li>
+                <a href="#"> {{ $t('header.dashboard') }}</a>
+              </li>
+              <li>
+                <a href="#"> {{ $t('header.logout') }}</a>
+              </li>
             </ul>
             <div id="userImg" />
           </div>

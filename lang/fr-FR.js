@@ -10,7 +10,11 @@ export default {
   header: {
     logoAlt: 'Gouvernement du Canada',
     linkAlt: 'lien vers le site du gouvernement du canada',
-    link: 'https://www.canada.ca/fr.html'
+    link: 'https://www.canada.ca/fr.html',
+    welcomeOne: 'Salut',
+    welcomeTwo: ', Sélectionnez ce que vous aimeriez faire...',
+    dashboard: 'Tableau de bord',
+    logout: 'Se déconnecter'
   },
   footer: {
     date: 'Date de dernière modification:',
