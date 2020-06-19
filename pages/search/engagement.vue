@@ -7,12 +7,18 @@
       <h2 class="subtitle">
         Engagement
       </h2>
+      <nav-button />
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import navButton from '../../components/app/AppNavBtn'
+export default {
+  components: {
+    navButton
+  }
+}
 </script>
 
 <style>

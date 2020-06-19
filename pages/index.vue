@@ -8,31 +8,11 @@
         {{ $t('app.welcome') }}
       </h2>
     </div>
-    <div class="nav-btn">
-      <nav-button />
-    </div>
   </div>
 </template>
 
 <script>
-import navButton from '../components/app/AppNavBtn.vue'
-export default {
-  components: {
-    navButton
-  },
-  data() {
-    return {
-      bgColor: '',
-      txtColor: ''
-    }
-  },
-  methods: {
-    colorChange() {
-      this.bgColor = 'white'
-      this.txtColor = '#e65c00'
-    }
-  }
-}
+export default {}
 </script>
 
 <style>
