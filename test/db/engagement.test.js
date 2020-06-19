@@ -1,46 +1,48 @@
 const mongoose = require('mongoose')
-const ContactModel = require('../../server/api/models/contact')
+const EngagementModel = require('../../server/api/models/engagement')
+require('dotenv').config()
 
 const engagementData = {
-  contacts: [],
+  engagements: [],
   tags: ['Architercture', 'Planning', 'Business Delivery'],
   type: 'Scrum/Sprint',
   date: Date('2020-06-19T15:04:35.000Z'),
   description:
     'PSMJCyefyOcVVkNmuFVqZkLZTKMzLOfgtuudqrpVODrAvrKgpFMFlCgKnWKqNSITxCLXQbCBTuTyZPfeEFGXDvHmKbccxsRTTWolybkkOXCBPfeERNIdWxguugCWLybnTFvqDNBZPmtBXZEOvrPMia',
   numParticipants: 5,
-  comments: [],
+  comments: []
 }
 
 const engagementDataInvalidField = {
-  contacts: [],
+  engagements: [],
   tags: ['Architercture', 'Planning', 'Business Delivery'],
   type: 'Scrum/Sprint',
   date: Date('2020-06-19T15:04:35.000Z'),
+  time: Date(),
   description:
     'PSMJCyefyOcVVkNmuFVqZkLZTKMzLOfgtuudqrpVODrAvrKgpFMFlCgKnWKqNSITxCLXQbCBTuTyZPfeEFGXDvHmKbccxsRTTWolybkkOXCBPfeERNIdWxguugCWLybnTFvqDNBZPmtBXZEOvrPMia',
   numParticipants: 5,
-  comments: [],
+  comments: []
 }
 
 const engagementDataMissingReqField = {
-  contacts: [],
+  engagements: [],
   tags: ['Architercture', 'Planning', 'Business Delivery'],
   type: 'Scrum/Sprint',
-  date: Date('2020-06-19T15:04:35.000Z'),
   description:
     'PSMJCyefyOcVVkNmuFVqZkLZTKMzLOfgtuudqrpVODrAvrKgpFMFlCgKnWKqNSITxCLXQbCBTuTyZPfeEFGXDvHmKbccxsRTTWolybkkOXCBPfeERNIdWxguugCWLybnTFvqDNBZPmtBXZEOvrPMia',
   numParticipants: 5,
-  comments: [],
+  comments: []
 }
 
-describe('Contact Model Test', () => {
+describe('engagement Model Test', () => {
   beforeAll(async () => {
     await mongoose.connect(
       global.__MONGO_URI__,
-      { useNewUrlParser: true, useCreateIndex: true },
+      { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
       (err) => {
         if (err) {
+          // eslint-disable-next-line no-console
           console.error(err)
           process.exit(1)
         }
@@ -48,28 +50,33 @@ describe('Contact Model Test', () => {
     )
   })
 
-  it('create & save contact successfully', async () => {
-    const validContact = new ContactModel(engagementData)
-    const savedContact = await validContact.save()
-    expect(savedContact._id).toBeDefined()
-    expect(savedContact.type).toBe(engagementData.type)
-    expect(savedContact.orgName).toBe(engagementData.orgName)
+  it('create & save engagement successfully', async () => {
+    const validEngagement = new EngagementModel(engagementData)
+    const savedEngagement = await validEngagement.save()
+    expect(savedEngagement._id).toBeDefined()
+    expect(savedEngagement.type).toBe(engagementData.type)
+    expect(savedEngagement.description).toBe(engagementData.description)
   })
 
-  it('insert contact with invalid field, field should not be saved in db', async () => {
-    const contactWithInvalidField = new ContactModel(contactDataInvalidField)
-    const savedContactWithInvalidField = await contactWithInvalidField.save()
-    expect(savedContactWithInvalidField._id).toBeDefined()
-    expect(savedContactWithInvalidField.gender).toBeUndefined()
+  it('create engagement with invalid field, field should not be saved in db', async () => {
+    const engagementWithInvalidField = new EngagementModel(
+      engagementDataInvalidField
+    )
+    const savedEngagementWithInvalidField = await engagementWithInvalidField.save()
+    expect(savedEngagementWithInvalidField._id).toBeDefined()
+    expect(savedEngagementWithInvalidField.time).toBeUndefined()
   })
 
-  it('create contact without required field should fail', async () => {
-    const contactWithoutRequiredField = new ContactModel(
-      contactDataMissingReqField
+  it('create engagement without required field should fail', async () => {
+    const engagementWithoutRequiredField = new EngagementModel(
+      engagementDataMissingReqField
     )
-    const savedContactWithoutRequiredField = await contactWithoutRequiredField.save()
-    expect(savedContactWithoutRequiredField).toBeInstanceOf(
-      mongoose.Error.ValidationError
-    )
+    let err
+    try {
+      await engagementWithoutRequiredField.save()
+    } catch (error) {
+      err = error
+    }
+    expect(err).toBeInstanceOf(mongoose.Error.ValidationError)
   })
 })

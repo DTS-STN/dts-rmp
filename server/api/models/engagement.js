@@ -11,6 +11,4 @@ const EngagementSchema = new Schema({
   tags: [{ type: String }]
 })
 
-const Engagement = model('Engagement', EngagementSchema)
-
-export default Engagement
+module.exports = model('Engagement', EngagementSchema)

@@ -71,10 +71,11 @@ const contactDataMissingReqField = {
 describe('Contact Model Test', () => {
   beforeAll(async () => {
     await mongoose.connect(
-      process.env.VUE_APP_CONNECTION_STRING,
-      { useNewUrlParser: true, useCreateIndex: true },
+      global.__MONGO_URI__,
+      { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
       (err) => {
         if (err) {
+          // eslint-disable-next-line no-console
           console.error(err)
           process.exit(1)
         }
@@ -90,7 +91,7 @@ describe('Contact Model Test', () => {
     expect(savedContact.orgName).toBe(contactData.orgName)
   })
 
-  it('insert contact with invalid field, field should not be saved in db', async () => {
+  it('create contact with invalid field, field should not be saved in db', async () => {
     const contactWithInvalidField = new ContactModel(contactDataInvalidField)
     const savedContactWithInvalidField = await contactWithInvalidField.save()
     expect(savedContactWithInvalidField._id).toBeDefined()
@@ -101,9 +102,12 @@ describe('Contact Model Test', () => {
     const contactWithoutRequiredField = new ContactModel(
       contactDataMissingReqField
     )
-    const savedContactWithoutRequiredField = await contactWithoutRequiredField.save()
-    expect(savedContactWithoutRequiredField).toBeInstanceOf(
-      mongoose.Error.ValidationError
-    )
+    let err
+    try {
+      await contactWithoutRequiredField.save()
+    } catch (error) {
+      err = error
+    }
+    expect(err).toBeInstanceOf(mongoose.Error.ValidationError)
   })
 })
