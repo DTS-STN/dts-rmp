@@ -51,12 +51,13 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "4.2.5",
     "jest": "^24.1.0",
+    "nodemon": "^2.0.4",
     "prettier": "^1.19.1",
     "vue-jest": "^4.0.0-beta.3"
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm test"
+      "pre-push": "npm run lint"
     }
   }
 }

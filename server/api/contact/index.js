@@ -33,7 +33,7 @@ app.get('/contacts', async (req, res) => {
 
 app.get('/contact', async (req, res) => {
   try {
-    const contact = await Contact.findById(id)
+    const contact = await Contact.findById()
 
     if (!contact) {
       consola.error('No contact exist')
