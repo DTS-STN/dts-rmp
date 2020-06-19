@@ -1,18 +1,22 @@
 <template>
-  <div class="app flex flex-wrap">
+  <div id="btna" class="app flex">
     <button
-      class="switch add"
+      class="switch add "
       :style="{ color: txtColorAdd, 'background-color': bgColorAdd }"
       @click="colorChange(true)"
     >
-      <h2>New engagement</h2>
+      <h2 id="h2Text">
+        Add contacts & engagements
+      </h2>
     </button>
     <button
-      class="switch search"
+      class="switch search "
       :style="{ color: txtColorSearch, 'background-color': bgColorSearch }"
       @click="colorChange(false)"
     >
-      <h2>Search contacts & engagements</h2>
+      <h2 id="h2Text">
+        Search contacts & engagements
+      </h2>
     </button>
   </div>
 </template>
@@ -55,8 +59,8 @@ button:disabled {
 }
 
 button.switch {
-  padding: 40px;
-  @apply cursor-pointer text-4xl font-serif underline shadow-sm font-bold border-0 text-center m-0 w-6/12;
+  padding: 25px;
+  @apply cursor-pointer text-3xl font-serif underline shadow-sm font-bold border-0 text-center m-0 w-full;
 }
 
 button.add {
@@ -67,5 +71,16 @@ button.add {
 button.search {
   @apply float-right text-white;
   background-color: #d87c4f;
+}
+
+@media (max-width: 660px) {
+  #btna {
+    @apply flex-col w-auto;
+  }
+}
+@media (max-width: 660px) {
+  #h2Text {
+    @apply text-2xl;
+  }
 }
 </style>
