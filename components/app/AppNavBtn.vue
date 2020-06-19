@@ -2,25 +2,25 @@
   <div>
     <div id="btna" class="app flex">
       <button
-        class="switch add "
+        class="switch underline"
         :style="{ color: txtColorAdd, 'background-color': bgColorAdd }"
         @click="colorChange(true)"
       >
         <h2 id="h2Text">
-          {{ $t('NavBtn.AddConEn') }}
+          Add contacts & engagements
         </h2>
       </button>
       <button
-        class="switch search "
+        class="switch underline"
         :style="{ color: txtColorSearch, 'background-color': bgColorSearch }"
         @click="colorChange(false)"
       >
         <h2 id="h2Text">
-          {{ $t('NavBtn.SearchConEn') }}
+          Search contacts & engagements
         </h2>
       </button>
     </div>
-    <div v-if="!isSelected" class="add">
+    <div v-if="!this.isSelected" class="add">
       <add-contact />
     </div>
     <div v-else class="search">
@@ -39,10 +39,10 @@ export default {
   },
   data() {
     return {
-      txtColorAdd: '',
-      bgColorAdd: '',
-      txtColorSearch: '',
-      bgColorSearch: '',
+      txtColorAdd: '#D87C4F',
+      bgColorAdd: 'white',
+      txtColorSearch: 'white',
+      bgColorSearch: '#D87C4F',
       isSelected: false
     }
   },
@@ -66,29 +66,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 button:focus {
   outline: none;
 }
 
-button:disabled {
-  @apply text-orange-600 bg-white;
-}
-
 button.switch {
   padding: 25px;
-  text-decoration: underline 1.5px;
-  @apply cursor-pointer text-3xl font-serif shadow-sm font-bold border-0 text-center m-0 w-full;
-}
-
-button.add {
-  @apply float-left text-orange-600;
-  background-color: white;
-}
-
-button.search {
-  @apply float-right text-white;
-  background-color: #d87c4f;
+  @apply cursor-pointer text-3xl font-serif font-bold text-center w-full;
 }
 
 @media (max-width: 660px) {
