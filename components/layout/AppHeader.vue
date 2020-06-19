@@ -1,11 +1,10 @@
 <template>
   <div>
     <div class="sm:flex justify-between p-4">
-      <div id="canadaImg">
+      <div id="canadaImg" class="w-64 lg:w-1/4">
         <div v-if="this.$i18n.locale === 'en'">
           <a :alt="$t('header.linkAlt')" :href="$t('header.link')">
             <img
-              class="w-64 sm:w-full"
               :alt="$t('header.logoAlt')"
               src="@/assets/images/canada_header.svg"
             />
@@ -14,7 +13,6 @@
         <div v-else>
           <a :alt="$t('header.linkAlt')" :href="$t('header.link')">
             <img
-              class="w-64 sm:w-full"
               :alt="$t('header.logoAlt')"
               src="@/assets/images/canadaFr.svg"
             />
@@ -56,7 +54,7 @@ export default {
 #blue-background {
   background-image: url('../../assets/images/wave.png');
   /* min-height: 400px; */
-  height: 250px;
+  height: 225px;
   @apply bg-local bg-top bg-cover bg-no-repeat bg-white;
 }
 #userImg {
