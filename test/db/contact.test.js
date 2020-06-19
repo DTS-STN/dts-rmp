@@ -83,6 +83,10 @@ describe('Contact Model Test', () => {
     )
   })
 
+  afterAll(async () => {
+    await mongoose.connection.close()
+  })
+
   it('create & save contact successfully', async () => {
     const validContact = new ContactModel(contactData)
     const savedContact = await validContact.save()

@@ -50,6 +50,10 @@ describe('engagement Model Test', () => {
     )
   })
 
+  afterAll(async () => {
+    await mongoose.connection.close()
+  })
+
   it('create & save engagement successfully', async () => {
     const validEngagement = new EngagementModel(engagementData)
     const savedEngagement = await validEngagement.save()
