@@ -25,4 +25,6 @@ const ContactSchema = new Schema({
   ]
 })
 
-module.exports = model('Contact', ContactSchema)
+const Contact = model('Contact', ContactSchema)
+
+export default Contact
