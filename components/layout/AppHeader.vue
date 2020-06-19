@@ -22,7 +22,14 @@
       <AppToggleLang />
     </div>
     <div id="blue-background" class="relative">
-      <div class="flex justify-end sm:justify-between absolute bottom-0 w-full">
+      <div class="flex justify-between absolute bottom-0 w-full px-5 py-3">
+        <nuxt-link to="/">
+          <img
+            src="@/assets/images/Home.svg"
+            class="h-20"
+            :alt="$t('header.homeAlt')"
+          />
+        </nuxt-link>
         <span class="hidden sm:block pt-5">
           Text placeholder
         </span>
@@ -30,9 +37,9 @@
           <div class="flex p-6">
             <ul class="underline mr-2">
               <li>
-                <a href="#">
+                <nuxt-link :to="localePath('/dashboard')">
                   {{ $t('header.dashboard') }}
-                </a>
+                </nuxt-link>
               </li>
               <li>
                 <a href="#">
@@ -50,7 +57,12 @@
 
 <script>
 export default {
-  name: 'AppHeader'
+  name: 'AppHeader',
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code === this.$i18n.locale)
+    }
+  }
 }
 </script>
 
