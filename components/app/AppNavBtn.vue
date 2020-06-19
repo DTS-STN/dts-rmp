@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app flex flex-wrap">
     <button
       class="switch add"
       :style="{ color: txtColorAdd, 'background-color': bgColorAdd }"
