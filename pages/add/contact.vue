@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Create new contact</h2>
+    <h2>
+      Create new contact
+    </h2>
   </div>
 </template>
 

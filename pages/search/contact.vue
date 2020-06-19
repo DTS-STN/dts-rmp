@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Search contact</h2>
+    <h2>
+      Search contact
+    </h2>
   </div>
 </template>
 
