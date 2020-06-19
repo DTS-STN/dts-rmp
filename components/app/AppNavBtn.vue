@@ -7,7 +7,7 @@
         @click="colorChange(true)"
       >
         <h2 id="h2Text">
-          Add contacts & engagements
+          {{ $t('NavBtn.AddConEn') }}
         </h2>
       </button>
       <button
@@ -16,11 +16,11 @@
         @click="colorChange(false)"
       >
         <h2 id="h2Text">
-          Search contacts & engagements
+          {{ $t('NavBtn.SearchConEn') }}
         </h2>
       </button>
     </div>
-    <div v-if="!this.isSelected" class="add">
+    <div v-if="!isSelected" class="add">
       <add-contact />
     </div>
     <div v-else class="search">
@@ -77,7 +77,8 @@ button:disabled {
 
 button.switch {
   padding: 25px;
-  @apply cursor-pointer text-3xl font-serif underline shadow-sm font-bold border-0 text-center m-0 w-full;
+  text-decoration: underline 1.5px;
+  @apply cursor-pointer text-3xl font-serif shadow-sm font-bold border-0 text-center m-0 w-full;
 }
 
 button.add {

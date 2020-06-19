@@ -47,6 +47,11 @@ export default {
   },
   // contact
   contact: {},
+  // Navigation search Component
+  NavBtn: {
+    AddConEn: 'Ajouter des contacts et des engagements',
+    SearchConEn: 'Rechercher des contacts et des engagements'
+  },
 
   // engagement
   engagement: {}

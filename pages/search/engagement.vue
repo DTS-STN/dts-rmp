@@ -1,5 +1,6 @@
 <template>
-  <div class="main">
+  <div class="main pt-1">
+    <nav-button />
     <div>
       <h1 class="title">
         {{ $t('app.dts') }}
@@ -7,7 +8,6 @@
       <h2 class="subtitle">
         Engagement
       </h2>
-      <nav-button />
     </div>
   </div>
 </template>
