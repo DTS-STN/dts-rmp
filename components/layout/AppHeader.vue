@@ -24,9 +24,9 @@
       <AppToggleLang />
     </div>
     <div id="blue-background" class="relative">
-      <div class="flex justify-between absolute bottom-0 w-full">
-        <span class="pt-5">
-          {{ $t('header.welcomeOne') }} 'Name'{{ $t('header.welcomeTwo') }}
+      <div class="flex justify-end sm:justify-between absolute bottom-0 w-full">
+        <span class="hidden sm:block pt-5">
+          Text placeholder
         </span>
         <div id="userInfo">
           <div class="flex p-6">

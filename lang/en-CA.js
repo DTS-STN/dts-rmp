@@ -11,8 +11,6 @@ export default {
     logoAlt: 'Government of Canada',
     linkAlt: 'government of canada site link',
     link: 'https://www.canada.ca/en.html',
-    welcomeOne: 'Hi',
-    welcomeTwo: ', Select what you would like to do...',
     dashboard: 'Dashboard',
     logout: 'Log out'
   },
