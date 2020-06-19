@@ -1,34 +1,49 @@
 <template>
-  <div id="btna" class="app flex">
-    <button
-      class="switch add "
-      :style="{ color: txtColorAdd, 'background-color': bgColorAdd }"
-      @click="colorChange(true)"
-    >
-      <h2 id="h2Text">
-        Add contacts & engagements
-      </h2>
-    </button>
-    <button
-      class="switch search "
-      :style="{ color: txtColorSearch, 'background-color': bgColorSearch }"
-      @click="colorChange(false)"
-    >
-      <h2 id="h2Text">
-        Search contacts & engagements
-      </h2>
-    </button>
+  <div>
+    <div id="btna" class="app flex">
+      <button
+        class="switch add "
+        :style="{ color: txtColorAdd, 'background-color': bgColorAdd }"
+        @click="colorChange(true)"
+      >
+        <h2 id="h2Text">
+          Add contacts & engagements
+        </h2>
+      </button>
+      <button
+        class="switch search "
+        :style="{ color: txtColorSearch, 'background-color': bgColorSearch }"
+        @click="colorChange(false)"
+      >
+        <h2 id="h2Text">
+          Search contacts & engagements
+        </h2>
+      </button>
+    </div>
+    <div v-if="!this.isSelected" class="add">
+      <add-contact />
+    </div>
+    <div v-else class="search">
+      <search-contact />
+    </div>
   </div>
 </template>
 
 <script>
+import AddContact from '../../pages/add/contact.vue'
+import SearchContact from '../../pages/search/contact.vue'
 export default {
+  components: {
+    AddContact,
+    SearchContact
+  },
   data() {
     return {
       txtColorAdd: '',
       bgColorAdd: '',
       txtColorSearch: '',
-      bgColorSearch: ''
+      bgColorSearch: '',
+      isSelected: false
     }
   },
   methods: {
@@ -38,11 +53,13 @@ export default {
         this.bgColorAdd = 'white'
         this.bgColorSearch = '#D87C4F'
         this.txtColorSearch = 'white'
+        this.isSelected = false
       } else {
         this.txtColorAdd = 'white'
         this.bgColorAdd = '#D87C4F'
         this.bgColorSearch = 'white'
         this.txtColorSearch = '#D87C4F'
+        this.isSelected = true
       }
     }
   }
