@@ -30,10 +30,14 @@
           <div class="flex p-6">
             <ul class="underline mr-2">
               <li>
-                <a href="#"> {{ $t('header.dashboard') }}</a>
+                <a href="#">
+                  {{ $t('header.dashboard') }}
+                </a>
               </li>
               <li>
-                <a href="#"> {{ $t('header.logout') }}</a>
+                <a href="#">
+                  {{ $t('header.logout') }}
+                </a>
               </li>
             </ul>
             <div id="userImg" />
