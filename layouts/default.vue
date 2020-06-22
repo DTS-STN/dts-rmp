@@ -1,10 +1,9 @@
 <template>
   <div class="main-container">
     <header>
+      <AppHeader />
       <!-- <Header />    placeholder for the Header -->
-
       <!-- Temporary navbar containing   home, login/logout buttons -->
-      <NavBar />
     </header>
     <main>
       <!-- <TitleComponent /> -->
@@ -12,13 +11,15 @@
     </main>
 
     <footer>
-      <!-- <Footer />    placeholderfor the footer -->
+      <AppFooterLandscape />
+      <AppFooterLinks />
     </footer>
   </div>
 </template>
 
 <script>
 // import TitleComponent from '@/components/TitleComponent.vue'
+
 export default {}
 </script>
 
@@ -66,12 +67,12 @@ html {
   color: #fff;
   background-color: #35495e;
 }
-main {
+/* main {
   background-image: url('../assets/images/u1.png');
   min-height: 700px;
   height: auto;
   @apply bg-local bg-top bg-cover bg-no-repeat bg-white;
-}
+} */
 footer {
   @apply bg-teal-800;
 }

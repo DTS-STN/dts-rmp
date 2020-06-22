@@ -1,40 +1,28 @@
-name: dts-test-publish-deploy
+name: Build and Publish
 
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
+      - main
 
 jobs:
-  testing:
-    name: Testing
-    if: github.event_name == 'pull_request'
+  build_publish:
+    name: Build and Publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Run Full e2e Tests using Docker Compose
-        run: VUE_APP_CONNECTION_STRING=${{ secrets.VUE_APP_CONNECTION_STRING }} VUE_APP_RMP_DB_PASSWORD=`${{ secrets.VUE_APP_RMP_DB_PASSWORD }}` docker-compose up --exit-code-from e2e
+      - name: 'Checkout Github Action'
+        uses: actions/checkout@v1
 
-  publish_Deploy:
-    name: Publish and Deploy
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
       - name: Generate build number
         uses: einaregilsson/build-number@v1
         with:
           token: ${{secrets.github_token}}
-      - name: Print new build number
-        run: echo Build number is $BUILD_NUMBER
       - uses: azure/docker-login@v1
         with:
           login-server: mtscontainers.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
-      - uses: actions/checkout@v1
+          
       - name: docker build and push client server
         run: |
           docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-rmp:latest .

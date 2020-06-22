@@ -1,0 +1,39 @@
+name: Lint and Test
+
+on: pull_request
+
+jobs:
+  test:
+    name: Test on node 12 and ubuntu-latest
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1      
+      
+      - name: Use node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org      
+
+      - name: install
+        run: npm install      
+
+      - name: lint
+        run: npm run lint      
+
+      - name: build
+        run: npm run build      
+
+      - name: unit test
+        run: npm test
+
+      - name: end to end test
+        uses: cypress-io/github-action@v1
+        env:
+          VUE_APP_CONNECTION_STRING: ${{ secrets.VUE_APP_CONNECTION_STRING }}
+          VUE_APP_RMP_DB_PASSWORD: ${{ secrets.VUE_APP_RMP_DB_PASSWORD }}
+        with:
+          browser: chrome
+          start: npm run start
+        # Deploy to staging
