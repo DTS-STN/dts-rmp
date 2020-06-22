@@ -1,11 +1,11 @@
 // Returns a random integer within the given integer range
-export function randomInt(min, max) {
+export function randomInt (min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
   return Math.round(Math.floor(Math.random() * (max - min + 1)) + min)
 }
 
-export function randomContactType() {
+export function randomContactType () {
   const types = [
     'Federal Governments and Agencies',
     'External Stakeholders',
@@ -14,7 +14,7 @@ export function randomContactType() {
   return types[Math.floor(Math.random() * types.length)]
 }
 
-export function randomEngagementType() {
+export function randomEngagementType () {
   const types = [
     'One-On-One',
     'Conference',
@@ -33,7 +33,7 @@ export function randomEngagementType() {
   return types[Math.floor(Math.random() * types.length)]
 }
 
-export function randomOrgName() {
+export function randomOrgName () {
   const names = [
     'Generic Charity',
     'Private Compant Ltd.',
@@ -46,7 +46,7 @@ export function randomOrgName() {
 }
 
 // Returns a random date within the given range of Date objects
-export function randomOrgSector() {
+export function randomOrgSector () {
   const orgs = [
     'Not For Profit',
     'Private',
@@ -59,13 +59,13 @@ export function randomOrgSector() {
 }
 
 // Return a random ID from the array of IDs
-export function getBioKitId() {
+export function getBioKitId () {
   const ids = ['a1234', 'b3456']
   return ids[Math.floor(Math.random() * ids.length)]
 }
 
 // Return array of BioKit models with distinct property values
-export function generateSampleBioKits(number) {
+export function generateSampleBioKits (number) {
   const bioKits = []
   for (let index = 1; index <= number; index++) {
     bioKits.push(
@@ -81,12 +81,12 @@ export function generateSampleBioKits(number) {
   return bioKits
 }
 
-export function randomTimezone(index) {
+export function randomTimezone (index) {
   return index % 2 ? 'America/Toronto' : 'America/Vancouver'
 }
 
 // Returns an alphanueric string of a given length
-export function randomString(length) {
+export function randomString (length) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'
   let result = ''
   for (let i = 0; i < length; i++) {
@@ -97,7 +97,7 @@ export function randomString(length) {
 }
 
 // Returns a string in the format of the BIL# (1 letter followed by 12 digits)
-export function randomBil() {
+export function randomBil () {
   const char = 'ABCDEFGHIJKLMNOPQRSTUVWXTZ'
   const numbers = '1234567890'
   let result = ''
@@ -111,7 +111,7 @@ export function randomBil() {
 }
 
 // Returns random province from array
-export function randomProvince() {
+export function randomProvince () {
   const provinces = [
     'Ontario',
     'Saskatchewan',
@@ -136,7 +136,7 @@ export const tags = [
   'Project Management'
 ]
 
-export function randomTagArray() {
+export function randomTagArray () {
   const tagArray = []
   for (let i = 0; i < 3; i++) {
     tagArray.push(tags[Math.floor(Math.random() * tags.length)])
@@ -145,7 +145,7 @@ export function randomTagArray() {
 }
 
 // Returns random timeslot for use in generating appointment date objects
-export function randomTimeSlot() {
+export function randomTimeSlot () {
   const timeslots = [0, 15, 30, 45]
   return timeslots[Math.floor(Math.random() * timeslots.length)]
 }

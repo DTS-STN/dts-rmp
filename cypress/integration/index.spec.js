@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // index page.
-describe('open to the Index page', function() {
-  beforeEach(function() {
+describe('open to the Index page', function () {
+  beforeEach(function () {
     cy.visit('/')
   })
 

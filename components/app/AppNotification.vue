@@ -1,6 +1,8 @@
 <template>
   <div v-if="message.message != null" class="messageBox" :class="messageType">
-    <span>{{ message.message }}</span>
+    <span>
+      {{ message.message }}
+    </span>
   </div>
 </template>
 
@@ -12,23 +14,23 @@ export default {
     message: { type: Object, required: true }
   },
 
-  data() {
+  data () {
     return {
       timeout: null
     }
   },
 
   computed: {
-    messageType() {
+    messageType () {
       return ` ${this.message.type}`
     }
   },
 
-  mounted() {
+  mounted () {
     this.timeout = setTimeout(() => (this.message = ''), 5000)
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     clearTimeout(this.timeout)
   }
 }
