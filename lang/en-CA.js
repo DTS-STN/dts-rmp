@@ -43,7 +43,7 @@ export default {
     fourofourmessage: "Oops! We couldn't find that Web page.",
     fivehundred: 'Error 500',
     fivehundredmessage: 'Oops something went wrong. Please try again later.',
-    buttontext: 'Go to homepage'
+    buttontext: 'Go to the homepage'
   },
   // contact
   contact: {},

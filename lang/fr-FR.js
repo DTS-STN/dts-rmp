@@ -44,7 +44,7 @@ export default {
     fivehundred: 'Erreur 500',
     fivehundredmessage:
       'Désoler...Quelque chose s’est mal passé. S’il vous plaît essayer à nouveau plus tard.',
-    buttontext: 'Go to homepage'
+    buttontext: 'Aller à la page d\'accueil'
   },
   // contact
   contact: {},
