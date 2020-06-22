@@ -48,6 +48,11 @@ export default {
   // contact
   contact: {},
 
+  NavBtn: {
+    AddConEn: 'Add contacts & engagements',
+    SearchConEn: 'Search contacts & engagements'
+  },
+
   // engagement
   engagement: {}
 }
