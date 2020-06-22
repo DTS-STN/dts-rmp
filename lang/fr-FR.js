@@ -11,7 +11,8 @@ export default {
   // header
   header: {
     logoAlt: 'Gouvernement du Canada',
-    linkAlt: 'lien vers le site du gouvernement du canada',
+    linkAlt: 'Lien vers le site du gouvernement du Canada',
+    homeAlt: "Lien vers la page d'acceuil RMP",
     link: 'https://www.canada.ca/fr.html',
     dashboard: 'Tableau de bord',
     logout: 'Se déconnecter'
