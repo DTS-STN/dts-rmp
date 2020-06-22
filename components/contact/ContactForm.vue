@@ -14,9 +14,15 @@
       <div class="flex mb-4">
         <div class="w-5/12 margins">
           <select class="formSelect">
-            <option>Federal</option>
-            <option>External</option>
-            <option>Provincial</option>
+            <option>
+              Federal
+            </option>
+            <option>
+              External
+            </option>
+            <option>
+              Provincial
+            </option>
           </select>
         </div>
       </div>
@@ -40,7 +46,9 @@
             />
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="keyContactTitle">Title</label>
+            <label class="formLabel orange" for="keyContactTitle">
+              Title
+            </label>
             <input
               id="keyContactTitle"
               v-model="contactInfo.keyContactTitle"
@@ -139,7 +147,9 @@
             />
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="keyContactPhone">Phone</label>
+            <label class="formLabel orange" for="keyContactPhone">
+              Phone
+            </label>
             <input
               id="keyContactPhone"
               v-model="contactInfo.keyContactPhone"
@@ -168,7 +178,9 @@
             />
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel" for="orgAddress2">&nbsp;</label>
+            <label class="formLabel" for="orgAddress2">
+              &nbsp;
+            </label>
             <input
               id="orgAddress2"
               v-model="contactInfo.orgAddress2"
@@ -228,7 +240,9 @@
 
         <div class="flex mb-4">
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="department">Department</label>
+            <label class="formLabel orange" for="department">
+              Department
+            </label>
             <input
               id="department"
               v-model="contactInfo.department"
@@ -238,7 +252,9 @@
             />
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="branch">Branch</label>
+            <label class="formLabel orange" for="branch">
+              Branch
+            </label>
             <input
               id="branch"
               v-model="contactInfo.branch"
@@ -266,7 +282,9 @@
 
         <div class="flex mb-4">
           <div class="w-5/12 margins">
-            <label class="formLabel" for="orgName">Name</label>
+            <label class="formLabel" for="orgName">
+              Name
+            </label>
             <input
               id="orgName"
               v-model="contactInfo.orgName"
@@ -276,7 +294,9 @@
             />
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel" for="orgSector">Sector</label>
+            <label class="formLabel" for="orgSector">
+              Sector
+            </label>
             <input
               id="orgSector"
               v-model="contactInfo.orgSector"
@@ -289,7 +309,9 @@
 
         <div class="flex mb-4">
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="orgEmail">Email</label>
+            <label class="formLabel orange" for="orgEmail">
+              Email
+            </label>
             <input
               id="orgEmail"
               v-model="contactInfo.orgEmail"
@@ -299,7 +321,9 @@
             />
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="orgPhone">Phone</label>
+            <label class="formLabel orange" for="orgPhone">
+              Phone
+            </label>
             <input
               id="orgPhone"
               v-model="contactInfo.orgPhone"
@@ -385,7 +409,9 @@
           class="messageBox"
           :class="[message.type == 'error' ? ' error' : ' ']"
         >
-          <span>{{ message.message }}</span>
+          <span>
+            {{ message.message }}
+          </span>
         </div>
 
         <div class="flex justify-start mb-4">
@@ -423,6 +449,7 @@ export default {
     }
   },
 
+  // eslint-disable-next-line space-before-function-paren
   data() {
     return {
       message: {
@@ -470,18 +497,21 @@ export default {
   },
 
   methods: {
+    // eslint-disable-next-line space-before-function-paren
     notification(type, message) {
       this.message.type = type
       this.message.message = message
       this.timeout = setTimeout(() => this.clearMessage(), 5000)
     },
 
+    // eslint-disable-next-line space-before-function-paren
     clearMessage() {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
     },
 
+    // eslint-disable-next-line space-before-function-paren
     async submitForm(contactInfo) {
       try {
         await this.$axios.post('/api/contact/addContact', {
