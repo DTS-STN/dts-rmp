@@ -7,7 +7,7 @@
         @click="colorChange(true)"
       >
         <h2 id="h2Text">
-          Add contacts & engagements
+          Search contacts & engagements
         </h2>
       </button>
       <button
@@ -16,34 +16,21 @@
         @click="colorChange(false)"
       >
         <h2 id="h2Text">
-          Search contacts & engagements
+          Add contacts & engagements
         </h2>
       </button>
-    </div>
-    <div v-if="!this.isSelected" class="add">
-      <add-contact />
-    </div>
-    <div v-else class="search">
-      <search-contact />
     </div>
   </div>
 </template>
 
 <script>
-import AddContact from '../../pages/add/contact.vue'
-import SearchContact from '../../pages/search/contact.vue'
 export default {
-  components: {
-    AddContact,
-    SearchContact
-  },
   data() {
     return {
       txtColorAdd: '#D87C4F',
       bgColorAdd: 'white',
       txtColorSearch: 'white',
-      bgColorSearch: '#D87C4F',
-      isSelected: false
+      bgColorSearch: '#D87C4F'
     }
   },
   methods: {
@@ -53,13 +40,11 @@ export default {
         this.bgColorAdd = 'white'
         this.bgColorSearch = '#D87C4F'
         this.txtColorSearch = 'white'
-        this.isSelected = false
       } else {
         this.txtColorAdd = 'white'
         this.bgColorAdd = '#D87C4F'
         this.bgColorSearch = 'white'
         this.txtColorSearch = '#D87C4F'
-        this.isSelected = true
       }
     }
   }
