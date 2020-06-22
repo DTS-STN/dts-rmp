@@ -53,12 +53,11 @@ app.get('/getContact', async (req, res) => {
 
 app.post('/addContact', async (req, res) => {
   let errMessage = ''
-  consola.log(' inside add ')
+
   try {
     const { keyContactEmail } = req.body.contactInfo
 
     if (!keyContactEmail) {
-      consola.log(req.body.contactInfo)
       errMessage = 'All fields are required'
       throw new Error(errMessage)
     }

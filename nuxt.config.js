@@ -42,8 +42,8 @@ module.exports = {
    */
   buildModules: [
     '@nuxtjs/eslint-module',
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/tailwindcss' // ,
+    // '@nuxtjs/vuetify'
   ],
   /*
    ** Nuxt.js modules

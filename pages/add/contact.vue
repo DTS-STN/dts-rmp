@@ -1,13 +1,17 @@
 <template>
   <div>
-    
+    <ContactForm title="Create new contact" />
   </div>
 </template>
 
 <script>
-import AppTextBox from '@/components/AppTextBox.vue'
+import ContactForm from '@/components/contact/ContactForm.vue'
 
-export default {}
+export default {
+  components: {
+    ContactForm
+  }
+}
 </script>
 
 <style scoped></style>
