@@ -54,9 +54,9 @@ const populateDatabase = async () => {
 
   const engagementDocs = await Engagements.find()
   const contactDocs = await Contacts.find()
-  const waitFor = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+  const waitFor = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-  const createRelations = function() {
+  const createRelations = function () {
     return new Promise((resolve, reject) => {
       engagementDocs.forEach(async (engagement, index) => {
         const contactList = []
@@ -119,7 +119,7 @@ const saveDocument = (document) => {
   return document.save()
 }
 
-async function main() {
+async function main () {
   await db.init().then(async () => {
     await populateDatabase()
   })

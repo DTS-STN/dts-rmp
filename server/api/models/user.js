@@ -6,7 +6,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     validate: {
-      validator(v) {
+      validator (v) {
         return /^(?=[a-zA-Z]{3,}$)/.test(v)
       }
     }
@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
     validate: {
-      validator(v) {
+      validator (v) {
         return /^([\w-.])+@hrsdc-rhdcc.gc.ca$/.test(v)
       }
     }
