@@ -35,10 +35,6 @@ export default {
         return [{ key: 0, value: '-1', options: 'Select value' }]
       }
     }
-  },
-  created() {
-    // eslint-disable-next-line no-console
-    console.log(this.options)
   }
 }
 </script>
