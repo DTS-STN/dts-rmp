@@ -15,13 +15,13 @@
       <div class="flex mb-4">
         <div class="w-5/12 margins">
           <select v-model="contactInfo.type" class="formSelect" @change="onStanding($event)">
-            <option>
+            <option value="Federal">
               Federal
             </option>
-            <option>
+            <option value="External">
               External
             </option>
-            <option>
+            <option value="Provincial">
               Provincial
             </option>
           </select>
@@ -74,7 +74,7 @@
             />
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="keyContactAddress2">
+            <label class="formLabel" for="keyContactAddress2">
               &nbsp;
             </label>
             <input
@@ -163,8 +163,10 @@
         </div>
 
         <h2 class="title">
-          Organization Information
+          Organization <br />Information
         </h2>
+
+        <!-- Next Div are shown as needed according to the Contact Type -->
 
         <div class="flex mb-4">
           <div class="w-5/12  margins">
@@ -188,7 +190,7 @@
               v-model="contactInfo.orgAddress2"
               class="formInput"
               type="text"
-              placeholder="Website"
+              placeholder="Adress"
             />
           </div>
         </div>
@@ -205,7 +207,7 @@
           </div>
           <div class="w-5/12 margins">
             <input
-              id="orgWebsite"
+              id="orgProvState"
               v-model="contactInfo.orgProvState"
               class="formInput"
               type="text"
@@ -241,52 +243,88 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
-            <label class="formLabel orange" for="department">
-              Department
-            </label>
-            <input
-              id="department"
-              v-model="contactInfo.department"
-              class="formInput"
-              type="text"
-              placeholder="Department"
-            />
-          </div>
-          <div class="w-5/12 margins">
-            <label class="formLabel orange" for="branch">
-              Branch
-            </label>
-            <input
-              id="branch"
-              v-model="contactInfo.branch"
-              class="formInput"
-              type="text"
-              placeholder="Branch"
-            />
+        <div class="w-5/12 margins">
+          <label class="formLabel orange" for="orgWebsite">
+            Organization Website
+          </label>
+          <input
+            id="orgWebsite"
+            v-model="contactInfo.orgWebsite"
+            class="formInput"
+            type="text"
+            placeholder="Website"
+          />
+        </div>
+
+        <div v-if="contactInfo.type == 'Federal'">
+          <div class="flex mb-4">
+            <div class="w-5/12 margins">
+              <label class="formLabel orange" for="department">
+                Department
+              </label>
+              <input
+                id="department"
+                v-model="contactInfo.department"
+                class="formInput"
+                type="text"
+                placeholder="Department"
+              />
+            </div>
+            <div class="w-5/12 margins">
+              <label class="formLabel orange" for="branch">
+                Branch
+              </label>
+              <input
+                id="branch"
+                v-model="contactInfo.branch"
+                class="formInput"
+                type="text"
+                placeholder="Branch"
+              />
+            </div>
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
-            <label class="formLabel orange" for="directorate">
-              Directorate
-            </label>
-            <input
-              id="directorate"
-              v-model="contactInfo.directorate"
-              class="formInput"
-              type="text"
-              placeholder="Directorate"
-            />
+        <div v-if="contactInfo.type == 'Federal' || contactInfo.type == 'Provincial'">
+          <div class="flex mb-4">
+            <div class="w-5/12 margins">
+              <label class="formLabel orange" for="directorate">
+                Directorate
+              </label>
+              <input
+                id="directorate"
+                v-model="contactInfo.directorate"
+                class="formInput"
+                type="text"
+                placeholder="Directorate"
+              />
+            </div>
+
+            <div v-if="contactInfo.type == 'Provincial'" class="w-5/12 margins">
+              <label class="formLabel orange" for="provTerritory">
+                Province / Territory / Indigenous
+              </label>
+              <select
+                id="provTerritory"
+                v-model="contactInfo.provTerritory"
+                class="formSelect"
+                @change="onProvTerr($event)"
+              >
+                <option value="Select">
+                  Select a province
+                </option>
+                <option value="Ontario">
+                  Ontario
+                </option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
           <div class="w-5/12 margins">
-            <label class="formLabel" for="orgName">
-              Name
+            <label class="formLabel orange" for="orgName">
+              Organization Name
             </label>
             <input
               id="orgName"
@@ -297,8 +335,8 @@
             />
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel" for="orgSector">
-              Sector
+            <label class="formLabel orange" for="orgSector">
+              Organization Sector
             </label>
             <input
               id="orgSector"
@@ -310,10 +348,10 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgEmail">
-              Email
+              Organization Email
             </label>
             <input
               id="orgEmail"
@@ -325,7 +363,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgPhone">
-              Phone
+              Organization Phone
             </label>
             <input
               id="orgPhone"
@@ -337,7 +375,7 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div v-if=" contactInfo.type == 'External' " class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="contributionRefNo">
               Contribution Agreement Reference
@@ -364,7 +402,7 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div v-if="contactInfo.type == 'External' " class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="onStandingOffer">
               On standing offer list
@@ -375,48 +413,17 @@
               class="formSelect"
               @change="onStanding($event)"
             >
-              <option value="null">
+              <option value="">
                 Select one
               </option>
-              <option value="True">
-                True
+              <option value="true">
+                true
               </option>
-              <option value="False">
-                False
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
-            <label class="formLabel orange" for="provTerritory">
-              Province / Territory / Indigenous
-            </label>
-            <select
-              id="provTerritory"
-              v-model="contactInfo.provTerritory"
-              class="formSelect"
-              @change="onProvTerr($event)"
-            >
-              <option value="Select">
-                Select a province
-              </option>
-              <option value="Ontario">
-                Ontario
+              <option value="false">
+                false
               </option>
             </select>
           </div>
-          <!-- <div class="w-5/12 margins">
-            <AppSelect
-              :required="true"
-              :labeltext="labelhere"
-              :selname="ProvTerr2"
-              :modelname="contactInfo.provTerritory"
-              :options="optOptions"
-              @Change="onProvTerr2($event)"
-            />
-          </div> -->
         </div>
 
         <div
@@ -449,13 +456,12 @@
 <script>
 // import ContactForm from '@/components/contact/ContactForm.vue'
 import AppButton from '@/components/app/AppButton.vue'
-// import AppSelect from '@/components/app/AppSelect.vue'
 
 export default {
   name: 'ContactForm',
 
   components: {
-    AppButton // , AppSelect
+    AppButton
   },
 
   props: {
@@ -472,12 +478,6 @@ export default {
         type: null,
         message: null
       },
-
-      optOptions: [
-        { key: 0, value: '0', options: 'Select an Option' },
-        { key: 1, value: 'true', options: 'True' },
-        { key: 2, value: 'false', options: 'False' }
-      ],
 
       timeout: null,
 
@@ -506,9 +506,9 @@ export default {
         orgSector: 'public',
         orgEmail: 'm@canada.com',
         orgPhone: '613-999-9999',
-        contributionRefNo: 0,
-        serviceContrNo: 0,
-        onStandingOffer: false,
+        contributionRefNo: 7363366373,
+        serviceContrNo: 837666630,
+        onStandingOffer: true,
         // Federal & Provincial
         department: 'ESDC',
         branch: 'ITTB',
@@ -595,8 +595,7 @@ export default {
   @apply bg-white text-black;
 }
 .title {
-  color: #246880;
-  @apply text-left tracking-wide font-extrabold text-4xl pt-4;
+  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
 }
 .formLabel {
   @apply font-bold;
@@ -620,7 +619,7 @@ export default {
   @apply w-full h-12 border-2 bg-white border-gray-400 rounded;
 }
 .formselect:focus {
-  @apply outline-none bg-blue-500;
+  @apply outline-none border-blue-500;
 }
 .margins {
   @apply px-1 py-2 m-2;

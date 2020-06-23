@@ -1,7 +1,7 @@
 <template>
   <div>
     <label class="formLabel" :class="[required ? ' orange' : '']" for="selname">
-      labeltext
+      {{ labeltext }}
     </label>
     <select
       id="selname"
@@ -11,13 +11,13 @@
       :data-cy="datacypress"
       v-bind="$attrs"
       v-on="$listeners"
-      @change="onProvTerr($event)"
     >
       <option v-for="opt in options" :key="opt.key" :value="opt.value">
         {{ opt.options }}
       </option>
     </select>
   </div>
+  <!--  @change="onProvTerr($event)"  -->
 </template>
 
 <script>

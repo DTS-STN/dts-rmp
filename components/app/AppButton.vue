@@ -26,11 +26,10 @@ export default {
 
 <style scoped>
 .appButton {
-  background-color: #d87c4f;
-  @apply shadow text-white font-bold mt-12 py-2 px-6 rounded;
+  @apply bg-rmp-orange shadow text-white font-bold mt-12 py-2 px-6 rounded;
 }
 .appButton:hover {
-  background-color: #b64f1c;
+  @apply bg-rmp-dk-orange ;
 }
 .appButton:focus {
   @apply shadow-outline;
