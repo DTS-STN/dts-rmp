@@ -1,6 +1,6 @@
 <template>
   <div class="main pt-1">
-    <app-button />
+    <nav-button />
     <div>
       <h1 class="title">
         {{ $t('app.dts') }}
@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import AppButton from '../../components/app/AppButton'
+import navButton from '../../components/app/AppNavBtn'
 export default {
   components: {
-    AppButton
+    navButton
   }
 }
 </script>
