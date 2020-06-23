@@ -11,11 +11,7 @@ app.use(json()) // not required here
 // @desc    Gets all contacts
 // @access  Public
 
-<<<<<<< HEAD
-app.get('/getContacts', async(req, res) => {
-=======
-app.get('/contacts', async(req, res) => {
->>>>>>> main
+app.get('/contacts', async (req, res) => {
   try {
     const contacts = await Contact.find()
 
@@ -35,11 +31,7 @@ app.get('/contacts', async(req, res) => {
 // @desc    Gets/find a contact by id
 // @access  Public
 
-<<<<<<< HEAD
-app.get('/getContact', async(req, res) => {
-=======
-app.get('/contact', async(req, res) => {
->>>>>>> main
+app.get('/contact', async (req, res) => {
   try {
     const contact = await Contact.findById(req.query.id)
 
@@ -59,7 +51,7 @@ app.get('/contact', async(req, res) => {
 // @desc    Post creates a new contact
 // @access  Public
 
-app.post('/addContact', async(req, res) => {
+app.post('/addContact', async (req, res) => {
   let errMessage = ''
 
   try {
