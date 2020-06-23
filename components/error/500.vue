@@ -22,17 +22,6 @@
           <p class="text-md font-bold ml-4">
             {{ $t('error.fivehundred') }}
           </p>
-          <!-- <button
-            class="ml-4 mt-2 bg-rmp-orange hover:bg-rmp-dk-orange text-white font-bold py-2 px-4 border border-rmp-dk-blue rounded"
-          >
-            <nuxt-link
-              to="/"
-            >
-              <span>
-                {{ $t('error.buttontext') }}
-              </span>
-            </nuxt-link>
-          </button> -->
         </div>
       </div>
     </div>
