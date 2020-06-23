@@ -19,62 +19,21 @@
     <div>
       <!-- This form might be a component -->
       <form class="sm:flex">
-        <!-- These selects will be components that passes the data to it. -->
-        <!-- Time -->
-        <select id="time" name="time" class="w-3/4 p-3 m-2 md:w-full">
-          <option value="sixMonths">
-            Last 6 Months
-          </option>
-          <option value="threeMonths">
-            Last 3 Months
-          </option>
-          <option value="oneMonth">
-            Last Month
-          </option>
-        </select>
-        <!-- Subjects -->
-        <select id="subject" name="subject" class="w-3/4 p-3 m-2 md:w-full">
-          <option value="allSubject">
-            All Subjects
-          </option>
-          <option value="EIData">
-            EI Data
-          </option>
-          <option value="CERB">
-            CERB
-          </option>
-          <option value="HomelessGrants">
-            Homeless Grants
-          </option>
-        </select>
-        <!-- Organization -->
-        <select
-          id="organization"
-          name="organization"
-          class="w-3/4 p-3 m-2 md:w-full"
-        >
-          <option value="allOrganisations">
-            All Organizations
-          </option>
-          <option value="RBC">
-            RBC
-          </option>
-          <option value="StatsCan">
-            StatsCan
-          </option>
-          <option value="CRA">
-            CRA
-          </option>
-          <option value="BMO">
-            BMO
-          </option>
-          <option value="OntarioGov">
-            Ontario Gov
-          </option>
-          <option value="OttawaMission">
-            Ottawa Mission
-          </option>
-        </select>
+        <AppSelect
+          modelname="hello"
+          :options="time"
+          class="dropdowns md:w-full"
+        />
+        <AppSelect
+          modelname="hello"
+          :options="subjects"
+          class="dropdowns md:w-full"
+        />
+        <AppSelect
+          modelname="hello"
+          :options="organizations"
+          class="dropdowns md:w-full"
+        />
       </form>
     </div>
     <div class="flex flex-wrap justify-between">
@@ -111,9 +70,33 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      time: [
+        // { key: 0, value: '-1', options: 'Select value' },
+        { key: 1, value: 'SixMonths', options: 'Last 6 Months' },
+        { key: 2, value: 'ThreeMonths', options: 'Last 3 Months' },
+        { key: 3, value: 'OneMonth', options: 'Last Month' }],
+      subjects: [
+        // { key: 0, value: '-1', options: 'Select value' },
+        { key: 1, value: 'AllSubject', options: 'All Subjects' },
+        { key: 2, value: 'EIData', options: 'EI Data' },
+        { key: 3, value: 'CERB', options: 'CERB' },
+        { key: 3, value: 'HomelessGrants', options: 'Homeless Grants' }],
+      organizations: [
+        // { key: 0, value: '-1', options: 'Select value' },
+        { key: 1, value: 'AllOrganisations', options: 'All Organizations' },
+        { key: 2, value: 'RBC', options: 'RBC' },
+        { key: 3, value: 'StatsCan', options: 'Stats Can' },
+        { key: 4, value: 'CRA', options: 'CRA' },
+        { key: 4, value: 'BMO', options: 'BMO' },
+        { key: 4, value: 'OntarioGov', options: 'Ontario Gov' },
+        { key: 5, value: 'OttawaMission', options: 'Ottawa Mission' }]
+    }
+  }
+}
 </script>
-
 <style scoped>
 #pdfButton {
   background-color: #246880;
@@ -124,5 +107,8 @@ export default {}
 img {
   box-shadow: 3px 3px 5px 6px #ccc;
   @apply my-4;
+}
+.dropdowns{
+  @apply w-3/4 p-3 m-2;
 }
 </style>
