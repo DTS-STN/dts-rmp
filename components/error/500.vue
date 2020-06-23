@@ -1,20 +1,25 @@
 <template>
-  <div class="container-fluid p-4">
-    <div class="error-500">
-      <div class="row">
-        <div class="warning col-md-2">
+  <div class="flex items-center mx-auto px-4 py-2 sm:py-4">
+    <!-- single button that uses the language switch -->
+    <div
+      class="w-full border-l-4 border-rmp-dk-blue rounded-l text-rmp-dk-blue py-3 shadow-md"
+      role="alert"
+    >
+      <div class="flex items-center m-auto py-1 px-10">
+        <div class="rounded-b-full rounded-t-full shadow-lg">
           <img
-            class="w-100 icon"
-            src="~/assets/images/u1.png"
+            class="h-40 icon"
+            src="~/assets/images/errorIcon.svg"
             alt
             aria-hidden="true"
+            data-cy="error-img"
           />
         </div>
-        <div class="message col" data-cy="fiveOO-error">
-          <p class="text">
+        <div data-cy="fiveOO-error">
+          <p class="font-semibold ml-4">
             {{ $t('error.fivehundredmessage') }}
           </p>
-          <p class="text2">
+          <p class="text-md font-bold ml-4">
             {{ $t('error.fivehundred') }}
           </p>
         </div>
