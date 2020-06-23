@@ -26,7 +26,7 @@
               Error 404
             </p>
             <button
-              class="ml-4 mt-2 bg-rmp-orange hover:bg-rmp-dk-orange text-white font-bold py-2 px-4 border border-rmp-dk-blue rounded"
+              class="err-button"
               data-cy="homebtn-en"
             >
               <nuxt-link to="/">
@@ -51,7 +51,7 @@
               Erreur 404
             </p>
             <button
-              class="ml-4 mt-2 bg-rmp-orange hover:bg-rmp-dk-orange text-white font-bold py-2 px-4 border border-rmp-dk-blue rounded"
+              class="err-button"
               data-cy="homebtn-fr"
             >
               <nuxt-link to="/">
@@ -76,3 +76,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+.err-button {
+  @apply ml-4 mt-2 bg-rmp-orange text-white font-bold py-2 px-4 border border-rmp-dk-blue rounded;
+}
+.err-button:hover {
+  @apply bg-rmp-dk-orange;
+}
+</style>
