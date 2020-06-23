@@ -44,7 +44,8 @@ export default {
     fourofourmessage: 'Oops! Nous ne pouvons trouver cette page Web',
     fivehundred: 'Erreur 500',
     fivehundredmessage:
-      'Désoler...Quelque chose s’est mal passé. S’il vous plaît essayer à nouveau plus tard.'
+      'Désoler...Quelque chose s’est mal passé. S’il vous plaît essayer à nouveau plus tard.',
+    buttontext: 'Aller à la page d\'accueil'
   },
   // contact
   contact: {},
