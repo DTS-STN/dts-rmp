@@ -36,7 +36,7 @@ const engagementDataMissingReqField = {
 }
 
 describe('engagement Model Test', () => {
-  beforeAll(async () => {
+  beforeAll(async() => {
     await mongoose.connect(
       global.__MONGO_URI__,
       { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
@@ -50,11 +50,11 @@ describe('engagement Model Test', () => {
     )
   })
 
-  afterAll(async () => {
+  afterAll(async() => {
     await mongoose.connection.close()
   })
 
-  it('create & save engagement successfully', async () => {
+  it('create & save engagement successfully', async() => {
     const validEngagement = new EngagementModel(engagementData)
     const savedEngagement = await validEngagement.save()
     expect(savedEngagement._id).toBeDefined()
@@ -62,7 +62,7 @@ describe('engagement Model Test', () => {
     expect(savedEngagement.description).toBe(engagementData.description)
   })
 
-  it('create engagement with invalid field, field should not be saved in db', async () => {
+  it('create engagement with invalid field, field should not be saved in db', async() => {
     const engagementWithInvalidField = new EngagementModel(
       engagementDataInvalidField
     )
@@ -71,7 +71,7 @@ describe('engagement Model Test', () => {
     expect(savedEngagementWithInvalidField.time).toBeUndefined()
   })
 
-  it('create engagement without required field should fail', async () => {
+  it('create engagement without required field should fail', async() => {
     const engagementWithoutRequiredField = new EngagementModel(
       engagementDataMissingReqField
     )

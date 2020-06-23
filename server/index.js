@@ -32,9 +32,9 @@ async function start() {
 // build connection string with password
 const db = process.env.VUE_APP_CONNECTION_STRING
   ? process.env.VUE_APP_CONNECTION_STRING.replace(
-      '-password-',
-      process.env.VUE_APP_RMP_DB_PASSWORD
-    )
+    '-password-',
+    process.env.VUE_APP_RMP_DB_PASSWORD
+  )
   : 'empty connection string check environment vars'
 
 function connectDb() {
