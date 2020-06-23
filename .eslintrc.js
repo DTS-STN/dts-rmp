@@ -17,6 +17,7 @@ module.exports = {
   plugins: ['prettier'],
   // add your custom rules here
   rules: {
+    'space-before-function-paren': ['error', 'never'],
     'nuxt/no-cjs-in-config': 'off',
     'vue/html-self-closing': [
       'error',
@@ -38,7 +39,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*-test.js', '*.spec.js'],
+      files: ['-test.js', '.spec.js'],
       rules: {
         'no-unused-expressions': 'off'
       }

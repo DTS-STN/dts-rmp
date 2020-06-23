@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable space-before-function-paren -->
   <div class="contactForm">
     <div v-if="title">
       <h1 class="title">
@@ -13,7 +14,7 @@
 
       <div class="flex mb-4">
         <div class="w-5/12 margins">
-          <select class="formSelect">
+          <select v-model="contactInfo.type" class="formSelect" @change="onStanding($event)">
             <option>
               Federal
             </option>
@@ -113,6 +114,7 @@
               id="keyContactCountry"
               v-model="contactInfo.keyContactCountry"
               class="formSelect"
+              @change="onContactCountry($event)"
             >
               <option value="Select">
                 Select a country
@@ -218,6 +220,7 @@
               id="orgCountry"
               v-model="contactInfo.orgCountry"
               class="formSelect"
+              @change="onOrgCountry($event)"
             >
               <option value="Select">
                 Select a country
@@ -370,6 +373,7 @@
               id="onStandingOffer"
               v-model="contactInfo.onStandingOffer"
               class="formSelect"
+              @change="onStanding($event)"
             >
               <option value="null">
                 Select one
@@ -393,6 +397,7 @@
               id="provTerritory"
               v-model="contactInfo.provTerritory"
               class="formSelect"
+              @change="onProvTerr($event)"
             >
               <option value="Select">
                 Select a province
@@ -402,6 +407,16 @@
               </option>
             </select>
           </div>
+          <!-- <div class="w-5/12 margins">
+            <AppSelect
+              :required="true"
+              :labeltext="labelhere"
+              :selname="ProvTerr2"
+              :modelname="contactInfo.provTerritory"
+              :options="optOptions"
+              @Change="onProvTerr2($event)"
+            />
+          </div> -->
         </div>
 
         <div
@@ -434,12 +449,13 @@
 <script>
 // import ContactForm from '@/components/contact/ContactForm.vue'
 import AppButton from '@/components/app/AppButton.vue'
+// import AppSelect from '@/components/app/AppSelect.vue'
 
 export default {
   name: 'ContactForm',
 
   components: {
-    AppButton
+    AppButton // , AppSelect
   },
 
   props: {
@@ -456,6 +472,12 @@ export default {
         type: null,
         message: null
       },
+
+      optOptions: [
+        { key: 0, value: '0', options: 'Select an Option' },
+        { key: 1, value: 'true', options: 'True' },
+        { key: 2, value: 'false', options: 'False' }
+      ],
 
       timeout: null,
 
@@ -497,6 +519,43 @@ export default {
   },
 
   methods: {
+    // eslint-disable-next-line space-before-function-paren
+    onProvTerr2(event) {
+      // eslint-disable-next-line no-console
+      console.log('prov terr 2 = ', event.target.value)
+      this.contactInfo.provTerritory = event.target.value
+    },
+    // eslint-disable-next-line space-before-function-paren
+    onProvTerr(event) {
+      // eslint-disable-next-line no-console
+      console.log(event.target.value)
+      this.contactInfo.provTerritory = event.target.value
+    },
+    // eslint-disable-next-line space-before-function-paren
+    onStanding(event) {
+      // eslint-disable-next-line no-console
+      console.log(event.target.value)
+      this.contactInfo.onStandingOffer = event.target.value
+    },
+    // eslint-disable-next-line space-before-function-paren
+    onOrgCountry(event) {
+      // eslint-disable-next-line no-console
+      console.log(event.target.value)
+      this.contactInfo.orgCountry = event.target.value
+    },
+    // eslint-disable-next-line space-before-function-paren
+    onContactCountry(event) {
+      // eslint-disable-next-line no-console
+      console.log(event.target.value)
+      this.contactInfo.keyContactCountry = event.target.value
+    },
+    // eslint-disable-next-line space-before-function-paren
+    onType(event) {
+      // eslint-disable-next-line no-console
+      console.log(event.target.value)
+      this.contactInfo.type = event.target.value
+    },
+
     // eslint-disable-next-line space-before-function-paren
     notification(type, message) {
       this.message.type = type

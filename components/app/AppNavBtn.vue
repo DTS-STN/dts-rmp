@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       txtColorAdd: '#D87C4F',
       bgColorAdd: 'white',
@@ -34,7 +34,7 @@ export default {
     }
   },
   methods: {
-    colorChange (select) {
+    colorChange(select) {
       if (select === true) {
         this.txtColorAdd = '#D87C4F'
         this.bgColorAdd = 'white'
