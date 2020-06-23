@@ -35,7 +35,7 @@ NUM_ENGAGEMENTS, NUM_CONTACTS
 
 These variables let you define the number of Engagement documents and Contact documents, respectively, that will be added to the database during seeding.
 
-For local development, use a mongo docker container with no config.
+For local development, use a mongo docker container with no config..
 
 1. npm run mongodb
 2. npm run seed
