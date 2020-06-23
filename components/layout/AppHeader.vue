@@ -59,8 +59,8 @@
 export default {
   name: 'AppHeader',
   computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code === this.$i18n.locale)
+    availableLocales () {
+      return this.$i18n.locales.filter(i => i.code === this.$i18n.locale)
     }
   }
 }

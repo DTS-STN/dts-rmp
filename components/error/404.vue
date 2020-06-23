@@ -1,5 +1,5 @@
 <template>
-  <div class="items-center">
+  <div class="items-center" data-cy="error">
     <!-- english -->
     <div class="flex w-full items-center">
       <div class="py-2 m-auto">
@@ -19,13 +19,15 @@
       >
         <div class="flex items-center">
           <div class="px-10">
-            <p class="font-semibold ml-4">Oops! We couldn't find that Web page.
+            <p class="font-semibold ml-4" data-cy="error-msg">
+              Oops! We couldn't find that Web page.
             </p>
-            <p class="text-md font-bold ml-4">Error 404
+            <p class="text-md font-bold ml-4" data-cy="error-404">
+              Error 404
             </p>
             <button
               class="ml-4 mt-2 bg-rmp-orange hover:bg-rmp-dk-orange text-white font-bold py-2 px-4 border border-rmp-dk-blue rounded"
-            >
+              data-cy="homebtn-en">
               <nuxt-link to="/">
                 <span>Go to the homepage
                 </span>
@@ -41,13 +43,15 @@
       >
         <div class="flex items-center">
           <div class="px-10 md:px-4 lg:px-10">
-            <p class="font-semibold text-base ml-4">Oops! Nous ne pouvons trouver cette page Web.
+            <p class="font-semibold text-base ml-4" data-cy="error-msgfr">
+              Oops! Nous ne pouvons trouver cette page Web.
             </p>
-            <p class="text-md font-bold ml-4">Erreur 404
+            <p class="text-md font-bold ml-4" data-cy="error-404fr">
+              Erreur 404
             </p>
             <button
               class="ml-4 mt-2 bg-rmp-orange hover:bg-rmp-dk-orange text-white font-bold py-2 px-4 border border-rmp-dk-blue rounded"
-            >
+              data-cy="homebtn-fr">
               <nuxt-link to="/">
                 <span>Aller à la page d'accueil
                 </span>
