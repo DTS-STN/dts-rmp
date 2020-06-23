@@ -11,7 +11,7 @@ app.use(json()) // not required here
 // @desc    Gets all users
 // @access  Public
 
-app.get('/users', async (req, res) => {
+app.get('/users', async(req, res) => {
   try {
     const users = await User.find()
 

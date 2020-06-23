@@ -11,7 +11,7 @@ app.use(json()) // not required here
 // @desc    Gets all contacts
 // @access  Public
 
-app.get('/contacts', async (req, res) => {
+app.get('/contacts', async(req, res) => {
   try {
     const contacts = await Contact.find()
 
@@ -31,7 +31,7 @@ app.get('/contacts', async (req, res) => {
 // @desc    Gets/find a contact by id
 // @access  Public
 
-app.get('/contact', async (req, res) => {
+app.get('/contact', async(req, res) => {
   try {
     const contact = await Contact.findById()
 

@@ -69,7 +69,7 @@ const contactDataMissingReqField = {
 }
 
 describe('Contact Model Test', () => {
-  beforeAll(async () => {
+  beforeAll(async() => {
     await mongoose.connect(
       global.__MONGO_URI__,
       { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
@@ -83,11 +83,11 @@ describe('Contact Model Test', () => {
     )
   })
 
-  afterAll(async () => {
+  afterAll(async() => {
     await mongoose.connection.close()
   })
 
-  it('create & save contact successfully', async () => {
+  it('create & save contact successfully', async() => {
     const validContact = new ContactModel(contactData)
     const savedContact = await validContact.save()
     expect(savedContact._id).toBeDefined()
@@ -95,14 +95,14 @@ describe('Contact Model Test', () => {
     expect(savedContact.orgName).toBe(contactData.orgName)
   })
 
-  it('create contact with invalid field, field should not be saved in db', async () => {
+  it('create contact with invalid field, field should not be saved in db', async() => {
     const contactWithInvalidField = new ContactModel(contactDataInvalidField)
     const savedContactWithInvalidField = await contactWithInvalidField.save()
     expect(savedContactWithInvalidField._id).toBeDefined()
     expect(savedContactWithInvalidField.gender).toBeUndefined()
   })
 
-  it('create contact without required field should fail', async () => {
+  it('create contact without required field should fail', async() => {
     const contactWithoutRequiredField = new ContactModel(
       contactDataMissingReqField
     )

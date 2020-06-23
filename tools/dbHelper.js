@@ -9,7 +9,7 @@ export const init = () => {
       .connect(process.env.VUE_APP_CONNECTION_STRING, {
         useNewUrlParser: true
       })
-      .catch((err) => consola.ready({ message: err }))
+      .catch(err => consola.ready({ message: err }))
 
     mongoose.set('useCreateIndex', true)
     return mongoose.connection
