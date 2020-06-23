@@ -101,4 +101,4 @@ database/
 
 package-lock.json
 
-,gitattributes
+.gitattributes
