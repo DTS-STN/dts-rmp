@@ -5,9 +5,8 @@
     </label>
     <select
       id="selname"
-      v-model="modelname"
-      class="formSelect"
       :class="customstyle"
+      class="formSelect"
       :data-cy="datacypress"
       v-bind="$attrs"
       v-on="$listeners"
@@ -17,7 +16,6 @@
       </option>
     </select>
   </div>
-  <!--  @change="onProvTerr($event)"  -->
 </template>
 
 <script>
@@ -34,7 +32,7 @@ export default {
     options: {
       type: Array,
       default() {
-        return { key: 'Select', value: 'none', options: 'Select value' }
+        return [{ key: 0, value: '-1', options: 'Select value' }]
       }
     }
   }
@@ -43,7 +41,7 @@ export default {
 
 <style scoped>
 .orange {
-  background-image: url('../../assets/images/orange-star.png');
+  /* background-image: url('../../assets/images/orange-star.png'); */
   background-repeat: no-repeat;
   @apply mt-6 pl-6 pr-4 font-bold;
 }

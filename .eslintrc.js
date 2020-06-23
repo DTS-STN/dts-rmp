@@ -39,7 +39,11 @@ module.exports = {
   },
   overrides: [
     {
+<<<<<<< HEAD
       files: ['-test.js', '.spec.js'],
+=======
+      files: ['*-test.js', '*.spec.js'],
+>>>>>>> main
       rules: {
         'no-unused-expressions': 'off'
       }
