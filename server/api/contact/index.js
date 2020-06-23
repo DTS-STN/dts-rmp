@@ -11,6 +11,7 @@ app.use(json()) // not required here
 // @desc    Gets all contacts
 // @access  Public
 
+// eslint-disable-next-line space-before-function-paren
 app.get('/contacts', async (req, res) => {
   try {
     const contacts = await Contact.find()
@@ -31,6 +32,7 @@ app.get('/contacts', async (req, res) => {
 // @desc    Gets/find a contact by id
 // @access  Public
 
+// eslint-disable-next-line space-before-function-paren
 app.get('/contact', async (req, res) => {
   try {
     const contact = await Contact.findById(req.query.id)
@@ -51,6 +53,7 @@ app.get('/contact', async (req, res) => {
 // @desc    Post creates a new contact
 // @access  Public
 
+// eslint-disable-next-line space-before-function-paren
 app.post('/addContact', async (req, res) => {
   let errMessage = ''
 
