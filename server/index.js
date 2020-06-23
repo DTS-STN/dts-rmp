@@ -9,7 +9,7 @@ require('dotenv').config()
 const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
-async function start () {
+async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
   const { host, port } = nuxt.options.server
@@ -37,7 +37,7 @@ const db = process.env.VUE_APP_CONNECTION_STRING
   )
   : 'empty connection string check environment vars'
 
-function connectDb () {
+function connectDb() {
   mongoose.set('useCreateIndex', true)
   mongoose
     .connect(db, {

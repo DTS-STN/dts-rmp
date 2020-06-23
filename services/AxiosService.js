@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 class AxiosService {
-  static insertEngagement (engagement) {
+  static insertEngagement(engagement) {
     return axios.post('/api/insertengagement', null, {
       params: {
         subject: engagement.subject,
@@ -12,7 +12,7 @@ class AxiosService {
     })
   }
 
-  static getAllPocs () {
+  static getAllPocs() {
     return axios.get('/api/allengagements')
   }
 }

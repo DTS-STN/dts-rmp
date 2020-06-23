@@ -18,7 +18,7 @@ export default {
     }
   },
   computed: {
-    errorPage () {
+    errorPage() {
       if (this.error.statusCode === 404) {
         // eslint-disable-next-line semi
         return Error404
