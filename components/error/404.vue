@@ -27,7 +27,8 @@
             </p>
             <button
               class="ml-4 mt-2 bg-rmp-orange hover:bg-rmp-dk-orange text-white font-bold py-2 px-4 border border-rmp-dk-blue rounded"
-              data-cy="homebtn-en">
+              data-cy="homebtn-en"
+            >
               <nuxt-link to="/">
                 <span>Go to the homepage
                 </span>
@@ -51,7 +52,8 @@
             </p>
             <button
               class="ml-4 mt-2 bg-rmp-orange hover:bg-rmp-dk-orange text-white font-bold py-2 px-4 border border-rmp-dk-blue rounded"
-              data-cy="homebtn-fr">
+              data-cy="homebtn-fr"
+            >
               <nuxt-link to="/">
                 <span>Aller à la page d'accueil
                 </span>
