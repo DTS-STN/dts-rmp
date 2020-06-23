@@ -6,7 +6,7 @@ const Engagement = require('../models/engagement')
 // @route   GET api/allengagements
 // @desc    Gets all existing engagement's in database
 // @access  Public
-app.get('/allengagements', function (_req, res) {
+app.get('/allengagements', function(_req, res) {
   Engagement.find((_err, Engagement) => {
     res.json(Engagement)
   }).catch((err) => {
@@ -17,7 +17,7 @@ app.get('/allengagements', function (_req, res) {
 // @route   POST api/insertengagement
 // @desc    Saves our form data
 // @access  Public
-app.post('/insertengagement', function (req, res) {
+app.post('/insertengagement', function(req, res) {
   const saveengagement = new Engagement({
     subject: `${req.query.subject}`,
     contactname: `${req.query.contactname}`,
