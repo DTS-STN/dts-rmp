@@ -70,11 +70,11 @@
             </label>
             <div class="relative max-w-xs">
               <input
-                :value="engagementDetail.myDate && engagementDetail.myDate.toISOString().split('T')[0]"
+                :value="engagementDetail.date && engagementDetail.date.toISOString().split('T')[0]"
                 placeholder="yyyy-mm-dd"
                 class="dateStyle"
                 type="date"
-                @input="engagementDetail.myDate = $event.target.valueAsDate"
+                @input="engagementDetail.date = $event.target.valueAsDate"
               />
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -87,14 +87,14 @@
           <div class="max-w-lg sm:w-1/3 mb-4">
             <label
               class="orange block tracking-wide text-black text-md font-bold mb-2"
-              for="participants"
+              for="numParticipants"
             >
-              Number of participants
+              Number of numParticipants
             </label>
             <div class="flex relative w-20 ">
               <input
-                id="participants"
-                v-model="engagementDetail.participants"
+                id="numParticipants"
+                v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
                 type="text"
               />
@@ -169,7 +169,7 @@
             </label>
             <br />
             <textarea
-              v-model="engagementDetail.comments"
+              v-model="engagementDetail.comments.content"
               type="text"
               name="KeyNotes"
               class="textArea"
@@ -179,6 +179,17 @@
           </div>
         </div>
       </div>
+
+      <div
+        v-if="message.message != null"
+        class="messageBox"
+        :class="[message.type == 'error' ? ' error' : ' ']"
+      >
+        <span>
+          {{ message.message }}
+        </span>
+      </div>
+
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
           <AppButton custom_style="btn-cancel" data_cypress="formButton">
@@ -186,7 +197,7 @@
           </AppButton>
         </div>
         <div class="w-3/12 margins">
-          <AppButton type="submit" value="Submit" custom_style="btn-extra" data_cypress="formButton">
+          <AppButton custom_style="btn-extra" data_cypress="formButton">
             Save
           </AppButton>
         </div>
@@ -194,12 +205,11 @@
           Subject Selected: {{ engagementDetail.subject }}
           Type Selected: {{ engagementDetail.type }}
           Date Selected: {{ dateAdj() }}
-          participants Selected: {{ engagementDetail.participants }}
+          numParticipants Selected: {{ engagementDetail.numParticipants }}
           description Selected: {{ engagementDetail.description }}
           policyProgram Selected: {{ engagementDetail.policyProgram }}
           tags Selected: {{ engagementDetail.tags }}
-          Comments Selected: {{ engagementDetail.comments }}
-          Comments Selected: {{ engagementDetail.comments }}
+          Comments Selected: {{ engagementDetail.comments.content }}
         </span>
       </div>
     </form>
@@ -222,13 +232,21 @@ export default {
       },
       engagementDetail: {
         // vmodel binding
-        subject: '',
         type: '',
-        myDate: new Date(),
+        date: new Date(),
         description: '',
-        participants: 0,
+        numParticipants: 0,
+        // contacts: [
+        //   'kevin'
+        // ],
         policyProgram: '',
-        comments: '',
+        comments: [
+          {
+            user: '',
+            content: '',
+            date: new Date()
+          }
+        ],
         tags: ''
       },
       engagementTypes: [
@@ -249,16 +267,16 @@ export default {
   },
   methods: {
     increment() {
-      this.engagementDetail.participants++
+      this.engagementDetail.numParticipants++
     },
     decrement() {
-      if (this.engagementDetail.participants > 0) {
-        this.engagementDetail.participants--
+      if (this.engagementDetail.numParticipants > 0) {
+        this.engagementDetail.numParticipants--
       }
     },
     dateAdj() {
-      return this.engagementDetail.myDate.setDate(
-        this.engagementDetail.myDate.getDate() + 1
+      return this.engagementDetail.date.setDate(
+        this.engagementDetail.date.getDate()
       )
     },
     // eslint-disable-next-line space-before-function-paren
@@ -277,7 +295,7 @@ export default {
 
     async submitForm(engagementDetail) {
       try {
-        await this.$axios.post('/api/engagement/addContact', {
+        await this.$axios.post('/api/engagement/addEngagement', {
           engagementDetail
         })
         this.notification('success', 'engagment created')
@@ -318,6 +336,9 @@ export default {
 .dateStyle:focus {
   border: 2.5px solid;
   @apply outline-none border-black;
+}
+.messageBox {
+  @apply text-center text-2xl align-bottom mb-4 h-12 min-h-0 mt-2 text-black bg-green-700;
 }
 .numberIncrement {
   @apply appearance-none block w-full text-gray-700 border border-black rounded py-3 px-4 leading-tight;
