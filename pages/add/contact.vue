@@ -4,14 +4,13 @@
       Contact
     </h1>
     <form class="relative mt-6 max-w-md">
-      <tr>
-        <td>
-          <img src="../../assets/images/required.png" />
-        </td>
-        <td class="font-bold text-xl" style="padding-left: 10px">
-          Contact name
-        </td>
-      </tr>
+      <td>
+        <img src="../../assets/images/required.png" />
+      </td>
+      <td class="font-bold text-xl" style="padding-left: 10px">
+        Contact name
+      </td>
+
       <select id="contacts">
         <option value="default" selected="selected">
           Start typing and select one
