@@ -1,8 +1,11 @@
 <template>
   <div class="contact font-serif">
-    <h1 class="font-bold">
-      Contact
+    <h1 class="text-5xl">
+      New Engagement
     </h1>
+    <h2 class="text-4xl">
+      Contact
+    </h2>
     <form class="relative mt-6 max-w-md">
       <td>
         <img src="../../assets/images/required.png" />
@@ -63,8 +66,13 @@ export default {
 
 <style>
 h1 {
+  padding-bottom: 50px;
+}
+
+h1,
+h2 {
   color: #246880;
-  font-size: 50px;
+  @apply font-bold;
 }
 
 tr,
