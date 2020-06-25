@@ -20,17 +20,25 @@
         </h2>
       </button>
     </div>
+    <div v-if="!isSelected">
+      <AppNavAdding />
+    </div>
   </div>
 </template>
 
 <script>
+import AppNavAdding from '../app/AppNavAdding'
 export default {
+  components: {
+    AppNavAdding
+  },
   data() {
     return {
       txtColorAdd: '#D87C4F',
       bgColorAdd: 'white',
       txtColorSearch: 'white',
-      bgColorSearch: '#D87C4F'
+      bgColorSearch: '#D87C4F',
+      isSelected: Boolean
     }
   },
   methods: {
@@ -40,11 +48,13 @@ export default {
         this.bgColorAdd = 'white'
         this.bgColorSearch = '#D87C4F'
         this.txtColorSearch = 'white'
+        this.isSelected = true
       } else {
         this.txtColorAdd = 'white'
         this.bgColorAdd = '#D87C4F'
         this.bgColorSearch = 'white'
         this.txtColorSearch = '#D87C4F'
+        this.isSelected = false
       }
     }
   }
