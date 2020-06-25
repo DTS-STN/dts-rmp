@@ -30,8 +30,8 @@
       </button>
     </div>
     <div>
-      <ConFormFields v-if="!isSelectedCon" />
-      <EngFormFields v-if="!isSelectedEng" />
+      <ConFormFields v-if="!isSelected" />
+      <EngFormFields v-if="isSelected" />
     </div>
   </div>
 </template>
@@ -43,16 +43,14 @@ export default {
       txtColorCon: '',
       bgColorCon: '',
       txtColorEng: '',
-      bgColorEng: '',
-      isSelectedCon: Boolean,
-      isSelectedEng: Boolean
+      bgColorEng: '#2572b4',
+      isSelected: false
     }
   },
   methods: {
     colorChange(select) {
       if (select === true) {
-        this.isSelectedCon = false
-        this.isSelectedEng = true
+        this.isSelected = false
         this.txtColorCon = 'white'
         this.bgColorCon = '#2572b4'
         this.bgColorEng = 'white'
@@ -62,8 +60,7 @@ export default {
         this.bgColorCon = 'white'
         this.bgColorEng = '#2572b4'
         this.txtColorEng = 'white'
-        this.isSelectedCon = true
-        this.isSelectedEng = false
+        this.isSelected = true
       }
     }
   }

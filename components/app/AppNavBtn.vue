@@ -21,16 +21,16 @@
       </button>
     </div>
     <div v-if="!isSelected">
-      <AppNavContactEngagement />
+      <AppNavAdding />
     </div>
   </div>
 </template>
 
 <script>
-import AppNavContactEngagement from '../app/AppNavContactEngagement'
+import AppNavAdding from '../app/AppNavAdding'
 export default {
   components: {
-    AppNavContactEngagement
+    AppNavAdding
   },
   data() {
     return {
