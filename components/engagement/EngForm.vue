@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="flex flex-wrap mb-8">
-          <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
+          <div class="max-w-lg w-2/3 mb-4 mr-20">
             <label
               class="orange block tracking-wide text-black text-md font-bold mb-2"
               for="date"
@@ -91,7 +91,7 @@
             >
               Number of participants
             </label>
-            <div class="flex relative w-2/12 ">
+            <div class="flex relative w-20 ">
               <input
                 id="participants"
                 v-model="engagementDetail.participants"
@@ -110,7 +110,7 @@
           </div>
         </div>
         <div class="flex flex-wrap">
-          <div class="w-full sm:w-1/3 mb-8">
+          <div class="w-full sm:w-6/12 mb-8">
             <label
               class="orange block tracking-wide text-black text-md font-bold -mb-4"
               for="description"
@@ -160,7 +160,7 @@
           </div>
         </div>
         <div class="flex flex-wrap">
-          <div class="w-full sm:w-1/3 mb-8">
+          <div class="w-full sm:w-6/12 mb-8">
             <label
               class="block tracking-wide text-black text-md font-bold -mb-4"
               for="comments"
@@ -227,10 +227,18 @@ export default {
         comments: ''
       },
       engagementTypes: [
-        { type: 'Item1' },
-        { type: 'Item2' },
-        { type: 'Item3' },
-        { type: 'Item4' }
+        { type: 'One-On-One' },
+        { type: 'Conference' },
+        { type: 'Conference Call' },
+        { type: 'Workshop' },
+        { type: 'Webinar' },
+        { type: 'Phone Call' },
+        { type: 'Committee meeting' },
+        { type: 'Working Group' },
+        { type: 'Senior management Briefing' },
+        { type: 'Minister Office briefing' },
+        { type: 'Scrum/Sprint' },
+        { type: 'Advisory Board/Council Meeting' }
       ]
     }
   },
