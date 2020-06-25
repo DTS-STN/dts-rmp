@@ -25,7 +25,7 @@
           <div class="max-w-lg sm:w-1/3 mb-4">
             <label
               class="orange block tracking-wide text-black text-md font-bold mb-2"
-              for="grid-first-name"
+              for="type"
             >
               Engagement Type
             </label>
@@ -130,13 +130,13 @@
           <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
             <label
               class="block tracking-wide text-black text-md font-bold mb-2"
-              for="Policy"
+              for="policyProgram"
             >
               Policy / program
             </label>
             <input
-              id="policy"
-              v-model="engagementDetail.policy"
+              id="policyProgram"
+              v-model="engagementDetail.policyProgram"
               placeholder="Start by typing"
               class="textInput"
               type="text"
@@ -193,11 +193,12 @@
         <span>
           Subject Selected: {{ engagementDetail.subject }}
           Type Selected: {{ engagementDetail.type }}
-          Date Selected: {{ engagementDetail.myDate }}
+          Date Selected: {{ dateAdj() }}
           participants Selected: {{ engagementDetail.participants }}
           description Selected: {{ engagementDetail.description }}
-          policy Selected: {{ engagementDetail.policy }}
+          policyProgram Selected: {{ engagementDetail.policyProgram }}
           tags Selected: {{ engagementDetail.tags }}
+          Comments Selected: {{ engagementDetail.comments }}
           Comments Selected: {{ engagementDetail.comments }}
         </span>
       </div>
@@ -219,12 +220,12 @@ export default {
         // vmodel binding
         subject: '',
         type: '',
-        myDate: new Date('2011-04-11T10:20:30Z'),
-        participants: 0,
+        myDate: new Date(),
         description: '',
-        policy: '',
-        tags: '',
-        comments: ''
+        participants: 0,
+        policyProgram: '',
+        comments: '',
+        tags: ''
       },
       engagementTypes: [
         { type: 'One-On-One' },
@@ -250,6 +251,11 @@ export default {
       if (this.engagementDetail.participants > 0) {
         this.engagementDetail.participants--
       }
+    },
+    dateAdj() {
+      return this.engagementDetail.myDate.setDate(
+        this.engagementDetail.myDate.getDate() + 1
+      )
     },
     async submitForm(engagementDetail) {
       try {
