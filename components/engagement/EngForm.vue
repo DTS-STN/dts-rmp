@@ -242,20 +242,19 @@ export default {
       if (this.engagementDetail.participants > 0) {
         this.engagementDetail.participants--
       }
+    },
+    async submitForm(engagementDetail) {
+      try {
+        await this.$axios.post('/api/engagement/addContact', {
+          engagementDetail
+        })
+        this.notification('success', 'engagment created')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log('error : ', e.response)
+        this.notification('error', e.response.data.message)
+      }
     }
-    // ,
-    // async submitForm(engagementDetail) {
-    //   try {
-    //     await this.$axios.post('/api/engagement/addContact', {
-    //       engagementDetail
-    //     })
-    //     this.notification('success', 'engagment created')
-    //   } catch (e) {
-    //     // eslint-disable-next-line no-console
-    //     console.log('error : ', e.response)
-    //     this.notification('error', e.response.data.message)
-    //   }
-    // }
   }
 }
 </script>
