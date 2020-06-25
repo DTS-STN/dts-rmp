@@ -186,7 +186,7 @@
           </AppButton>
         </div>
         <div class="w-3/12 margins">
-          <AppButton custom_style="btn-extra" data_cypress="formButton">
+          <AppButton type="submit" value="Submit" custom_style="btn-extra" data_cypress="formButton">
             Save
           </AppButton>
         </div>
@@ -216,6 +216,10 @@ export default {
   data() {
     return {
       mySVG: require('../../assets/images/calendar.svg'),
+      message: {
+        type: null,
+        message: null
+      },
       engagementDetail: {
         // vmodel binding
         subject: '',
@@ -257,6 +261,20 @@ export default {
         this.engagementDetail.myDate.getDate() + 1
       )
     },
+    // eslint-disable-next-line space-before-function-paren
+    notification(type, message) {
+      this.message.type = type
+      this.message.message = message
+      this.timeout = setTimeout(() => this.clearMessage(), 5000)
+    },
+
+    // eslint-disable-next-line space-before-function-paren
+    clearMessage() {
+      this.message.type = ''
+      this.message.message = null
+      clearTimeout(this.timeout)
+    },
+
     async submitForm(engagementDetail) {
       try {
         await this.$axios.post('/api/engagement/addContact', {
