@@ -42,7 +42,7 @@ export default {
     return {
       txtColorCon: '',
       bgColorCon: '',
-      txtColorEng: '',
+      txtColorEng: 'white',
       bgColorEng: '#2572b4',
       isSelected: false
     }
