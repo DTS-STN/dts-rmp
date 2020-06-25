@@ -121,7 +121,7 @@
             <textarea
               v-model="engagementDetail.description"
               type="text"
-              class="w-full border border-gray-400"
+              class="textArea"
               maxlength="800"
             />
           </div>
@@ -172,7 +172,7 @@
               v-model="engagementDetail.comments"
               type="text"
               name="KeyNotes"
-              class="w-full border border-gray-400"
+              class="textArea"
               placeholder="Key notes..."
               maxlength="800"
             />
@@ -295,19 +295,38 @@ export default {
   @apply mt-6 pl-6 pr-4 font-bold;
 }
 .dateStyle {
-  @apply appearance-none block w-full text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight;
+  @apply appearance-none block w-full text-gray-700 border border-black rounded py-3 px-4 leading-tight;
+}
+.dateStyle:focus {
+  border: 2.5px solid;
+  @apply outline-none border-black;
 }
 .numberIncrement {
-  @apply appearance-none block w-full text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight;
+  @apply appearance-none block w-full text-gray-700 border border-black rounded py-3 px-4 leading-tight;
+}
+.numberIncrement:focus {
+  border: 2.5px solid;
+  @apply outline-none border-black;
+}
+.textArea {
+  @apply w-full border border-black;
+}
+.textArea:focus {
+  border: 2.5px solid;
+  @apply outline-none border-black;
 }
 .textInput {
-  @apply appearance-none block w-full text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight;
+  @apply appearance-none block w-full text-gray-700 border border-black rounded py-3 px-4 leading-tight;
 }
 .textInput:focus {
-  border: 3px solid;
-  @apply outline-none border-orange-500;
+  border: 2.5px solid;
+  @apply outline-none border-black;
 }
 .textInputTag {
-  @apply appearance-none block w-6/12 text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight;
+  @apply appearance-none block w-6/12 text-gray-700 border border-black rounded py-3 px-4 leading-tight;
+}
+.textInputTag:focus {
+  border: 2.5px solid;
+  @apply outline-none border-black;
 }
 </style>
