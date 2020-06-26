@@ -1,5 +1,6 @@
 <template>
-  <div title="engagementForm">
+  <div title="engagementForm" class="ml-12 font-serif">
+    <select-contact />
     <h1 class="title">
       Engagement
     </h1>
@@ -217,11 +218,14 @@
 </template>
 
 <script>
+import SelectContact from './EngSelectContacts.vue'
 import AppButton from '@/components/app/AppButton.vue'
+
 export default {
   name: 'EngagementForm',
   components: {
-    AppButton
+    AppButton,
+    SelectContact
   },
   data() {
     return {

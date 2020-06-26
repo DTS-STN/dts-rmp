@@ -9,20 +9,20 @@
       <!-- <TitleComponent /> -->
       <nuxt />
     </main>
-
     <footer>
       <AppFooterLandscape />
       <AppFooterLinks />
     </footer>
   </div>
 </template>
-
 <script>
 // import TitleComponent from '@/components/TitleComponent.vue'
+<<<<<<< HEAD
 
+=======
+>>>>>>> 39057fe6f15734f7ec58d192deca5c10fb235e9d
 export default {}
 </script>
-
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -38,7 +38,6 @@ html {
 .main-container {
   min-height: 100vh;
 }
-
 .button--green {
   display: inline-block;
   border-radius: 4px;
@@ -47,12 +46,10 @@ html {
   text-decoration: none;
   padding: 10px 30px;
 }
-
 .button--green:hover {
   color: #fff;
   background-color: #3b8070;
 }
-
 .button--grey {
   display: inline-block;
   border-radius: 4px;
@@ -62,7 +59,6 @@ html {
   padding: 10px 30px;
   margin-left: 15px;
 }
-
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
