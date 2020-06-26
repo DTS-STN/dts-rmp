@@ -1,14 +1,14 @@
 <template>
   <!-- eslint-disable space-before-function-paren -->
   <div class="contactForm">
-    <div v-if="title">
+    <div>
       <h1 class="title">
-        {{ title }}
+        {{ $t('contact.create') }}
       </h1>
 
       <div>
         <p class="orange fontNoto">
-          Contact type
+          {{ $t('contact.type') }}
         </p>
       </div>
 
@@ -16,27 +16,27 @@
         <div class="w-5/12 margins">
           <select v-model="contactInfo.type" class="formSelect" @change="onStanding($event)">
             <option value="Federal">
-              Federal
+              {{ $t('contact.federal') }}
             </option>
             <option value="External">
-              External
+              {{ $t('contact.external') }}
             </option>
             <option value="Provincial">
-              Provincial
+              {{ $t('contact.provincial') }}
             </option>
           </select>
         </div>
       </div>
 
       <h2 class="title">
-        Contact Information
+        {{ $t('contact.information') }}
       </h2>
 
       <form @submit.prevent="submitForm(contactInfo)">
         <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactName">
-              Full Name
+              {{ $t('contact.name') }}
             </label>
             <input
               id="keyContactName"
@@ -48,7 +48,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactTitle">
-              Title
+              {{ $t('contact.title') }}
             </label>
             <input
               id="keyContactTitle"
@@ -63,7 +63,7 @@
         <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactAddress">
-              Address
+              {{ $t('contact.address') }}
             </label>
             <input
               id="keyContactAddress"
@@ -117,10 +117,16 @@
               @change="onContactCountry($event)"
             >
               <option value="Select">
-                Select a country
+                {{ $t('contact.selCountry') }}
               </option>
               <option value="Canada">
-                Canada
+                {{ $t('contact.canada') }}
+              </option>
+              <option value="Mexico">
+                {{ $t('contact.mexico') }}
+              </option>
+              <option value="England">
+                {{ $t('contact.england') }}
               </option>
             </select>
           </div>
@@ -138,7 +144,7 @@
         <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactEmail">
-              Email
+              {{ $t('contact.email') }}
             </label>
             <input
               id="keyContactEmail"
@@ -150,7 +156,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactPhone">
-              Phone
+              {{ $t('contact.phone') }}
             </label>
             <input
               id="keyContactPhone"
@@ -163,7 +169,7 @@
         </div>
 
         <h2 class="title">
-          Organization <br />Information
+          {{ $t('contact.organization') }} <br /> {{ $t('contact.information') }}
         </h2>
 
         <!-- Next Div are shown as needed according to the Contact Type -->
@@ -171,7 +177,7 @@
         <div class="flex mb-4">
           <div class="w-5/12  margins">
             <label class="formLabel orange" for="orgAddress">
-              Organization Address
+              {{ $t('contact.orgAddress') }}
             </label>
             <input
               id="orgAddress"
@@ -225,10 +231,16 @@
               @change="onOrgCountry($event)"
             >
               <option value="Select">
-                Select a country
+                {{ $t('contact.selCountry') }}
+              </option>
+              <option value="Canada">
+                {{ $t('contact.canada') }}
               </option>
               <option value="Mexico">
-                Mexico
+                {{ $t('contact.mexico') }}
+              </option>
+              <option value="England">
+                {{ $t('contact.england') }}
               </option>
             </select>
           </div>
@@ -245,7 +257,7 @@
 
         <div class="w-5/12 margins">
           <label class="formLabel orange" for="orgWebsite">
-            Organization Website
+            {{ $t('contact.orgwebsite') }}
           </label>
           <input
             id="orgWebsite"
@@ -260,7 +272,7 @@
           <div class="flex mb-4">
             <div class="w-5/12 margins">
               <label class="formLabel orange" for="department">
-                Department
+                {{ $t('contact.department') }}
               </label>
               <input
                 id="department"
@@ -272,7 +284,7 @@
             </div>
             <div class="w-5/12 margins">
               <label class="formLabel orange" for="branch">
-                Branch
+                {{ $t('contact.branch') }}
               </label>
               <input
                 id="branch"
@@ -289,7 +301,7 @@
           <div class="flex mb-4">
             <div class="w-5/12 margins">
               <label class="formLabel orange" for="directorate">
-                Directorate
+                {{ $t('contact.directorate') }}
               </label>
               <input
                 id="directorate"
@@ -302,7 +314,7 @@
 
             <div v-if="contactInfo.type == 'Provincial'" class="w-5/12 margins">
               <label class="formLabel orange" for="provTerritory">
-                Province / Territory / Indigenous
+                {{ $t('contact.provTerr') }}
               </label>
               <select
                 id="provTerritory"
@@ -311,10 +323,16 @@
                 @change="onProvTerr($event)"
               >
                 <option value="Select">
-                  Select a province
+                  {{ $t('contact.selProvince') }}
                 </option>
                 <option value="Ontario">
-                  Ontario
+                  {{ $t('contact.on') }}
+                </option>
+                <option value="Ontario">
+                  {{ $t('contact.qc') }}
+                </option>
+                <option value="Ontario">
+                  {{ $t('contact.ns') }}
                 </option>
               </select>
             </div>
@@ -324,7 +342,7 @@
         <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgName">
-              Organization Name
+              {{ $t('contact.orgName') }}
             </label>
             <input
               id="orgName"
@@ -336,7 +354,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgSector">
-              Organization Sector
+              {{ $t('contact.sector') }}
             </label>
             <input
               id="orgSector"
@@ -351,7 +369,7 @@
         <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgEmail">
-              Organization Email
+              {{ $t('contact.orgEmail') }}
             </label>
             <input
               id="orgEmail"
@@ -363,7 +381,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgPhone">
-              Organization Phone
+              {{ $t('contact.orgPhone') }}
             </label>
             <input
               id="orgPhone"
@@ -378,7 +396,7 @@
         <div v-if=" contactInfo.type == 'External' " class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="contributionRefNo">
-              Contribution Agreement Reference
+              {{ $t('contact.contrib') }}
             </label>
             <input
               id="contributionRefNo"
@@ -390,7 +408,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel" for="serviceContrNo">
-              Service Contract
+              {{ $t('contact.service') }}
             </label>
             <input
               id="serviceContrNo"
@@ -405,7 +423,7 @@
         <div v-if="contactInfo.type == 'External' " class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="onStandingOffer">
-              On standing offer list
+              {{ $t('contact.standing') }}
             </label>
             <select
               id="onStandingOffer"
@@ -413,14 +431,11 @@
               class="formSelect"
               @change="onStanding($event)"
             >
-              <option value="">
-                Select one
+              <option value="false">
+                {{ $t('contact.false') }}
               </option>
               <option value="true">
-                true
-              </option>
-              <option value="false">
-                false
+                {{ $t('contact.true') }}
               </option>
             </select>
           </div>
@@ -439,12 +454,12 @@
         <div class="flex justify-start mb-4">
           <div class="w-3/12 margins">
             <AppButton custom_style="btn-cancel" data_cypress="formButton">
-              Cancel
+              {{ $t('contact.cancel') }}
             </AppButton>
           </div>
           <div class="w-3/12 margins">
             <AppButton custom_style="btn-extra" data_cypress="formButton">
-              Save
+              {{ $t('contact.save') }}
             </AppButton>
           </div>
         </div>
@@ -464,13 +479,6 @@ export default {
     AppButton
   },
 
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
-  },
-
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
@@ -484,36 +492,36 @@ export default {
       contactInfo: {
         type: 'Federal',
         // Key Contact
-        keyContactName: 'Marco',
-        keyContactTitle: 'dev',
-        keyContactAddress: '22 Eddy st',
+        keyContactName: '',
+        keyContactTitle: '',
+        keyContactAddress: '2',
         keyContactAddress2: '',
-        keyContactCity: 'Gatineau',
-        keyContactProvState: 'Quebec',
-        keyContactCountry: 'Canada',
-        keyContactPostalCode: 'J3H 3T5',
-        keyContactEmail: 'm@m.com',
-        keyContactPhone: '613-999-9999',
+        keyContactCity: '',
+        keyContactProvState: '',
+        keyContactCountry: '',
+        keyContactPostalCode: '',
+        keyContactEmail: '',
+        keyContactPhone: '',
         // Organization
-        orgAddress: 'Paseo de la Reforma #2829',
-        orgAddress2: 'Col Roma',
-        orgCity: 'Mexico city',
-        orgProvState: 'Mexico city',
-        orgCountry: 'Mexico',
-        orgPostalCode: '86474',
-        orgWebsite: 'canada.com',
-        orgName: 'ESDC',
-        orgSector: 'public',
-        orgEmail: 'm@canada.com',
-        orgPhone: '613-999-9999',
-        contributionRefNo: 7363366373,
-        serviceContrNo: 837666630,
-        onStandingOffer: true,
+        orgAddress: '',
+        orgAddress2: '',
+        orgCity: '',
+        orgProvState: '',
+        orgCountry: '',
+        orgPostalCode: '',
+        orgWebsite: '',
+        orgName: '',
+        orgSector: '',
+        orgEmail: '',
+        orgPhone: '',
+        contributionRefNo: 0,
+        serviceContrNo: 0,
+        onStandingOffer: false,
         // Federal & Provincial
-        department: 'ESDC',
-        branch: 'ITTB',
-        directorate: 'Who knows',
-        provTerritory: 'Ontario'
+        department: '',
+        branch: '',
+        directorate: '',
+        provTerritory: ''
       }
     }
   },

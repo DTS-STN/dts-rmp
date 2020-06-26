@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContactForm title="Create new contact" />
+    <ContactForm />
   </div>
 </template>
 
