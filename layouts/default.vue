@@ -17,10 +17,6 @@
 </template>
 <script>
 // import TitleComponent from '@/components/TitleComponent.vue'
-<<<<<<< HEAD
-
-=======
->>>>>>> 39057fe6f15734f7ec58d192deca5c10fb235e9d
 export default {}
 </script>
 <style>
