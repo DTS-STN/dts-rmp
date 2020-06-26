@@ -1,33 +1,24 @@
 <template>
   <div class="main-container">
     <header>
-      <ToggLang />
+      <AppHeader />
       <!-- <Header />    placeholder for the Header -->
-
       <!-- Temporary navbar containing   home, login/logout buttons -->
-      <NavBar />
     </header>
     <main>
       <!-- <TitleComponent /> -->
       <nuxt />
     </main>
-
     <footer>
-      <!-- <Footer />    placeholderfor the footer -->
+      <AppFooterLandscape />
+      <AppFooterLinks />
     </footer>
   </div>
 </template>
-
 <script>
 // import TitleComponent from '@/components/TitleComponent.vue'
-import ToggLang from '~/components/app/AppToggleLang'
-export default {
-  components: {
-    ToggLang
-  }
-}
+export default {}
 </script>
-
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -43,7 +34,6 @@ html {
 .main-container {
   min-height: 100vh;
 }
-
 .button--green {
   display: inline-block;
   border-radius: 4px;
@@ -52,12 +42,10 @@ html {
   text-decoration: none;
   padding: 10px 30px;
 }
-
 .button--green:hover {
   color: #fff;
   background-color: #3b8070;
 }
-
 .button--grey {
   display: inline-block;
   border-radius: 4px;
@@ -67,17 +55,16 @@ html {
   padding: 10px 30px;
   margin-left: 15px;
 }
-
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
 }
-/*main {
+/* main {
   background-image: url('../assets/images/u1.png');
   min-height: 700px;
   height: auto;
   @apply bg-local bg-top bg-cover bg-no-repeat bg-white;
-}*/
+} */
 footer {
   @apply bg-teal-800;
 }
