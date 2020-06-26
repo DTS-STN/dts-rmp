@@ -204,7 +204,7 @@
         <span>
           Subject Selected: {{ engagementDetail.subject }}
           Type Selected: {{ engagementDetail.type }}
-          Date Selected: {{ dateAdj() }}
+          Date Selected: {{ engagementDetail.date }}
           numParticipants Selected: {{ engagementDetail.numParticipants }}
           description Selected: {{ engagementDetail.description }}
           policyProgram Selected: {{ engagementDetail.policyProgram }}
@@ -236,9 +236,12 @@ export default {
         date: new Date(),
         description: '',
         numParticipants: 0,
-        // contacts: [
-        //   'kevin'
-        // ],
+        contacts: [
+          {
+            type: 12321321,
+            ref: 'Contact'
+          }
+        ],
         policyProgram: '',
         comments: [
           {
@@ -274,11 +277,11 @@ export default {
         this.engagementDetail.numParticipants--
       }
     },
-    dateAdj() {
-      return this.engagementDetail.date.setDate(
-        this.engagementDetail.date.getDate()
-      )
-    },
+    // dateAdj() {
+    //   return this.engagementDetail.date.setDate(
+    //     this.engagementDetail.date.getDate() + 1
+    //   )
+    // },
     // eslint-disable-next-line space-before-function-paren
     notification(type, message) {
       this.message.type = type
