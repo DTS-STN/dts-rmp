@@ -10,9 +10,19 @@
       <td>
         <img src="../../assets/images/required.png" />
       </td>
-      <td class="font-bold text-xl" style="padding-left: 10px">
+      <td class="font-bold text-lg" style="padding-left: 10px">
         Contact name
       </td>
+      <div class="contact-1">
+        <app-select :options="contacts.name" />
+      </div>
+      <div v-if="moreContacts" class="contact-2">
+        <app-select :labeltext="labeltext" />
+        <button class="underline" @click.prevent="moreContacts=false">
+          Remove
+        </button>
+      </div>
+      <!--
       <select id="contacts" class="appearance-none bg-white">
         <option value="default" selected="selected">
           Start typing and select one
@@ -34,8 +44,9 @@
           />
         </svg>
       </div>
+      -->
       <td>
-        <button class="add-contact font-bold text-lg">
+        <button @click.prevent="moreContacts=true">
           Add more contacts
         </button>
       </td>
@@ -47,18 +58,28 @@
         </span>
       </td>
     </form>
+    <show-contacts />
   </div>
 </template>
 
 <script>
+import AppSelect from '../app/AppSelect'
+import showContacts from './EngShowContacts'
 export default {
+  components: {
+    AppSelect,
+    showContacts
+  },
   data() {
     return {
       contacts: [
         { name: 'contact1' },
         { name: 'contact2' },
         { name: 'contact3' }
-      ]
+      ],
+      // contacts: [],
+      labeltext: 'Contact number 2',
+      moreContacts: false
     }
   }
 }
@@ -87,6 +108,10 @@ td {
 .add-contact {
   padding-top: 20px;
   @apply underline border-none bg-white;
+}
+
+button {
+  @apply font-bold text-lg
 }
 
 button:focus,
