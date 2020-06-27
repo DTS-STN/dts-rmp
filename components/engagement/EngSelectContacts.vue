@@ -14,10 +14,19 @@
         Contact name
       </td>
       <div class="contact-1">
-        <app-select :options="contacts.name" />
+        <app-select
+          modelname="contact"
+          :options="contacts"
+        />
       </div>
       <div v-if="moreContacts" class="contact-2">
-        <app-select :labeltext="labeltext" />
+        <h3 class="font-bold text-lg">
+          Contact number 2
+        </h3>
+        <app-select
+          modelname="contact"
+          :options="contacts"
+        />
         <button class="underline" @click.prevent="moreContacts=false">
           Remove
         </button>
@@ -73,12 +82,10 @@ export default {
   data() {
     return {
       contacts: [
-        { name: 'contact1' },
-        { name: 'contact2' },
-        { name: 'contact3' }
+        { key: 1, value: 'contact1', options: 'contact1' },
+        { key: 1, value: 'contact1', options: 'contact1' },
+        { key: 1, value: 'contact1', options: 'contact1' }
       ],
-      // contacts: [],
-      labeltext: 'Contact number 2',
       moreContacts: false
     }
   }
