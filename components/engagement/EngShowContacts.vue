@@ -3,18 +3,18 @@
     <table class="contact-info">
       <tr>
         <td>
-          Contact name, Government of Canada
+          {{ contactName + ', ' + department }}
         </td>
         <td>
-          last engagement title
+          {{ lastEngTitle }}
         </td>
       </tr>
       <tr>
         <td>
-          email@email.com
+          {{ contactEmail }}
         </td>
         <td>
-          date, number of participants
+          {{ engagementDate + ', ' + numParticipants + ' other participants' }}
         </td>
       </tr>
     </table>
@@ -23,6 +23,16 @@
 
 <script>
 export default {
+  data() {
+    return {
+      contactName: 'contact name',
+      department: 'Government of Canada',
+      contactEmail: 'email@email.com',
+      lastEngTitle: 'last engagement title',
+      engagementDate: '01/05/2020',
+      numParticipants: 0
+    }
+  }
 }
 </script>
 

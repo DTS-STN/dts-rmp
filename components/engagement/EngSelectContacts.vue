@@ -15,8 +15,8 @@
       </td>
       <div class="contact-1">
         <app-select
-          modelname="contact"
           :options="contacts"
+          @change="isSelected1=true"
         />
       </div>
       <div v-if="moreContacts" class="contact-2">
@@ -24,8 +24,8 @@
           Contact number 2
         </h3>
         <app-select
-          modelname="contact"
           :options="contacts"
+          @change="isSelected2=true"
         />
         <button class="underline" @click.prevent="moreContacts=false">
           Remove
@@ -67,7 +67,18 @@
         </span>
       </td>
     </form>
-    <show-contacts />
+    <div v-if="isSelected1" class="show-contact1">
+      <show-contacts :is-selected="isSelected1" />
+      <button @click="isSelected1=false">
+        Remove
+      </button>
+    </div>
+    <div v-if="isSelected2" class="show-contact2">
+      <show-contacts :is-selected="isSelected2" />
+      <button @click="isSelected2=false">
+        Remove
+      </button>
+    </div>
   </div>
 </template>
 
@@ -83,11 +94,16 @@ export default {
     return {
       contacts: [
         { key: 1, value: 'contact1', options: 'contact1' },
-        { key: 1, value: 'contact1', options: 'contact1' },
-        { key: 1, value: 'contact1', options: 'contact1' }
+        { key: 1, value: 'contact2', options: 'contact2' },
+        { key: 1, value: 'contact3', options: 'contact3' }
       ],
-      moreContacts: false
+      moreContacts: false,
+      isSelected1: false,
+      isSelected2: false
     }
+  },
+  methods: {
+
   }
 }
 </script>
