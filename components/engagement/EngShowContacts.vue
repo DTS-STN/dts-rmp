@@ -23,6 +23,16 @@
 
 <script>
 export default {
+  // props: ['contactName', 'department', 'contactEmail', 'lastEngTitle', 'engagementDate', 'numParticipants'],
+  props: {
+    contactName: { type: String, default: '' },
+    department: { type: String, default: '' },
+    contactEmail: { type: String, default: '' },
+    lastEngTitle: { type: String, default: '' },
+    engagementDate: { type: String, default: '' }, // data type should be Date
+    numParticipants: { type: Number, default: 0 }
+  }
+  /*
   data() {
     return {
       contactName: 'contact name',
@@ -33,6 +43,7 @@ export default {
       numParticipants: 0
     }
   }
+  */
 }
 </script>
 

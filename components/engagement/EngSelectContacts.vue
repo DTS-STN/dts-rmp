@@ -68,13 +68,29 @@
       </td>
     </form>
     <div v-if="isSelected1" class="show-contact1">
-      <show-contacts :is-selected="isSelected1" />
+      <show-contacts
+        :contact-name="contactName"
+        :department="department"
+        :contact-email="contactEmail"
+        :last-eng-title="lastEngTitle"
+        :engagement-date="engagementDate"
+        :num-participants="numParticipants"
+        :is-selected="isSelected1"
+      />
       <button @click="isSelected1=false">
         Remove
       </button>
     </div>
     <div v-if="isSelected2" class="show-contact2">
-      <show-contacts :is-selected="isSelected2" />
+      <show-contacts
+        :contact-name="contactName"
+        :department="department"
+        :contact-email="contactEmail"
+        :last-eng-title="lastEngTitle"
+        :engagement-date="engagementDate"
+        :num-participants="numParticipants"
+        :is-selected="isSelected2"
+      />
       <button @click="isSelected2=false">
         Remove
       </button>
@@ -92,6 +108,12 @@ export default {
   },
   data() {
     return {
+      contactName: 'contact name',
+      department: 'Government of Canada',
+      contactEmail: 'email@email.com',
+      lastEngTitle: 'last engagement title',
+      engagementDate: '01/05/2020',
+      numParticipants: 0,
       contacts: [
         { key: 1, value: 'contact1', options: 'contact1' },
         { key: 1, value: 'contact2', options: 'contact2' },
