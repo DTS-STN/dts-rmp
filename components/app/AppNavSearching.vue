@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4 mx-12">
+  <div class="mx-12">
     <div class="mt-24">
       <h2 class="newAdd">
         Search
