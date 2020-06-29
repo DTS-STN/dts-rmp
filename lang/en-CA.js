@@ -47,7 +47,55 @@ export default {
     buttontext: 'Go to the homepage'
   },
   // contact
-  contact: {},
+  contact: {
+    fetching: 'Fetching Information',
+    fetcherror: 'Error while getting information',
+    // titles
+    contact: 'Contact Information',
+    organization: 'Organisation',
+    information: 'information',
+    engagements: 'Engagements',
+    // fields
+    create: 'Create new contact',
+    type: 'Contact Type',
+    name: 'Full Name',
+    title: 'Title',
+    email: 'Email',
+    address: 'Address',
+    phone: 'Phone',
+    orgEmail: 'Organization Email',
+    orgAddress: 'Organization Address',
+    orgPhone: 'Organization phone',
+    orgwebsite: 'Organization Website',
+    department: 'Department',
+    branch: 'Branch',
+    directorate: 'Directorate',
+    provTerr: 'Province / Territory / Indigenous',
+    orgName: 'Oranization Name',
+    sector: 'Organization Sector',
+    contrib: 'Contribution Agreement Reference',
+    service: 'Service Contract',
+    standing: 'On standing offer list',
+    // Options
+    federal: 'Federal',
+    external: 'External',
+    provincial: 'Provincial',
+    selCountry: 'Select a country',
+    canada: 'Canada',
+    mexico: 'Mexico',
+    england: 'England',
+    selProvince: 'Select a country',
+    on: 'Ontario',
+    qc: 'Quebec',
+    ns: 'Nova Scotia',
+    true: 'True',
+    false: 'False',
+    // buttons
+    cancel: 'Cancel',
+    save: ' Save',
+    back: 'Go Back',
+    edit: 'Edit Contact'
+  },
 
   NavBtn: {
     AddConEn: 'Add contacts & engagements',
