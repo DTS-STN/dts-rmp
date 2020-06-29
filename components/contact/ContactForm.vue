@@ -29,7 +29,7 @@
       </div>
 
       <h2 class="title">
-        {{ $t('contact.information') }}
+        {{ $t('contact.contact') }}
       </h2>
 
       <form @submit.prevent="submitForm(contactInfo)">
