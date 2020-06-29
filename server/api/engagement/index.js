@@ -29,9 +29,9 @@ app.get('/engagements', async(req, res) => {
 app.post('/addEngagement', async (req, res) => {
   let errMessage = ''
 
-  // to do 
-  
-  // try {
+  // to do
+
+  try {
   //   const { keyDetail } = req.body.engagementDetail
   //   console.log(req.body)
   //   if (!keyDetail) {
