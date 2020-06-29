@@ -134,7 +134,7 @@ export default {
             </a>
           </li>
           <li>
-            <a href="https://home.dts-stn.com/">
+            <a href="https://home.dts-stn.com/start.html">
               {{ $t('footer.dts') }}
             </a>
           </li>
