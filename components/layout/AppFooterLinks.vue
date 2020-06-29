@@ -4,7 +4,7 @@
       <nav class="xl:flex py-8">
         <ul
           id="fLinks"
-          class="md:grid md:grid-cols-2 xl:flex xl:justify-between"
+          class="md:grid md:grid-cols-2 xl:flex text-sm xl:justify-between"
         >
           <li>
             <a href="https://www.canada.ca/en/social.html">
