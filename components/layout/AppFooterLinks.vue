@@ -169,7 +169,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .columns {
   columns: 2;
   -webkit-columns: 2;
