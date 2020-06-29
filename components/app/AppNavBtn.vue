@@ -2,6 +2,7 @@
   <div>
     <div id="btna" class="app flex">
       <button
+        data-cy="search-nav"
         class="switch underline"
         :style="{ color: txtColorAdd, 'background-color': bgColorAdd }"
         @click="colorChange(true)"
@@ -11,6 +12,7 @@
         </h2>
       </button>
       <button
+        data-cy="add-nav"
         class="switch underline"
         :style="{ color: txtColorSearch, 'background-color': bgColorSearch }"
         @click="colorChange(false)"
@@ -23,14 +25,19 @@
     <div v-if="!isSelected">
       <AppNavAdding />
     </div>
+    <div v-else>
+      <AppNavSearching />
+    </div>
   </div>
 </template>
 
 <script>
 import AppNavAdding from '../app/AppNavAdding'
+import AppNavSearching from '../app/AppNavSearching'
 export default {
   components: {
-    AppNavAdding
+    AppNavAdding,
+    AppNavSearching
   },
   data() {
     return {

@@ -24,7 +24,7 @@ export default {
     site: 'About this site',
     social: 'Social media',
     mobile: 'Mobile applications',
-    about: 'About canada.ca',
+    about: 'About Canada.ca',
     terms: 'Terms and conditions',
     privacy: 'Privacy',
     dts: 'Digital Technology Solutions',
