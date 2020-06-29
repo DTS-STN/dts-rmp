@@ -23,14 +23,19 @@
     <div v-if="!isSelected">
       <AppNavAdding />
     </div>
+    <div v-else>
+      <AppNavSearching />
+    </div>
   </div>
 </template>
 
 <script>
 import AppNavAdding from '../app/AppNavAdding'
+import AppNavSearching from '../app/AppNavSearching'
 export default {
   components: {
-    AppNavAdding
+    AppNavAdding,
+    AppNavSearching
   },
   data() {
     return {
