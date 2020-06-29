@@ -1,4 +1,40 @@
 <template>
+  <div class="show-contact grid grid-cols-2 gap-4">
+    <div>
+      {{ contactName + ', ' + department }}
+    </div>
+    <div>
+      {{ contactEmail }}
+    </div>
+    <div>
+      {{ lastEngTitle }}
+    </div>
+    <div>
+      {{ engagementDate + ', ' + numParticipants + ' other participants' }}
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    contactName: { type: String, default: '' },
+    department: { type: String, default: '' },
+    contactEmail: { type: String, default: '' },
+    lastEngTitle: { type: String, default: '' },
+    engagementDate: { type: String, default: '' }, // data type should be Date
+    numParticipants: { type: Number, default: 0 }
+  }
+}
+</script>
+
+<style scoped>
+  .show-contact {
+    @apply border-t border-b border-gray-400 p-5 mt-10 w-6/12;
+  }
+</style>
+<!--
+<template>
   <div>
     <table class="contact-info">
       <tr>
@@ -57,3 +93,4 @@ export default {
     @apply border-none;
   }
 </style>
+-->
