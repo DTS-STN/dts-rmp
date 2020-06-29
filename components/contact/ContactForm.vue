@@ -14,7 +14,11 @@
 
       <div class="flex mb-4">
         <div class="w-5/12 margins">
-          <select v-model="contactInfo.type" class="formSelect" @change="onStanding($event)">
+          <select
+            v-model="contactInfo.type"
+            class="formSelect"
+            @change="onStanding($event)"
+          >
             <option value="Federal">
               {{ $t('contact.federal') }}
             </option>
@@ -29,7 +33,7 @@
       </div>
 
       <h2 class="title">
-        {{ $t('contact.contact') }}
+        {{ $t('contact.information') }}
       </h2>
 
       <form @submit.prevent="submitForm(contactInfo)">
@@ -75,7 +79,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel" for="keyContactAddress2">
-              &nbsp;
+              {{ $t('contact.address2') }}
             </label>
             <input
               id="keyContactAddress2"
@@ -89,8 +93,11 @@
 
         <div class="flex mb-4">
           <div class="w-5/12 margins">
+            <label class="formLabel" for="keyContactCity">
+              {{ $t('contact.city') }}
+            </label>
             <input
-              id="keyContactAddress"
+              id="keyContactCity"
               v-model="contactInfo.keyContactCity"
               class="formInput"
               type="text"
@@ -98,8 +105,11 @@
             />
           </div>
           <div class="w-5/12 margins">
+            <label class="formLabel" for="keyContactProv">
+              {{ $t('contact.provState') }}
+            </label>
             <input
-              id="keyContactEmail"
+              id="keyContactProv"
               v-model="contactInfo.keyContactProvState"
               class="formInput"
               type="text"
@@ -110,6 +120,9 @@
 
         <div class="flex mb-4">
           <div class="w-5/12 margins">
+            <label class="formLabel" for="keyContactCountry">
+              {{ $t('contact.country') }}
+            </label>
             <select
               id="keyContactCountry"
               v-model="contactInfo.keyContactCountry"
@@ -131,6 +144,9 @@
             </select>
           </div>
           <div class="w-5/12 margins">
+            <label class="formLabel" for="keyContactPostal">
+              {{ $t('contact.postal') }}
+            </label>
             <input
               id="keyContactPostalCode"
               v-model="contactInfo.keyContactPostalCode"
@@ -169,7 +185,8 @@
         </div>
 
         <h2 class="title">
-          {{ $t('contact.organization') }} <br /> {{ $t('contact.information') }}
+          {{ $t('contact.organization') }} <br />
+          {{ $t('contact.information') }}
         </h2>
 
         <!-- Next Div are shown as needed according to the Contact Type -->
@@ -297,7 +314,11 @@
           </div>
         </div>
 
-        <div v-if="contactInfo.type == 'Federal' || contactInfo.type == 'Provincial'">
+        <div
+          v-if="
+            contactInfo.type == 'Federal' || contactInfo.type == 'Provincial'
+          "
+        >
           <div class="flex mb-4">
             <div class="w-5/12 margins">
               <label class="formLabel orange" for="directorate">
@@ -393,7 +414,7 @@
           </div>
         </div>
 
-        <div v-if=" contactInfo.type == 'External' " class="flex mb-4">
+        <div v-if="contactInfo.type == 'External'" class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="contributionRefNo">
               {{ $t('contact.contrib') }}
@@ -420,7 +441,7 @@
           </div>
         </div>
 
-        <div v-if="contactInfo.type == 'External' " class="flex mb-4">
+        <div v-if="contactInfo.type == 'External'" class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="onStandingOffer">
               {{ $t('contact.standing') }}
