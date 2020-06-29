@@ -33,7 +33,7 @@
             <div class="relative max-w-md">
               <select
                 v-model="engagementDetail.type"
-                class="textInput"
+                class="textInput bg-white"
               >
                 <option value="" disabled selected hidden>
                   Engagement type
@@ -202,8 +202,9 @@
             Save
           </AppButton>
         </div>
-        <span>
+        <!-- <span>
           Subject Selected: {{ engagementDetail.subject }}
+          Contact Selected: {{ engagementDetail.contacts }}
           Type Selected: {{ engagementDetail.type }}
           Date Selected: {{ engagementDetail.date }}
           numParticipants Selected: {{ engagementDetail.numParticipants }}
@@ -211,7 +212,8 @@
           policyProgram Selected: {{ engagementDetail.policyProgram }}
           tags Selected: {{ engagementDetail.tags }}
           Comments Selected: {{ engagementDetail.comments.content }}
-        </span>
+          Comments Selected: {{ engagementDetail.comments.date }}
+        </span> -->
       </div>
     </form>
   </div>
@@ -240,18 +242,16 @@ export default {
         date: new Date(),
         description: '',
         numParticipants: 0,
+        // for testing contact
         contacts: [
-          {
-            type: 12321321,
-            ref: 'Contact'
-          }
+          '561fa3aac09d1fa4eb63f806'
         ],
         policyProgram: '',
         comments: [
           {
-            user: '',
+            user: 'unknown',
             content: '',
-            date: new Date()
+            date: new Date().toISOString().slice(0, 10)
           }
         ],
         tags: ''
@@ -355,7 +355,7 @@ export default {
   @apply outline-none border-black;
 }
 .textArea {
-  @apply w-full border border-black;
+  @apply w-full border h-32 border-black;
 }
 .textArea:focus {
   border: 2.5px solid;
@@ -374,5 +374,8 @@ export default {
 .textInputTag:focus {
   border: 2.5px solid;
   @apply outline-none border-black;
+}
+.error {
+  @apply bg-red-700;
 }
 </style>

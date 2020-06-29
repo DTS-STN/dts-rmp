@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Router, json } from 'express'
 import consola from 'consola'
 // engagement Model
@@ -27,14 +28,27 @@ app.get('/engagements', async(req, res) => {
 // eslint-disable-next-line space-before-function-paren
 app.post('/addEngagement', async (req, res) => {
   let errMessage = ''
-  try {
+
+  // to do 
+  
+  // try {
+  //   const { keyDetail } = req.body.engagementDetail
+  //   console.log(req.body)
+  //   if (!keyDetail) {
+  //     errMessage = 'All fields are required'
+  //     throw new Error(errMessage)
+  //   }
+
     const newEngagement = new Engagement(req.body.engagementDetail)
+
     const savedEngagementDetail = await newEngagement.save()
+
     if (!savedEngagementDetail) {
       consola.error('There was an error creating a new Engagement ')
       errMessage = 'A new Engagement could not be created try again later'
       throw new Error(errMessage)
     }
+
     res.status(200).json({
       engagement: {
         id: savedEngagementDetail._id

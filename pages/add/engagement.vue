@@ -1,6 +1,6 @@
 <template>
   <div>
-    <EngForm title="Create new engagement" />
+    <EngForm />
     <!-- <EngTest /> -->
   </div>
 </template>

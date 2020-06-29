@@ -7,12 +7,18 @@
       Contact
     </h2>
     <form class="relative mt-6 max-w-md">
-      <td>
+      <!-- <td>
         <img src="../../assets/images/required.png" />
       </td>
       <td class="font-bold text-lg" style="padding-left: 10px">
         Contact name
-      </td>
+      </td> -->
+      <label
+        class="orange block tracking-wide text-black text-md font-bold mb-2"
+        for="subject"
+      >
+        Contact name
+      </label>
       <div class="contact-1">
         <app-select
           :options="contacts"
@@ -54,18 +60,22 @@
         </svg>
       </div>
       -->
-      <td>
-        <button @click.prevent="moreContacts=true">
+      <!-- <td> -->
+      <div class="flex flex-row mt-2">
+        <button class="mr-4" @click.prevent="moreContacts=true">
           Add more contacts
         </button>
-      </td>
-      <td>
-        <span
-          class="border border-solid border-black rounded-full h-5 w-5 flex items-center justify-center"
-        >
-          +
-        </span>
-      </td>
+        <!-- </td>
+      <td> -->
+        <div class="pt-1">
+          <span
+            class="border border-solid border-black rounded-full h-5 w-5 flex items-center justify-center"
+          >
+            +
+          </span>
+        </div>
+      </div>
+      <!-- </td> -->
     </form>
     <div v-if="isSelected1" class="show-contact1">
       <show-contacts
@@ -116,8 +126,8 @@ export default {
       numParticipants: 0,
       contacts: [
         { key: 1, value: 'contact1', options: 'contact1' },
-        { key: 1, value: 'contact2', options: 'contact2' },
-        { key: 1, value: 'contact3', options: 'contact3' }
+        { key: 2, value: 'contact2', options: 'contact2' },
+        { key: 3, value: 'contact3', options: 'contact3' }
       ],
       moreContacts: false,
       isSelected1: false,
