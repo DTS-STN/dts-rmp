@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="sm:flex justify-between p-4">
-      <div id="canadaImg" class="w-64 lg:w-1/4">
+      <div id="canadaImg" class="w-64 lg:w-1/4" data-cy="canada-link">
         <div v-if="this.$i18n.locale === 'en'">
           <a :alt="$t('header.linkAlt')" :href="$t('header.link')">
             <img
@@ -25,6 +25,7 @@
       <div class="flex justify-between absolute bottom-0 w-full px-5 py-3">
         <nuxt-link to="/">
           <img
+            data-cy="home-button"
             src="@/assets/images/Home.svg"
             class="h-20"
             :alt="$t('header.homeAlt')"
@@ -37,7 +38,7 @@
           <div class="flex p-6">
             <ul class="underline mr-2">
               <li>
-                <nuxt-link :to="localePath('/dashboard')">
+                <nuxt-link :to="localePath('/dashboard')" data-cy="dashboard-link">
                   {{ $t('header.dashboard') }}
                 </nuxt-link>
               </li>

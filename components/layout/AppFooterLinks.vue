@@ -32,7 +32,7 @@
             </a>
           </li>
           <li>
-            <a href="https://home.dts-stn.com/start.html">
+            <a href="https://home.dts-stn.com/">
               {{ $t('footer.dts') }}
             </a>
           </li>
