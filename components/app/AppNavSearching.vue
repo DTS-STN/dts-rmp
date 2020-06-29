@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4">
+  <div class="px-4 mx-12">
     <div class="mt-24">
       <h2 class="newAdd">
         Search
@@ -11,7 +11,7 @@
       </div>
     </div>
     <AppFilterForm @FilterEngagements="filter" />
-    <div class="inline-flex pt-6">
+    <div class="inline-flex mt-8 mb-12">
       <button
         class="left"
         :style="{ color: txtColorCon, 'background-color': bgColorCon }"

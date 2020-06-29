@@ -5,9 +5,6 @@
       <h1 class="title">
         {{ $t('app.dts') }}
       </h1>
-      <h2 class="subtitle">
-        Engagement
-      </h2>
     </div>
   </div>
 </template>

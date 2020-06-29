@@ -1,6 +1,6 @@
 <template>
   <div id="navContainer">
-    <div class="mt-24">
+    <div class="mt-24 mx-12">
       <h2 class="newAdd">
         Add new
       </h2>
@@ -10,7 +10,7 @@
         </p>
       </div>
     </div>
-    <div class="inline-flex pt-6">
+    <div class="inline-flex pt-6 mx-12">
       <button
         class="left"
         :style="{ color: txtColorCon, 'background-color': bgColorCon }"
@@ -50,7 +50,7 @@ export default {
       bgColorCon: '',
       txtColorEng: 'white',
       bgColorEng: '#2572b4',
-      isSelected: false
+      isSelected: true
     }
   },
   methods: {
