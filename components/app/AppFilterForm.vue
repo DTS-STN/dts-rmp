@@ -32,6 +32,8 @@ export default {
 <style scoped>
 .search-input {
     @apply border border-blue-400 rounded p-3;
+    width: 50%;
+    margin-top: 1rem;
 }
 .search-input:hover {
     @apply border-blue-800;

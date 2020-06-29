@@ -1,11 +1,6 @@
 <template>
   <div class="main pt-1">
     <nav-button />
-    <div>
-      <h1 class="title">
-        {{ $t('app.dts') }}
-      </h1>
-    </div>
   </div>
 </template>
 

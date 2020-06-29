@@ -104,10 +104,22 @@ export default {
       }
     },
     filter(input) {
-      const searchtext = input.toLowerCase()
-      const results = this.engagements.filter(engagement =>
-        engagement.type.toLowerCase().includes(searchtext)
-      )
+      const searchText = input.toLowerCase()
+      const results = this.engagements.filter((engagement) => {
+        const values = Object.values(engagement)
+        let flag = false
+        values.forEach((val) => {
+          if (typeof val !== 'string') {
+            return
+          }
+          if (val.toLowerCase().includes(searchText)) {
+            flag = true
+          }
+        })
+        if (flag === true) {
+          return engagement
+        }
+      })
       this.filteredEngagements = results
     }
   }
