@@ -107,7 +107,28 @@ export default {
     AddConEn: 'Ajouter des contacts et des engagements',
     SearchConEn: 'Rechercher des contacts et des engagements'
   },
-
   // engagement
-  engagement: {}
+  engagement: {
+    engagment: 'Engagement',
+    subject: 'Matière',
+    type: 'Type d\'engagement',
+    date: 'Date',
+    participants: 'Nombre de participants\'',
+    description: 'Description 1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.',
+    policy: 'Politique / programme',
+    tags: 'Mots clés',
+    comments: 'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+    cancel: 'Annuler',
+    save: 'Sauver',
+    typing: 'Commencez par taper'
+  },
+  // EngSelectContact component
+  engSelect: {
+    engagement: 'Nouvel engagement',
+    contact: 'Contact',
+    name: 'Nom du contact',
+    contact2: 'Numéro de contact 2',
+    remove: 'Retirer',
+    add: 'Ajouter plus de contacts'
+  }
 }

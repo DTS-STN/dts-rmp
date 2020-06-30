@@ -65,6 +65,8 @@ const populateDatabase = async() => {
       description: Randomizers.randomString(150),
       numParticipants: Randomizers.randomInt(2, 5),
       contacts: [],
+      policyProgram: Randomizers.randomString(12),
+      comments: [],
       tags: Randomizers.randomTagArray()
     })
   }
