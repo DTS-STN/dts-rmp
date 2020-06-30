@@ -3,8 +3,8 @@ import { Schema, model } from 'mongoose'
 // Create Schema
 const ContactSchema = new Schema({
   type: { type: String, required: true },
-  orgName: { type: String, required: true },
-  orgSector: { type: String, required: true },
+  orgName: { type: String, required: false },
+  orgSector: { type: String, required: false },
   orgEmail: { type: String },
   orgAddress: { type: String },
   orgAddress2: { type: String },
@@ -24,10 +24,10 @@ const ContactSchema = new Schema({
   keyContactCountry: { type: String },
   keyContactPostalCode: { type: String },
   keyContactPhone: { type: String },
-  department: { type: String, required: true },
-  branch: { type: String, required: true },
-  directorate: { type: String, required: true },
-  provTerritory: { type: String, required: true },
+  department: { type: String, required: false },
+  branch: { type: String, required: false },
+  directorate: { type: String, required: false },
+  provTerritory: { type: String, required: false },
   contributionRefNo: { type: Number },
   serviceContrNo: { type: Number },
   onStandingOffer: { type: Boolean },
@@ -39,3 +39,40 @@ const ContactSchema = new Schema({
 const Contact = model('Contact', ContactSchema)
 
 export default Contact
+
+// type: {
+//   type: String,
+//   required: true,
+//   default: '1',
+//   validate: {
+//     validator(v) {
+//       return /^([123])$/.test(v)
+//     }
+//   }
+// },
+// keyContactName: {
+//   type: String,
+//   required: true,
+//   validate: {
+//     validator(v) {
+//       return /^(?=[a-z A-Z]{3,}$)/.test(v)
+//     }
+//   }
+// },
+// orgPhone: {
+//   type: String,
+//   validate: {
+//     validator(v) {
+//       return /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\\./0-9]*$/.test(v)
+//     }
+//   }
+// },
+// orgEmail: {
+//   type: String,
+//   required: true,
+//   validate: {
+//     validator(v) {
+//       return /^([\w-.])+@([\w-]+)((\.(\w){2,3})+)$/.test(v)
+//     }
+//   }
+// },
