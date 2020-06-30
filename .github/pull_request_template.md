@@ -16,4 +16,5 @@
 - attention to when they review this PR.
 
 ## Checklist
+- [ ] Strings use placeholders for translation (No hard coded strings)
 - [ ] Unit tests have been added/updated
