@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Router, json } from 'express'
 import consola from 'consola'
 // engagement Model
@@ -27,6 +28,9 @@ app.get('/engagements', async(req, res) => {
 // eslint-disable-next-line space-before-function-paren
 app.post('/addEngagement', async (req, res) => {
   let errMessage = ''
+
+  // to do
+
   try {
     const newEngagement = new Engagement(req.body.engagementDetail)
     const savedEngagementDetail = await newEngagement.save()

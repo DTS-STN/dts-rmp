@@ -48,13 +48,87 @@ export default {
     buttontext: 'Aller à la page d\'accueil'
   },
   // contact
-  contact: {},
+  contact: {
+    fetching: 'FR-Fetching Information',
+    fetcherror: 'FR-Error while getting information',
+    // titles
+    contact: 'FR-Contact Information',
+    organization: 'FR-Organisation',
+    information: 'FR-information',
+    engagements: 'FR-Engagements',
+    // fields
+    create: 'FR-Create new contact',
+    type: 'FR-Contact Type',
+    name: 'FR-Full Name',
+    title: 'FR-Title',
+    email: 'FR-Email',
+    address: 'FR-Address',
+    address2: 'FR-Apt / suite / etc.',
+    city: 'FR-City',
+    provState: 'FR-Prov. / State / Territory',
+    country: 'FR-Country',
+    postal: 'FR-Postal Code',
+    phone: 'FR-Phone',
+    orgEmail: 'FR-Organization Email',
+    orgAddress: 'FR-Organization Address',
+    orgPhone: 'FR-Organization phone',
+    orgwebsite: 'FR-Organization Website',
+    department: 'FR-Department',
+    branch: 'FR-Branch',
+    directorate: 'FR-Directorate',
+    provTerr: 'FR-Province / Territory / Indigenous',
+    orgName: 'FR-Oranization Name',
+    sector: 'FR-Organization Sector',
+    contrib: 'FR-Contribution Agreement Reference',
+    service: 'FR-Service Contract',
+    standing: 'FR-On standing offer list',
+    // Options
+    federal: 'FR-Federal',
+    external: 'FR-External',
+    provincial: 'FR-Provincial',
+    selCountry: 'FR-Select a country',
+    canada: 'FR-Canada',
+    mexico: 'FR-Mexico',
+    england: 'FR-England',
+    selProvince: 'FR-Select a country',
+    on: 'FR-Ontario',
+    qc: 'FR-Quebec',
+    ns: 'FR-Nova Scotia',
+    true: 'FR-True',
+    false: 'FR-False',
+    // buttons
+    cancel: 'FR-Cancel',
+    save: ' FR-Save',
+    back: 'FR-Go Back',
+    edit: 'FR-Edit Contact'
+  },
   // Navigation search Component
   NavBtn: {
     AddConEn: 'Ajouter des contacts et des engagements',
     SearchConEn: 'Rechercher des contacts et des engagements'
   },
-
   // engagement
-  engagement: {}
+  engagement: {
+    engagment: 'Engagement',
+    subject: 'Matière',
+    type: 'Type d\'engagement',
+    date: 'Date',
+    participants: 'Nombre de participants\'',
+    description: 'Description 1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.',
+    policy: 'Politique / programme',
+    tags: 'Mots clés',
+    comments: 'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+    cancel: 'Annuler',
+    save: 'Sauver',
+    typing: 'Commencez par taper'
+  },
+  // EngSelectContact component
+  engSelect: {
+    engagement: 'Nouvel engagement',
+    contact: 'Contact',
+    name: 'Nom du contact',
+    contact2: 'Numéro de contact 2',
+    remove: 'Retirer',
+    add: 'Ajouter plus de contacts'
+  }
 }
