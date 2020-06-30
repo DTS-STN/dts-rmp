@@ -2,7 +2,7 @@
   <div title="engagementForm" class="ml-12 font-serif">
     <select-contact />
     <h1 class="title">
-      Engagement
+      {{ $t('engagement.engagment') }}
     </h1>
     <form @submit.prevent="submitForm(engagementDetail)">
       <div class="w-full">
@@ -12,12 +12,12 @@
               class="orange block tracking-wide text-black text-md font-bold mb-2"
               for="subject"
             >
-              Subject
+              {{ $t('engagement.subject') }}
             </label>
             <input
               id="subject"
               v-model="engagementDetail.subject"
-              placeholder="Start by typing"
+              :placeholder="$t('engagement.typing')"
               class="textInput"
               type="text"
             />
@@ -28,7 +28,7 @@
               class="orange block tracking-wide text-black text-md font-bold mb-2"
               for="type"
             >
-              Engagement Type
+              {{ $t('engagement.type') }}
             </label>
             <div class="relative max-w-md">
               <select
@@ -36,7 +36,7 @@
                 class="textInput bg-white"
               >
                 <option value="" disabled selected hidden>
-                  Engagement type
+                  {{ $t('engagement.type') }}
                 </option>
                 <option
                   v-for="engagementType in engagementTypes"
@@ -67,7 +67,7 @@
               class="orange block tracking-wide text-black text-md font-bold mb-2"
               for="date"
             >
-              Date
+              {{ $t('engagement.date') }}
             </label>
             <div class="relative max-w-xs">
               <input
@@ -90,7 +90,7 @@
               class="orange block tracking-wide text-black text-md font-bold mb-2"
               for="numParticipants"
             >
-              Number of participants
+              {{ $t('engagement.participants') }}
             </label>
             <div class="flex relative w-20 ">
               <input
@@ -116,14 +116,14 @@
               class="orange block tracking-wide text-black text-md font-bold -mb-4"
               for="description"
             >
-              Description maximum 1000 characters. Additional characters will not be saved.
+              {{ $t('engagement.description') }}
             </label>
             <br />
             <textarea
               v-model="engagementDetail.description"
               type="text"
               class="textArea"
-              maxlength="800"
+              maxlength="1000"
             />
           </div>
         </div>
@@ -133,12 +133,12 @@
               class="block tracking-wide text-black text-md font-bold mb-2"
               for="policyProgram"
             >
-              Policy / program
+              {{ $t('engagement.policy') }}
             </label>
             <input
               id="policyProgram"
               v-model="engagementDetail.policyProgram"
-              placeholder="Start by typing"
+              :placeholder="$t('engagement.typing')"
               class="textInput"
               type="text"
             />
@@ -149,12 +149,11 @@
               class="block tracking-wide text-black text-md font-bold mb-2"
               for="tags"
             >
-              Tags
+              {{ $t('engagement.tags') }}
             </label>
             <input
               id="tags"
               v-model="engagementDetail.tags"
-              placeholder="Item"
               class="textInputTag"
               type="text"
             />
@@ -166,7 +165,7 @@
               class="block tracking-wide text-black text-md font-bold -mb-4"
               for="comments"
             >
-              Comments (Maximum 140 characters. Additional characters will not be saved.)
+              {{ $t('engagement.comments') }}
             </label>
             <br />
             <textarea
@@ -174,8 +173,7 @@
               type="text"
               name="KeyNotes"
               class="textArea"
-              placeholder="Key notes..."
-              maxlength="800"
+              maxlength="1000"
             />
           </div>
         </div>
@@ -194,12 +192,12 @@
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
           <AppButton custom_style="btn-cancel" data_cypress="formButton">
-            Cancel
+            {{ $t('engagement.save') }}
           </AppButton>
         </div>
         <div class="w-3/12 margins">
           <AppButton custom_style="btn-extra" data_cypress="formButton">
-            Save
+            {{ $t('engagement.save') }}
           </AppButton>
         </div>
         <!-- <span>

@@ -1,23 +1,17 @@
 <template>
   <div class="contact mb-8">
     <h1 class="text-5xl">
-      New Engagement
+      {{ $t('engSelect.engagement') }}
     </h1>
     <h2 class="text-4xl">
       Contact
     </h2>
     <form class="relative mt-6 max-w-md">
-      <!-- <td>
-        <img src="../../assets/images/required.png" />
-      </td>
-      <td class="font-bold text-lg" style="padding-left: 10px">
-        Contact name
-      </td> -->
       <label
         class="orange block tracking-wide text-black text-md font-bold mb-2"
         for="subject"
       >
-        Contact name
+        {{ $t('engSelect.name') }}
       </label>
       <div class="contact-1">
         <app-select
@@ -27,46 +21,20 @@
       </div>
       <div v-if="moreContacts" class="contact-2">
         <h3 class="font-bold text-lg">
-          Contact number 2
+          {{ $t ('engSelect.contact2') }}
         </h3>
         <app-select
           :options="contacts"
           @change="isSelected2=true"
         />
         <button class="underline" @click.prevent="moreContacts=false">
-          Remove
+          {{ $t ('engSelect.remove') }}
         </button>
       </div>
-      <!--
-      <select id="contacts" class="appearance-none bg-white">
-        <option value="default" selected="selected">
-          Start typing and select one
-        </option>
-        <option v-for="contact in contacts" :key="contact.name">
-          {{ contact.name }}
-        </option>
-      </select>
-      <div
-        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-      >
-        <svg
-          class="fill-current h-4 w-4"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-        >
-          <path
-            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-          />
-        </svg>
-      </div>
-      -->
-      <!-- <td> -->
       <div class="flex flex-row mt-2">
         <button class="mr-4" @click.prevent="moreContacts=true">
-          Add more contacts
+          {{ $t ('engSelect.add') }}
         </button>
-        <!-- </td>
-      <td> -->
         <div class="pt-1">
           <span
             class="border border-solid border-black rounded-full h-5 w-5 flex items-center justify-center"
@@ -75,7 +43,6 @@
           </span>
         </div>
       </div>
-      <!-- </td> -->
     </form>
     <div v-if="isSelected1" class="show-contact1">
       <show-contacts
@@ -88,7 +55,7 @@
         :is-selected="isSelected1"
       />
       <button @click="isSelected1=false">
-        Remove
+        {{ $t ('engSelect.remove') }}
       </button>
     </div>
     <div v-if="isSelected2" class="show-contact2">
@@ -102,7 +69,7 @@
         :is-selected="isSelected2"
       />
       <button @click="isSelected2=false">
-        Remove
+        {{ $t ('engSelect.remove') }}
       </button>
     </div>
   </div>
@@ -163,6 +130,11 @@ td {
 .add-contact {
   padding-top: 20px;
   @apply underline border-none bg-white;
+}
+.orange {
+  background-image: url('../../assets/images/orange-star.png');
+  background-repeat: no-repeat;
+  @apply mt-6 pl-6 pr-4 font-bold;
 }
 
 button {
