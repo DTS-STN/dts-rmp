@@ -116,7 +116,7 @@
               class="orange block tracking-wide text-black text-md font-bold -mb-4"
               for="description"
             >
-              Description maximum 1000 characters. Additional characters will not be recorded.
+              Description maximum 1000 characters. Additional characters will not be saved.
             </label>
             <br />
             <textarea

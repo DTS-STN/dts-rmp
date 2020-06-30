@@ -22,7 +22,7 @@ export default {
     department: { type: String, default: '' },
     contactEmail: { type: String, default: '' },
     lastEngTitle: { type: String, default: '' },
-    engagementDate: { type: String, default: '' }, // data type should be Date
+    engagementDate: { type: new Date(), default: '' }, // data type should be Date
     numParticipants: { type: Number, default: 0 }
   }
 }
