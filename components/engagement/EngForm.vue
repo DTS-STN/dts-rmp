@@ -90,7 +90,7 @@
               class="orange block tracking-wide text-black text-md font-bold mb-2"
               for="numParticipants"
             >
-              Number of numParticipants
+              Number of participants
             </label>
             <div class="flex relative w-20 ">
               <input
@@ -116,7 +116,7 @@
               class="orange block tracking-wide text-black text-md font-bold -mb-4"
               for="description"
             >
-              Description maximum 1000 characters. Additional characters will not be
+              Description maximum 1000 characters. Additional characters will not be recorded.
             </label>
             <br />
             <textarea
@@ -257,18 +257,18 @@ export default {
         tags: ''
       },
       engagementTypes: [
-        { type: 'One-On-One' },
+        { type: 'One-on-one' },
         { type: 'Conference' },
-        { type: 'Conference Call' },
+        { type: 'Conference call' },
         { type: 'Workshop' },
         { type: 'Webinar' },
-        { type: 'Phone Call' },
+        { type: 'Phone call' },
         { type: 'Committee meeting' },
-        { type: 'Working Group' },
-        { type: 'Senior management Briefing' },
-        { type: 'Minister Office briefing' },
+        { type: 'Working group' },
+        { type: 'Senior management briefing' },
+        { type: 'Minister office briefing' },
         { type: 'Scrum/Sprint' },
-        { type: 'Advisory Board/Council Meeting' }
+        { type: 'Advisory board/Council Meeting' }
       ]
     }
   },
@@ -286,14 +286,11 @@ export default {
     //     this.engagementDetail.date.getDate() + 1
     //   )
     // },
-    // eslint-disable-next-line space-before-function-paren
     notification(type, message) {
       this.message.type = type
       this.message.message = message
       this.timeout = setTimeout(() => this.clearMessage(), 5000)
     },
-
-    // eslint-disable-next-line space-before-function-paren
     clearMessage() {
       this.message.type = ''
       this.message.message = null
