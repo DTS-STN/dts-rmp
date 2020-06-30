@@ -38,7 +38,6 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
-    "@nuxtjs/vuetify": "^1.11.2",
     "@shelf/jest-mongodb": "^1.1.5",
     "@vue/test-utils": "^1.0.3",
     "axe-core": "3.5.3",
