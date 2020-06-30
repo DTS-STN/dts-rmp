@@ -40,11 +40,7 @@ module.exports = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [
-    '@nuxtjs/eslint-module',
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/vuetify'
-  ],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
   /*
    ** Nuxt.js modules
    */
@@ -122,7 +118,8 @@ module.exports = {
     { path: '/api', handler: '~/server/api/routes/index' },
     { path: '/api/auth', handler: '~/server/api/auth/index' },
     { path: '/api/user', handler: '~/server/api/user/index' },
-    { path: '/api/contact', handler: '~/server/api/contact/index' }
+    { path: '/api/contact', handler: '~/server/api/contact/index' },
+    { path: '/api/engagement', handler: '~/server/api/engagement/index' }
   ],
 
   /*

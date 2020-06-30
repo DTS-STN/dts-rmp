@@ -8,22 +8,45 @@ import * as Randomizers from './randomizers'
 const numContacts = process.env.NUM_CONTACTS || 10
 const numEngagements = process.env.NUM_ENGAGEMENTS || 5
 
-const populateDatabase = async () => {
+const populateDatabase = async() => {
   for (let i = 0; i < numContacts; i++) {
     await Contacts.create({
       type: Randomizers.randomContactType(),
       orgName: Randomizers.randomOrgName(),
       orgSector: Randomizers.randomOrgSector(),
       orgEmail: `${Randomizers.randomString(10)}@example.com`,
+      orgAddress: Randomizers.randomString(5),
+      orgAddress2: Randomizers.randomString(8),
+      orgCity: Randomizers.randomString(6),
+      orgProvState: Randomizers.randomString(6),
+      orgCountry: Randomizers.randomString(7),
+      orgPostalCode: `${Randomizers.randomString(1)}${Randomizers.randomInt(
+        1,
+        9
+      )}${Randomizers.randomString(1)}${Randomizers.randomInt(
+        1,
+        9
+      )}${Randomizers.randomString(1)}${Randomizers.randomInt(1, 9)}`,
       orgPhone: Randomizers.randomInt(1000000000, 9999999999),
-      orgAddress: Randomizers.randomString(15),
       orgWebsite: `http://${Randomizers.randomString(8)}.com`,
       keyContactName: `${Randomizers.randomString(
         6
       )} ${Randomizers.randomString(8)}`,
       keyContactTitle: Randomizers.randomString(8),
       keyContactEmail: `${Randomizers.randomString(10)}@example.com`,
-      keyContactAddress: Randomizers.randomString(15),
+      keyContactAddress: Randomizers.randomString(5),
+      keyContactAddress2: Randomizers.randomString(8),
+      keyContactCity: Randomizers.randomString(6),
+      keyContactProvState: Randomizers.randomString(6),
+      keyContactCountry: Randomizers.randomString(6),
+      keyContactPostalCode: `${Randomizers.randomString(
+        1
+      )}${Randomizers.randomInt(1, 9)}${Randomizers.randomString(
+        1
+      )}${Randomizers.randomInt(1, 9)}${Randomizers.randomString(
+        1
+      )}${Randomizers.randomInt(1, 9)}`,
+      keyContactPhone: Randomizers.randomInt(1000000000, 9999999999),
       department: Randomizers.randomString(4).toUpperCase(),
       branch: Randomizers.randomString(4).toUpperCase(),
       directorate: Randomizers.randomString(15),
@@ -42,11 +65,13 @@ const populateDatabase = async () => {
       description: Randomizers.randomString(150),
       numParticipants: Randomizers.randomInt(2, 5),
       contacts: [],
+      policyProgram: Randomizers.randomString(12),
+      comments: [],
       tags: Randomizers.randomTagArray()
     })
   }
 
-  Randomizers.tags.forEach(async (tag) => {
+  Randomizers.tags.forEach(async(tag) => {
     await Tags.create({
       name: tag
     })
@@ -54,11 +79,11 @@ const populateDatabase = async () => {
 
   const engagementDocs = await Engagements.find()
   const contactDocs = await Contacts.find()
-  const waitFor = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+  const waitFor = ms => new Promise(resolve => setTimeout(resolve, ms))
 
   const createRelations = function() {
     return new Promise((resolve, reject) => {
-      engagementDocs.forEach(async (engagement, index) => {
+      engagementDocs.forEach(async(engagement, index) => {
         const contactList = []
         await waitFor(50)
         for (let k = 0; k < engagement.numParticipants; k++) {
@@ -67,8 +92,8 @@ const populateDatabase = async () => {
           contactList.push(randomContact._id)
         }
         engagement.contacts = contactList
-        await saveDocument(engagement).then(async () => {
-          await getEngagementContacts(engagement).then(async (contacts) => {
+        await saveDocument(engagement).then(async() => {
+          await getEngagementContacts(engagement).then(async(contacts) => {
             await createContactRelations(contacts, engagement)
           })
           if (index === engagementDocs.length - 1) {
@@ -98,7 +123,7 @@ const populateDatabase = async () => {
 
   const createContactRelations = (contacts, engagement) => {
     return new Promise((resolve, reject) => {
-      contacts.forEach(async (contact, index) => {
+      contacts.forEach(async(contact, index) => {
         waitFor(50)
         contact.engagements.push(engagement._id)
         await saveDocument(contact).then(() => {
@@ -120,7 +145,7 @@ const saveDocument = (document) => {
 }
 
 async function main() {
-  await db.init().then(async () => {
+  await db.init().then(async() => {
     await populateDatabase()
   })
 }

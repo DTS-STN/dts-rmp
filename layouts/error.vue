@@ -19,13 +19,7 @@ export default {
   },
   computed: {
     errorPage() {
-      if (this.error.statusCode === 404) {
-        // eslint-disable-next-line semi
-        return Error404
-      }
-      // catch everything else
-      // eslint-disable-next-line semi
-      return Error500
+      return (this.error.statusCode === 404) ? Error404 : Error500
     }
   }
 }

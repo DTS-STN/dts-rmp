@@ -14,5 +14,6 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue'
   ],
-  testPathIgnorePatterns: ['<rootDir>/cypress/*']
+  testPathIgnorePatterns: ['<rootDir>/cypress/*'],
+  preset: '@shelf/jest-mongodb'
 }
