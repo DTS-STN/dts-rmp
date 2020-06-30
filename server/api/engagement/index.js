@@ -40,15 +40,13 @@ app.post('/addEngagement', async (req, res) => {
   //   }
 
     const newEngagement = new Engagement(req.body.engagementDetail)
-
     const savedEngagementDetail = await newEngagement.save()
-
+    
     if (!savedEngagementDetail) {
       consola.error('There was an error creating a new Engagement ')
       errMessage = 'A new Engagement could not be created try again later'
       throw new Error(errMessage)
     }
-
     res.status(200).json({
       engagement: {
         id: savedEngagementDetail._id
