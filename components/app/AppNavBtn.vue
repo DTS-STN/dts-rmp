@@ -4,22 +4,18 @@
       <button
         data-cy="search-nav"
         class="switch underline"
-        :style="{ color: txtColorAdd, 'background-color': bgColorAdd }"
+        :style="{ color: txtColorAdd, 'background-color': bgColorAdd, 'box-shadow': boxShadowAdd }"
         @click="colorChange(true)"
       >
-        <h2 id="h2Text">
-          Search contacts & engagements
-        </h2>
+        Search contacts & engagements
       </button>
       <button
         data-cy="add-nav"
         class="switch underline"
-        :style="{ color: txtColorSearch, 'background-color': bgColorSearch }"
+        :style="{ color: txtColorSearch, 'background-color': bgColorSearch, 'box-shadow': boxShadowSearch }"
         @click="colorChange(false)"
       >
-        <h2 id="h2Text">
-          Add contacts & engagements
-        </h2>
+        Add contacts & engagements
       </button>
     </div>
     <div v-if="!isSelected">
@@ -45,6 +41,8 @@ export default {
       bgColorAdd: 'white',
       txtColorSearch: 'white',
       bgColorSearch: '#D87C4F',
+      boxShadowAdd: 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)',
+      boxShadowSearch: 'none',
       isSelected: Boolean
     }
   },
@@ -55,12 +53,16 @@ export default {
         this.bgColorAdd = 'white'
         this.bgColorSearch = '#D87C4F'
         this.txtColorSearch = 'white'
+        this.boxShadowAdd = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
+        this.boxShadowSearch = 'none'
         this.isSelected = true
       } else {
         this.txtColorAdd = 'white'
         this.bgColorAdd = '#D87C4F'
         this.bgColorSearch = 'white'
         this.txtColorSearch = '#D87C4F'
+        this.boxShadowAdd = 'none'
+        this.boxShadowSearch = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
         this.isSelected = false
       }
     }
