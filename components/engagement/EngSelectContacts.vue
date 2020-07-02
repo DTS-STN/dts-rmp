@@ -14,12 +14,16 @@
         {{ $t('engSelect.name') }}
       </label>
       <div class="contact-1">
+        <!--
         <app-select
           :options="contacts"
-          @change="isSelected1=true"
+          @change="isSelected=true"
         />
+        -->
+        <form-select :options="contacts" @change="isSelected=true" />
       </div>
       <div v-if="moreContacts" class="contact-2">
+        <!--
         <h3 class="font-bold text-lg">
           {{ $t ('engSelect.contact2') }}
         </h3>
@@ -27,9 +31,13 @@
           :options="contacts"
           @change="isSelected2=true"
         />
-        <button class="underline" @click.prevent="moreContacts=false">
-          {{ $t ('engSelect.remove') }}
-        </button>
+        -->
+        <div />
+        <div>
+          <button class="underline" @click.prevent="moreContacts=false">
+            {{ $t ('engSelect.remove') }}
+          </button>
+        </div>
       </div>
       <div class="flex flex-row mt-2">
         <button class="mr-4" @click.prevent="moreContacts=true">
@@ -44,20 +52,24 @@
         </div>
       </div>
     </form>
-    <div v-if="isSelected1" class="show-contact1">
-      <show-contacts
-        :contact-name="contactName"
-        :department="department"
-        :contact-email="contactEmail"
-        :last-eng-title="lastEngTitle"
-        :engagement-date="engagementDate"
-        :num-participants="numParticipants"
-        :is-selected="isSelected1"
-      />
-      <button @click="isSelected1=false">
-        {{ $t ('engSelect.remove') }}
-      </button>
+    <div v-if="isSelected === true" class="show-contact">
+      <div>
+        <show-contacts
+          :contact-name="contactName"
+          :department="department"
+          :contact-email="contactEmail"
+          :last-eng-title="lastEngTitle"
+          :engagement-date="engagementDate"
+          :num-participants="numParticipants"
+        />
+      </div>
+      <div>
+        <button @click="isSelected === false">
+          {{ $t ('engSelect.remove') }}
+        </button>
+      </div>
     </div>
+    <!--
     <div v-if="isSelected2" class="show-contact2">
       <show-contacts
         :contact-name="contactName"
@@ -72,15 +84,18 @@
         {{ $t ('engSelect.remove') }}
       </button>
     </div>
+    -->
   </div>
 </template>
 
 <script>
-import AppSelect from '../app/AppSelect'
+// import AppSelect from '../app/AppSelect'
+import formSelect from './EngFormSelect'
 import showContacts from './EngShowContacts'
 export default {
   components: {
-    AppSelect,
+    // AppSelect,
+    formSelect,
     showContacts
   },
   data() {
@@ -92,17 +107,23 @@ export default {
       engagementDate: '01/05/2020',
       numParticipants: 0,
       contacts: [
-        { key: 1, value: 'contact1', options: 'contact1' },
-        { key: 2, value: 'contact2', options: 'contact2' },
-        { key: 3, value: 'contact3', options: 'contact3' }
+        'Start typing and select one',
+        'contact1',
+        'contact2',
+        'contact3'
       ],
       moreContacts: false,
-      isSelected1: false,
-      isSelected2: false
+      isSelected: false
     }
   },
-  methods: {
-
+  async created() {
+    try {
+      const res = await this.$axios.get('/api/contact/contacts')
+      this.contacts = res.data
+    } catch (e) {
+      console.log('error : ', e.response)
+      this.notification('error', e.response.data.message)
+    }
   }
 }
 </script>
