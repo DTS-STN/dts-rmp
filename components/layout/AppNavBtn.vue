@@ -1,40 +1,30 @@
 <template>
   <div>
     <div id="btna" class="app flex">
-      <button
+      <nuxt-link
+        :to="localePath('/search/engagement')"
         data-cy="search-nav"
         class="switch underline"
         :style="{ color: txtColorAdd, 'background-color': bgColorAdd, 'box-shadow': boxShadowAdd }"
-        @click="colorChange(true)"
+        @click.native="colorChange(true)"
       >
         Search contacts & engagements
-      </button>
-      <button
+      </nuxt-link>
+      <nuxt-link
+        :to="localePath('/add/engagement')"
         data-cy="add-nav"
         class="switch underline"
         :style="{ color: txtColorSearch, 'background-color': bgColorSearch, 'box-shadow': boxShadowSearch }"
-        @click="colorChange(false)"
+        @click.native="colorChange(false)"
       >
         Add contacts & engagements
-      </button>
-    </div>
-    <div v-if="!isSelected">
-      <AppNavAdding />
-    </div>
-    <div v-else>
-      <AppNavSearching />
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
-import AppNavAdding from '../app/AppNavAdding'
-import AppNavSearching from '../app/AppNavSearching'
 export default {
-  components: {
-    AppNavAdding,
-    AppNavSearching
-  },
   data() {
     return {
       txtColorAdd: '#D87C4F',
@@ -46,9 +36,26 @@ export default {
       isSelected: Boolean
     }
   },
+  created() {
+    if (this.$route.path.includes('add')) {
+      this.txtColorSearch = '#D87C4F'
+      this.bgColorSearch = 'white'
+      this.txtColorAdd = 'white'
+      this.bgColorAdd = '#D87C4F'
+      this.boxShadowAdd = 'none'
+      this.boxShadowSearch = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
+    } else {
+      this.txtColorSearch = 'white'
+      this.bgColorSearch = '#D87C4F'
+      this.txtColorAdd = '#D87C4F'
+      this.bgColorAdd = 'white'
+      this.boxShadowAdd = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
+      this.boxShadowSearch = 'none'
+    }
+  },
   methods: {
     colorChange(select) {
-      if (select === true) {
+      if (select) {
         this.txtColorAdd = '#D87C4F'
         this.bgColorAdd = 'white'
         this.bgColorSearch = '#D87C4F'
@@ -71,15 +78,24 @@ export default {
 </script>
 
 <style scoped>
-button:focus {
+.switch:focus {
   outline: none;
 }
-
-button.switch {
+.switch {
   padding: 25px;
   @apply cursor-pointer text-3xl font-serif font-bold text-center w-full;
 }
+.not-selected{
+  color: white;
+  background-color: #D87C4F;
+  box-shadow: none;
 
+}
+.selected{
+  color: #D87C4F;
+  background-color: white;
+  box-shadow: 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)';
+}
 @media (max-width: 660px) {
   #btna {
     @apply flex-col w-auto;

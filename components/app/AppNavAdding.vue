@@ -11,51 +11,53 @@
       </div>
     </div>
     <div class="inline-flex pt-6">
-      <button
+      <nuxt-link
         class="left"
         :style="{ color: txtColorCon, 'background-color': bgColorCon }"
-        @click="colorChange(true)"
+        :to="localePath('/add/contact')"
+        @click.native="colorChange(true)"
       >
         Contact
-      </button>
-      <button
+      </nuxt-link>
+      <nuxt-link
         class="right"
-        :style="{
-          color: txtColorEng,
-          'background-color': bgColorEng
-        }"
-        @click="colorChange(false)"
+        :style="{ color: txtColorEng, 'background-color': bgColorEng }"
+        :to="localePath('/add/engagement')"
+        @click.native="colorChange(false)"
       >
         Engagement
-      </button>
-    </div>
-    <div class="mt-12">
-      <ConFormFields v-if="!isSelected" />
-      <EngFormFields v-if="isSelected">
-        <engagement-form />
-      </EngFormFields>
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
-import EngagementForm from '../engagement/EngForm.vue'
 export default {
-  components: {
-    EngagementForm
-  },
   data() {
     return {
       txtColorCon: '',
       bgColorCon: '',
-      txtColorEng: 'white',
-      bgColorEng: '#2572b4',
-      isSelected: false
+      txtColorEng: '',
+      bgColorEng: '',
+      isSelected: true
+    }
+  },
+  created() {
+    if (this.$route.path.includes('engagement')) {
+      this.txtColorCon = 'black'
+      this.bgColorCon = 'white'
+      this.txtColorEng = 'white'
+      this.bgColorEng = '#2572b4'
+    } else {
+      this.txtColorCon = 'white'
+      this.bgColorCon = '#2572b4'
+      this.txtColorEng = 'black'
+      this.bgColorEng = 'white'
     }
   },
   methods: {
     colorChange(select) {
-      if (select === true) {
+      if (select) {
         this.isSelected = false
         this.txtColorCon = 'white'
         this.bgColorCon = '#2572b4'
@@ -87,7 +89,7 @@ export default {
   font-style: normal;
   color: #d87c4f;
 }
-button.left {
+.left {
   border-top-left-radius: 35px;
   border-bottom-left-radius: 35px;
   background-color: white;
@@ -100,7 +102,7 @@ button.left {
   outline: 0;
   @apply cursor-pointer font-serif;
 }
-button.right {
+.right {
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
   background-color: white;

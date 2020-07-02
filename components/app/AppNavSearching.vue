@@ -10,86 +10,59 @@
         </p>
       </div>
     </div>
-    <AppFilterForm @FilterEngagements="filter" />
+    <AppFilterForm @filter="filterInformation" />
     <div class="inline-flex pt-6">
-      <button
+      <nuxt-link
         class="left"
         :style="{ color: txtColorCon, 'background-color': bgColorCon }"
-        @click="colorChange(true)"
+        :to="localePath('/search/contact')"
+        @click.native="colorChange(true)"
       >
         Contact
-      </button>
-      <button
+      </nuxt-link>
+      <nuxt-link
         class="right"
-        :style="{
-          color: txtColorEng,
-          'background-color': bgColorEng
-        }"
-        @click="colorChange(false)"
+        :style="{ color: txtColorEng, 'background-color': bgColorEng }"
+        :to="localePath('/search/engagement')"
+        @click.native="colorChange(false)"
       >
         Engagement
-      </button>
-    </div>
-    <div>
-      <div v-if="!isSelected">
-        Contact Results
-      </div>
-      <div v-else>
-        <Eng
-          v-for="eng in filteredEngagements"
-          :id="eng._id"
-          :key="eng._id"
-          :type="eng.type"
-          :contacts="eng.contacts"
-          :tags="eng.tags"
-          :date="eng.date"
-          :description="eng.description"
-          :participants="eng.numParticipants"
-        />
-      </div>
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
-import Eng from '@/components/engagement/EngListItem'
 import AppFilterForm from '@/components/app/AppFilterForm'
 export default {
   components: {
-    AppFilterForm,
-    Eng
+    AppFilterForm
   },
   data() {
     return {
       txtColorCon: '',
       bgColorCon: '',
-      txtColorEng: 'white',
-      bgColorEng: '#2572b4',
-      isSelected: true,
-      engagements: [
-      ],
-      filteredEngagements: [
-      ]
+      txtColorEng: '',
+      bgColorEng: '',
+      isSelected: true
     }
   },
-  async created() {
-    const config = {
-      headers: {
-        Accept: 'application/json'
-      }
-    }
-    try {
-      const res = await this.$axios.get('/api/engagement/engagements', config)
-      this.engagements = res.data
-      this.filteredEngagements = res.data
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err)
+  created() {
+    if (this.$route.path.includes('engagement')) {
+      this.txtColorCon = 'black'
+      this.bgColorCon = 'white'
+      this.txtColorEng = 'white'
+      this.bgColorEng = '#2572b4'
+    } else {
+      this.txtColorCon = 'white'
+      this.bgColorCon = '#2572b4'
+      this.txtColorEng = 'black'
+      this.bgColorEng = 'white'
     }
   },
   methods: {
     colorChange(select) {
-      if (select === true) {
+      if (select) {
         this.isSelected = false
         this.txtColorCon = 'white'
         this.bgColorCon = '#2572b4'
@@ -103,12 +76,9 @@ export default {
         this.isSelected = true
       }
     },
-    filter(input) {
-      const searchtext = input.toLowerCase()
-      const results = this.engagements.filter(engagement =>
-        engagement.type.toLowerCase().includes(searchtext)
-      )
-      this.filteredEngagements = results
+
+    filterInformation(input) {
+      this.$emit('filterResults', input)
     }
   }
 }

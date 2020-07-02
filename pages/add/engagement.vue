@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AppNavAdding />
     <EngForm />
     <!-- <EngTest /> -->
   </div>
