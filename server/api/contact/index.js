@@ -1,11 +1,10 @@
-import { Router, json } from 'express'
+import express from 'express'
 import consola from 'consola'
 
 // Contact Model
 import Contact from '../models/contact'
 
-const app = Router()
-app.use(json()) // not required here
+const app = express()
 
 // @route   GET api/contacts
 // @desc    Gets all contacts
