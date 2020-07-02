@@ -1,5 +1,6 @@
 <template>
   <AppNavSearching @filterResults="filter" />
+  <!-- Loop through contacts here. look at 'search/engagement' for guidance -->
 </template>
 
 <script>
