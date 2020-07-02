@@ -115,11 +115,12 @@ module.exports = {
   },
 
   serverMiddleware: [
-    { path: '/api', handler: '~/server/api/routes/index' },
-    { path: '/api/auth', handler: '~/server/api/auth/index' },
-    { path: '/api/user', handler: '~/server/api/user/index' },
-    { path: '/api/contact', handler: '~/server/api/contact/index' },
-    { path: '/api/engagement', handler: '~/server/api/engagement/index' }
+    { path: '/api', handler: '~/server/index' }
+    // { path: '/api', handler: '~/server/api/routes/index' },
+    // { path: '/api/auth', handler: '~/server/api/auth/index' },
+    // { path: '/api/user', handler: '~/server/api/user/index' },
+    // { path: '/api/contact', handler: '~/server/api/contact/index' },
+    // { path: '/api/engagement', handler: '~/server/api/engagement/index' }
   ],
 
   /*

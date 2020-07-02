@@ -1,10 +1,8 @@
-/* eslint-disable no-console */
-import { Router, json } from 'express'
+import express from 'express'
 import consola from 'consola'
-// engagement Model
 import Engagement from '../models/engagement'
-const app = Router()
-app.use(json())
+const app = express()
+// router.use(json())
 // @route   GET api/engagement to do
 // @desc    Gets all engagement  to do
 // @access  Public to do
@@ -25,8 +23,7 @@ app.get('/engagements', async(req, res) => {
 // @route   POST api/engagement/add
 // @desc    Post creates a new engagement
 // @access  Public
-// eslint-disable-next-line space-before-function-paren
-app.post('/addEngagement', async (req, res) => {
+app.post('/addEngagement', async(req, res) => {
   let errMessage = ''
 
   // to do
@@ -49,4 +46,5 @@ app.post('/addEngagement', async (req, res) => {
     res.status(401).json({ message: errMessage })
   }
 })
+
 export default app
