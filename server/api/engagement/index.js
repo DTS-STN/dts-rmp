@@ -44,28 +44,28 @@ app.get('/engagement', async(req, res) => {
 // @route   POST api/engagement/add
 // @desc    Post creates a new engagement
 // @access  Public
-app.post('/addEngagement', async(req, res) => {
-  let errMessage = ''
+// app.post('/addEngagement', async(req, res) => {
+//   let errMessage = ''
 
-  // to do
+//   // to do
 
-  try {
-    const newEngagement = new Engagement(req.body.engagementDetail)
-    const savedEngagementDetail = await newEngagement.save()
-    if (!savedEngagementDetail) {
-      consola.error('There was an error creating a new Engagement ')
-      errMessage = 'A new Engagement could not be created try again later'
-      throw new Error(errMessage)
-    }
-    res.status(200).json({
-      engagement: {
-        id: savedEngagementDetail._id
-      }
-    })
-  } catch (e) {
-    consola.error(e.message)
-    res.status(401).json({ message: errMessage })
-  }
-})
+//   try {
+//     const newEngagement = new Engagement(req.body.engagementDetail)
+//     const savedEngagementDetail = await newEngagement.save()
+//     if (!savedEngagementDetail) {
+//       consola.error('There was an error creating a new Engagement ')
+//       errMessage = 'A new Engagement could not be created try again later'
+//       throw new Error(errMessage)
+//     }
+//     res.status(200).json({
+//       engagement: {
+//         id: savedEngagementDetail._id
+//       }
+//     })
+//   } catch (e) {
+//     consola.error(e.message)
+//     res.status(401).json({ message: errMessage })
+//   }
+// })
 
 export default app

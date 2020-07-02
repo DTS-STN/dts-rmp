@@ -1,4 +1,5 @@
 import engagement from './api/engagement/index.js'
+import contact from './api/contact/index.js'
 require('dotenv').config()
 const mongoose = require('mongoose')
 const express = require('express')
@@ -42,5 +43,6 @@ app.get('/helloworld', (req, res) => {
 })
 
 app.use('/engagement', engagement)
+app.use('/contact', contact)
 
 export default app
