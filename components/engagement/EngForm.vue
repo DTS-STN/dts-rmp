@@ -1,7 +1,10 @@
 <template>
-  <div title="engagementForm" class="ml-12 font-serif">
+  <div title="engagementForm" class="ml-12">
+    <h1 class="text-5xl formTitle">
+      {{ $t('engSelect.engagement') }}
+    </h1>
     <select-contact />
-    <h1 class="title">
+    <h1 class="title font-display">
       {{ $t('engagement.engagment') }}
     </h1>
     <form @submit.prevent="submitForm(engagementDetail)">
@@ -9,7 +12,7 @@
         <div class="flex flex-wrap mb-8">
           <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
             <label
-              class="orange block tracking-wide text-black text-md font-bold mb-2"
+              class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
               for="subject"
             >
               {{ $t('engagement.subject') }}
@@ -25,7 +28,7 @@
 
           <div class="max-w-lg sm:w-1/3 mb-4">
             <label
-              class="orange block tracking-wide text-black text-md font-bold mb-2"
+              class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
               for="type"
             >
               {{ $t('engagement.type') }}
@@ -64,7 +67,7 @@
         <div class="flex flex-wrap mb-8">
           <div class="max-w-lg w-2/3 mb-4 mr-20">
             <label
-              class="orange block tracking-wide text-black text-md font-bold mb-2"
+              class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
               for="date"
             >
               {{ $t('engagement.date') }}
@@ -87,7 +90,7 @@
 
           <div class="max-w-lg sm:w-1/3 mb-4">
             <label
-              class="orange block tracking-wide text-black text-md font-bold mb-2"
+              class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
               for="numParticipants"
             >
               {{ $t('engagement.participants') }}
@@ -113,7 +116,7 @@
         <div class="flex flex-wrap">
           <div class="w-full sm:w-6/12 mb-8">
             <label
-              class="orange block tracking-wide text-black text-md font-bold -mb-4"
+              class="orange block tracking-wide text-black text-md font-bold font-body mb-4"
               for="description"
             >
               {{ $t('engagement.description') }}
@@ -130,7 +133,7 @@
         <div class="flex flex-wrap mb-8">
           <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
             <label
-              class="block tracking-wide text-black text-md font-bold mb-2"
+              class="block tracking-wide text-black text-md font-bold font-body mb-2"
               for="policyProgram"
             >
               {{ $t('engagement.policy') }}
@@ -146,7 +149,7 @@
 
           <div class="max-w-lg sm:w-1/3 mb-4">
             <label
-              class="block tracking-wide text-black text-md font-bold mb-2"
+              class="block tracking-wide text-black text-md font-bold font-body mb-2"
               for="tags"
             >
               {{ $t('engagement.tags') }}
@@ -162,7 +165,7 @@
         <div class="flex flex-wrap">
           <div class="w-full sm:w-6/12 mb-8">
             <label
-              class="block tracking-wide text-black text-md font-bold -mb-4"
+              class="block tracking-wide text-black text-md font-bold font-body mb-4"
               for="comments"
             >
               {{ $t('engagement.comments') }}
@@ -191,12 +194,12 @@
 
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
-          <AppButton custom_style="btn-cancel" data_cypress="formButton">
+          <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
             {{ $t('engagement.save') }}
           </AppButton>
         </div>
         <div class="w-3/12 margins">
-          <AppButton custom_style="btn-extra" data_cypress="formButton">
+          <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
             {{ $t('engagement.save') }}
           </AppButton>
         </div>
@@ -314,9 +317,12 @@ export default {
 <style scoped>
 .title {
   font-weight: 600;
-  /* font-size: 35px; */
   color: #426177;
   @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
+}
+.formTitle {
+  color: #246880;
+  @apply font-bold;
 }
 .btn-extra {
   @apply w-11/12 h-12 justify-start;
