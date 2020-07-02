@@ -1,13 +1,10 @@
 <template>
   <div>
-    <div
-      class="flex max-w-full leading-10 bdr bottom pt-6 pb-6"
-      :class="[index == 0 ? 'first': '']"
-    >
+    <div class="flex max-w-full leading-10 bdr bottom pt-6 pb-6" :class="[index == 0 ? 'first': '']">
       <div class="w-6/12 pl-2">
         <div>
           <span class="orange">
-            {{ title }}
+            {{ $t('engagement.engagement') }}
           </span>
           {{ name }}, {{ date }}
         </div>
@@ -22,11 +19,11 @@
       <div class="w-5/12 bdr left">
         <div>
           <span class="orange">
-            Key Contact name
+            {{ $t('engagement.keycontact') }}
           </span> {{ keycontact }}
         </div>
         <div>
-          Number of participants: {{ number }}
+          {{ $t('engagement.numpeople') }} {{ number }}
         </div>
       </div>
 
@@ -54,10 +51,10 @@ export default {
 
   props: {
     index: { type: Number, default: 1 },
-    title: { type: String, default: 'Engagement title' },
+    name: { type: String, default: 'Engagement title' },
     type: { type: String, default: 'Public' },
     date: { type: String, default: 'yyyy/mm/dd' },
-    tags: { type: Object, default: null },
+    tags: { type: Array, default: null },
     keycontact: { type: String, default: 'some name' },
     number: { type: String, default: '1' },
     id: { type: String, default: '5eefd2eb0fdece1daabc2383' }
@@ -72,6 +69,9 @@ export default {
 </script>
 
 <style scoped>
+.viewcard {
+  @apply flex max-w-full leading-10 bdr bottom pt-6 pb-6
+}
 .orange {
   font-family: 'Noto Sans';
   font-size: 18px;
@@ -93,6 +93,9 @@ export default {
   margin: 10px 10px 10px 10px;
   padding: .8rem 1.2rem .8rem 1.2rem;
   @apply leading-normal rounded-full;
+}
+.tag {
+  @apply bg-rmp-dk-orange text-white rounded-full px-4 py-1 ml-2
 }
 @media (max-width: 768px) {
   .left { @apply hidden; }

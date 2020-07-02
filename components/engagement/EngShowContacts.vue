@@ -18,7 +18,7 @@
             {{ last }}
           </span>
         </div>
-        <div>{{ date }}, {{ number }} other participants</div>
+        <div>{{ date }}, {{ number }} {{ $t('contact.otherpeople') }}</div>
       </div>
 
       <div class="w-1/12">
@@ -64,6 +64,9 @@ export default {
 </script>
 
 <style scoped>
+.viewcard {
+  @apply flex max-w-full leading-10 bdr bottom pt-6 pb-6;
+}
 .orange {
   font-family: 'Noto Sans';
   font-size: 18px;

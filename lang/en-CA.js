@@ -100,7 +100,9 @@ export default {
     cancel: 'Cancel',
     save: ' Save',
     back: 'Go Back',
-    edit: 'Edit Contact'
+    edit: 'Edit Contact',
+    // view contact
+    otherpeople: 'other participants'
   },
 
   NavBtn: {
@@ -109,5 +111,11 @@ export default {
   },
 
   // engagement
-  engagement: {}
+  engagement: {
+    // >>>>  insert here your fields <<<<<<<<<<<<
+    // view contact card
+    engagement: 'Engagement:',
+    keycontact: 'Key Contact:',
+    numpeople: 'Number of participants:'
+  }
 }

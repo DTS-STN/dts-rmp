@@ -101,7 +101,9 @@ export default {
     cancel: 'FR-Cancel',
     save: ' FR-Save',
     back: 'FR-Go Back',
-    edit: 'FR-Edit Contact'
+    edit: 'FR-Edit Contact',
+    // view contact
+    otherpeople: 'FR-other participants'
   },
   // Navigation search Component
   NavBtn: {
@@ -110,5 +112,12 @@ export default {
   },
 
   // engagement
-  engagement: {}
+  engagement: {
+    // >>>>  insert here your fields <<<<<<<<<<<<
+    // view contact card
+    engagement: 'FR-Engagement :',
+    keycontact: 'FR-Key Contact :',
+    numpeople: 'FR-Number of participants :'
+
+  }
 }
