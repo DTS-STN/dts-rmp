@@ -45,7 +45,7 @@ export default {
     fivehundred: 'Erreur 500',
     fivehundredmessage:
       'Désoler...Quelque chose s’est mal passé. S’il vous plaît essayer à nouveau plus tard.',
-    buttontext: 'Aller à la page d\'accueil'
+    buttontext: "Aller à la page d'accueil"
   },
   // contact
   contact: {
@@ -110,14 +110,34 @@ export default {
     AddConEn: 'Ajouter des contacts et des engagements',
     SearchConEn: 'Rechercher des contacts et des engagements'
   },
-
   // engagement
   engagement: {
-    // >>>>  insert here your fields <<<<<<<<<<<<
+    engagment: 'Engagement',
+    subject: 'Matière',
+    type: "Type d'engagement",
+    date: 'Date',
+    participants: "Nombre de participants'",
+    description:
+      'Description 1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.',
+    policy: 'Politique / programme',
+    tags: 'Mots clés',
+    comments:
+      'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+    cancel: 'Annuler',
+    save: 'Sauver',
+    typing: 'Commencez par taper',
     // view contact card
     engagement: 'FR-Engagement :',
     keycontact: 'FR-Key Contact :',
     numpeople: 'FR-Number of participants :'
-
+  },
+  // EngSelectContact component
+  engSelect: {
+    engagement: 'Nouvel engagement',
+    contact: 'Contact',
+    name: 'Nom du contact',
+    contact2: 'Numéro de contact 2',
+    remove: 'Retirer',
+    add: 'Ajouter plus de contacts'
   }
 }

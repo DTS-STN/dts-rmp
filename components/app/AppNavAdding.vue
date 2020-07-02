@@ -29,15 +29,21 @@
         Engagement
       </button>
     </div>
-    <div>
+    <div class="mt-12">
       <ConFormFields v-if="!isSelected" />
-      <EngFormFields v-if="isSelected" />
+      <EngFormFields v-if="isSelected">
+        <engagement-form />
+      </EngFormFields>
     </div>
   </div>
 </template>
 
 <script>
+import EngagementForm from '../engagement/EngForm.vue'
 export default {
+  components: {
+    EngagementForm
+  },
   data() {
     return {
       txtColorCon: '',
