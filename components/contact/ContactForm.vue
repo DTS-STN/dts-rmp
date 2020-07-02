@@ -1,13 +1,13 @@
 <template>
   <!-- eslint-disable space-before-function-paren -->
-  <div class="contactForm">
+  <div class="contactForm font-body">
     <div>
-      <h1 class="title">
+      <h1 class="title font-display">
         {{ $t('contact.create') }}
       </h1>
 
       <div>
-        <p class="orange fontNoto">
+        <p class="orange font-body">
           {{ $t('contact.type') }}
         </p>
       </div>
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <h2 class="title">
+      <h2 class="title font-display">
         {{ $t('contact.information') }}
       </h2>
 
@@ -184,7 +184,7 @@
           </div>
         </div>
 
-        <h2 class="title">
+        <h2 class="title font-display">
           {{ $t('contact.organization') }} <br />
           {{ $t('contact.information') }}
         </h2>
@@ -620,7 +620,6 @@ export default {
 .contactForm {
   width: 1200px;
   margin: auto;
-  font-family: 'DejaVu Serif', 'Roboto slab', 'sans-serif', 'Helvetica Neue';
   @apply bg-white text-black;
 }
 .title {
@@ -634,10 +633,6 @@ export default {
 }
 .formInput:focus {
   @apply outline-none border-blue-500;
-}
-.fontNoto {
-  font-family: 'Noto Sans', 'DejaVu Serif', 'Roboto slab', 'sans-serif',
-    'Helvetica Neue';
 }
 .orange {
   background-image: url('../../assets/images/orange-star.png');
