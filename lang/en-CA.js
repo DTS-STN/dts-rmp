@@ -52,7 +52,7 @@ export default {
     fetcherror: 'Error while getting information',
     // titles
     contact: 'Contact Information',
-    organization: 'Organisation',
+    organization: 'Organization',
     information: 'information',
     engagements: 'Engagements',
     // fields
@@ -85,6 +85,7 @@ export default {
     federal: 'Federal',
     external: 'External',
     provincial: 'Provincial',
+    international: 'International',
     selCountry: 'Select a country',
     canada: 'Canada',
     mexico: 'Mexico',
@@ -99,7 +100,9 @@ export default {
     cancel: 'Cancel',
     save: ' Save',
     back: 'Go Back',
-    edit: 'Edit Contact'
+    edit: 'Edit Contact',
+    // view contact
+    otherpeople: 'other participants'
   },
 
   NavBtn: {
@@ -114,13 +117,19 @@ export default {
     type: 'Engagement type',
     date: 'Date',
     participants: 'Number of participants',
-    description: 'Description maximum 1000 characters. Additional characters will not be saved.',
+    description:
+      'Description maximum 1000 characters. Additional characters will not be saved.',
     policy: 'Policy / program',
     tags: 'Tags',
-    comments: 'Comments (Maximum 140 characters. Additional characters will not be saved.)',
+    comments:
+      'Comments (Maximum 140 characters. Additional characters will not be saved.)',
     cancel: 'Cancel',
     save: ' Save',
-    typing: 'Start by typing'
+    typing: 'Start by typing',
+    // view contact card
+    engagement: 'Engagement:',
+    keycontact: 'Key Contact:',
+    numpeople: 'Number of participants:'
   },
   // EngSelectContact component
   engSelect: {
