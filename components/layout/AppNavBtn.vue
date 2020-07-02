@@ -83,7 +83,7 @@ export default {
 }
 .switch {
   padding: 25px;
-  @apply cursor-pointer text-3xl font-serif font-bold text-center w-full;
+  @apply cursor-pointer text-3xl font-display font-bold text-center w-full;
 }
 .not-selected{
   color: white;

@@ -1,11 +1,11 @@
 <template>
   <div class="px-4">
     <div class="mt-24">
-      <h2 class="newAdd">
+      <h2 class="searchHeader font-display">
         Search
       </h2>
       <div>
-        <p class="orange requireFields t-2">
+        <p class="orange requireFields t-2 font-body">
           Required fields
         </p>
       </div>
@@ -85,15 +85,13 @@ export default {
 </script>
 
 <style>
-.newAdd {
-  font-family: 'Lato Bold', 'Lato Regular', 'Lato';
+.searchHeader {
   font-weight: 600;
   font-style: normal;
   font-size: 48px;
   color: #426177;
 }
 .requireFields {
-  font-family: 'Noto Sans Bold', 'Noto Sans Regular', 'Noto Sans';
   font-weight: 700;
   font-style: normal;
   color: #d87c4f;
@@ -109,7 +107,7 @@ button.left {
   display: inline-block;
   font-size: 16px;
   outline: 0;
-  @apply cursor-pointer font-serif;
+  @apply cursor-pointer font-display;
 }
 button.right {
   border-top-right-radius: 35px;
@@ -123,7 +121,7 @@ button.right {
   display: inline-block;
   font-size: 16px;
   outline: 0;
-  @apply cursor-pointer font-serif;
+  @apply cursor-pointer font-display;
 }
 .orange {
   background-image: url('../../assets/images/orange-star.png');

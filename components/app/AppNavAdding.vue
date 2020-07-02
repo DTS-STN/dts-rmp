@@ -1,11 +1,11 @@
 <template>
   <div id="navContainer">
     <div class="mt-24">
-      <h2 class="newAdd">
+      <h2 class="newAdd font-display">
         Add new
       </h2>
       <div>
-        <p class="orange requireFields t-2">
+        <p class="orange requireFields t-2 font-body">
           Required field
         </p>
       </div>
@@ -77,14 +77,11 @@ export default {
 
 <style>
 .newAdd {
-  font-family: 'Lato Bold', 'Lato Regular', 'Lato';
   font-weight: 600;
-  font-style: normal;
   font-size: 48px;
   color: #426177;
 }
 .requireFields {
-  font-family: 'Noto Sans Bold', 'Noto Sans Regular', 'Noto Sans';
   font-weight: 700;
   font-style: normal;
   color: #d87c4f;
@@ -100,7 +97,7 @@ export default {
   display: inline-block;
   font-size: 16px;
   outline: 0;
-  @apply cursor-pointer font-serif;
+  @apply cursor-pointer font-display;
 }
 .right {
   border-top-right-radius: 35px;
@@ -114,7 +111,7 @@ export default {
   display: inline-block;
   font-size: 16px;
   outline: 0;
-  @apply cursor-pointer font-serif;
+  @apply cursor-pointer font-display;
 }
 .orange {
   background-image: url('../../assets/images/orange-star.png');
