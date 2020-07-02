@@ -42,7 +42,8 @@
       </div>
 
       <h2 class="title">
-        {{ $t('contact.organization') }} <br /> {{ $t('contact.information') }}
+        {{ $t('contact.organization') }} <br />
+        {{ $t('contact.information') }}
       </h2>
 
       <div class="flex mb-4">
@@ -61,6 +62,15 @@
       <h2 class="title">
         {{ $t('contact.engagements') }}
       </h2>
+
+      <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
+        <EngShowContacts :index="0" />
+        <EngShowContacts />
+      </div>
+      <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
+        <ConShowEngagaments :index="0" :tags="['tag1', 'tag2', 'tag3']" />
+        <ConShowEngagaments :tags="['tagX1', 'tagX2', 'tagX3']" />
+      </div>
 
       <div class="flex justify-start mb-4">
         <div class="w-3/12 margins">
@@ -81,12 +91,16 @@
 <script>
 import AppButton from '@/components/app/AppButton.vue'
 import ConViewFields from '@/components/contact/ConViewFields.vue'
+import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
+import EngShowContacts from '@/components/engagement/EngShowContacts'
 
 export default {
   name: 'ContactView',
 
   components: {
     ConViewFields,
+    ConShowEngagaments,
+    EngShowContacts,
     AppButton
   },
 

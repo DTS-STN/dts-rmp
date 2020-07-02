@@ -86,6 +86,7 @@ export default {
     federal: 'FR-Federal',
     external: 'FR-External',
     provincial: 'FR-Provincial',
+    international: 'FR-International',
     selCountry: 'FR-Select a country',
     canada: 'FR-Canada',
     mexico: 'FR-Mexico',

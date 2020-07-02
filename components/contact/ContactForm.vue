@@ -28,6 +28,9 @@
             <option value="Provincial">
               {{ $t('contact.provincial') }}
             </option>
+            <option value="International">
+              {{ $t('contact.international') }}
+            </option>
           </select>
         </div>
       </div>
@@ -490,7 +493,6 @@
 </template>
 
 <script>
-// import ContactForm from '@/components/contact/ContactForm.vue'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {

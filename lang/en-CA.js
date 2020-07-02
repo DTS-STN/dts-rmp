@@ -52,7 +52,7 @@ export default {
     fetcherror: 'Error while getting information',
     // titles
     contact: 'Contact Information',
-    organization: 'Organisation',
+    organization: 'Organization',
     information: 'information',
     engagements: 'Engagements',
     // fields
@@ -85,6 +85,7 @@ export default {
     federal: 'Federal',
     external: 'External',
     provincial: 'Provincial',
+    international: 'International',
     selCountry: 'Select a country',
     canada: 'Canada',
     mexico: 'Mexico',
