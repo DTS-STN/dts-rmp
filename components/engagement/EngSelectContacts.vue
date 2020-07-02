@@ -116,11 +116,13 @@ export default {
       isSelected: false
     }
   },
+  // eslint-disable-next-line space-before-function-paren
   async created() {
     try {
       const res = await this.$axios.get('/api/contact/contacts')
       this.contacts = res.data
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log('error : ', e.response)
       this.notification('error', e.response.data.message)
     }
