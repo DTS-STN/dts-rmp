@@ -9,7 +9,7 @@
         <div>
           <span class="orange"> {{ name }} </span>, {{ orgname }}, {{ title }}
         </div>
-        <div>{{ phone }}, {{ email }}</div>
+        <div><a :href="'tel:' + phone">{{ phone }}</a>, <a :href="'mailto:'+ email">{{ email }}</a></div>
       </div>
 
       <div class="w-5/12 bdr left">
