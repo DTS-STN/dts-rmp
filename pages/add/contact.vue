@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AppNavAdding />
     <ContactForm />
   </div>
 </template>
