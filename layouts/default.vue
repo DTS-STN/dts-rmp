@@ -2,8 +2,7 @@
   <div class="main-container">
     <header>
       <AppHeader />
-      <!-- <Header />    placeholder for the Header -->
-      <!-- Temporary navbar containing   home, login/logout buttons -->
+      <AppNavBtn />
     </header>
     <main>
       <!-- <TitleComponent /> -->

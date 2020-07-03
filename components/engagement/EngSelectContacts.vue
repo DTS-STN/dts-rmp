@@ -1,14 +1,11 @@
 <template>
   <div class="contact mb-8">
-    <h1 class="text-5xl">
-      {{ $t('engSelect.engagement') }}
-    </h1>
     <h2 class="text-4xl">
       Contact
     </h2>
     <form class="relative mt-6 max-w-md">
       <label
-        class="orange block tracking-wide text-black text-md font-bold mb-2"
+        class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
         for="subject"
       >
         {{ $t('engSelect.name') }}
@@ -32,7 +29,7 @@
         </button>
       </div>
       <div class="flex flex-row mt-2">
-        <button class="mr-4" @click.prevent="moreContacts=true">
+        <button class="mr-4 font-body" @click.prevent="moreContacts=true">
           {{ $t ('engSelect.add') }}
         </button>
         <div class="pt-1">
