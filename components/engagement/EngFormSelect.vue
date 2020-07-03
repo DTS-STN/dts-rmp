@@ -1,7 +1,11 @@
 <template>
   <div class="contact-menu">
     <div class="w-5/12 margins">
-      <select class="formSelect">
+      <select
+        class="formSelect"
+        v-bind="$attrs"
+        v-on="$listeners"
+      >
         <slot />
       </select>
     </div>

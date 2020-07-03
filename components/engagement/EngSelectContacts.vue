@@ -14,13 +14,13 @@
         {{ $t('engSelect.name') }}
       </label>
       <div class="contact-1">
-        <form-select @change="showContact()">
+        <form-select @change="showContact($event)">
           <option v-for="contact in contacts" :key="contact">
             {{ contact.keyContactName }}
           </option>
         </form-select>
       </div>
-      <div v-if="moreContacts" class="contact-2">
+      <div class="contact-2">
         <!--
           add more contact dropdown
         -->
@@ -44,7 +44,7 @@
         </div>
       </div>
     </form>
-    <div class="show-contact">
+    <div v-if="isSelected === true">
       <div>
         <show-contacts
           :contact-name="contactName"
@@ -56,7 +56,7 @@
         />
       </div>
       <div>
-        <button @click="isSelected === false">
+        <button @click="isSelected=false">
           {{ $t ('engSelect.remove') }}
         </button>
       </div>
@@ -82,18 +82,13 @@ export default {
   },
   data() {
     return {
-      contactName: 'contact name',
-      department: 'Government of Canada',
-      contactEmail: 'email@email.com',
-      lastEngTitle: 'last engagement title',
+      contactName: 'Contact Name',
+      department: 'Department',
+      contactEmail: 'example@example.com',
+      lastEngTitle: 'Engagement Title',
       engagementDate: new Date(),
       numParticipants: 0,
-      contacts: [
-        'Start typing and select one',
-        'contact1',
-        'contact2',
-        'contact3'
-      ],
+      contacts: [],
       moreContacts: false,
       isSelected: false
     }
@@ -110,12 +105,14 @@ export default {
     }
   },
   methods: {
-    showContact() {
+    showContact(event) {
+      this.contactName = event.target.value
       let i
       for (i = 0; i < this.contacts.length; i++) {
-        this.contactName = i.keyContactName
-        this.department = i.department
-        this.contactEmail = i.keyContactEmail
+        if (this.contactName === this.contacts[i].keyContactName) {
+          this.department = this.contacts[i].department
+          this.contactEmail = this.contacts[i].keyContactEmail
+        }
       }
       this.isSelected = true
     }
