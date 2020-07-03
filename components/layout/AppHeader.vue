@@ -31,19 +31,20 @@
             :alt="$t('header.homeAlt')"
           />
         </nuxt-link>
-        <span class="hidden sm:block pt-5">
+        <span class="hidden sm:block pt-5 text-2xl">
           Text placeholder
         </span>
         <div id="userInfo">
           <div class="flex p-6">
             <ul class="underline mr-2">
               <li>
-                <nuxt-link :to="localePath('/dashboard')" data-cy="dashboard-link">
+                <nuxt-link :to="localePath('/dashboard')" data-cy="dashboard-link" class="text-xl">
                   {{ $t('header.dashboard') }}
                 </nuxt-link>
               </li>
               <li>
-                <a href="#">
+                <!-- This <a> tag will probably be a nuxt-link once we get the account system going. -->
+                <a href="#" class="text-xl">
                   {{ $t('header.logout') }}
                 </a>
               </li>
@@ -76,8 +77,8 @@ export default {
   @apply bg-local bg-top bg-cover bg-no-repeat bg-white;
 }
 #userImg {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;

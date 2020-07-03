@@ -6,7 +6,7 @@
           v-model="search"
           type="text"
           class="search-input"
-          placeholder="Search..."
+          :placeholder="$t('app.search')+'...'"
           @keyup="filter"
         />
       </div>

@@ -1,4 +1,5 @@
 <template>
+  <!-- This page has no french trasnlation since we do not know the dropdowns official values. -->
   <div class="px-10 py-5 xl:px-64">
     <div class="sm:flex sm:w-full">
       <div class="mx-2 sm:w-3/4">
@@ -11,13 +12,12 @@
         <input
           id="pdfButton"
           type="button"
-          value="Download PDF"
+          :value="$t('footer.symbol')"
           class="md:float-right"
         />
       </div>
     </div>
     <div>
-      <!-- This form might be a component -->
       <form class="sm:flex">
         <AppSelect
           modelname="hello"

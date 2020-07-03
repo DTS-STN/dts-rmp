@@ -8,7 +8,7 @@
         :style="{ color: txtColorAdd, 'background-color': bgColorAdd, 'box-shadow': boxShadowAdd }"
         @click.native="colorChange(true)"
       >
-        Search contacts & engagements
+        {{ $t('NavBtn.SearchConEn') }}
       </nuxt-link>
       <nuxt-link
         :to="localePath('/add/engagement')"
@@ -17,7 +17,7 @@
         :style="{ color: txtColorSearch, 'background-color': bgColorSearch, 'box-shadow': boxShadowSearch }"
         @click.native="colorChange(false)"
       >
-        Add contacts & engagements
+        {{ $t('NavBtn.AddConEn') }}
       </nuxt-link>
     </div>
   </div>
