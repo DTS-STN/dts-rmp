@@ -47,20 +47,7 @@ export default {
       isSelected: true
     }
   },
-  async created() {
-    const config = {
-      headers: {
-        Accept: 'application/json'
-      }
-    }
-    try {
-      const res = await this.$axios.get('/api/engagement/engagements', config)
-      this.engagements = res.data
-      this.filteredEngagements = res.data
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err)
-    }
+  created() {
     if (this.$route.path.includes('engagement')) {
       this.txtColorCon = 'black'
       this.bgColorCon = 'white'
