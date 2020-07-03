@@ -1,6 +1,16 @@
 <template>
-  <AppNavSearching @filterResults="filter" />
+  <div class="main pt-1">
+    <div>
+      <h1 class="title">
+        {{ $t('app.dts') }}
+      </h1>
+      <h2 class="subtitle">
+        Contact
+      </h2>
+    </div>
+    <AppNavSearching @filterResults="filter" />
   <!-- Loop through contacts here. look at 'search/engagement' for guidance -->
+  </div>
 </template>
 
 <script>

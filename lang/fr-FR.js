@@ -5,7 +5,7 @@ export default {
   welcome: 'preuve de concept du portail de gestion des relations!',
   getstarted: 'Commencer',
   form: {
-    test: 'test'
+    required: 'Champs Obligatoires'
   },
 
   // header
@@ -35,7 +35,9 @@ export default {
   // app
   app: {
     dts: 'dts-rmp-French',
-    welcome: 'relationship management portal proof of concept!'
+    welcome: 'relationship management portal proof of concept!',
+    search: 'Recherche',
+    add: 'Ajouter'
   },
 
   // error pages
