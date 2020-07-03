@@ -4,10 +4,10 @@
       {{ contactName + ', ' + department }}
     </div>
     <div>
-      {{ contactEmail }}
+      {{ lastEngTitle }}
     </div>
     <div>
-      {{ lastEngTitle }}
+      {{ contactEmail }}
     </div>
     <div>
       {{ engagementDate + ', ' + numParticipants + ' other participants' }}
@@ -22,7 +22,7 @@ export default {
     department: { type: String, default: '' },
     contactEmail: { type: String, default: '' },
     lastEngTitle: { type: String, default: '' },
-    engagementDate: { type: new Date(), default: '' }, // data type should be Date
+    engagementDate: { type: Date, default: new Date() },
     numParticipants: { type: Number, default: 0 }
   }
 }

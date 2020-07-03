@@ -14,23 +14,15 @@
         {{ $t('engSelect.name') }}
       </label>
       <div class="contact-1">
-        <!--
-        <app-select
-          :options="contacts"
-          @change="isSelected=true"
-        />
-        -->
-        <form-select :options="contacts" @change="isSelected=true" />
+        <form-select @change="showContact()">
+          <option v-for="contact in contacts" :key="contact">
+            {{ contact.keyContactName }}
+          </option>
+        </form-select>
       </div>
       <div v-if="moreContacts" class="contact-2">
         <!--
-        <h3 class="font-bold text-lg">
-          {{ $t ('engSelect.contact2') }}
-        </h3>
-        <app-select
-          :options="contacts"
-          @change="isSelected2=true"
-        />
+          add more contact dropdown
         -->
         <div />
         <div>
@@ -52,7 +44,7 @@
         </div>
       </div>
     </form>
-    <div v-if="isSelected === true" class="show-contact">
+    <div class="show-contact">
       <div>
         <show-contacts
           :contact-name="contactName"
@@ -71,15 +63,7 @@
     </div>
     <!--
     <div v-if="isSelected2" class="show-contact2">
-      <show-contacts
-        :contact-name="contactName"
-        :department="department"
-        :contact-email="contactEmail"
-        :last-eng-title="lastEngTitle"
-        :engagement-date="engagementDate"
-        :num-participants="numParticipants"
-        :is-selected="isSelected2"
-      />
+      display contact info here
       <button @click="isSelected2=false">
         {{ $t ('engSelect.remove') }}
       </button>
@@ -89,12 +73,10 @@
 </template>
 
 <script>
-// import AppSelect from '../app/AppSelect'
 import formSelect from './EngFormSelect'
 import showContacts from './EngShowContacts'
 export default {
   components: {
-    // AppSelect,
     formSelect,
     showContacts
   },
@@ -104,7 +86,7 @@ export default {
       department: 'Government of Canada',
       contactEmail: 'email@email.com',
       lastEngTitle: 'last engagement title',
-      engagementDate: '01/05/2020',
+      engagementDate: new Date(),
       numParticipants: 0,
       contacts: [
         'Start typing and select one',
@@ -125,6 +107,17 @@ export default {
       // eslint-disable-next-line no-console
       console.log('error : ', e.response)
       this.notification('error', e.response.data.message)
+    }
+  },
+  methods: {
+    showContact() {
+      let i
+      for (i = 0; i < this.contacts.length; i++) {
+        this.contactName = i.keyContactName
+        this.department = i.department
+        this.contactEmail = i.keyContactEmail
+      }
+      this.isSelected = true
     }
   }
 }

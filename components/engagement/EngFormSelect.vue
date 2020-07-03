@@ -2,9 +2,7 @@
   <div class="contact-menu">
     <div class="w-5/12 margins">
       <select class="formSelect">
-        <option v-for="option in options" :key="option">
-          {{ option }}
-        </option>
+        <slot />
       </select>
     </div>
   </div>
@@ -12,12 +10,14 @@
 
 <script>
 export default {
+  /*
   props: {
     options: {
       type: Array,
       required: true
     }
   }
+  */
 }
 </script>
 
