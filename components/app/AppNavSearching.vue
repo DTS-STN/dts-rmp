@@ -52,13 +52,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Eng from '@/components/engagement/EngListItem'
 import AppFilterForm from '@/components/app/AppFilterForm'
+
 export default {
+  name: 'AppNavSearching',
+
   components: {
     AppFilterForm,
     Eng
   },
+
+  async fetch() {
+    try {
+      await this.$store.dispatch('engagements/fetchEngagements')
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error fetching Engagements', e)
+    }
+  },
+
   data() {
     return {
       txtColorCon: '',
@@ -66,27 +80,18 @@ export default {
       txtColorEng: 'white',
       bgColorEng: '#2572b4',
       isSelected: true,
-      engagements: [
-      ],
-      filteredEngagements: [
-      ]
+      filteredEngagements: []
     }
   },
-  async created() {
-    const config = {
-      headers: {
-        Accept: 'application/json'
-      }
-    }
-    try {
-      const res = await this.$axios.get('/api/engagement/engagements', config)
-      this.engagements = res.data
-      this.filteredEngagements = res.data
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err)
-    }
+
+  computed: mapState({
+    engagements: state => state.engagements.engagements
+  }),
+
+  created() {
+    this.filteredEngagements = this.engagements
   },
+
   methods: {
     colorChange(select) {
       if (select === true) {
@@ -103,11 +108,14 @@ export default {
         this.isSelected = true
       }
     },
+
     filter(input) {
       const searchtext = input.toLowerCase()
+
       const results = this.engagements.filter(engagement =>
         engagement.type.toLowerCase().includes(searchtext)
       )
+
       this.filteredEngagements = results
     }
   }
