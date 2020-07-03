@@ -7,7 +7,7 @@ import Contact from '../models/contact'
 const app = Router()
 app.use(json()) // not required here
 
-// @route   GET api/contacts
+// @route   GET api/contact/contacts
 // @desc    Gets all contacts
 // @access  Public
 
@@ -28,7 +28,7 @@ app.get('/contacts', async (req, res) => {
   }
 })
 
-// @route   GET api/contact/id
+// @route   GET api/contact/contact/id
 // @desc    Gets/find a contact by id
 // @access  Public
 
@@ -49,7 +49,7 @@ app.get('/contact', async (req, res) => {
   }
 })
 
-// @route   POST api/contact/add
+// @route   POST api/contact/contact/addContact
 // @desc    Post creates a new contact
 // @access  Public
 

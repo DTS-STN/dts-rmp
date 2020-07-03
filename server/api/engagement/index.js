@@ -5,7 +5,8 @@ import consola from 'consola'
 import Engagement from '../models/engagement'
 const app = Router()
 app.use(json())
-// @route   GET api/engagement to do
+
+// @route   GET api/engagement/engagemnts to do
 // @desc    Gets all engagement  to do
 // @access  Public to do
 app.get('/engagements', async(req, res) => {
@@ -22,6 +23,27 @@ app.get('/engagements', async(req, res) => {
     consola.error(e.message)
   }
 })
+
+// @route   GET api/engagement/engagement/id
+// @desc    Gets/find an engagement by id
+// @access  Public
+
+app.get('/engagement', async(req, res) => {
+  try {
+    const engagement = await Engagement.findById(req.query.id)
+
+    if (!engagement) {
+      consola.error('No engagement exist')
+      throw new Error('No engagement exist')
+    }
+    // implicit else
+    res.json(engagement)
+  } catch (e) {
+    res.status(400)
+    consola.error(e.message)
+  }
+})
+
 // @route   POST api/engagement/add
 // @desc    Post creates a new engagement
 // @access  Public

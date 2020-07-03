@@ -4,13 +4,16 @@
       <h2 class="searchHeader font-display">
         {{ $t('app.search') }}
       </h2>
+
       <div>
         <p class="orange requireFields t-2 font-body">
           {{ $t('form.required') }}
         </p>
       </div>
     </div>
+
     <AppFilterForm @filter="filterInformation" />
+
     <div class="inline-flex pt-6">
       <nuxt-link
         class="left"
@@ -76,7 +79,6 @@ export default {
         this.isSelected = true
       }
     },
-
     filterInformation(input) {
       this.$emit('filterResults', input)
     }

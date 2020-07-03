@@ -8,7 +8,9 @@
         Engagement
       </h2>
     </div>
+
     <AppNavSearching @filterResults="filter" />
+
     <Eng
       v-for="eng in filteredEngagements"
       :id="eng._id"
@@ -24,40 +26,59 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Eng from '@/components/engagement/EngListItem'
+
 export default {
   components: {
     Eng
   },
+
+  async fetch() {
+    try {
+      await this.$store.dispatch('engagements/fetchEngagements')
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error fetching Engagements', e)
+    }
+  },
+
   data() {
     return {
-      engagements: [
-      ],
-      filteredEngagements: [
-      ]
+      filteredEngagements: []
     }
   },
-  async created() {
-    const config = {
-      headers: {
-        Accept: 'application/json'
-      }
-    }
-    try {
-      const res = await this.$axios.get('/api/engagement/engagements', config)
-      this.engagements = res.data
-      this.filteredEngagements = res.data
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err)
-    }
+
+  computed: mapState({
+    engagements: state => state.engagements.engagements
+  }),
+
+  beforeMount() {
+    this.filteredEngagements = this.engagements
   },
+
   methods: {
+
     filter(input) {
-      const searchtext = input.toLowerCase()
-      const results = this.engagements.filter(engagement =>
-        engagement.type.toLowerCase().includes(searchtext)
-      )
+      const searchText = input.toLowerCase()
+
+      const results = this.engagements.filter((engagement) => {
+        const values = Object.values(engagement)
+        let flag = false
+        values.forEach((val) => {
+          if (typeof val !== 'string') {
+            return
+          }
+          if (val.toLowerCase().includes(searchText)) {
+            flag = true
+          }
+        })
+        if (flag === true) {
+          return engagement
+        }
+      })
+
       this.filteredEngagements = results
     }
   }
@@ -66,11 +87,6 @@ export default {
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
 .main {
   min-height: 100vh;
 }
