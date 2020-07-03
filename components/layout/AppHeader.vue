@@ -3,7 +3,7 @@
     <div class="sm:flex justify-between p-4">
       <div id="canadaImg" class="w-64 lg:w-1/4" data-cy="canada-link">
         <div v-if="this.$i18n.locale === 'en'">
-          <a :alt="$t('header.linkAlt')" :href="$t('header.link')">
+          <a :alt="$t('header.linkAlt')" :href="$t('header.link')" target="_blank">
             <img
               :alt="$t('header.logoAlt')"
               src="@/assets/images/canada_header.svg"
@@ -11,7 +11,7 @@
           </a>
         </div>
         <div v-else>
-          <a :alt="$t('header.linkAlt')" :href="$t('header.link')">
+          <a :alt="$t('header.linkAlt')" :href="$t('header.link')" target="_blank">
             <img
               :alt="$t('header.logoAlt')"
               src="@/assets/images/canadaFr.svg"
@@ -23,7 +23,7 @@
     </div>
     <div id="blue-background" class="relative">
       <div class="flex justify-between absolute bottom-0 w-full px-5 py-3">
-        <nuxt-link to="/">
+        <nuxt-link :to="localePath('/')">
           <img
             data-cy="home-button"
             src="@/assets/images/Home.svg"
@@ -53,6 +53,7 @@
         </div>
       </div>
     </div>
+    <!-- buttons go here -->
   </div>
 </template>
 

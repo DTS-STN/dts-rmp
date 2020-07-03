@@ -1,13 +1,13 @@
 <template>
   <div>
-    <form @submit.prevent="filterEngagements">
+    <form @submit.prevent="filter">
       <div class="flex flex-wrap justify-start">
         <input
           v-model="search"
           type="text"
           class="search-input"
           placeholder="Search..."
-          @keyup="filterEngagements"
+          @keyup="filter"
         />
       </div>
     </form>
@@ -22,8 +22,8 @@ export default {
     }
   },
   methods: {
-    filterEngagements() {
-      this.$emit('FilterEngagements', this.search)
+    filter() {
+      this.$emit('filter', this.search)
     }
   }
 }

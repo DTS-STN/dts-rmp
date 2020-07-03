@@ -1,7 +1,7 @@
 <template>
   <div class="leading-10 bg-white">
     <div class="container-links">
-      <nav class="py-8 xl:flex xl:mx-10">
+      <nav class="py-8 xl:flex xl:mx-10 font-body">
         <ul
           id="fLinks"
           class="md:grid md:grid-cols-2 xl:flex xl:justify-between xl:mx-auto"

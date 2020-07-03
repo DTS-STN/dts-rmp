@@ -33,6 +33,7 @@ jobs:
         env:
           VUE_APP_CONNECTION_STRING: ${{ secrets.VUE_APP_CONNECTION_STRING }}
           VUE_APP_RMP_DB_PASSWORD: ${{ secrets.VUE_APP_RMP_DB_PASSWORD }}
+          baseURL: http://localhost:3000/
         with:
           browser: chrome
           start: npm run start

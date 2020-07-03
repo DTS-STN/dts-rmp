@@ -2,6 +2,10 @@
 module.exports = {
   purge: ['./**/*.html', './**/*.vue', './**/*.jsx'],
   theme: {
+    fontFamily: {
+      display: ['Lato', 'sans-serif'],
+      body: ['Noto', 'sans-serif']
+    },
     extend: {
       colors: {
         'rmp-dk-blue': '#134164',
