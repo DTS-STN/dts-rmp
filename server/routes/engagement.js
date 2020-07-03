@@ -1,12 +1,11 @@
-import express from 'express'
+import { Router } from 'express'
 import consola from 'consola'
 import Engagement from '../models/engagement'
-const app = express()
-// router.use(json())
+const router = Router()
 // @route   GET api/engagement to do
 // @desc    Gets all engagement  to do
 // @access  Public to do
-app.get('/engagements', async(req, res) => {
+router.get('/engagements', async(req, res) => {
   try {
     const engagements = await Engagement.find()
     if (!engagements) {
@@ -47,4 +46,4 @@ app.get('/engagements', async(req, res) => {
 //   }
 // })
 
-export default app
+export default router

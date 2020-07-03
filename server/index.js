@@ -1,12 +1,13 @@
-import engagement from './api/engagement/index.js'
-import contact from './api/contact/index.js'
-require('dotenv').config()
+import engagement from './routes/engagement.js'
+import contact from './routes/contact.js'
+import user from './routes/user.js'
+import auth from './routes/auth.js'
 const mongoose = require('mongoose')
 const express = require('express')
 const consola = require('consola')
 const morgan = require('morgan')
 
-// const engagement = require('./api/engagement/index.js')
+require('dotenv').config()
 
 const app = express()
 // HTTP Request logging
@@ -44,5 +45,7 @@ app.get('/helloworld', (req, res) => {
 
 app.use('/engagement', engagement)
 app.use('/contact', contact)
+app.use('/user', user)
+app.use('/auth', auth)
 
 export default app

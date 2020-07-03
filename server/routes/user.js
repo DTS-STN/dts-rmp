@@ -1,17 +1,16 @@
-import { Router, json } from 'express'
+import { Router } from 'express'
 import consola from 'consola'
 
 // User Model
 import User from '../models/user'
 
-const app = Router()
-app.use(json()) // not required here
+const router = Router()
 
 // @route   GET api/users
 // @desc    Gets all users
 // @access  Public
 
-app.get('/users', async(req, res) => {
+router.get('/users', async(req, res) => {
   try {
     const users = await User.find()
 
@@ -27,4 +26,4 @@ app.get('/users', async(req, res) => {
   }
 })
 
-export default app
+export default router
