@@ -5,7 +5,7 @@ export default {
   welcome: 'relationship management portal proof of concept!',
   getstarted: 'Get Started',
   form: {
-    test: 'test'
+    required: 'Required Fields'
   },
 
   // header
@@ -35,7 +35,9 @@ export default {
   // app
   app: {
     dts: 'dts-rmp',
-    welcome: 'relationship management portal proof of concept!'
+    welcome: 'relationship management portal proof of concept!',
+    search: 'Search',
+    add: 'Add'
   },
 
   // error pages

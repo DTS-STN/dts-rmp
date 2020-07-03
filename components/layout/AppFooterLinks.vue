@@ -7,32 +7,32 @@
           class="md:grid md:grid-cols-2 xl:flex xl:justify-between xl:mx-auto"
         >
           <li>
-            <a href="https://www.canada.ca/en/social.html">
+            <a href="https://www.canada.ca/en/social.html" target="_blank">
               {{ $t('footer.social') }}
             </a>
           </li>
           <li>
-            <a href="https://www.canada.ca/en/mobile.html">
+            <a href="https://www.canada.ca/en/mobile.html" target="_blank">
               {{ $t('footer.mobile') }}
             </a>
           </li>
           <li>
-            <a href="https://www.canada.ca/en/government/about.html">
+            <a href="https://www.canada.ca/en/government/about.html" target="_blank">
               {{ $t('footer.about') }}
             </a>
           </li>
           <li>
-            <a href="https://www.canada.ca/en/transparency/terms.html">
+            <a href="https://www.canada.ca/en/transparency/terms.html" target="_blank">
               {{ $t('footer.terms') }}
             </a>
           </li>
           <li>
-            <a href="https://www.canada.ca/en/transparency/privacy.html">
+            <a href="https://www.canada.ca/en/transparency/privacy.html" target="_blank">
               {{ $t('footer.privacy') }}
             </a>
           </li>
           <li>
-            <a href="https://home.dts-stn.com/">
+            <a href="https://home.dts-stn.com/" target="_blank">
               {{ $t('footer.dts') }}
             </a>
           </li>
