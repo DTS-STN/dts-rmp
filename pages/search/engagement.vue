@@ -56,25 +56,35 @@ export default {
 
   created() {
     this.filteredEngagements = this.engagements
+    // eslint-disable-next-line no-console
+    console.log(' created = ', this.filteredEngagements)
   },
 
-  // async created() {
-  //   const config = {
-  //     headers: {
-  //       Accept: 'application/json'
-  //     }
-  //   }
-  //   try {
-  //     const res = await this.$axios.get('/api/engagement/engagements', config)
-  //     this.engagements = res.data
-  //     this.filteredEngagements = res.data
-  //   } catch (err) {
-  //     // eslint-disable-next-line no-console
-  //     console.log(err)
-  //   }
-  // },
   methods: {
+
     filter(input) {
+      const searchText = input.toLowerCase()
+
+      const results = this.engagements.filter((engagement) => {
+        const values = Object.values(engagement)
+        let flag = false
+        values.forEach((val) => {
+          if (typeof val !== 'string') {
+            return
+          }
+          if (val.toLowerCase().includes(searchText)) {
+            flag = true
+          }
+        })
+        if (flag === true) {
+          return engagement
+        }
+      })
+
+      this.filteredEngagements = results
+    },
+
+    filterOLDmethod(input) {
       const searchtext = input.toLowerCase()
       const results = this.engagements.filter(engagement =>
         engagement.type.toLowerCase().includes(searchtext)
