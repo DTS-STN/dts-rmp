@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppButton from '@/components/app/AppButton.vue'
 import ConViewFields from '@/components/contact/ConViewFields.vue'
 import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
@@ -100,21 +101,16 @@ export default {
 
   async fetch() {
     try {
-      const contact = await this.$axios.get(
-        '/api/contact/contact?id=' + this.$route.params.id
-      )
-      this.contactInfo = contact.data
+      await this.$store.dispatch('contacts/fetchContact', this.$route.params.id)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('Error: ', e.response)
     }
   },
 
-  data() {
-    return {
-      contactInfo: []
-    }
-  }
+  computed: mapState({
+    contactInfo: state => state.contacts.contact
+  })
 }
 </script>
 
