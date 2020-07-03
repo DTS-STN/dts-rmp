@@ -85,7 +85,8 @@ export default {
   },
 
   computed: mapState({
-    engagements: state => state.engagements.engagements
+    // eslint-disable-next-line arrow-parens
+    engagements: (state) => state.engagements.engagements
   }),
 
   created() {
@@ -110,11 +111,33 @@ export default {
     },
 
     filter(input) {
+      const searchText = input.toLowerCase()
+
+      const results = this.engagements.filter((engagement) => {
+        const values = Object.values(engagement)
+        let flag = false
+        values.forEach((val) => {
+          if (typeof val !== 'string') {
+            return
+          }
+          if (val.toLowerCase().includes(searchText)) {
+            flag = true
+          }
+        })
+        if (flag === true) {
+          return engagement
+        }
+      })
+
+      this.filteredEngagements = results
+    },
+
+    filterOLD(input) {
       const searchtext = input.toLowerCase()
 
-      const results = this.engagements.filter(engagement =>
+      const results = this.engagements.filter((engagement) => {
         engagement.type.toLowerCase().includes(searchtext)
-      )
+      })
 
       this.filteredEngagements = results
     }
