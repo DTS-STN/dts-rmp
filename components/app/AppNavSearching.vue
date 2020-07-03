@@ -1,12 +1,12 @@
 <template>
   <div class="px-4">
-    <div class="mt-24">
+    <div>
       <h2 class="searchHeader font-display">
-        Search
+        {{ $t('app.search') }}
       </h2>
       <div>
         <p class="orange requireFields t-2 font-body">
-          Required fields
+          {{ $t('form.required') }}
         </p>
       </div>
     </div>
