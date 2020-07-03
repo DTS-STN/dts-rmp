@@ -1,9 +1,9 @@
+import express from 'express'
 import engagement from './routes/engagement.js'
 import contact from './routes/contact.js'
 import user from './routes/user.js'
 import auth from './routes/auth.js'
 const mongoose = require('mongoose')
-const express = require('express')
 const consola = require('consola')
 const morgan = require('morgan')
 
@@ -18,6 +18,7 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
 })
+app.use(express.json())
 
 const MONGO_CONNECTION_STRING = process.env.VUE_APP_CONNECTION_STRING
   ? process.env.VUE_APP_CONNECTION_STRING.replace(

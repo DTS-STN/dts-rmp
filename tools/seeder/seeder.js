@@ -1,6 +1,6 @@
-import Contacts from '../../server/api/models/contact'
-import Engagements from '../../server/api/models/engagement'
-import Tags from '../../server/api/models/tags'
+import Contacts from '../../api/models/contact'
+import Engagements from '../../api/models/engagement'
+import Tags from '../../api/models/tags'
 import * as db from '../dbHelper'
 import * as Randomizers from './randomizers'
 

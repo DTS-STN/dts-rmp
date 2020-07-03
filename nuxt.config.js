@@ -115,7 +115,7 @@ module.exports = {
   },
 
   serverMiddleware: [
-    { path: '/api', handler: '~/server/index' }
+    { path: '/api', handler: '~/api/index' }
     // { path: '/api', handler: '~/server/api/routes/index' },
     // { path: '/api/auth', handler: '~/server/api/auth/index' },
     // { path: '/api/user', handler: '~/server/api/user/index' },

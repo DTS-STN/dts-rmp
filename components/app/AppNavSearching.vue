@@ -79,7 +79,7 @@ export default {
       }
     }
     try {
-      const res = await this.$axios.get('/api/engagement/engagements', config)
+      const res = await this.$axios.get('http://localhost:3000/api/engagement/engagements', config)
       this.engagements = res.data
       this.filteredEngagements = res.data
     } catch (err) {
