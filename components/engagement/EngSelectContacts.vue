@@ -20,7 +20,7 @@
           </option>
         </form-select>
       </div>
-      <div class="contact-2">
+      <div v-if="moreContacts === true" class="contact-2">
         <!--
           add more contact dropdown
         -->
@@ -50,9 +50,10 @@
           :contact-name="contactName"
           :department="department"
           :contact-email="contactEmail"
-          :last-eng-title="lastEngTitle"
-          :engagement-date="engagementDate"
-          :num-participants="numParticipants"
+          :eng-type="engagementType"
+          :last-eng-id="lastEngId"
+          :eng-date="engagementDate"
+          :participants="participants"
         />
       </div>
       <div>
@@ -82,13 +83,15 @@ export default {
   },
   data() {
     return {
-      contactName: 'Contact Name',
-      department: 'Department',
-      contactEmail: 'example@example.com',
-      lastEngTitle: 'Engagement Title',
+      contactName: '',
+      department: '',
+      contactEmail: '',
+      lastEngId: '',
+      engagementType: '',
       engagementDate: new Date(),
-      numParticipants: 0,
+      participants: 0,
       contacts: [],
+      engagements: [],
       moreContacts: false,
       isSelected: false
     }
@@ -96,8 +99,10 @@ export default {
   // eslint-disable-next-line space-before-function-paren
   async created() {
     try {
-      const res = await this.$axios.get('/api/contact/contacts')
-      this.contacts = res.data
+      const resContact = await this.$axios.get('/api/contact/contacts')
+      const resEng = await this.$axios.get('/api/engagement/engagements')
+      this.contacts = resContact.data
+      this.engagements = resEng.data
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error : ', e.response)
@@ -107,11 +112,29 @@ export default {
   methods: {
     showContact(event) {
       this.contactName = event.target.value
-      let i
+      let i, j
+      // loop through contacts, assign response data to variables
       for (i = 0; i < this.contacts.length; i++) {
         if (this.contactName === this.contacts[i].keyContactName) {
           this.department = this.contacts[i].department
           this.contactEmail = this.contacts[i].keyContactEmail
+          // search for the enagement list within the contact, return the engagement id (last index)
+          for (j = 0; j < this.contacts[i].engagements.length; j++) {
+            const last = (this.contacts[i].engagements.length - 1)
+            this.lastEngId = this.contacts[i].engagements[last]
+          }
+        }
+      }
+      // search for matching engagements using returned last engagement id from contact
+      for (i = 0; i < this.engagements.length; i++) {
+        if (this.lastEngId === this.engagements[i]._id) {
+          if (this.engagements[i].type === null) {
+            this.engagementType = ''
+          } else {
+            this.engagementType = this.engagements[i].type
+          }
+          this.engagementDate = this.engagements[i].date
+          this.participants = (this.engagements[i].numParticipants - 1)
         }
       }
       this.isSelected = true

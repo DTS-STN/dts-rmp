@@ -5,16 +5,16 @@
         {{ contactName }}
       </span>, {{ department }}
     </div>
-    <div>
+    <div v-if="engType != ''">
       <span>
-        {{ lastEngTitle }}
+        {{ engType }}
       </span>
     </div>
     <div>
       {{ contactEmail }}
     </div>
-    <div>
-      {{ engagementDate + ', ' + numParticipants + ' other participants' }}
+    <div v-if="engType != ''">
+      {{ engDate + ', ' + participants + ' other participants' }}
     </div>
   </div>
 </template>
@@ -25,9 +25,10 @@ export default {
     contactName: { type: String, default: '' },
     department: { type: String, default: '' },
     contactEmail: { type: String, default: '' },
-    lastEngTitle: { type: String, default: '' },
-    engagementDate: { type: Date, default: new Date() },
-    numParticipants: { type: Number, default: 0 }
+    engType: { type: String, default: '' },
+    lastEngId: { type: String, default: '' },
+    engDate: { type: Date, default: new Date() },
+    participants: { type: Number, default: 0 }
   }
 }
 </script>
