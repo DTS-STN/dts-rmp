@@ -2,11 +2,11 @@
   <div id="navContainer">
     <div class="mt-24">
       <h2 class="newAdd font-display">
-        Add new
+        {{ $t('app.add') }}
       </h2>
       <div>
         <p class="orange requireFields t-2 font-body">
-          Required field
+          {{ $t('form.required') }}
         </p>
       </div>
     </div>
