@@ -54,10 +54,8 @@ export default {
     engagements: state => state.engagements.engagements
   }),
 
-  created() {
+  beforeMount() {
     this.filteredEngagements = this.engagements
-    // eslint-disable-next-line no-console
-    console.log(' created = ', this.filteredEngagements)
   },
 
   methods: {
@@ -81,14 +79,6 @@ export default {
         }
       })
 
-      this.filteredEngagements = results
-    },
-
-    filterOLDmethod(input) {
-      const searchtext = input.toLowerCase()
-      const results = this.engagements.filter(engagement =>
-        engagement.type.toLowerCase().includes(searchtext)
-      )
       this.filteredEngagements = results
     }
   }
