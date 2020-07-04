@@ -14,7 +14,7 @@
       {{ contactEmail }}
     </div>
     <div v-if="engType != ''">
-      {{ engDate + ', ' + participants + ' '}} {{ $t('engagement.otherParticipants') }}
+      {{ engDate + ', ' + participants + ' ' }} {{ $t('engagement.otherParticipants') }}
     </div>
   </div>
 </template>
