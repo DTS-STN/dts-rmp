@@ -52,6 +52,7 @@ export default {
     fetcherror: 'Error while getting information',
     // titles
     contact: 'Contact Information',
+    addContact: 'Contact',
     organization: 'Organisation',
     information: 'information',
     engagements: 'Engagements',
@@ -114,6 +115,7 @@ export default {
     type: 'Engagement type',
     date: 'Date',
     participants: 'Number of participants',
+    otherPaticipants: 'other participants',
     description: 'Description maximum 1000 characters. Additional characters will not be saved.',
     policy: 'Policy / program',
     tags: 'Tags',

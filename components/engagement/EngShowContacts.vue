@@ -14,7 +14,7 @@
       {{ contactEmail }}
     </div>
     <div v-if="engType != ''">
-      {{ engDate + ', ' + participants + ' other participants' }}
+      {{ engDate + ', ' + participants }} {{ $t('engagement.otherParticipants') }}
     </div>
   </div>
 </template>
@@ -26,7 +26,6 @@ export default {
     department: { type: String, default: '' },
     contactEmail: { type: String, default: '' },
     engType: { type: String, default: '' },
-    lastEngId: { type: String, default: '' },
     engDate: { type: Date, default: new Date() },
     participants: { type: Number, default: 0 }
   }

@@ -53,6 +53,7 @@ export default {
     fetcherror: 'FR-Error while getting information',
     // titles
     contact: 'FR-Contact Information',
+    addContact: 'Contact',
     organization: 'FR-Organisation',
     information: 'FR-information',
     engagements: 'FR-Engagements',
@@ -114,6 +115,7 @@ export default {
     type: 'Type d\'engagement',
     date: 'Date',
     participants: 'Nombre de participants\'',
+    otherPaticipants: 'autres participants',
     description: 'Description 1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.',
     policy: 'Politique / programme',
     tags: 'Mots clés',
