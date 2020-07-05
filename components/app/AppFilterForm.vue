@@ -31,6 +31,7 @@ export default {
 
 <style scoped>
 .search-input {
+    min-width: 325px;
     @apply border border-blue-400 rounded p-3;
 }
 .search-input:hover {

@@ -6,7 +6,7 @@
       </h2>
 
       <div>
-        <p class="orange requireFields t-2 font-body">
+        <p class="orange requireFields t-2 font-body text-sm">
           {{ $t('form.required') }}
         </p>
       </div>

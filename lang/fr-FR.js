@@ -130,7 +130,7 @@ export default {
     typing: 'Commencez par taper',
     // view contact card
     engagement: 'FR-Engagement :',
-    keycontact: 'FR-Key Contact :',
+    contacts: 'FR-Contact(s) :',
     numpeople: 'FR-Number of participants :'
   },
   // EngSelectContact component
