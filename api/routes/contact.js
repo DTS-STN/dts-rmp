@@ -1,18 +1,15 @@
-import { Router, json } from 'express'
+import { Router } from 'express'
 import consola from 'consola'
 
 // Contact Model
 import Contact from '../models/contact'
 
-const app = Router()
-app.use(json()) // not required here
+const router = Router()
 
 // @route   GET api/contact/contacts
 // @desc    Gets all contacts
 // @access  Public
-
-// eslint-disable-next-line space-before-function-paren
-app.get('/contacts', async (req, res) => {
+router.get('/contacts', async(req, res) => {
   try {
     const contacts = await Contact.find()
 
@@ -33,7 +30,7 @@ app.get('/contacts', async (req, res) => {
 // @access  Public
 
 // eslint-disable-next-line space-before-function-paren
-app.get('/contact', async (req, res) => {
+router.get('/contact', async (req, res) => {
   try {
     const contact = await Contact.findById(req.query.id)
 
@@ -52,9 +49,7 @@ app.get('/contact', async (req, res) => {
 // @route   POST api/contact/contact/addContact
 // @desc    Post creates a new contact
 // @access  Public
-
-// eslint-disable-next-line space-before-function-paren
-app.post('/addContact', async (req, res) => {
+router.post('/addContact', async(req, res) => {
   let errMessage = ''
 
   try {
@@ -94,4 +89,4 @@ app.post('/addContact', async (req, res) => {
   }
 })
 
-export default app
+export default router
