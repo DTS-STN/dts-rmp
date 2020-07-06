@@ -46,7 +46,7 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
+    ['@nuxtjs/axios', { baseURL: 'http://localhost:3000' }],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Nuxt Authorization module
@@ -115,13 +115,8 @@ module.exports = {
   },
 
   serverMiddleware: [
-    { path: '/api', handler: '~/server/api/routes/index' },
-    { path: '/api/auth', handler: '~/server/api/auth/index' },
-    { path: '/api/user', handler: '~/server/api/user/index' },
-    { path: '/api/contact', handler: '~/server/api/contact/index' },
-    { path: '/api/engagement', handler: '~/server/api/engagement/index' }
+    { path: '/api', handler: '~/api/index' }
   ],
-
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

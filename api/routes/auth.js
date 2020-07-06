@@ -4,14 +4,14 @@ import consola from 'consola'
 // User Model
 // import User from '../models/user'
 
-const app = Router()
-app.use(json())
+const router = Router()
+router.use(json())
 
 // @route   POST api/auth/login
 // @desc    Verifies the user exist and password matches
 // @access  Public
 
-app.post('/login', (req, res) => {
+router.post('/login', (req, res) => {
   let errMessage = ''
 
   try {
@@ -36,7 +36,7 @@ app.post('/login', (req, res) => {
 // @desc    Creates a new user
 // @access  Public
 
-app.post('/register', (req, res) => {
+router.post('/register', (req, res) => {
   let errMessage = ''
 
   try {
@@ -61,7 +61,7 @@ app.post('/register', (req, res) => {
 // @desc    Required by Auth.loginWith
 // @access  Public
 
-app.get('/user', (req, res) => {
+router.get('/user', (req, res) => {
   try {
     req.user = {
       id: '9278220838',
@@ -83,8 +83,8 @@ app.get('/user', (req, res) => {
 // @desc    Logs the user out Required by Auth
 // @access  Public
 
-app.post('/logout', (_req, res) => {
+router.post('/logout', (_req, res) => {
   res.status(200).json({ message: 'OK' })
 })
 
-export default app
+export default router

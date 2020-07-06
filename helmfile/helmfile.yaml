@@ -1,0 +1,66 @@
+repositories:
+    - name: dts
+      url: https://helm.dts-stn.com
+    # helm-git powered repository: You can treat any Git repository as a charts repository
+    - name: dtsrmp
+      url: git+https://{{ requiredEnv "GITHUB_USER" }}:{{ requiredEnv "GITHUB_TOKEN" }}@github.com/DTS-STN/dts-rmp@helm/charts?ref=helmfile
+{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}    
+context: EsDCDTSRG-K8S
+{{ else }}
+context: EsDCDTSDevRG-K8S
+{{ end }}
+   
+environments:
+    benrd: 
+    kylerd:
+    adamrd:
+    marcusrd:
+    ericrd:
+    dev:
+    prod-blue:
+    prod-green: 
+
+releases:
+##### rmp #####
+# rmp app
+  - name: rmp-{{ .Environment.Name }}
+    chart: dtsrmp/dts-rmp
+    version: 0.0.1
+    values:
+        - overrides/frontend/rmp.yaml.gotmpl
+    labels:
+        category: dts
+        app: rmp
+        tier: frontend
+    namespace: rmp-{{ .Environment.Name }}
+    installed: true
+    wait: false
+    
+# rmp Database
+  - name: rmp-db-{{ .Environment.Name }}
+    chart: bitnami/mongodb
+    version: 7.0.0
+    values:
+        - overrides/database/dbvalues.yaml.gotmpl   
+    labels:
+        category: dts
+        app: rmp
+        tier: database
+    namespace: rmp-{{ .Environment.Name }}
+    installed: true
+    wait: false
+
+# RMP Express
+  - name: mongo-admin-{{ .Environment.Name }}
+    chart: cowboysysop/mongo-express
+    version: 1.1.0
+    values:
+    - overrides/mongo-express/mongo-express.yaml.gotmpl   
+    labels:
+        category: dts
+        app: rmp
+        tier: admin
+    namespace: rmp-{{ .Environment.Name }}
+    installed: true
+    wait: false
+

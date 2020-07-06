@@ -5,9 +5,9 @@
   "author": "dts",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "dev": "cross-env NODE_ENV=development nuxt",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "cross-env NODE_ENV=production nuxt start",
     "cypress": "npx cypress open",
     "cypress-cli": "npx cypress run",
     "generate": "nuxt generate",

@@ -21,7 +21,7 @@ export const actions = {
   },
 
   fetchEngagement({ commit }, id) {
-    return this.$axios.get('/api/engagement/engagement?id=' + id)
+    return this.$axios.get(`/api/engagement/engagement?id=${id}`)
       .then((response) => {
         commit('SET_ENGAGEMENT', response.data)
       })
