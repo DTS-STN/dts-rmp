@@ -2,8 +2,8 @@ repositories:
     - name: dts
       url: https://helm.dts-stn.com
     # helm-git powered repository: You can treat any Git repository as a charts repository
-    - name: dtsweb
-      url: git+https://{{ requiredEnv "GITHUB_USER" }}:{{ requiredEnv "GITHUB_TOKEN" }}@github.com/DTS-STN/DTSWeb@helm/charts?ref=master
+    - name: dtsrmp
+      url: git+https://{{ requiredEnv "GITHUB_USER" }}:{{ requiredEnv "GITHUB_TOKEN" }}@github.com/DTS-STN/dts-rmp@helm/charts?ref=helmfile
 {{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}    
 context: EsDCDTSRG-K8S
 {{ else }}
@@ -24,7 +24,7 @@ releases:
 ##### rmp #####
 # rmp app
   - name: rmp-{{ .Environment.Name }}
-    chart: dts/dts-rmp
+    chart: dtsrmp/dts-rmp
     version: 0.0.1
     values:
         - overrides/frontend/rmp.yaml.gotmpl
@@ -58,7 +58,7 @@ releases:
     - overrides/mongo-express/mongo-express.yaml.gotmpl   
     labels:
         category: dts
-        app: express
+        app: rmp
         tier: admin
     namespace: rmp-{{ .Environment.Name }}
     installed: true

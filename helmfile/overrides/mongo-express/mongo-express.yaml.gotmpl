@@ -4,10 +4,10 @@ ingress:
         # kubernetes.io/ingress.class: traefik
         # kubernetes.io/tls-acme: "true"
     hosts:
-        - host: express.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+        - host: rmp-express.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
           paths: 
             - /
-mongodbServer: rmp-db-dev-{{ .Environment.Name }}-mongodb
+mongodbServer: rmp-db-{{ .Environment.Name }}-mongodb
 mongodbEnableAdmin: true
 mongodbAdminUsername: root  
 mongodbAdminPassword: {{ requiredEnv "MONGO_DB_ROOT_PASS" }}
