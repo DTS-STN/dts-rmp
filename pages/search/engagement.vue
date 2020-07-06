@@ -14,8 +14,29 @@
         :date="(eng.date).substring(0, 10)"
         :description="eng.description"
         :number="eng.numParticipants"
+        @modalDisplay="modalDisplay"
       />
     </div>
+    <AppModal v-if="showModal" :id="selectedID" @close="showModal = false">
+      <p class="text-xl">
+        This is placeholder text
+      </p>
+      <br />
+      <br />
+      <p class="text-xl">
+        To show that it is reactive to what we pass in the slot
+      </p>
+      <br />
+      <br />
+      <p class="text-xl">
+        Pass engagement Form here
+      </p>
+      <br />
+      <br />
+      <p class="text-xl">
+        You selected ID: {{ selectedID }}
+      </p>
+    </AppModal>
   </div>
 </template>
 
@@ -23,10 +44,12 @@
 import { mapState } from 'vuex'
 
 import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
+import AppModal from '@/components/app/AppModal.vue'
 
 export default {
   components: {
-    ConShowEngagaments
+    ConShowEngagaments,
+    AppModal
   },
 
   async fetch() {
@@ -40,7 +63,9 @@ export default {
 
   data() {
     return {
-      filteredEngagements: []
+      filteredEngagements: [],
+      showModal: false,
+      selectedID: -1
     }
   },
 
@@ -53,6 +78,10 @@ export default {
   },
 
   methods: {
+    modalDisplay(id) {
+      this.showModal = true
+      this.selectedID = id
+    },
 
     filter(input) {
       const searchText = input.toLowerCase()
