@@ -52,9 +52,9 @@ export default {
     AppModal
   },
 
-  async fetch() {
+  async asyncData({ app, params, store }) {
     try {
-      await this.$store.dispatch('engagements/fetchEngagements')
+      await store.dispatch('engagements/fetchEngagements')
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('Error fetching Engagements', e)

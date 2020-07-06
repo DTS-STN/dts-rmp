@@ -12,8 +12,10 @@ const router = Router()
 
 router.get('/contacts', async(req, res) => {
   try {
-    const contacts = await Contact.find()
-
+    const contacts = await Contact.find({}, null, {
+      collation: { locale: 'en', strength: 2 },
+      sort: { keyContactName: 1 }
+    }).populate({ path: 'engagements', options: { sort: { date: -1 } } })
     if (!contacts) {
       consola.error('No contacts exist')
       throw new Error('No contacts exist')
