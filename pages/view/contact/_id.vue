@@ -70,9 +70,11 @@
 
       <div class="flex justify-start mb-4">
         <div class="w-3/12 margins">
-          <AppButton custom_style="btn-cancel" data_cypress="formButton">
-            {{ $t('contact.back') }}
-          </AppButton>
+          <nuxt-link :to="localePath('/search/contact')">
+            <AppButton custom_style="btn-cancel" data_cypress="formButton">
+              {{ $t('contact.back') }}
+            </AppButton>
+          </nuxt-link>
         </div>
         <div class="w-3/12 margins">
           <AppButton custom_style="btn-extra" data_cypress="formButton">
