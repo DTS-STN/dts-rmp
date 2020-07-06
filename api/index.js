@@ -11,7 +11,7 @@ require('dotenv').config()
 
 const app = express()
 // HTTP Request logging
-app.use(morgan('tiny'))
+app.use(morgan('combined'))
 // CORS
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
@@ -39,10 +39,6 @@ mongoose
   .catch((err) => {
     consola.error(new Error(err))
   })
-
-app.get('/helloworld', (req, res) => {
-  res.json('hello world')
-})
 
 app.use('/engagement', engagement)
 app.use('/contact', contact)
