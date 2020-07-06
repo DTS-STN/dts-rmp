@@ -3,24 +3,31 @@
     <div class="flex max-w-full leading-10 bdr bottom pt-6 pb-6" :class="[index == 0 ? 'first': '']">
       <div class="w-6/12 pl-2">
         <div>
-          <span class="orange">
+          <span class="orangeText">
             {{ $t('engagement.engagement') }}
           </span>
-          {{ name }}, {{ date }}
+          {{ type }}, {{ date }}
         </div>
         <div>
-          <!-- eslint-disable-next-line vue/no-template-shadow -->
-          <span v-for="(tag, index) in tags" :key="index" class="tag">
+          <span v-for="(tag) in tags" :key="tag.id" class="tag">
             {{ tag }}
           </span>
         </div>
       </div>
 
-      <div class="w-5/12 bdr left">
+      <div class="w-5/12 bdr leftborder">
         <div>
-          <span class="orange">
-            {{ $t('engagement.keycontact') }}
-          </span> {{ keycontact }}
+          <span class="orangeText">
+            {{ $t('engagement.contacts') }}
+          </span>
+          <ul class="inline-block">
+            <li v-for="contact in just(contacts)" :key="contact.id" class="inline-block ml-2 ">
+              {{ contact.keyContactName }}
+            </li>
+          </ul>
+          <span v-if="moreContacts">
+            ...
+          </span>
         </div>
         <div>
           {{ $t('engagement.numpeople') }} {{ number }}
@@ -28,41 +35,51 @@
       </div>
 
       <div class="w-1/12">
-        <AppButton
-          custom_style="btn-round"
+        <button
+          class="btn-round"
           data_cypress="link"
           @click="goto(id)"
-        >
-          >
-        </AppButton>
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AppButton from '@/components/app/AppButton.vue'
 
 export default {
-
   name: 'ConShowEngagaments',
 
-  components: { AppButton },
-
   props: {
+    id: { type: String, default: '' },
     index: { type: Number, default: 1 },
-    name: { type: String, default: 'Engagement title' },
-    type: { type: String, default: 'Public' },
-    date: { type: String, default: 'yyyy/mm/dd' },
-    tags: { type: Array, default: null },
-    keycontact: { type: String, default: 'some name' },
-    number: { type: String, default: '1' },
-    id: { type: String, default: '5eefd2eb0fdece1daabc2383' }
+    name: { type: String, default: 'Engagement name' },
+    type: { type: String, default: 'Unknown' },
+    date: { type: String, default: 'Unknown' },
+    tags: { type: Array, default: () => [] },
+    contacts: { type: Array, default: () => [] },
+    number: { type: Number, default: -1 }
+  },
+
+  data() {
+    return {
+      moreContacts: false
+    }
   },
 
   methods: {
     goto(id) {
       this.$router.push('/' + this.$i18n.locale + '/view/contact/' + id)
+    },
+
+    just(inputArray) {
+      if (inputArray.length > 3) {
+        this.moreContacts = true
+        return inputArray.slice(0, 3)
+      } else {
+        this.moreContacts = false
+        return inputArray
+      }
     }
   }
 }
@@ -72,7 +89,7 @@ export default {
 .viewcard {
   @apply flex max-w-full leading-10 bdr bottom pt-6 pb-6
 }
-.orange {
+.orangeText {
   font-family: 'Noto Sans';
   font-size: 18px;
   @apply text-rmp-orange text-base font-bold;
@@ -83,21 +100,22 @@ export default {
 .first {
   @apply border-t-2;
 }
-.left {
+.leftborder {
   @apply border-l-2 pl-2;
 }
 .bottom {
   @apply border-b-2;
 }
 .btn-round {
-  margin: 10px 10px 10px 10px;
-  padding: .8rem 1.2rem .8rem 1.2rem;
-  @apply leading-normal rounded-full;
+  background-image: url('../../assets/images/orange-arrow.png');
+  background-size: 58px 56px;
+  height: 58px;
+  width: 56px;
 }
 .tag {
   @apply bg-rmp-dk-orange text-white rounded-full px-4 py-1 ml-2
 }
 @media (max-width: 768px) {
-  .left { @apply hidden; }
+  .leftborder { @apply hidden; }
 }
 </style>

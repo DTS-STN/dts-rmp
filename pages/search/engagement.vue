@@ -1,38 +1,32 @@
 <template>
-  <div class="main pt-1">
-    <div>
-      <h1 class="title">
-        {{ $t('app.dts') }}
-      </h1>
-      <h2 class="subtitle">
-        Engagement
-      </h2>
+  <div class="main pt-1 xl:mx-16">
+    <AppNavSearching class="my-16" @filterResults="filter" />
+
+    <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
+      <ConShowEngagaments
+        v-for="(eng, index) in filteredEngagements"
+        :id="eng._id"
+        :key="index"
+        :index="index"
+        :type="eng.type"
+        :contacts="eng.contacts"
+        :tags="eng.tags"
+        :date="(eng.date).substring(0, 10)"
+        :description="eng.description"
+        :number="eng.numParticipants"
+      />
     </div>
-
-    <AppNavSearching @filterResults="filter" />
-
-    <Eng
-      v-for="eng in filteredEngagements"
-      :id="eng._id"
-      :key="eng._id"
-      :type="eng.type"
-      :contacts="eng.contacts"
-      :tags="eng.tags"
-      :date="eng.date"
-      :description="eng.description"
-      :participants="eng.numParticipants"
-    />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 
-import Eng from '@/components/engagement/EngListItem'
+import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
 
 export default {
   components: {
-    Eng
+    ConShowEngagaments
   },
 
   async fetch() {
@@ -66,6 +60,7 @@ export default {
       const results = this.engagements.filter((engagement) => {
         const values = Object.values(engagement)
         let flag = false
+
         values.forEach((val) => {
           if (typeof val !== 'string') {
             return

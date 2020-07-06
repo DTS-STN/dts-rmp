@@ -130,7 +130,7 @@ export default {
     typing: 'Start by typing',
     // view contact card
     engagement: 'Engagement:',
-    keycontact: 'Key Contact:',
+    contacts: 'Contact(s):',
     numpeople: 'Number of participants:'
   },
   // EngSelectContact component

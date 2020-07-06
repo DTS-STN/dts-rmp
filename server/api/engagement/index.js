@@ -11,7 +11,7 @@ app.use(json())
 // @access  Public to do
 app.get('/engagements', async(req, res) => {
   try {
-    const engagements = await Engagement.find()
+    const engagements = await Engagement.find().populate('contacts')
     if (!engagements) {
       consola.error('No engagements exist')
       throw new Error('No engagements exist')

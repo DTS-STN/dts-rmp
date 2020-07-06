@@ -22,25 +22,19 @@
       </div>
 
       <div class="w-1/12">
-        <AppButton
-          custom_style="btn-round"
+        <button
+          class="btn-round"
           data_cypress="link"
           @click="goto(id)"
-        >
-          >
-        </AppButton>
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AppButton from '@/components/app/AppButton.vue'
-
 export default {
   name: 'ConShowContacts',
-
-  components: { AppButton },
 
   props: {
     index: { type: Number, default: 1 },
@@ -85,9 +79,10 @@ export default {
   @apply border-b-2;
 }
 .btn-round {
-  margin: 10px 10px 10px 10px;
-  padding: 0.8rem 1.2rem 0.8rem 1.2rem;
-  @apply leading-normal rounded-full;
+  background-image: url('../../assets/images/orange-arrow.png');
+  background-size: 58px 56px;
+  height: 58px;
+  width: 56px;
 }
 @media (max-width: 768px) {
   .left {
