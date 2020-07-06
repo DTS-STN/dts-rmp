@@ -113,27 +113,6 @@ export default {
       this.contactName = event.target.value
       this.getContact()
       this.getEngagement()
-      /*
-      // loop through contacts, assign response data to variables
-      for (i = 0; i < this.contacts.length; i++) {
-        if (this.contactName === this.contacts[i].keyContactName) {
-          this.department = this.contacts[i].department
-          this.contactEmail = this.contacts[i].keyContactEmail
-          // search for the enagement list within the contact, return the engagement id (last index)
-          for (j = 0; j < this.contacts[i].engagements.length; j++) {
-            const last = (this.contacts[i].engagements.length - 1)
-            this.lastEngId = this.contacts[i].engagements[last]
-          }
-        }
-      }
-      // search for matching engagements using returned last engagement id from contact
-      for (i = 0; i < this.engagements.length; i++) {
-        if (this.lastEngId === this.engagements[i]._id) {
-          this.engagementType = this.engagements[i].type
-          this.engagementDate = this.engagements[i].date
-          this.participants = (this.engagements[i].numParticipants - 1)
-        }
-      } */
       this.isSelected = true
     },
     getContact() {
