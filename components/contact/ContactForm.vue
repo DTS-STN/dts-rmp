@@ -493,6 +493,7 @@
 </template>
 
 <script>
+import { required, minLength, between } from 'vuelidate/lib/validators'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
@@ -545,6 +546,41 @@ export default {
         branch: '',
         directorate: '',
         provTerritory: ''
+      },
+
+      validations: {
+        type: { required },
+        // Key Contact
+        keyContactName: { required },
+        keyContactTitle: { required },
+        keyContactAddress: { required },
+        keyContactAddress2: { required },
+        keyContactCity: { required },
+        keyContactProvState: { required },
+        keyContactCountry: { required },
+        keyContactPostalCode: { required },
+        keyContactEmail: { required },
+        keyContactPhone: { required },
+        // Organization
+        orgAddress: { required },
+        orgAddress2: { required },
+        orgCity: { required },
+        orgProvState: { required },
+        orgCountry: { required },
+        orgPostalCode: { required },
+        orgWebsite: { required },
+        orgName: { required },
+        orgSector: { required },
+        orgEmail: { required },
+        orgPhone: { required },
+        contributionRefNo: { required },
+        serviceContrNo: { required },
+        onStandingOffer: { required },
+        // Federal & Provincial
+        department: { required },
+        branch: { required },
+        directorate: { required },
+        provTerritory: { required }
       }
     }
   },
