@@ -5,7 +5,7 @@ import Engagement from '../models/engagement'
 const router = Router()
 
 // @route   GET api/engagement/engagements
-// @desc    Gets all engagement from the table and joins with contacts
+// @desc    Gets all engagements from the table and join with contacts
 // @access  Public
 
 router.get('/engagements', async(req, res) => {
@@ -25,8 +25,8 @@ router.get('/engagements', async(req, res) => {
   }
 })
 
-// @route   GET api/contact/contact/id
-// @desc    Gets/find a contact by id
+// @route   GET api/engagement/engagement/id
+// @desc    Gets/find an engagement by id
 // @access  Public
 
 router.get('/engagement', async(req, res) => {
@@ -72,6 +72,35 @@ router.post('/addEngagement', async(req, res) => {
   } catch (e) {
     consola.error(e.message)
     res.status(500).json({ message: errMessage })
+  }
+})
+
+// @route   POST api/engagement/update/id
+// @desc    Post updates an engagement
+// @access  Public
+
+router.post('/update', async(req, res) => {
+  let errMessage = ''
+
+  try {
+    const newEngagement = new Engagement(req.body.engagementDetail)
+
+    const updatedEngagement = await Engagement.findByIdAndUpdate(req.query.id, { $set: newEngagement }, { new: true, useFindAndModify: false })
+
+    if (!updatedEngagement) {
+      consola.error('There was an error updating the record ')
+      errMessage = 'Changes could not be applied, try again later'
+      throw new Error(errMessage)
+    }
+
+    res.status(200).json({
+      engagement: {
+        updatedEngagement
+      }
+    })
+  } catch (e) {
+    consola.error(e.message)
+    res.status(401).json({ message: errMessage })
   }
 })
 
