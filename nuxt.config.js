@@ -117,7 +117,6 @@ module.exports = {
   serverMiddleware: [
     { path: '/api', handler: '~/api/index' }
   ],
-
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
