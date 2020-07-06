@@ -30,9 +30,9 @@ export default {
     EngShowContacts
   },
 
-  async fetch() {
+  async asyncData({ app, params, store }) {
     try {
-      await this.$store.dispatch('contacts/fetchContacts')
+      await store.dispatch('contacts/fetchContacts')
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('Error fetching Contacts', e)
