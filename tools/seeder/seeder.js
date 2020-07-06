@@ -32,7 +32,7 @@ const populateDatabase = async() => {
       keyContactName: `${Randomizers.randomString(
         6
       )} ${Randomizers.randomString(8)}`,
-      keyContactTitle: Randomizers.randomString(8),
+      keyContactTitle: `title_${Randomizers.randomString(8)}`,
       keyContactEmail: `${Randomizers.randomString(10)}@example.com`,
       keyContactAddress: Randomizers.randomString(5),
       keyContactAddress2: Randomizers.randomString(8),

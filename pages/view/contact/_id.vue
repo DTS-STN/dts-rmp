@@ -70,12 +70,12 @@
 
       <div class="flex justify-start mb-4">
         <div class="w-3/12 margins">
-          <AppButton custom_style="btn-cancel" data_cypress="formButton">
+          <AppButton custom_style="btn-cancel" data_cypress="contactDetailBackButton" @click="goBack">
             {{ $t('contact.back') }}
           </AppButton>
         </div>
         <div class="w-3/12 margins">
-          <AppButton custom_style="btn-extra" data_cypress="formButton">
+          <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton">
             {{ $t('contact.edit') }}
           </AppButton>
         </div>
@@ -110,7 +110,13 @@ export default {
 
   computed: mapState({
     contactInfo: state => state.contacts.contact
-  })
+  }),
+
+  methods: {
+    goBack() {
+      this.$router.back()
+    }
+  }
 }
 </script>
 
