@@ -1,0 +1,33 @@
+image:
+  repository: mtscontainers.azurecr.io/dts-rmp
+{{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") (eq .Environment.Name "dev") }}
+  tag: "{{ requiredEnv "DOCKER_TAG" }}" 
+{{ else }}
+  tag: latest
+{{ end }}
+  pullPolicy: Always
+extraEnv:
+  - name: VUE_APP_RMP_DB_PASSWORD
+    value: {{ requiredEnv "VUE_APP_KMP_DB_PASSWORD" }}
+  - name: VUE_APP_CONNECTION_STRING
+    value: mongodb://dbuser:-password-@rmp-db-{{ .Environment.Name }}-mongodb:27017/dts-rmp?authSource=dts-rmp
+  - name: baseURL
+    value: https://rmp.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN"}}
+
+ingress:
+      enabled: true
+      hosts:
+      {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+        - rmp.{{ requiredEnv "BASE_DOMAIN" }}
+      {{ end }}      
+        - rmp.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+      annotations: {}
+      # kubernetes.io/ingress.class: traefik
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+livenessDelay: 60
+readinessDelay: 60
+livenessPath: /
+readinessPath: /
