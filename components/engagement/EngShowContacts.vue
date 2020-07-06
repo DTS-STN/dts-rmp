@@ -7,14 +7,14 @@
     >
       <div class="w-6/12 pl-2">
         <div>
-          <span class="orange pr-0">{{ name }}</span>, {{ orgname }}, {{ title }}
+          <span class="orangeText pr-0">{{ name }}</span>, {{ orgname }}, {{ title }}
         </div>
         <div><a :href="'tel:' + phone">{{ phone }}</a>, <a :href="'mailto:'+ email">{{ email }}</a></div>
       </div>
 
-      <div class="w-5/12 bdr left">
+      <div class="w-5/12 bdr leftBorder">
         <div>
-          <span class="orange">
+          <span class="orangeText">
             {{ last }}
           </span>
         </div>
@@ -39,14 +39,14 @@ export default {
   props: {
     index: { type: Number, default: 1 },
     name: { type: String, default: 'lastname, name' },
-    orgname: { type: String, default: 'GoC' },
-    title: { type: String, default: 'Developer' },
-    phone: { type: String, default: '1-999-999-9999' },
-    email: { type: String, default: 'x@x.com' },
-    last: { type: String, default: 'Engagement x' },
+    orgname: { type: String, default: '' },
+    title: { type: String, default: '' },
+    phone: { type: String, default: '' },
+    email: { type: String, default: '' },
+    last: { type: String, default: 'No Engagement found' },
     date: { type: String, default: 'yyyy/mm/dd' },
-    number: { type: String, default: '1' },
-    id: { type: String, default: '5eefd2eb0fdece1daabc2383' }
+    number: { type: String, default: '0' },
+    id: { type: String, default: '' }
   },
 
   methods: {
@@ -61,7 +61,7 @@ export default {
 .viewcard {
   @apply flex max-w-full leading-10 bdr bottom pt-6 pb-6;
 }
-.orange {
+.orangeText {
   font-family: 'Noto Sans';
   font-size: 18px;
   @apply text-rmp-orange text-base font-bold pr-0;
@@ -72,7 +72,7 @@ export default {
 .first {
   @apply border-t-2;
 }
-.left {
+.leftBorder {
   @apply border-l-2 pl-2;
 }
 .bottom {

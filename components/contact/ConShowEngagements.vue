@@ -21,7 +21,7 @@
             {{ $t('engagement.contacts') }}
           </span>
           <ul class="inline-block">
-            <li v-for="contact in just(contacts)" :key="contact.id" class="inline-block ml-2 ">
+            <li v-for="contact in max3Contacts(contacts)" :key="contact.id" class="inline-block ml-2 ">
               {{ contact.keyContactName }}
             </li>
           </ul>
@@ -75,7 +75,7 @@ export default {
       this.$emit('modalDisplay', this.selectedID)
     },
 
-    just(inputArray) {
+    max3Contacts(inputArray) {
       if (inputArray.length > 3) {
         this.moreContacts = true
         return inputArray.slice(0, 3)
@@ -116,7 +116,7 @@ export default {
   width: 56px;
 }
 .tag {
-  @apply bg-rmp-dk-orange text-white rounded-full px-4 py-1 ml-2
+  @apply bg-rmp-dk-orange text-white rounded-full px-4 py-1 ml-2;
 }
 @media (max-width: 768px) {
   .leftborder { @apply hidden; }
