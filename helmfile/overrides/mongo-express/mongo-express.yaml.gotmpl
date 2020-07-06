@@ -1,0 +1,16 @@
+ingress:
+    enabled: true
+    annotations: {}
+        # kubernetes.io/ingress.class: traefik
+        # kubernetes.io/tls-acme: "true"
+    hosts:
+        - host: rmp-express.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+          paths: 
+            - /
+mongodbServer: rmp-db-{{ .Environment.Name }}-mongodb
+mongodbEnableAdmin: true
+mongodbAdminUsername: root  
+mongodbAdminPassword: {{ requiredEnv "MONGO_DB_ROOT_PASS" }}
+basicAuthUsername: dtsadmin
+basicAuthPassword: {{ requiredEnv "MONGO_EXPRESS_PASSWORD" }}
+    

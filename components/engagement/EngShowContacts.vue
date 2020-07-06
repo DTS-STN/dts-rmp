@@ -7,7 +7,7 @@
     >
       <div class="w-6/12 pl-2">
         <div>
-          <span class="orange"> {{ name }} </span>, {{ orgname }}, {{ title }}
+          <span class="orange pr-0">{{ name }}</span>, {{ orgname }}, {{ title }}
         </div>
         <div><a :href="'tel:' + phone">{{ phone }}</a>, <a :href="'mailto:'+ email">{{ email }}</a></div>
       </div>
@@ -21,7 +21,7 @@
         <div>{{ date }}, {{ number }} {{ $t('contact.otherpeople') }}</div>
       </div>
 
-      <div class="w-1/12">
+      <div class="w-1/12 flex items-center">
         <button
           class="btn-round"
           data_cypress="link"
@@ -51,7 +51,7 @@ export default {
 
   methods: {
     goto(id) {
-      this.$router.push('/' + this.$i18n.locale + '/view/engagement/' + id)
+      this.$router.push('/' + this.$i18n.locale + '/view/contact/' + id)
     }
   }
 }
@@ -64,7 +64,7 @@ export default {
 .orange {
   font-family: 'Noto Sans';
   font-size: 18px;
-  @apply text-rmp-orange text-base font-bold;
+  @apply text-rmp-orange text-base font-bold pr-0;
 }
 .bdr {
   @apply border-solid border-gray-500;

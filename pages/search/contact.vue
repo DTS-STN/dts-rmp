@@ -1,50 +1,80 @@
 <template>
-  <div class="main pt-1">
-    <div>
-      <h1 class="title">
-        {{ $t('app.dts') }}
-      </h1>
-      <h2 class="subtitle">
-        Contact
-      </h2>
+  <div class="main pt-1 xl:mx-16">
+    <AppNavSearching class="my-16" @filterResults="filter" />
+    <!-- Loop through contacts here. look at 'search/engagement' for guidance -->
+    <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
+      <!-- Still requires "last" property for last engagement to be setup, discussion on "date" property TODO -->
+      <EngShowContacts
+        v-for="(con, index) in filteredContacts"
+        :id="con._id"
+        :key="index"
+        :index="index"
+        :name="con.keyContactName"
+        :orgname="con.orgName"
+        :title="con.keyContactTitle"
+        :phone="con.keyContactPhone"
+        :email="con.keyContactEmail"
+        :last="con.engagements[0] ? con.engagements[0].type : undefined"
+      />
     </div>
-    <AppNavSearching @filterResults="filter" />
-  <!-- Loop through contacts here. look at 'search/engagement' for guidance -->
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+import EngShowContacts from '@/components/engagement/EngShowContacts.vue'
+
 export default {
+  components: {
+    EngShowContacts
+  },
+
+  async asyncData({ app, params, store }) {
+    try {
+      await store.dispatch('contacts/fetchContacts')
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error fetching Contacts', e)
+    }
+  },
+
   data() {
     return {
-      contacts: [
-      ],
       filteredContacts: [
       ]
     }
   },
-  async created() {
-    const config = {
-      headers: {
-        Accept: 'application/json'
-      }
-    }
-    try {
-      const res = await this.$axios.get('/api/contact/contacts', config)
-      this.contacts = res.data
-      this.filteredContacts = res.data
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err)
-    }
+
+  computed: mapState({
+    contacts: state => state.contacts.contacts
+  }),
+
+  beforeMount() {
+    this.filteredContacts = this.contacts
   },
+
   methods: {
     filter(input) {
-      const searchtext = input.toLowerCase()
-      // for now it only filters on email
-      const results = this.contacts.filter(contact =>
-        contact.email.toLowerCase().includes(searchtext)
-      )
+      const searchText = input.toLowerCase()
+
+      const results = this.contacts.filter((contact) => {
+        const values = Object.values(contact)
+        let flag = false
+
+        values.forEach((val) => {
+          if (typeof val !== 'string') {
+            return
+          }
+          if (val.toLowerCase().includes(searchText)) {
+            flag = true
+          }
+        })
+        if (flag === true) {
+          return contact
+        }
+      })
+
       this.filteredContacts = results
     }
   }

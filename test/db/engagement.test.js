@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import EngagementModel from '../../server/api/models/engagement'
+import EngagementModel from '../../api/models/engagement'
 require('dotenv').config()
 
 const engagementData = {
