@@ -100,10 +100,8 @@ export default {
   // eslint-disable-next-line space-before-function-paren
   async created() {
     try {
-      const resContact = await this.$axios.get('/api/contact/contacts')
-      const resEng = await this.$axios.get('/api/engagement/engagements')
-      this.contacts = resContact.data
-      this.engagements = resEng.data
+      const res = await this.$axios.get('/api/contact/contacts')
+      this.contacts = res.data
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error : ', e.response)
@@ -114,7 +112,11 @@ export default {
     /* display contact info when select contact name in the dropdown menu */
     showContact(event) {
       this.contactName = event.target.value
-      // loop through the contact list to match with the selected contact
+      this.getContactInfo()
+      this.isSelected = true
+    },
+    /* get contact and engagement information */
+    getContactInfo() {
       for (let i = 0; i < this.contacts.length; i++) {
         if (this.contactName === this.contacts[i].keyContactName) {
           this.orgName = this.contacts[i].orgName
@@ -122,25 +124,15 @@ export default {
           if (this.isEmpty(i)) {
             this.noLastEngagement()
           } else {
-            this.getEngagementInfo(this.getLastEngId(i))
+            this.engagementType = this.getLastEng(i).type
+            this.engagementDate = this.getLastEng(i).date
+            this.participants = this.getLastEng(i).participants
           }
-          this.isSelected = true
         }
       }
     },
-    /* search for matching engagements using returned last engagement id from contact */
-    getEngagementInfo(id) {
-      for (let i = 0; i < this.engagements.length; i++) {
-        if (id === this.engagements[i]._id) {
-          this.engagementType = this.engagements[i].type
-          this.engagementDate = this.engagements[i].date
-          this.participants = (this.engagements[i].numParticipants - 1)
-        }
-      }
-    },
-    /* this function returns the engagement id in the contact list */
-    getLastEngId(index) {
-      // return the last contact (last index)
+    /* return the last engagement in the contact list */
+    getLastEng(index) {
       const last = (this.contacts[index].engagements.length - 1)
       return this.contacts[index].engagements[last]
     },

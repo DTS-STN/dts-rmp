@@ -7,7 +7,7 @@
       <br />
       {{ email }}
     </div>
-    <div v-if="type!=''">
+    <div>
       <span>
         {{ type }}
       </span>
@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
   .show-contact {
-    @apply border-t border-b border-gray-400 p-5 mt-10 w-6/12;
+    @apply border-t border-b border-gray-400 p-5 mt-10 w-9/12;
   }
   span {
     @apply text-rmp-orange font-bold
