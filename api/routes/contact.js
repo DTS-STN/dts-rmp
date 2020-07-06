@@ -9,6 +9,7 @@ const router = Router()
 // @route   GET api/contact/contacts
 // @desc    Gets all contacts
 // @access  Public
+
 router.get('/contacts', async(req, res) => {
   try {
     const contacts = await Contact.find()
@@ -29,8 +30,7 @@ router.get('/contacts', async(req, res) => {
 // @desc    Gets/find a contact by id
 // @access  Public
 
-// eslint-disable-next-line space-before-function-paren
-router.get('/contact', async (req, res) => {
+router.get('/contact', async(req, res) => {
   try {
     const contact = await Contact.findById(req.query.id)
 
@@ -49,6 +49,7 @@ router.get('/contact', async (req, res) => {
 // @route   POST api/contact/contact/addContact
 // @desc    Post creates a new contact
 // @access  Public
+
 router.post('/addContact', async(req, res) => {
   let errMessage = ''
 
