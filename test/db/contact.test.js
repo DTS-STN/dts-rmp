@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import ContactModel from '../../server/api/models/contact'
+import ContactModel from '../../api/models/contact'
 require('dotenv').config()
 
 const contactData = {
