@@ -1,13 +1,13 @@
 <template>
   <div class="show-contact grid grid-cols-2 gap-4">
-    <div>
+    <div class="border-t border-b border-gray-400 p-5">
       <span>
         {{ name }}
       </span>, {{ orgName }}
       <br />
       {{ email }}
     </div>
-    <div>
+    <div v-if="type != ''" class="border-t border-b border-gray-400 p-5">
       <span>
         {{ type }}
       </span>
@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
   .show-contact {
-    @apply border-t border-b border-gray-400 p-5 mt-10 w-9/12;
+    @apply p-5 mt-4 w-9/12;
   }
   span {
     @apply text-rmp-orange font-bold

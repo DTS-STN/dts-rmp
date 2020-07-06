@@ -1,6 +1,6 @@
 <template>
   <div class="contact mb-8">
-    <h2 class="text-4xl">
+    <h2 class="text-4xl mt-12">
       Contact
     </h2>
     <form class="relative mt-6 max-w-md">
@@ -35,7 +35,7 @@
         <button class="mr-4" @click.prevent="moreContacts=true">
           {{ $t ('engSelect.add') }}
         </button>
-        <div class="pt-1">
+        <div class="mt-6">
           <span
             class="border border-solid border-black rounded-full h-5 w-5 flex items-center justify-center"
           >
