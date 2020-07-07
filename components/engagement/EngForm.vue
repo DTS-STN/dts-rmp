@@ -1,6 +1,6 @@
 <template>
-  <div title="engagementForm" class="mt-12">
-    <h1 class="text-5xl formTitle">
+  <div title="engagementForm" class="mt-8">
+    <h1 class="formTitle font-display">
       {{ $t('engSelect.engagement') }}
     </h1>
     <select-contact />
@@ -321,8 +321,7 @@ export default {
   @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
 }
 .formTitle {
-  color: #246880;
-  @apply font-bold;
+  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
 }
 .btn-extra {
   @apply w-11/12 h-12 justify-start;

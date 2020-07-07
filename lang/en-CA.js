@@ -135,7 +135,7 @@ export default {
   },
   // EngSelectContact component
   engSelect: {
-    engagement: 'New Engagement',
+    engagement: 'Create new engagement',
     name: 'Contact name',
     contact2: 'Contact number 2',
     remove: 'Remove',

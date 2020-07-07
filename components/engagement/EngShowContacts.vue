@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'ConShowContacts',
+  name: 'EngShowContacts',
 
   props: {
     index: { type: Number, default: 1 },
@@ -45,7 +45,7 @@ export default {
     email: { type: String, default: '' },
     last: { type: String, default: 'No Engagement found' },
     date: { type: String, default: 'yyyy/mm/dd' },
-    number: { type: String, default: '0' },
+    number: { type: Number, default: 0 },
     id: { type: String, default: '' }
   },
 
