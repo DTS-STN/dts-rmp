@@ -15,7 +15,7 @@
           <option selected="selected" disabled>
             {{ $t('engSelect.selectDefault') }}
           </option>
-          <option v-for="contact in contacts" :key="contact">
+          <option v-for="contact in contacts" :key="contact._id">
             {{ contact.keyContactName }}
           </option>
         </form-select>
@@ -87,9 +87,10 @@ export default {
       title: '',
       contactEmail: '',
       phoneNum: '',
+      contactId: '',
       lastEngId: '',
       engagementType: '',
-      engagementDate: new Date(),
+      engagementDate: '',
       participants: 0,
       contacts: [],
       engagements: [],
@@ -121,6 +122,7 @@ export default {
         if (this.contactName === this.contacts[i].keyContactName) {
           this.orgName = this.contacts[i].orgName
           this.contactEmail = this.contacts[i].keyContactEmail
+          this.contactId = this.contacts[i]._id
           if (this.isEmpty(i)) {
             this.noLastEngagement()
           } else {

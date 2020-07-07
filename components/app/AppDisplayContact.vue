@@ -24,7 +24,7 @@ export default {
     orgName: { type: String, default: '' },
     email: { type: String, default: '' },
     type: { type: String, default: '' },
-    date: { type: Date, default: new Date() },
+    date: { type: String, default: '' },
     participants: { type: Number, default: 0 }
   }
 }
