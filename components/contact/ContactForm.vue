@@ -41,7 +41,7 @@
 
       <form @submit.prevent="submitForm(contactInfo)">
         <div class="flex mb-4">
-          <div class="w-5/12 margins">
+          <div class="w-5/12 margins" :class="{ 'form-group--error': $v.contactInfo.keyContactName.$error }">
             <label class="formLabel orange" for="keyContactName">
               {{ $t('contact.name') }}
             </label>
@@ -51,7 +51,15 @@
               class="formInput"
               type="text"
               placeholder="name"
+              @input="$v.contactInfo.keyContactName.$touch()"
+              @blur="$v.contactInfo.keyContactName.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.keyContactName.$dirty && !$v.contactInfo.keyContactName.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactTitle">
@@ -64,6 +72,12 @@
               type="text"
               placeholder="title"
             />
+            <p
+              v-if="$v.contactInfo.keyContactTitle.$dirty && !$v.contactInfo.keyContactTitle.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
         </div>
 
@@ -79,6 +93,12 @@
               type="text"
               placeholder="Street"
             />
+            <p
+              v-if="$v.contactInfo.keyContactAddress.$dirty && !$v.contactInfo.keyContactAddress.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel" for="keyContactAddress2">
@@ -172,6 +192,18 @@
               type="text"
               placeholder="Email"
             />
+            <p
+              v-if="$v.contactInfo.keyContactEmail.$dirty && !$v.contactInfo.keyContactEmail.required"
+              class="error"
+            >
+              Field is required.
+            </p>
+            <p
+              v-if="$v.contactInfo.keyContactEmail.$dirty && !$v.contactInfo.keyContactEmail.email"
+              class="error"
+            >
+              Not a valid email
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactPhone">
@@ -184,6 +216,12 @@
               type="text"
               placeholder="999-999-9999"
             />
+            <p
+              v-if="$v.contactInfo.keyContactPhone.$dirty && !$v.contactInfo.keyContactPhone.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
         </div>
 
@@ -206,6 +244,12 @@
               type="text"
               placeholder="Address"
             />
+            <p
+              v-if="$v.contactInfo.orgAddress.$dirty && !$v.contactInfo.orgAddress.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel" for="orgAddress2">
@@ -286,6 +330,12 @@
             type="text"
             placeholder="Website"
           />
+          <p
+            v-if="$v.contactInfo.orgWebsite.$dirty && !$v.contactInfo.orgWebsite.required"
+            class="error"
+          >
+            Field is required.
+          </p>
         </div>
 
         <div v-if="contactInfo.type == 'Federal'">
@@ -301,6 +351,12 @@
                 type="text"
                 placeholder="Department"
               />
+              <p
+                v-if="$v.contactInfo.department.$dirty && !$v.contactInfo.department.required"
+                class="error"
+              >
+                Field is required.
+              </p>
             </div>
             <div class="w-5/12 margins">
               <label class="formLabel orange" for="branch">
@@ -313,6 +369,12 @@
                 type="text"
                 placeholder="Branch"
               />
+              <p
+                v-if="$v.contactInfo.branch.$dirty && !$v.contactInfo.branch.required"
+                class="error"
+              >
+                Field is required.
+              </p>
             </div>
           </div>
         </div>
@@ -334,6 +396,12 @@
                 type="text"
                 placeholder="Directorate"
               />
+              <p
+                v-if="$v.contactInfo.directorate.$dirty && !$v.contactInfo.directorate.required"
+                class="error"
+              >
+                Field is required.
+              </p>
             </div>
 
             <div v-if="contactInfo.type == 'Provincial'" class="w-5/12 margins">
@@ -493,7 +561,7 @@
 </template>
 
 <script>
-import { required, minLength, between } from 'vuelidate/lib/validators'
+import { required, email } from 'vuelidate/lib/validators'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
@@ -503,7 +571,6 @@ export default {
     AppButton
   },
 
-  // eslint-disable-next-line space-before-function-paren
   data() {
     return {
       message: {
@@ -518,7 +585,7 @@ export default {
         // Key Contact
         keyContactName: '',
         keyContactTitle: '',
-        keyContactAddress: '2',
+        keyContactAddress: '',
         keyContactAddress2: '',
         keyContactCity: '',
         keyContactProvState: '',
@@ -546,108 +613,114 @@ export default {
         branch: '',
         directorate: '',
         provTerritory: ''
-      },
-
-      validations: {
-        type: { required },
-        // Key Contact
-        keyContactName: { required },
-        keyContactTitle: { required },
-        keyContactAddress: { required },
-        keyContactAddress2: { required },
-        keyContactCity: { required },
-        keyContactProvState: { required },
-        keyContactCountry: { required },
-        keyContactPostalCode: { required },
-        keyContactEmail: { required },
-        keyContactPhone: { required },
-        // Organization
-        orgAddress: { required },
-        orgAddress2: { required },
-        orgCity: { required },
-        orgProvState: { required },
-        orgCountry: { required },
-        orgPostalCode: { required },
-        orgWebsite: { required },
-        orgName: { required },
-        orgSector: { required },
-        orgEmail: { required },
-        orgPhone: { required },
-        contributionRefNo: { required },
-        serviceContrNo: { required },
-        onStandingOffer: { required },
-        // Federal & Provincial
-        department: { required },
-        branch: { required },
-        directorate: { required },
-        provTerritory: { required }
       }
     }
   },
-
+  validations: {
+    contactInfo: {
+      type: { required },
+      // Key Contact
+      keyContactName: { required },
+      keyContactTitle: { required },
+      keyContactAddress: { required },
+      keyContactAddress2: { required },
+      keyContactCity: { required },
+      keyContactProvState: { required },
+      keyContactCountry: { required },
+      keyContactPostalCode: { required },
+      keyContactEmail: { required, email },
+      keyContactPhone: { required },
+      // Organization
+      orgAddress: { required },
+      orgAddress2: { required },
+      orgCity: { required },
+      orgProvState: { required },
+      orgCountry: { required },
+      orgPostalCode: { required },
+      orgWebsite: { required },
+      orgName: { required },
+      orgSector: { required },
+      orgEmail: { required, email },
+      orgPhone: { required },
+      contributionRefNo: { required },
+      serviceContrNo: { required },
+      onStandingOffer: { required },
+      // Federal & Provincial
+      department: { required },
+      branch: { required },
+      directorate: { required },
+      provTerritory: { required }
+    }
+  },
   methods: {
-    // eslint-disable-next-line space-before-function-paren
+
     onProvTerr2(event) {
       // eslint-disable-next-line no-console
       console.log('prov terr 2 = ', event.target.value)
       this.contactInfo.provTerritory = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onProvTerr(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.provTerritory = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onStanding(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.onStandingOffer = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onOrgCountry(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.orgCountry = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onContactCountry(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.keyContactCountry = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onType(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.type = event.target.value
     },
 
-    // eslint-disable-next-line space-before-function-paren
     notification(type, message) {
       this.message.type = type
       this.message.message = message
       this.timeout = setTimeout(() => this.clearMessage(), 5000)
     },
 
-    // eslint-disable-next-line space-before-function-paren
     clearMessage() {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
     },
 
-    // eslint-disable-next-line space-before-function-paren
     async submitForm(contactInfo) {
-      try {
-        await this.$axios.post('/api/contact/addContact', {
-          contactInfo
-        })
-        this.notification('success', 'contact created')
-      } catch (e) {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        // Invalid data
+        const invalidFields = Object.keys(this.$v.contactInfo.$params)
+          .filter(fieldName => this.$v.contactInfo[fieldName].$invalid)
         // eslint-disable-next-line no-console
-        console.log('error : ', e.response)
-        this.notification('error', e.response.data.message)
+        console.log(invalidFields)
+      } else {
+        try {
+          await this.$axios.post('/api/contact/addContact', {
+            contactInfo
+          })
+          this.notification('success', 'contact created')
+        } catch (e) {
+        // eslint-disable-next-line no-console
+          console.log('error : ', e.response)
+          this.notification('error', e.response.data.message)
+        }
       }
     }
   }
@@ -695,7 +768,21 @@ export default {
 .messageBox {
   @apply text-center text-2xl align-bottom mb-4 h-12 min-h-0 mt-2 text-black bg-green-700;
 }
-.error {
+/* .error {
   @apply bg-red-700;
+} */
+p.error {
+  display: flex;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  color: #d62901;
+  border: 1px solid rgb(238, 169, 123);
+  border-left: 5px solid rgb(238, 169, 123);
+  background-color: rgb(251, 244, 239);
+  text-align: left;
+  border-radius: 0 5px 5px 0;
 }
+
 </style>
