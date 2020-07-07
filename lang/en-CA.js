@@ -120,13 +120,14 @@ export default {
     date: 'Date',
     participants: 'Number of participants',
     description:
-      'Description maximum 1000 characters. Additional characters will not be saved.',
+      'Description (Maximum 1000 characters. Additional characters will not be saved.)',
     policy: 'Policy / program',
     tags: 'Tags',
     comments:
       'Comments (Maximum 140 characters. Additional characters will not be saved.)',
     cancel: 'Cancel',
-    save: ' Save',
+    save: 'Save',
+    edit: 'Edit',
     typing: 'Start by typing',
     // view contact card
     engagement: 'Engagement:',
