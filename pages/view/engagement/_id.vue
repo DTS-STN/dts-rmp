@@ -132,17 +132,8 @@ export default {
   components: {
     AppButton
   },
-
-  async fetch() {
-    try {
-      await this.$store.dispatch('engagements/fetchEngagement', this.$route.params.id)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log('Error: ', e.response)
-    }
-  },
   computed: mapState({
-    engagement: state => state.engagements.engagement
+    engagement: state => state.engagements.engagements.find((engagement) => { return engagement._id === window.$nuxt.$route.params.id })
   }),
   methods: {
     goBack() {
