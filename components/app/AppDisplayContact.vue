@@ -7,7 +7,7 @@
       <br />
       {{ email }}
     </div>
-    <div v-if="type != ''" class="border-t border-b border-gray-400 p-5">
+    <div v-if="type" class="border-t border-b border-gray-400 p-5">
       <span>
         {{ type }}
       </span>
