@@ -9,6 +9,7 @@ const router = Router()
 // @route   GET api/contact/contacts
 // @desc    Gets all contacts
 // @access  Public
+
 router.get('/contacts', async(req, res) => {
   try {
     const contacts = await Contact.find({}, null, {
@@ -28,7 +29,7 @@ router.get('/contacts', async(req, res) => {
 })
 
 // @route   GET api/contact/contact/id
-// @desc    Gets/find a contact by id
+// @desc    Get/find a contact by id
 // @access  Public
 
 router.get('/contact', async(req, res) => {
@@ -50,6 +51,7 @@ router.get('/contact', async(req, res) => {
 // @route   POST api/contact/contact/addContact
 // @desc    Post creates a new contact
 // @access  Public
+
 router.post('/addContact', async(req, res) => {
   let errMessage = ''
 
@@ -82,6 +84,42 @@ router.post('/addContact', async(req, res) => {
     res.status(200).json({
       contact: {
         id: savedContact._id
+      }
+    })
+  } catch (e) {
+    consola.error(e.message)
+    res.status(401).json({ message: errMessage })
+  }
+})
+
+// @route   POST api/contact/update/id
+// @desc    Post updates a contact
+// @access  Public
+
+router.post('/update', async(req, res) => {
+  let errMessage = ''
+
+  try {
+    const { keyContactEmail } = req.body.contactInfo
+
+    if (!keyContactEmail) {
+      errMessage = 'All fields are required'
+      throw new Error(errMessage)
+    }
+
+    const newContact = new Contact(req.body.contactInfo)
+
+    const updatedContact = await Contact.findByIdAndUpdate(req.query.id, { $set: newContact }, { new: true, useFindAndModify: false })
+
+    if (!updatedContact) {
+      consola.error('There was an error updating the record ')
+      errMessage = 'Changes could not be applied, try again later'
+      throw new Error(errMessage)
+    }
+
+    res.status(200).json({
+      contact: {
+        updatedContact
       }
     })
   } catch (e) {
