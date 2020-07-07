@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h1>
-      {{ engagement.type }}
-    </h1>
     <form @submit.prevent="submitForm(engagement)">
       <div class="w-full">
         <div class="flex flex-wrap mb-8">
@@ -163,7 +160,7 @@
               class="textArea"
               maxlength="1000"
             /> -->
-            {{ engagement.comments.content }}
+            {{ engagement.comments }}
           </div>
         </div>
       </div>
@@ -208,11 +205,13 @@
 
 <script>
 import { mapState } from 'vuex'
-
+import AppButton from '@/components/app/AppButton.vue'
 export default {
   name: 'EngagementView',
 
-  components: {},
+  components: {
+    AppButton
+  },
 
   async fetch() {
     try {
