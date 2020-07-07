@@ -107,6 +107,25 @@
           </ul>
         </div>
       </div>
+      <div class="flex flex-wrap">
+        <label
+          class="block tracking-wide text-black text-md font-bold font-body mb-4"
+          for="contacts"
+        > Contacts </label>
+        <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
+          <EngShowContacts
+            v-for="(con, index) in engagement.contacts"
+            :id="con._id"
+            :key="index"
+            :index="index"
+            :name="con.keyContactName"
+            :orgname="con.orgName"
+            :title="con.keyContactTitle"
+            :phone="con.keyContactPhone"
+            :email="con.keyContactEmail"
+          />
+        </div>
+      </div>
     </div>
     <div class="flex justify-start mb-12">
       <div class="w-3/12 margins">
@@ -126,15 +145,22 @@
 <script>
 import { mapState } from 'vuex'
 import AppButton from '@/components/app/AppButton.vue'
+import EngShowContacts from '@/components/engagement/EngShowContacts.vue'
 export default {
   name: 'EngagementView',
 
   components: {
-    AppButton
+    AppButton,
+    EngShowContacts
   },
+
   computed: mapState({
     engagement: state => state.engagements.engagements.find((engagement) => { return engagement._id === window.$nuxt.$route.params.id })
   }),
+  created() {
+    // eslint-disable-next-line no-console
+    console.log(this.engagement.contacts)
+  },
   methods: {
     goBack() {
       this.$router.back()
