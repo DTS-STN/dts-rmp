@@ -15,6 +15,8 @@
         :phone="con.keyContactPhone"
         :email="con.keyContactEmail"
         :last="con.engagements[0] ? con.engagements[0].type : undefined"
+        :date="con.engagements[0] ? con.engagements[0].date.substring(0, 10) : undefined"
+        :number="con.engagements[0] ? con.engagements[0].numParticipants : undefined"
       />
     </div>
   </div>
