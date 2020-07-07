@@ -1,6 +1,6 @@
 <template>
   <div id="navContainer">
-    <div class="mt-24">
+    <div class="mt-16">
       <h2 class="newAdd font-display">
         {{ $t('app.add') }}
       </h2>

@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable space-before-function-paren -->
-  <div class="contactForm font-body">
+  <div class="contactForm font-body mt-12">
     <div>
       <h1 class="title font-display">
         {{ $t('contact.create') }}
@@ -621,7 +621,6 @@ export default {
 <style scoped>
 .contactForm {
   width: 1200px;
-  margin: auto;
   @apply bg-white text-black;
 }
 .title {
