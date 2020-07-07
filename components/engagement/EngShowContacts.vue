@@ -2,7 +2,7 @@
   <!-- eslint-disable vue/singleline-html-element-content-newline -->
   <div>
     <div
-      class="flex max-w-full leading-10 bdr bottom pt-6 pb-6"
+      class="flex max-w-full leading-10 bdr bottom top pt-6 pb-6"
       :class="[index == 0 ? 'first' : '']"
     >
       <div class="w-6/12 pl-2">
@@ -77,6 +77,9 @@ export default {
 }
 .bottom {
   @apply border-b-2;
+}
+.top {
+  @apply border-t-2;
 }
 .btn-round {
   background-image: url('../../assets/images/orange-arrow.png');
