@@ -17,7 +17,8 @@
         @modalDisplay="modalDisplay"
       />
     </div>
-    <AppModal v-if="showModal" :id="selectedID" @close="showModal = false">
+    <!-- Uncomment app modal component and import to use modal -->
+    <!-- <AppModal v-if="showModal" :id="selectedID" @close="showModal = false">
       <p class="text-xl">
         This is placeholder text
       </p>
@@ -36,7 +37,7 @@
       <p class="text-xl">
         You selected ID: {{ selectedID }}
       </p>
-    </AppModal>
+    </AppModal> -->
   </div>
 </template>
 
@@ -44,12 +45,12 @@
 import { mapState } from 'vuex'
 
 import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
-import AppModal from '@/components/app/AppModal.vue'
+// import AppModal from '@/components/app/AppModal.vue'
 
 export default {
   components: {
-    ConShowEngagaments,
-    AppModal
+    ConShowEngagaments
+    // ,AppModal
   },
 
   async asyncData({ app, params, store }) {
