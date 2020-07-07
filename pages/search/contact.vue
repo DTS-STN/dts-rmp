@@ -1,6 +1,11 @@
 <template>
   <div class="main pt-1 xl:mx-16">
     <AppNavSearching class="my-16" @filterResults="filter" />
+
+    <div class="text-sm font-body font-semibold">
+      {{ totalRecords }} results
+    </div>
+
     <!-- Loop through contacts here. look at 'search/engagement' for guidance -->
     <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
       <!-- Still requires "last" property for last engagement to be setup, discussion on "date" property TODO -->
@@ -43,8 +48,8 @@ export default {
 
   data() {
     return {
-      filteredContacts: [
-      ]
+      filteredContacts: [],
+      totalRecords: 0
     }
   },
 
@@ -54,6 +59,7 @@ export default {
 
   beforeMount() {
     this.filteredContacts = this.contacts
+    this.totalRecords = this.contacts.length
   },
 
   methods: {
@@ -78,6 +84,7 @@ export default {
       })
 
       this.filteredContacts = results
+      this.totalRecords = results.length
     }
   }
 }
