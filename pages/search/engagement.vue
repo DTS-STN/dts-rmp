@@ -18,7 +18,6 @@
         :date="(eng.date).substring(0, 10)"
         :description="eng.description"
         :number="eng.numParticipants"
-        @modalDisplay="modalDisplay"
       />
     </div>
   </div>
@@ -28,12 +27,10 @@
 import { mapState } from 'vuex'
 
 import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
-// import AppModal from '@/components/app/AppModal.vue'
 
 export default {
   components: {
-    ConShowEngagaments //,
-    // AppModal
+    ConShowEngagaments
   },
 
   async asyncData({ app, params, store }) {
@@ -48,9 +45,7 @@ export default {
   data() {
     return {
       filteredEngagements: [],
-      totalRecords: 0,
-      showModal: false,
-      selectedID: -1
+      totalRecords: 0
     }
   },
 
@@ -64,11 +59,6 @@ export default {
   },
 
   methods: {
-    modalDisplay(id) {
-      this.showModal = true
-      this.selectedID = id
-    },
-
     filter(input) {
       const searchText = input.toLowerCase()
 
