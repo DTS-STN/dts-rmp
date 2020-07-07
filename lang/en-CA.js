@@ -37,7 +37,7 @@ export default {
     dts: 'dts-rmp',
     welcome: 'relationship management portal proof of concept!',
     search: 'Search',
-    add: 'Add'
+    add: 'Add new'
   },
 
   // error pages
@@ -136,7 +136,7 @@ export default {
   },
   // EngSelectContact component
   engSelect: {
-    engagement: 'New Engagement',
+    engagement: 'Create new engagement',
     name: 'Contact name',
     contact2: 'Contact number 2',
     remove: 'Remove',

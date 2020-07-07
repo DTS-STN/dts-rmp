@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'ConShowContacts',
+  name: 'EngShowContacts',
 
   props: {
     index: { type: Number, default: 1 },
