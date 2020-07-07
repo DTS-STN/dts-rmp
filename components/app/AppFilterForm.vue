@@ -3,6 +3,7 @@
     <form @submit.prevent="filter">
       <div class="flex flex-wrap justify-start">
         <input
+          ref="searchInput"
           v-model="search"
           type="text"
           class="search-input"
@@ -21,6 +22,11 @@ export default {
       search: ''
     }
   },
+
+  mounted() {
+    this.$refs.searchInput.focus()
+  },
+
   methods: {
     filter() {
       this.$emit('filter', this.search)
