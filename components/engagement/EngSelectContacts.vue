@@ -45,14 +45,16 @@
       </div>
     </form>
     <div v-if="isSelected === true">
-      <div>
-        <display-contact
+      <div class="mt-4">
+        <show-contact
           :name="contactName"
-          :org-name="orgName"
+          :orgname="orgName"
+          :title="title"
+          :phone="phoneNum"
           :email="contactEmail"
-          :type="engagementType"
+          :last="engagementType"
           :date="engagementDate"
-          :participants="participants"
+          :number="participants"
         />
       </div>
       <div>
@@ -73,12 +75,12 @@
 </template>
 
 <script>
-import displayContact from '../app/AppDisplayContact'
+import showContact from './EngShowContacts'
 import formSelect from './EngFormSelect'
 export default {
   components: {
     formSelect,
-    displayContact
+    showContact
   },
   data() {
     return {
@@ -87,8 +89,6 @@ export default {
       title: '',
       contactEmail: '',
       phoneNum: '',
-      contactId: '',
-      lastEngId: '',
       engagementType: '',
       engagementDate: '',
       participants: 0,
@@ -121,14 +121,15 @@ export default {
       for (let i = 0; i < this.contacts.length; i++) {
         if (this.contactName === this.contacts[i].keyContactName) {
           this.orgName = this.contacts[i].orgName
+          this.title = this.contacts[i].keyContactTitle
+          this.phoneNum = this.contacts[i].keyContactPhone
           this.contactEmail = this.contacts[i].keyContactEmail
-          this.contactId = this.contacts[i]._id
           if (this.isEmpty(i)) {
             this.noLastEngagement()
           } else {
             this.engagementType = this.getLastEng(i).type
             this.engagementDate = this.getLastEng(i).date
-            this.participants = this.getLastEng(i).participants
+            this.participants = this.getLastEng(i).numParticipants
           }
         }
       }
