@@ -6,6 +6,7 @@ const engagementData = {
   engagements: [],
   tags: ['Architercture', 'Planning', 'Business Delivery'],
   type: 'Scrum/Sprint',
+  subject: 'Analysis',
   date: Date('2020-06-19T15:04:35.000Z'),
   description:
     'PSMJCyefyOcVVkNmuFVqZkLZTKMzLOfgtuudqrpVODrAvrKgpFMFlCgKnWKqNSITxCLXQbCBTuTyZPfeEFGXDvHmKbccxsRTTWolybkkOXCBPfeERNIdWxguugCWLybnTFvqDNBZPmtBXZEOvrPMia',
@@ -17,6 +18,7 @@ const engagementDataInvalidField = {
   engagements: [],
   tags: ['Architercture', 'Planning', 'Business Delivery'],
   type: 'Scrum/Sprint',
+  subject: 'Analysis',
   date: Date('2020-06-19T15:04:35.000Z'),
   time: Date(),
   description:
@@ -29,6 +31,7 @@ const engagementDataMissingReqField = {
   engagements: [],
   tags: ['Architercture', 'Planning', 'Business Delivery'],
   type: 'Scrum/Sprint',
+  subject: 'Analysis',
   description:
     'PSMJCyefyOcVVkNmuFVqZkLZTKMzLOfgtuudqrpVODrAvrKgpFMFlCgKnWKqNSITxCLXQbCBTuTyZPfeEFGXDvHmKbccxsRTTWolybkkOXCBPfeERNIdWxguugCWLybnTFvqDNBZPmtBXZEOvrPMia',
   numParticipants: 5,
