@@ -112,13 +112,18 @@ export default {
     EngShowContacts
   },
 
-  computed: mapState({
-    engagement: state => state.engagements.engagements.find((engagement) => { return engagement._id === window.$nuxt.$route.params.id })
-  }),
-  created() {
-    // eslint-disable-next-line no-console
-    console.log(this.engagement.contacts)
+  async fetch() {
+    try {
+      await this.$store.dispatch('engagements/fetchEngagement', this.$route.params.id)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error: ', e.response)
+    }
   },
+
+  computed: mapState({
+    engagement: state => state.engagements.engagement
+  }),
   methods: {
     goBack() {
       this.$router.back()
