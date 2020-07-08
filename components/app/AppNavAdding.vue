@@ -1,6 +1,6 @@
 <template>
   <div id="navContainer" class="ml-12">
-    <div class="mt-24">
+    <div class="mt-16">
       <h2 class="newAdd font-display">
         {{ $t('app.add') }}
       </h2>
@@ -26,8 +26,8 @@ export default {
 <style>
 .newAdd {
   font-weight: 600;
-  font-size: 48pt;
-  color: #246880;
+  font-size: 48px;
+  color: #426177;
 }
 .requireFields {
   font-weight: 700;
