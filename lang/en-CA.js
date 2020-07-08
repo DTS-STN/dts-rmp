@@ -107,6 +107,11 @@ export default {
     otherpeople: 'other participants'
   },
 
+  contactValidation: {
+    required: 'This field is required',
+    invalidEmail: 'Not a valid email address'
+  },
+
   NavBtn: {
     AddConEn: 'Add contacts & engagements',
     SearchConEn: 'Search contacts & engagements'
