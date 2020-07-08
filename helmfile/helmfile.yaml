@@ -17,6 +17,8 @@ environments:
     marcusrd:
     ericrd:
     dev:
+    int:
+    release:
     prod-blue:
     prod-green: 
 
