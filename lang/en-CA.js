@@ -132,7 +132,8 @@ export default {
     // view contact card
     engagement: 'Engagement:',
     contacts: 'Contact(s):',
-    numpeople: 'Number of participants:'
+    numpeople: 'Number of participants:',
+    otherParticipants: 'other participants'
   },
   // EngSelectContact component
   engSelect: {
@@ -140,6 +141,7 @@ export default {
     name: 'Contact name',
     contact2: 'Contact number 2',
     remove: 'Remove',
-    add: 'Add more contacts'
+    add: 'Add more contacts',
+    selectDefault: 'Select One'
   }
 }
