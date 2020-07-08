@@ -1,5 +1,5 @@
 <template>
-  <div title="engagementForm" class="ml-40">
+  <div title="engagementForm" class="ml-12 mt-8">
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
