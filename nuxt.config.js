@@ -29,6 +29,9 @@ module.exports = {
    */
   plugins: [
     {
+      src: '~/plugins/axios.js'
+    },
+    {
       src: '~/plugins/Vuelidate.js',
       ssr: false
     },
