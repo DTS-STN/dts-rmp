@@ -1,103 +1,60 @@
 <template>
-  <div class="m-4 p-3">
-    <div class="w-full">
-      <div class="flex flex-wrap mb-8">
-        <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
-          <label
-            class="block tracking-wide text-black text-md font-bold font-body mb-2"
-            for="subject"
-          >
-            {{ $t('engagement.subject') }}
-          </label>
+  <div class="engagementForm">
+    <h1 class="title">
+      {{ $t('engagement.engagement') }}
+    </h1>
+    <div class="flex mb-4">
+      <div class="w-5/12 margins">
+        <EngViewFields label="subject">
           {{ engagement.subject }}
-        </div>
-
-        <div class="max-w-lg sm:w-1/3 mb-4">
-          <label
-            class="block tracking-wide text-black text-md font-bold font-body mb-2"
-            for="type"
-          >
-            {{ $t('engagement.type') }}
-          </label>
-          <div class="relative max-w-md">
-            {{ engagement.type }}
-          </div>
-        </div>
+        </EngViewFields>
       </div>
-      <div class="flex flex-wrap mb-8">
-        <div class="max-w-lg w-2/3 mb-4 mr-20">
-          <label
-            class="block tracking-wide text-black text-md font-bold font-body mb-2"
-            for="date"
-          >
-            {{ $t('engagement.date') }}
-          </label>
-          <div class="relative max-w-xs">
-            {{ engagement.date }}
-          </div>
-        </div>
-
-        <div class="max-w-lg sm:w-1/3 mb-4">
-          <label
-            class="block tracking-wide text-black text-md font-bold font-body mb-2"
-            for="numParticipants"
-          >
-            {{ $t('engagement.participants') }}
-          </label>
-          <div class="flex relative w-20 ">
-            {{ engagement.numParticipants }}
-          </div>
-        </div>
+      <div class="w-5/12 margins">
+        <EngViewFields label="type">
+          {{ engagement.type }}
+        </EngViewFields>
       </div>
-      <div class="flex flex-wrap">
-        <div class="w-full sm:w-6/12 mb-8">
-          <label
-            class=" block tracking-wide text-black text-md font-bold font-body mb-4"
-            for="description"
-          >
-            <!-- {{ $t('engagement.description') }} -->
-            Description
-          </label>
-          <br />
-          <span class="break-all">
-            {{ engagement.description }}
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-wrap mb-8">
-        <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
-          <label
-            class="block tracking-wide text-black text-md font-bold font-body mb-2"
-            for="policyProgram"
-          >
-            {{ $t('engagement.policy') }}
-          </label>
-          {{ engagement.policyProgram }}
-        </div>
+    </div>
 
-        <div class="max-w-lg sm:w-1/3 mb-4">
-          <label
-            class="block tracking-wide text-black text-md font-bold font-body mb-2"
-            for="tags"
-          >
-            {{ $t('engagement.tags') }}
-          </label>
+    <div class="flex mb-4">
+      <div class="w-5/12 margins">
+        <EngViewFields label="date">
+          {{ engagement.date }}
+        </EngViewFields>
+      </div>
+      <div class="w-5/12 margins">
+        <EngViewFields label="participants">
+          {{ engagement.numParticipants }}
+        </EngViewFields>
+      </div>
+    </div>
+    <div class="flex mb-4">
+      <div class="w-5/12 margins">
+        <EngViewFields label="tags">
           <ul>
             <li v-for="(tag, index) in engagement.tags" :key="index">
               {{ tag }}
             </li>
           </ul>
-        </div>
+        </EngViewFields>
       </div>
-      <div class="flex flex-wrap">
-        <div class="w-full sm:w-6/12 mb-8">
-          <label
-            class="block tracking-wide text-black text-md font-bold font-body mb-4"
-            for="comments"
-          >
-            <!-- {{ $t('engagement.comments') }} -->
-            Comments
-          </label>
+      <div class="w-5/12 margins">
+        <EngViewFields label="policy">
+          {{ engagement.policyProgram }}
+        </EngViewFields>
+      </div>
+    </div>
+    <div class="flex mb-4">
+      <div class="margins break-all">
+        <EngViewFields label="description">
+          <br />
+          {{ engagement.description }}
+        </EngViewFields>
+      </div>
+    </div>
+    <div class="flex mb-4">
+      <div class="margins">
+        <EngViewFields label="comments">
           <br />
           <!-- Nothing will show up since there are no engagement with comments. -->
           <ul>
@@ -105,35 +62,34 @@
               {{ comment }}
             </li>
           </ul>
-        </div>
-      </div>
-      <div class="flex flex-wrap">
-        <label
-          class="block tracking-wide text-black text-md font-bold font-body mb-4"
-          for="contacts"
-        > Contacts </label>
-        <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
-          <EngShowContacts
-            v-for="(con, index) in engagement.contacts"
-            :id="con._id"
-            :key="index"
-            :index="index"
-            :name="con.keyContactName"
-            :orgname="con.orgName"
-            :title="con.keyContactTitle"
-            :phone="con.keyContactPhone"
-            :email="con.keyContactEmail"
-          />
-        </div>
+        </EngViewFields>
       </div>
     </div>
+
+    <h2 class="title">
+      {{ $t('engagement.contacts') }}
+    </h2>
+    <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
+      <EngShowContacts
+        v-for="(con, index) in engagement.contacts"
+        :id="con._id"
+        :key="index"
+        :index="index"
+        :name="con.keyContactName"
+        :orgname="con.orgName"
+        :title="con.keyContactTitle"
+        :phone="con.keyContactPhone"
+        :email="con.keyContactEmail"
+      />
+    </div>
+
     <div class="flex justify-start mb-12">
-      <div class="w-3/12 margins">
+      <div class="w-1/4 margins">
         <AppButton class="font-display" btntype="button" custom_style="btn-cancel" data_cypress="formButton" @click="goBack">
           {{ $t('contact.back') }}
         </AppButton>
       </div>
-      <div class="w-3/12 margins">
+      <div class="w-1/4 margins">
         <AppButton class="font-display" btntype="button" custom_style="btn-extra" data_cypress="formButton">
           {{ $t('engagement.edit') }}
         </AppButton>
@@ -145,12 +101,14 @@
 <script>
 import { mapState } from 'vuex'
 import AppButton from '@/components/app/AppButton.vue'
+import EngViewFields from '@/components/engagement/EngViewFields.vue'
 import EngShowContacts from '@/components/engagement/EngShowContacts.vue'
 export default {
   name: 'EngagementView',
 
   components: {
     AppButton,
+    EngViewFields,
     EngShowContacts
   },
 
@@ -170,11 +128,16 @@ export default {
 </script>
 
 <style scoped>
-.btn-cancel{
-  border: 2px solid #426177;
-  @apply bg-white text-blue-800;
+.btn-cancel {
+  @apply justify-start bg-gray-300 w-11/12 text-black h-12;
 }
-.btn-cancel:hover{
-  @apply bg-blue-800 text-white;
+.btn-extra {
+  @apply w-11/12 h-12 justify-start;
+}
+.title {
+  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
+}
+.margins {
+  @apply px-1 py-2 m-2;
 }
 </style>
