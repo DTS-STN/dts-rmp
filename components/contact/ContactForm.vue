@@ -1,8 +1,8 @@
 <template>
   <div class="contactForm font-body xl:flex xl:mx-16 sm:flex justify-between p-4">
     <ul id="example-1">
-      <li v-for="invalidField in getInvalidFields()" :key="invalidField">
-        {{ getInvalidFields }}
+      <li v-for="invalidField in invalidFields" :key="invalidField">
+        {{ invalidField }}
       </li>
     </ul>
     <div>
@@ -717,6 +717,12 @@ export default {
       provTerritory: { required }
     }
   },
+  computed: {
+    invalidFields() {
+      return Object.keys(this.$v.contactInfo.$params)
+        .filter(fieldName => this.$v.contactInfo[fieldName].$invalid)
+    }
+  },
   methods: {
     onProvTerr(event) {
       this.contactInfo.provTerritory = event.target.value
@@ -748,11 +754,6 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
-    },
-
-    getInvalidFields() {
-      return Object.keys(this.$v.contactInfo.$params)
-        .filter(fieldName => this.$v.contactInfo[fieldName].$invalid)
     },
 
     async submitForm(contactInfo) {
