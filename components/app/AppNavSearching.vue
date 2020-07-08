@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4">
+  <div>
     <div>
       <h2 class="searchHeader font-display">
         {{ $t('app.search') }}
