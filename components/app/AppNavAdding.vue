@@ -1,5 +1,5 @@
 <template>
-  <div id="navContainer" class="ml-12">
+  <div id="navContainer" class="ml-40">
     <div class="mt-24">
       <h2 class="newAdd font-display">
         {{ $t('app.add') }}

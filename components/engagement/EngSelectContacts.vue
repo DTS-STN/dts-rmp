@@ -20,17 +20,6 @@
           </option>
         </form-select>
       </div>
-      <div v-if="moreContacts === true" class="contact-2">
-        <!--
-          add more contact dropdown
-        -->
-        <div />
-        <div>
-          <button class="underline" @click.prevent="moreContacts=false">
-            {{ $t ('engSelect.remove') }}
-          </button>
-        </div>
-      </div>
       <div class="btn-add flex flex-row mt-2">
         <button class="mr-4" @click.prevent="moreContacts=true">
           {{ $t ('engSelect.add') }}
@@ -63,14 +52,6 @@
         </button>
       </div>
     </div>
-    <!--
-    <div v-if="isSelected2" class="show-contact2">
-      display contact info here
-      <button @click="isSelected2=false">
-        {{ $t ('engSelect.remove') }}
-      </button>
-    </div>
-    -->
   </div>
 </template>
 
@@ -83,16 +64,6 @@ export default {
     formSelect,
     showContact
   },
-  /*
-  async asyncData({ app, params, store }) {
-    try {
-      await store.dispatch('contacts/fetchContacts')
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log('Error fetching Contacts', e)
-    }
-  },
-  */
   async fetch() {
     try {
       await this.$store.dispatch('contacts/fetchContacts')
