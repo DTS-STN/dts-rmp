@@ -1,8 +1,8 @@
 <template>
   <div class="contactForm font-body xl:flex xl:mx-16 sm:flex justify-between p-4">
     <ul id="example-1">
-      <li v-for="item in items" :key="item.message">
-        {{ item.message }}
+      <li v-for="invalidField in getInvalidFields()" :key="invalidField">
+        {{ getInvalidFields }}
       </li>
     </ul>
     <div>
@@ -748,6 +748,11 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
+    },
+
+    getInvalidFields() {
+      return Object.keys(this.$v.contactInfo.$params)
+        .filter(fieldName => this.$v.contactInfo[fieldName].$invalid)
     },
 
     async submitForm(contactInfo) {
