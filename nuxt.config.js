@@ -51,7 +51,8 @@ module.exports = {
     // Nuxt Authorization module
     '@nuxtjs/auth',
     // https://nuxt-community.github.io/nuxt-i18n/
-    'nuxt-i18n'
+    'nuxt-i18n',
+    'vue-scrollto/nuxt'
   ],
   i18n: {
     locales: [

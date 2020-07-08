@@ -1,11 +1,16 @@
 <template>
   <div class="contactForm font-body xl:flex xl:mx-16 sm:flex justify-between p-4">
-    <ul id="example-1">
-      <li v-for="invalidField in invalidFields" :key="invalidField">
-        {{ invalidField }}
-      </li>
-    </ul>
     <div>
+      <p ref="displayErrors" class="error">
+        <b>
+          The following fields have errors:
+        </b>
+      </p>
+      <ul class="list-disc error">
+        <li v-for="invalidField in invalidFields" :key="invalidField">
+          {{ invalidField }}
+        </li>
+      </ul>
       <h1 class="title font-display">
         {{ $t('contact.create') }}
       </h1>
@@ -688,28 +693,28 @@ export default {
       keyContactName: { required },
       keyContactTitle: { required },
       keyContactAddress: { required },
-      keyContactAddress2: { required },
-      keyContactCity: { required },
-      keyContactProvState: { required },
-      keyContactCountry: { required },
-      keyContactPostalCode: { required },
+      keyContactAddress2: { },
+      keyContactCity: { },
+      keyContactProvState: { },
+      keyContactCountry: { },
+      keyContactPostalCode: { },
       keyContactEmail: { required, email },
       keyContactPhone: { required },
       // Organization
       orgAddress: { required },
-      orgAddress2: { required },
-      orgCity: { required },
-      orgProvState: { required },
-      orgCountry: { required },
-      orgPostalCode: { required },
-      orgWebsite: { required },
+      orgAddress2: { },
+      orgCity: { },
+      orgProvState: { },
+      orgCountry: { },
+      orgPostalCode: { },
       orgName: { required },
       orgSector: { required },
       orgEmail: { required, email },
       orgPhone: { required },
-      contributionRefNo: { required },
-      serviceContrNo: { required },
-      onStandingOffer: { required },
+      contributionRefNo: { },
+      serviceContrNo: { },
+      onStandingOffer: { },
+      orgWebsite: { required },
       // Federal & Provincial
       department: { required },
       branch: { required },
@@ -759,10 +764,10 @@ export default {
     async submitForm(contactInfo) {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        const invalidFields = Object.keys(this.$v.contactInfo.$params)
-          .filter(fieldName => this.$v.contactInfo[fieldName].$invalid)
         // eslint-disable-next-line no-console
-        console.log(invalidFields)
+        console.log(this.invalidFields)
+        this.$scrollTo(this.$refs.displayErrors)
+        // this.$scrollTo(document.getElementById('displayErrors'))
       } else {
         try {
           await this.$axios.post('/api/contact/addContact', {
@@ -820,7 +825,7 @@ export default {
 /* .error {
   @apply bg-red-700;
 } */
-p.error {
+.error {
   @apply text-red-500 text-xs italic;
 }
 
