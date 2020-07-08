@@ -35,7 +35,7 @@
         <button class="mr-4" @click.prevent="moreContacts=true">
           {{ $t ('engSelect.add') }}
         </button>
-        <div class="mt-6">
+        <div class="mt-1">
           <span
             class="border border-solid border-black rounded-full h-5 w-5 flex items-center justify-center"
           >
