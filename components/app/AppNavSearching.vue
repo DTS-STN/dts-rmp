@@ -11,74 +11,20 @@
         </p>
       </div>
     </div>
-
     <AppFilterForm @filter="filterInformation" />
-
-    <div class="inline-flex pt-6">
-      <nuxt-link
-        class="left"
-        :style="{ color: txtColorCon, 'background-color': bgColorCon }"
-        :to="localePath('/search/contact')"
-        @click.native="colorChange(true)"
-      >
-        Contact
-      </nuxt-link>
-      <nuxt-link
-        class="right"
-        :style="{ color: txtColorEng, 'background-color': bgColorEng }"
-        :to="localePath('/search/engagement')"
-        @click.native="colorChange(false)"
-      >
-        Engagement
-      </nuxt-link>
-    </div>
+    <AppEngConToggle :search="true" />
   </div>
 </template>
 
 <script>
 import AppFilterForm from '@/components/app/AppFilterForm'
+import AppEngConToggle from '@/components/app/AppEngConToggle'
 export default {
   components: {
-    AppFilterForm
-  },
-  data() {
-    return {
-      txtColorCon: '',
-      bgColorCon: '',
-      txtColorEng: '',
-      bgColorEng: '',
-      isSelected: true
-    }
-  },
-  created() {
-    if (this.$route.path.includes('engagement')) {
-      this.txtColorCon = 'black'
-      this.bgColorCon = 'white'
-      this.txtColorEng = 'white'
-      this.bgColorEng = '#2572b4'
-    } else {
-      this.txtColorCon = 'white'
-      this.bgColorCon = '#2572b4'
-      this.txtColorEng = 'black'
-      this.bgColorEng = 'white'
-    }
+    AppFilterForm,
+    AppEngConToggle
   },
   methods: {
-    colorChange(select) {
-      if (select) {
-        this.isSelected = false
-        this.txtColorCon = 'white'
-        this.bgColorCon = '#2572b4'
-        this.bgColorEng = 'white'
-        this.txtColorEng = 'black'
-      } else {
-        this.txtColorCon = 'black'
-        this.bgColorCon = 'white'
-        this.bgColorEng = '#2572b4'
-        this.txtColorEng = 'white'
-        this.isSelected = true
-      }
-    },
     filterInformation(input) {
       this.$emit('filterResults', input)
     }
