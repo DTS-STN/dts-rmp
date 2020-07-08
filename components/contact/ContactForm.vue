@@ -657,32 +657,22 @@ export default {
   },
   methods: {
     onProvTerr(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.provTerritory = event.target.value
     },
 
     onStanding(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.onStandingOffer = event.target.value
     },
 
     onOrgCountry(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.orgCountry = event.target.value
     },
 
     onContactCountry(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.keyContactCountry = event.target.value
     },
 
     onType(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.type = event.target.value
     },
 
@@ -701,7 +691,6 @@ export default {
     async submitForm(contactInfo) {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        // Invalid data
         const invalidFields = Object.keys(this.$v.contactInfo.$params)
           .filter(fieldName => this.$v.contactInfo[fieldName].$invalid)
         // eslint-disable-next-line no-console
@@ -713,8 +702,6 @@ export default {
           })
           this.notification('success', 'contact created')
         } catch (e) {
-        // eslint-disable-next-line no-console
-          console.log('error : ', e.response)
           this.notification('error', e.response.data.message)
         }
       }
@@ -768,15 +755,8 @@ export default {
 p.error {
   display: flex;
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 10px;
   color: #FF0000;
-  border: 1px solid rgb(238, 169, 123);
-  border-left: 5px solid rgb(238, 169, 123);
-  background-color: rgb(251, 244, 239);
   text-align: left;
-  border-radius: 0 5px 5px 0;
 }
 
 </style>
