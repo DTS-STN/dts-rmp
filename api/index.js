@@ -45,4 +45,7 @@ app.use('/contact', contact)
 app.use('/user', user)
 app.use('/auth', auth)
 
-export default app
+module.exports = {
+  path: '/api',
+  handler: app
+}
