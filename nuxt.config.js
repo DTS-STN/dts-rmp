@@ -46,7 +46,7 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    ['@nuxtjs/axios', { baseURL: 'http://localhost:3000' }],
+    '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Nuxt Authorization module
@@ -113,17 +113,10 @@ module.exports = {
       home: '/welcome'
     }
   },
-
   serverMiddleware: [
-    { path: '/api', handler: '~/api/index' }
+    // API middleware
+    '~/api/index.js'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {
-    baseURL: process.env.baseURL
-  },
   /*
    ** Build configuration
    */
