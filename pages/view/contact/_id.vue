@@ -51,9 +51,23 @@
       {{ $t('contact.engagements') }}
     </h2>
 
+    <div class="text-sm font-body font-semibold">
+      {{ contactInfo.engagements.length }} results
+    </div>
+
     <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
-      <ConShowEngagaments :index="0" :tags="['tag1', 'tag2', 'tag3']" />
-      <ConShowEngagaments :tags="['tagX1', 'tagX2', 'tagX3']" />
+      <ConShowEngagaments
+        v-for="(eng, index) in contactInfo.engagements"
+        :id="eng._id"
+        :key="index"
+        :index="index"
+        :type="eng.type"
+        :contacts="eng.contacts"
+        :tags="eng.tags"
+        :date="(eng.date).substring(0, 10)"
+        :description="eng.description"
+        :number="eng.numParticipants"
+      />
     </div>
 
     <div class="flex justify-start mb-4">
