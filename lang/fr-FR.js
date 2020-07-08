@@ -107,6 +107,12 @@ export default {
     // view contact
     otherpeople: 'FR-other participants'
   },
+
+  contactValidation: {
+    required: 'PLACEHOLDER',
+    invalidEmail: 'PLACEHOLDER'
+  },
+
   // Navigation search Component
   NavBtn: {
     AddConEn: 'Ajouter des contacts et des engagements',

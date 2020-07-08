@@ -51,7 +51,6 @@
               class="formInput"
               type="text"
               placeholder="name"
-              @input="$v.contactInfo.keyContactName.$touch()"
               @blur="$v.contactInfo.keyContactName.$touch()"
             />
             <p
@@ -71,6 +70,7 @@
               class="formInput"
               type="text"
               placeholder="title"
+              @blur="$v.contactInfo.keyContactTitle.$touch()"
             />
             <p
               v-if="$v.contactInfo.keyContactTitle.$dirty && !$v.contactInfo.keyContactTitle.required"
@@ -83,7 +83,7 @@
 
         <div class="flex mb-4">
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="keyContactAddress">
+            <label class="formLabel" for="keyContactAddress">
               {{ $t('contact.address') }}
             </label>
             <input
@@ -93,12 +93,6 @@
               type="text"
               placeholder="Street"
             />
-            <p
-              v-if="$v.contactInfo.keyContactAddress.$dirty && !$v.contactInfo.keyContactAddress.required"
-              class="error"
-            >
-              Field is required.
-            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel" for="keyContactAddress2">
@@ -191,6 +185,7 @@
               class="formInput"
               type="text"
               placeholder="Email"
+              @blur="$v.contactInfo.keyContactEmail.$touch()"
             />
             <p
               v-if="$v.contactInfo.keyContactEmail.$dirty && !$v.contactInfo.keyContactEmail.required"
@@ -206,7 +201,7 @@
             </p>
           </div>
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="keyContactPhone">
+            <label class="formLabel" for="keyContactPhone">
               {{ $t('contact.phone') }}
             </label>
             <input
@@ -215,6 +210,7 @@
               class="formInput"
               type="text"
               placeholder="999-999-9999"
+              @blur="$v.contactInfo.keyContactPhone.$touch()"
             />
             <p
               v-if="$v.contactInfo.keyContactPhone.$dirty && !$v.contactInfo.keyContactPhone.required"
@@ -243,6 +239,7 @@
               class="formInput"
               type="text"
               placeholder="Address"
+              @blur="$v.contactInfo.orgAddress.$touch()"
             />
             <p
               v-if="$v.contactInfo.orgAddress.$dirty && !$v.contactInfo.orgAddress.required"
@@ -329,6 +326,7 @@
             class="formInput"
             type="text"
             placeholder="Website"
+            @blur="$v.contactInfo.orgWebsite.$touch()"
           />
           <p
             v-if="$v.contactInfo.orgWebsite.$dirty && !$v.contactInfo.orgWebsite.required"
@@ -350,6 +348,7 @@
                 class="formInput"
                 type="text"
                 placeholder="Department"
+                @blur="$v.contactInfo.department.$touch()"
               />
               <p
                 v-if="$v.contactInfo.department.$dirty && !$v.contactInfo.department.required"
@@ -368,6 +367,7 @@
                 class="formInput"
                 type="text"
                 placeholder="Branch"
+                @blur="$v.contactInfo.branch.$touch()"
               />
               <p
                 v-if="$v.contactInfo.branch.$dirty && !$v.contactInfo.branch.required"
@@ -395,6 +395,7 @@
                 class="formInput"
                 type="text"
                 placeholder="Directorate"
+                @blur="$v.contactInfo.directorate.$touch()"
               />
               <p
                 v-if="$v.contactInfo.directorate.$dirty && !$v.contactInfo.directorate.required"
@@ -622,8 +623,6 @@ export default {
       // Key Contact
       keyContactName: { required },
       keyContactTitle: { required },
-      keyContactAddress: { required },
-      keyContactAddress2: { required },
       keyContactCity: { required },
       keyContactProvState: { required },
       keyContactCountry: { required },
@@ -774,15 +773,8 @@ export default {
 p.error {
   display: flex;
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 10px;
   color: #d62901;
-  border: 1px solid rgb(238, 169, 123);
-  border-left: 5px solid rgb(238, 169, 123);
-  background-color: rgb(251, 244, 239);
   text-align: left;
-  border-radius: 0 5px 5px 0;
 }
 
 </style>
