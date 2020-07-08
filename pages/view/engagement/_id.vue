@@ -1,33 +1,143 @@
 <template>
-  <div>
-    <h1>
-      placeholder for view an engagement
+  <div class="engagementForm">
+    <h1 class="title">
+      {{ $t('engagement.engagement') }}
     </h1>
+    <div class="flex mb-4">
+      <div class="w-5/12 margins">
+        <EngViewFields label="subject">
+          {{ engagement.subject }}
+        </EngViewFields>
+      </div>
+      <div class="w-5/12 margins">
+        <EngViewFields label="type">
+          {{ engagement.type }}
+        </EngViewFields>
+      </div>
+    </div>
+
+    <div class="flex mb-4">
+      <div class="w-5/12 margins">
+        <EngViewFields label="date">
+          {{ engagement.date }}
+        </EngViewFields>
+      </div>
+      <div class="w-5/12 margins">
+        <EngViewFields label="participants">
+          {{ engagement.numParticipants }}
+        </EngViewFields>
+      </div>
+    </div>
+    <div class="flex mb-4">
+      <div class="w-5/12 margins">
+        <EngViewFields label="tags">
+          <ul>
+            <li v-for="(tag, index) in engagement.tags" :key="index">
+              {{ tag }}
+            </li>
+          </ul>
+        </EngViewFields>
+      </div>
+      <div class="w-5/12 margins">
+        <EngViewFields label="policy">
+          {{ engagement.policyProgram }}
+        </EngViewFields>
+      </div>
+    </div>
+    <div class="flex mb-4">
+      <div class="margins break-all">
+        <EngViewFields label="description">
+          <br />
+          {{ engagement.description }}
+        </EngViewFields>
+      </div>
+    </div>
+    <div class="flex mb-4">
+      <div class="margins">
+        <EngViewFields label="comments">
+          <br />
+          <!-- Nothing will show up since there are no engagement with comments. -->
+          <ul>
+            <li v-for="(comment, index) in engagement.comments" :key="index">
+              {{ comment }}
+            </li>
+          </ul>
+        </EngViewFields>
+      </div>
+    </div>
+
+    <h2 class="title">
+      {{ $t('engagement.contacts') }}
+    </h2>
+    <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
+      <EngShowContacts
+        v-for="(con, index) in engagement.contacts"
+        :id="con._id"
+        :key="index"
+        :index="index"
+        :name="con.keyContactName"
+        :orgname="con.orgName"
+        :title="con.keyContactTitle"
+        :phone="con.keyContactPhone"
+        :email="con.keyContactEmail"
+      />
+    </div>
+
+    <div class="flex justify-start mb-12">
+      <div class="w-1/4 margins">
+        <AppButton class="font-display" btntype="button" custom_style="btn-cancel" data_cypress="formButton" @click="goBack">
+          {{ $t('contact.back') }}
+        </AppButton>
+      </div>
+      <div class="w-1/4 margins">
+        <AppButton class="font-display" btntype="button" custom_style="btn-extra" data_cypress="formButton">
+          {{ $t('engagement.edit') }}
+        </AppButton>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-
+import AppButton from '@/components/app/AppButton.vue'
+import EngViewFields from '@/components/engagement/EngViewFields.vue'
+import EngShowContacts from '@/components/engagement/EngShowContacts.vue'
 export default {
   name: 'EngagementView',
 
-  components: {},
-
-  async fetch() {
-    try {
-      await this.$store.dispatch('engagements/fetchEngagement', this.$route.params.id)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log('Error: ', e.response)
-    }
+  components: {
+    AppButton,
+    EngViewFields,
+    EngShowContacts
   },
 
   computed: mapState({
-    engagement: state => state.engagements.engagement
-  })
+    engagement: state => state.engagements.engagements.find((engagement) => { return engagement._id === window.$nuxt.$route.params.id })
+  }),
+  created() {
+    // eslint-disable-next-line no-console
+    console.log(this.engagement.contacts)
+  },
+  methods: {
+    goBack() {
+      this.$router.back()
+    }
+  }
 }
 </script>
 
 <style scoped>
+.btn-cancel {
+  @apply justify-start bg-gray-300 w-11/12 text-black h-12;
+}
+.btn-extra {
+  @apply w-11/12 h-12 justify-start;
+}
+.title {
+  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
+}
+.margins {
+  @apply px-1 py-2 m-2;
+}
 </style>

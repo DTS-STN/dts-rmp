@@ -35,10 +35,15 @@
       </div>
 
       <div class="w-1/12">
-        <button
+        <!-- <button
           class="btn-round"
           data_cypress="link"
           @click="modalDisplay(id)"
+        /> -->
+        <button
+          class="btn-round"
+          data_cypress="link"
+          @click="goto(id)"
         />
       </div>
     </div>
@@ -73,6 +78,9 @@ export default {
       this.selectedID = id
       // this.$router.push('/' + this.$i18n.locale + '/view/contact/' + id)
       this.$emit('modalDisplay', this.selectedID)
+    },
+    goto(id) {
+      this.$router.push('/' + this.$i18n.locale + '/view/engagement/' + id)
     },
 
     max3Contacts(inputArray) {
