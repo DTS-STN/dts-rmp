@@ -34,7 +34,7 @@ router.get('/contacts', async(req, res) => {
 
 router.get('/contact', async(req, res) => {
   try {
-    const contact = await Contact.findById(req.query.id)
+    const contact = await Contact.findById(req.query.id).populate('engagements')
 
     if (!contact) {
       consola.error('No contact exist')

@@ -31,7 +31,7 @@ router.get('/engagements', async(req, res) => {
 
 router.get('/engagement', async(req, res) => {
   try {
-    const engagement = await Engagement.findById(req.query.id)
+    const engagement = await Engagement.findById(req.query.id).populate('contacts')
 
     if (!engagement) {
       consola.error('No engagement exist')
