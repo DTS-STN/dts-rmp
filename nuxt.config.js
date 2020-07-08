@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 module.exports = {
   mode: 'universal',
   /*
@@ -46,7 +49,7 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    ['@nuxtjs/axios', { baseURL: process.env.baseURL || 'http://localhost:3000' }],
+    '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Nuxt Authorization module
@@ -126,7 +129,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.baseURL
+    baseURL: process.env.baseURL || 'http://localhost:3000'
   },
   /*
    ** Build configuration
