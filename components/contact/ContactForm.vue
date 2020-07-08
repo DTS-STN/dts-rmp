@@ -773,7 +773,7 @@ export default {
 p.error {
   display: flex;
   width: 100%;
-  color: #d62901;
+  color: #FF0000;
   text-align: left;
 }
 
