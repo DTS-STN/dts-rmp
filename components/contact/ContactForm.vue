@@ -1,6 +1,10 @@
 <template>
-  <!-- eslint-disable space-before-function-paren -->
   <div class="contactForm font-body xl:flex xl:mx-16 sm:flex justify-between p-4">
+    <ul id="example-1">
+      <li v-for="item in items" :key="item.message">
+        {{ item.message }}
+      </li>
+    </ul>
     <div>
       <h1 class="title font-display">
         {{ $t('contact.create') }}
@@ -41,7 +45,7 @@
 
       <form @submit.prevent="submitForm(contactInfo)">
         <div class="flex mb-4">
-          <div class="w-5/12 margins" :class="{ 'form-group--error': $v.contactInfo.keyContactName.$error }">
+          <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactName">
               {{ $t('contact.name') }}
             </label>
@@ -49,9 +53,9 @@
               id="keyContactName"
               v-model="contactInfo.keyContactName"
               class="formInput"
+              :class="{ 'form-error': $v.contactInfo.keyContactName.$error }"
               type="text"
               placeholder="name"
-              @input="$v.contactInfo.keyContactName.$touch()"
               @blur="$v.contactInfo.keyContactName.$touch()"
             />
             <p
@@ -71,6 +75,8 @@
               class="formInput"
               type="text"
               placeholder="title"
+              :class="{ 'form-error': $v.contactInfo.keyContactTitle.$error }"
+              @blur="$v.contactInfo.keyContactTitle.$touch()"
             />
             <p
               v-if="$v.contactInfo.keyContactTitle.$dirty && !$v.contactInfo.keyContactTitle.required"
@@ -92,6 +98,8 @@
               class="formInput"
               type="text"
               placeholder="Street"
+              :class="{ 'form-error': $v.contactInfo.keyContactAddress.$error }"
+              @blur="$v.contactInfo.keyContactAddress.$touch()"
             />
             <p
               v-if="$v.contactInfo.keyContactAddress.$dirty && !$v.contactInfo.keyContactAddress.required"
@@ -191,6 +199,8 @@
               class="formInput"
               type="text"
               placeholder="Email"
+              :class="{ 'form-error': $v.contactInfo.keyContactEmail.$error }"
+              @blur="$v.contactInfo.keyContactEmail.$touch()"
             />
             <p
               v-if="$v.contactInfo.keyContactEmail.$dirty && !$v.contactInfo.keyContactEmail.required"
@@ -215,6 +225,8 @@
               class="formInput"
               type="text"
               placeholder="999-999-9999"
+              :class="{ 'form-error': $v.contactInfo.keyContactPhone.$error }"
+              @blur="$v.contactInfo.keyContactPhone.$touch()"
             />
             <p
               v-if="$v.contactInfo.keyContactPhone.$dirty && !$v.contactInfo.keyContactPhone.required"
@@ -243,6 +255,8 @@
               class="formInput"
               type="text"
               placeholder="Address"
+              :class="{ 'form-error': $v.contactInfo.orgAddress.$error }"
+              @blur="$v.contactInfo.orgAddress.$touch()"
             />
             <p
               v-if="$v.contactInfo.orgAddress.$dirty && !$v.contactInfo.orgAddress.required"
@@ -342,7 +356,15 @@
               class="formInput"
               type="text"
               placeholder="Name"
+              :class="{ 'form-error': $v.contactInfo.orgName.$error }"
+              @blur="$v.contactInfo.orgName.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgName.$dirty && !$v.contactInfo.orgName.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgSector">
@@ -354,7 +376,15 @@
               class="formInput"
               type="text"
               placeholder="Sector"
+              :class="{ 'form-error': $v.contactInfo.orgSector.$error }"
+              @blur="$v.contactInfo.orgSector.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgSector.$dirty && !$v.contactInfo.orgSector.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
         </div>
 
@@ -369,7 +399,15 @@
               class="formInput"
               type="text"
               placeholder="Email"
+              :class="{ 'form-error': $v.contactInfo.orgEmail.$error }"
+              @blur="$v.contactInfo.orgEmail.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgEmail.$dirty && !$v.contactInfo.orgEmail.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgPhone">
@@ -381,7 +419,15 @@
               class="formInput"
               type="text"
               placeholder="Phone"
+              :class="{ 'form-error': $v.contactInfo.orgPhone.$error }"
+              @blur="$v.contactInfo.orgPhone.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgPhone.$dirty && !$v.contactInfo.orgPhone.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
         </div>
 
@@ -396,6 +442,8 @@
               class="formInput"
               type="text"
               placeholder="Department"
+              :class="{ 'form-error': $v.contactInfo.department.$error }"
+              @blur="$v.contactInfo.department.$touch()"
             />
             <p
               v-if="$v.contactInfo.department.$dirty && !$v.contactInfo.department.required"
@@ -414,6 +462,8 @@
               class="formInput"
               type="text"
               placeholder="Branch"
+              :class="{ 'form-error': $v.contactInfo.branch.$error }"
+              @blur="$v.contactInfo.branch.$touch()"
             />
             <p
               v-if="$v.contactInfo.branch.$dirty && !$v.contactInfo.branch.required"
@@ -435,6 +485,8 @@
               class="formInput"
               type="text"
               placeholder="Directorate"
+              :class="{ 'form-error': $v.contactInfo.directorate.$error }"
+              @blur="$v.contactInfo.directorate.$touch()"
             />
             <p
               v-if="$v.contactInfo.directorate.$dirty && !$v.contactInfo.directorate.required"
@@ -452,7 +504,9 @@
               id="provTerritory"
               v-model="contactInfo.provTerritory"
               class="formSelect"
+              :class="{ 'form-error': $v.contactInfo.provTerritory.$error }"
               @change="onProvTerr($event)"
+              @blur="$v.contactInfo.provTerritory.$touch()"
             >
               <option value="Select">
                 {{ $t('contact.selProvince') }}
@@ -467,6 +521,12 @@
                 {{ $t('contact.ns') }}
               </option>
             </select>
+            <p
+              v-if="$v.contactInfo.provTerritory.$dirty && !$v.contactInfo.provTerritory.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
         </div>
 
@@ -526,6 +586,8 @@
               class="formInput"
               type="text"
               placeholder="Website"
+              :class="{ 'form-error': $v.contactInfo.orgWebsite.$error }"
+              @blur="$v.contactInfo.orgWebsite.$touch()"
             />
             <p
               v-if="$v.contactInfo.orgWebsite.$dirty && !$v.contactInfo.orgWebsite.required"
@@ -753,10 +815,11 @@ export default {
   @apply bg-red-700;
 } */
 p.error {
-  display: flex;
-  width: 100%;
-  color: #FF0000;
-  text-align: left;
+  @apply text-red-500 text-xs italic;
+}
+
+.form-error {
+  @apply appearance-none border border-red-500 rounded w-full;
 }
 
 </style>
