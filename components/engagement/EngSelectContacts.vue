@@ -10,15 +10,15 @@
       >
         {{ $t('engSelect.name') }}
       </label>
-      <div class="contact-1">
-        <form-select @change="showContact($event)">
-          <option selected="selected" disabled>
-            {{ $t('engSelect.selectDefault') }}
+      <div>
+        <select class="formSelect contactMenu" @change="showContact($event)">
+          <option value="" disabled selected hidden>
+            {{ $t('engagement.selectContact') }}
           </option>
           <option v-for="contact in contacts" :key="contact._id">
             {{ contact.keyContactName }}
           </option>
-        </form-select>
+        </select>
       </div>
       <div class="btn-add flex flex-row mt-2">
         <button class="mr-4" @click.prevent="moreContacts=true">
@@ -58,10 +58,8 @@
 <script>
 import { mapState } from 'vuex'
 import showContact from './EngShowContacts'
-import formSelect from './EngFormSelect'
 export default {
   components: {
-    formSelect,
     showContact
   },
   async fetch() {
@@ -162,5 +160,17 @@ button {
 button:focus,
 option:focus {
   @apply outline-none;
+}
+.contactMenu {
+  width: 1200px;
+  margin: auto;
+  font-family: 'DejaVu Serif', 'Roboto slab', 'sans-serif', 'Helvetica Neue';
+  @apply bg-white text-black;
+}
+.formSelect {
+  @apply w-full h-12 border-2 bg-white border-gray-400 rounded;
+}
+.formselect:focus {
+  @apply outline-none border-blue-500;
 }
 </style>

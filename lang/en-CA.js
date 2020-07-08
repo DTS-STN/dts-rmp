@@ -133,7 +133,8 @@ export default {
     engagement: 'Engagement:',
     contacts: 'Contact(s):',
     numpeople: 'Number of participants:',
-    otherParticipants: 'other participants'
+    otherParticipants: 'other participants',
+    selectContact: 'Select contact'
   },
   // EngSelectContact component
   engSelect: {
@@ -141,7 +142,6 @@ export default {
     name: 'Contact name',
     contact2: 'Contact number 2',
     remove: 'Remove',
-    add: 'Add more contacts',
-    selectDefault: 'Select One'
+    add: 'Add more contacts'
   }
 }
