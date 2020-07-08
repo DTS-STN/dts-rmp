@@ -40,10 +40,10 @@ export default {
       this.txtColorCon = 'black'
       this.bgColorCon = 'white'
       this.txtColorEng = 'white'
-      this.bgColorEng = '#2572b4'
+      this.bgColorEng = '#134164'
     } else {
       this.txtColorCon = 'white'
-      this.bgColorCon = '#2572b4'
+      this.bgColorCon = '#134164'
       this.txtColorEng = 'black'
       this.bgColorEng = 'white'
     }
@@ -53,13 +53,13 @@ export default {
       if (select) {
         this.isSelected = false
         this.txtColorCon = 'white'
-        this.bgColorCon = '#2572b4'
+        this.bgColorCon = '#134164'
         this.bgColorEng = 'white'
         this.txtColorEng = 'black'
       } else {
         this.txtColorCon = 'black'
         this.bgColorCon = 'white'
-        this.bgColorEng = '#2572b4'
+        this.bgColorEng = '#134164'
         this.txtColorEng = 'white'
         this.isSelected = true
       }
