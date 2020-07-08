@@ -101,9 +101,9 @@ export default {
     false: 'FR-False',
     // buttons
     cancel: 'FR-Cancel',
-    save: ' FR-Save',
-    back: 'FR-Go Back',
-    edit: 'FR-Edit Contact',
+    save: 'Sauvegarder',
+    back: 'Retour', // We can say Retourner as well
+    edit: 'Modifier',
     // view contact
     otherpeople: 'FR-other participants'
   },
@@ -118,15 +118,16 @@ export default {
     subject: 'Matière',
     type: "Type d'engagement",
     date: 'Date',
-    participants: "Nombre de participants'",
+    participants: 'Nombre de participants',
     description:
-      'Description 1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.',
+      'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     policy: 'Politique / programme',
     tags: 'Mots clés',
     comments:
       'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     cancel: 'Annuler',
     save: 'Sauver',
+    edit: 'Modifier',
     typing: 'Commencez par taper',
     // view contact card
     engagement: 'FR-Engagement :',
