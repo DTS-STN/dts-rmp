@@ -1,5 +1,6 @@
 <template>
   <div class="contact mb-8">
+    {{ contacts.keyContactName }}
     <h2 class="text-4xl mt-12">
       Contact
     </h2>
@@ -15,7 +16,7 @@
           <option selected="selected" disabled>
             {{ $t('engSelect.selectDefault') }}
           </option>
-          <option v-for="contact in contacts" :key="contact._id">
+          <option v-for="contact in contactList" :key="contact">
             {{ contact.keyContactName }}
           </option>
         </form-select>
@@ -75,12 +76,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import showContact from './EngShowContacts'
 import formSelect from './EngFormSelect'
 export default {
   components: {
     formSelect,
     showContact
+  },
+  async asyncData({ app, params, store }) {
+    try {
+      await store.dispatch('contacts/fetchContacts')
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error fetching Contacts', e)
+    }
   },
   data() {
     return {
@@ -92,22 +102,17 @@ export default {
       engagementType: '',
       engagementDate: '',
       participants: 0,
-      contacts: [],
+      contactList: [],
       engagements: [],
       moreContacts: false,
       isSelected: false
     }
   },
-  // eslint-disable-next-line space-before-function-paren
-  async created() {
-    try {
-      const res = await this.$axios.get('/api/contact/contacts')
-      this.contacts = res.data
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log('error : ', e.response)
-      this.notification('error', e.response.data.message)
-    }
+  computed: mapState({
+    contacts: state => state.contacts.contacts
+  }),
+  beforeMount() {
+    this.contactList = this.contacts
   },
   methods: {
     /* display contact info when select contact name in the dropdown menu */
@@ -118,12 +123,12 @@ export default {
     },
     /* get contact and engagement information */
     getContactInfo() {
-      for (let i = 0; i < this.contacts.length; i++) {
-        if (this.contactName === this.contacts[i].keyContactName) {
-          this.orgName = this.contacts[i].orgName
-          this.title = this.contacts[i].keyContactTitle
-          this.phoneNum = this.contacts[i].keyContactPhone
-          this.contactEmail = this.contacts[i].keyContactEmail
+      for (let i = 0; i < this.contactList.length; i++) {
+        if (this.contactName === this.contactList[i].keyContactName) {
+          this.orgName = this.contactList[i].orgName
+          this.title = this.contactList[i].keyContactTitle
+          this.phoneNum = this.contactList[i].keyContactPhone
+          this.contactEmail = this.contactList[i].keyContactEmail
           if (this.isEmpty(i)) {
             this.noLastEngagement()
           } else {
@@ -136,12 +141,12 @@ export default {
     },
     /* return the last engagement in the contact list */
     getLastEng(index) {
-      const last = (this.contacts[index].engagements.length - 1)
-      return this.contacts[index].engagements[last]
+      const last = (this.contactList[index].engagements.length - 1)
+      return this.contactList[index].engagements[last]
     },
     /* check if engagement list is empty */
     isEmpty(index) {
-      return this.contacts[index].engagements.length === 0
+      return this.contactList[index].engagements.length === 0
     },
     /* reset engagement title (type) to default */
     noLastEngagement() {
