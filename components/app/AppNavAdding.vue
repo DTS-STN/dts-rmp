@@ -1,6 +1,6 @@
 <template>
   <div id="navContainer" class="ml-12">
-    <div class="mt-24">
+    <div class="mt-16">
       <h2 class="newAdd font-display">
         {{ $t('app.add') }}
       </h2>
@@ -10,67 +10,15 @@
         </p>
       </div>
     </div>
-    <div class="inline-flex pt-6">
-      <nuxt-link
-        class="left"
-        :style="{ color: txtColorCon, 'background-color': bgColorCon }"
-        :to="localePath('/add/contact')"
-        @click.native="colorChange(true)"
-      >
-        Contact
-      </nuxt-link>
-      <nuxt-link
-        class="right"
-        :style="{ color: txtColorEng, 'background-color': bgColorEng }"
-        :to="localePath('/add/engagement')"
-        @click.native="colorChange(false)"
-      >
-        Engagement
-      </nuxt-link>
-    </div>
+    <AppEngConToggle :search="false" />
   </div>
 </template>
 
 <script>
+import AppEngConToggle from '@/components/app/AppEngConToggle'
 export default {
-  data() {
-    return {
-      txtColorCon: '',
-      bgColorCon: '',
-      txtColorEng: '',
-      bgColorEng: '',
-      isSelected: true
-    }
-  },
-  created() {
-    if (this.$route.path.includes('engagement')) {
-      this.txtColorCon = 'black'
-      this.bgColorCon = 'white'
-      this.txtColorEng = 'white'
-      this.bgColorEng = '#2572b4'
-    } else {
-      this.txtColorCon = 'white'
-      this.bgColorCon = '#2572b4'
-      this.txtColorEng = 'black'
-      this.bgColorEng = 'white'
-    }
-  },
-  methods: {
-    colorChange(select) {
-      if (select) {
-        this.isSelected = false
-        this.txtColorCon = 'white'
-        this.bgColorCon = '#2572b4'
-        this.bgColorEng = 'white'
-        this.txtColorEng = 'black'
-      } else {
-        this.txtColorCon = 'black'
-        this.bgColorCon = 'white'
-        this.bgColorEng = '#2572b4'
-        this.txtColorEng = 'white'
-        this.isSelected = true
-      }
-    }
+  components: {
+    AppEngConToggle
   }
 }
 </script>
@@ -78,8 +26,8 @@ export default {
 <style>
 .newAdd {
   font-weight: 600;
-  font-size: 48pt;
-  color: #246880;
+  font-size: 48px;
+  color: #426177;
 }
 .requireFields {
   font-weight: 700;

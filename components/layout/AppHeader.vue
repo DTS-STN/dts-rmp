@@ -23,7 +23,7 @@
     </div>
     <div id="blue-background" class="relative">
       <div class="flex justify-between absolute bottom-0 w-full px-5 py-3">
-        <nuxt-link :to="localePath('/')">
+        <nuxt-link :to="localePath('/search/engagement')">
           <img
             data-cy="home-button"
             src="@/assets/images/Home.svg"
@@ -31,8 +31,8 @@
             :alt="$t('header.homeAlt')"
           />
         </nuxt-link>
-        <span class="hidden sm:block pt-5 text-2xl">
-          Text placeholder
+        <span class="hidden pl-4 sm:block pt-5 text-center text-3xl font-bold rmp">
+          {{ $t('app.dts') }}
         </span>
         <div id="userInfo">
           <div class="flex p-6">
@@ -82,6 +82,9 @@ export default {
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
+}
+.rmp{
+  color: #D87C4F;
 }
 @media (max-width: 420px) {
   #canadaImg {

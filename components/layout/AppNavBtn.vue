@@ -38,17 +38,17 @@ export default {
   },
   created() {
     if (this.$route.path.includes('add')) {
-      this.txtColorSearch = '#D87C4F'
-      this.bgColorSearch = 'white'
-      this.txtColorAdd = 'white'
-      this.bgColorAdd = '#D87C4F'
-      this.boxShadowAdd = 'none'
-      this.boxShadowSearch = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
-    } else {
       this.txtColorSearch = 'white'
       this.bgColorSearch = '#D87C4F'
       this.txtColorAdd = '#D87C4F'
       this.bgColorAdd = 'white'
+      this.boxShadowAdd = 'none'
+      this.boxShadowSearch = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
+    } else {
+      this.txtColorSearch = '#D87C4F'
+      this.bgColorSearch = 'white'
+      this.txtColorAdd = 'white'
+      this.bgColorAdd = '#D87C4F'
       this.boxShadowAdd = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
       this.boxShadowSearch = 'none'
     }
@@ -56,18 +56,18 @@ export default {
   methods: {
     colorChange(select) {
       if (select) {
-        this.txtColorAdd = '#D87C4F'
-        this.bgColorAdd = 'white'
-        this.bgColorSearch = '#D87C4F'
-        this.txtColorSearch = 'white'
-        this.boxShadowAdd = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
-        this.boxShadowSearch = 'none'
-        this.isSelected = true
-      } else {
         this.txtColorAdd = 'white'
         this.bgColorAdd = '#D87C4F'
         this.bgColorSearch = 'white'
         this.txtColorSearch = '#D87C4F'
+        this.boxShadowAdd = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
+        this.boxShadowSearch = 'none'
+        this.isSelected = true
+      } else {
+        this.txtColorAdd = '#D87C4F'
+        this.bgColorAdd = 'white'
+        this.bgColorSearch = '#D87C4F'
+        this.txtColorSearch = 'white'
         this.boxShadowAdd = 'none'
         this.boxShadowSearch = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
         this.isSelected = false
@@ -83,7 +83,7 @@ export default {
 }
 .switch {
   padding: 25px;
-  @apply cursor-pointer text-3xl font-display font-bold text-center w-full;
+  @apply cursor-pointer text-3xl font-display font-bold text-center w-full border;
 }
 .not-selected{
   color: white;
