@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable space-before-function-paren -->
-  <div class="contactForm font-body mt-8">
+  <div class="contactForm font-body mt-8 ml-12">
     <div>
       <h1 class="title font-display">
         {{ $t('contact.create') }}
