@@ -1,41 +1,31 @@
 <template>
-  <div>
-    <div>
-      <h2 class="searchHeader font-display">
-        {{ $t('app.search') }}
+  <div id="navContainer" class="ml-12">
+    <div class="mt-16">
+      <h2 class="newAdd font-display">
+        {{ $t('app.add') }}
       </h2>
-
       <div>
-        <p class="orange requireFields t-2 font-body text-sm">
+        <p class="orange requireFields t-2 font-body">
           {{ $t('form.required') }}
         </p>
       </div>
     </div>
-    <AppFilterForm @filter="filterInformation" />
-    <AppEngConToggle :search="true" />
+    <AppEngConToggle :search="false" />
   </div>
 </template>
 
 <script>
-import AppFilterForm from '@/components/app/AppFilterForm'
 import AppEngConToggle from '@/components/app/AppEngConToggle'
 export default {
   components: {
-    AppFilterForm,
     AppEngConToggle
-  },
-  methods: {
-    filterInformation(input) {
-      this.$emit('filterResults', input)
-    }
   }
 }
 </script>
 
 <style>
-.searchHeader {
+.newAdd {
   font-weight: 600;
-  font-style: normal;
   font-size: 48px;
   color: #426177;
 }
@@ -44,7 +34,7 @@ export default {
   font-style: normal;
   color: #d87c4f;
 }
-button.left {
+.left {
   border-top-left-radius: 35px;
   border-bottom-left-radius: 35px;
   background-color: white;
@@ -57,7 +47,7 @@ button.left {
   outline: 0;
   @apply cursor-pointer font-display;
 }
-button.right {
+.right {
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
   background-color: white;

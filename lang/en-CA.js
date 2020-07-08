@@ -34,7 +34,7 @@ export default {
 
   // app
   app: {
-    dts: 'dts-rmp',
+    dts: 'Relationship Management Portal',
     welcome: 'relationship management portal proof of concept!',
     search: 'Search',
     add: 'Add new'

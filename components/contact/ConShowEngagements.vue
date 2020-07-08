@@ -124,7 +124,7 @@ export default {
   width: 56px;
 }
 .tag {
-  @apply bg-rmp-dk-orange text-white rounded-full px-4 py-1 ml-2;
+  @apply bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-1 ml-2;
 }
 @media (max-width: 768px) {
   .leftborder { @apply hidden; }
