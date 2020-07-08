@@ -1,6 +1,6 @@
 <template>
   <div title="engagementForm" class="ml-12">
-    <h1 class="text-5xl formTitle mt-12">
+    <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
     <select-contact />
