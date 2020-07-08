@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable space-before-function-paren -->
-  <div class="contactForm font-body">
+  <div class="contactForm font-body xl:flex xl:mx-16 sm:flex justify-between p-4">
     <div>
       <h1 class="title font-display">
         {{ $t('contact.create') }}
@@ -253,7 +253,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel" for="orgAddress2">
-              &nbsp;
+              {{ $t('contact.address2') }}
             </label>
             <input
               id="orgAddress2"
@@ -267,6 +267,9 @@
 
         <div class="flex mb-4">
           <div class="w-5/12  margins">
+            <label class="formLabel" for="keyContactCity">
+              {{ $t('contact.city') }}
+            </label>
             <input
               id="orgCity"
               v-model="contactInfo.orgCity"
@@ -276,6 +279,9 @@
             />
           </div>
           <div class="w-5/12 margins">
+            <label class="formLabel" for="keyContactProv">
+              {{ $t('contact.provState') }}
+            </label>
             <input
               id="orgProvState"
               v-model="contactInfo.orgProvState"
@@ -288,6 +294,9 @@
 
         <div class="flex mb-4">
           <div class="w-5/12  margins">
+            <label class="formLabel" for="keyContactCountry">
+              {{ $t('contact.country') }}
+            </label>
             <select
               id="orgCountry"
               v-model="contactInfo.orgCountry"
@@ -309,6 +318,9 @@
             </select>
           </div>
           <div class="w-5/12 margins">
+            <label class="formLabel" for="keyContactPostal">
+              {{ $t('contact.postal') }}
+            </label>
             <input
               id="orgPostalCode"
               v-model="contactInfo.orgPostalCode"
@@ -319,119 +331,7 @@
           </div>
         </div>
 
-        <div class="w-5/12 margins">
-          <label class="formLabel orange" for="orgWebsite">
-            {{ $t('contact.orgwebsite') }}
-          </label>
-          <input
-            id="orgWebsite"
-            v-model="contactInfo.orgWebsite"
-            class="formInput"
-            type="text"
-            placeholder="Website"
-          />
-          <p
-            v-if="$v.contactInfo.orgWebsite.$dirty && !$v.contactInfo.orgWebsite.required"
-            class="error"
-          >
-            Field is required.
-          </p>
-        </div>
-
-        <div v-if="contactInfo.type == 'Federal'">
-          <div class="flex mb-4">
-            <div class="w-5/12 margins">
-              <label class="formLabel orange" for="department">
-                {{ $t('contact.department') }}
-              </label>
-              <input
-                id="department"
-                v-model="contactInfo.department"
-                class="formInput"
-                type="text"
-                placeholder="Department"
-              />
-              <p
-                v-if="$v.contactInfo.department.$dirty && !$v.contactInfo.department.required"
-                class="error"
-              >
-                Field is required.
-              </p>
-            </div>
-            <div class="w-5/12 margins">
-              <label class="formLabel orange" for="branch">
-                {{ $t('contact.branch') }}
-              </label>
-              <input
-                id="branch"
-                v-model="contactInfo.branch"
-                class="formInput"
-                type="text"
-                placeholder="Branch"
-              />
-              <p
-                v-if="$v.contactInfo.branch.$dirty && !$v.contactInfo.branch.required"
-                class="error"
-              >
-                Field is required.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div
-          v-if="
-            contactInfo.type == 'Federal' || contactInfo.type == 'Provincial'
-          "
-        >
-          <div class="flex mb-4">
-            <div class="w-5/12 margins">
-              <label class="formLabel orange" for="directorate">
-                {{ $t('contact.directorate') }}
-              </label>
-              <input
-                id="directorate"
-                v-model="contactInfo.directorate"
-                class="formInput"
-                type="text"
-                placeholder="Directorate"
-              />
-              <p
-                v-if="$v.contactInfo.directorate.$dirty && !$v.contactInfo.directorate.required"
-                class="error"
-              >
-                Field is required.
-              </p>
-            </div>
-
-            <div v-if="contactInfo.type == 'Provincial'" class="w-5/12 margins">
-              <label class="formLabel orange" for="provTerritory">
-                {{ $t('contact.provTerr') }}
-              </label>
-              <select
-                id="provTerritory"
-                v-model="contactInfo.provTerritory"
-                class="formSelect"
-                @change="onProvTerr($event)"
-              >
-                <option value="Select">
-                  {{ $t('contact.selProvince') }}
-                </option>
-                <option value="Ontario">
-                  {{ $t('contact.on') }}
-                </option>
-                <option value="Ontario">
-                  {{ $t('contact.qc') }}
-                </option>
-                <option value="Ontario">
-                  {{ $t('contact.ns') }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgName">
               {{ $t('contact.orgName') }}
@@ -458,7 +358,7 @@
           </div>
         </div>
 
-        <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgEmail">
               {{ $t('contact.orgEmail') }}
@@ -485,7 +385,92 @@
           </div>
         </div>
 
-        <div v-if="contactInfo.type == 'External'" class="flex mb-4">
+        <div class="flex mb-4">
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="department">
+              {{ $t('contact.department') }}
+            </label>
+            <input
+              id="department"
+              v-model="contactInfo.department"
+              class="formInput"
+              type="text"
+              placeholder="Department"
+            />
+            <p
+              v-if="$v.contactInfo.department.$dirty && !$v.contactInfo.department.required"
+              class="error"
+            >
+              Field is required.
+            </p>
+          </div>
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="branch">
+              {{ $t('contact.branch') }}
+            </label>
+            <input
+              id="branch"
+              v-model="contactInfo.branch"
+              class="formInput"
+              type="text"
+              placeholder="Branch"
+            />
+            <p
+              v-if="$v.contactInfo.branch.$dirty && !$v.contactInfo.branch.required"
+              class="error"
+            >
+              Field is required.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex mb-4">
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="directorate">
+              {{ $t('contact.directorate') }}
+            </label>
+            <input
+              id="directorate"
+              v-model="contactInfo.directorate"
+              class="formInput"
+              type="text"
+              placeholder="Directorate"
+            />
+            <p
+              v-if="$v.contactInfo.directorate.$dirty && !$v.contactInfo.directorate.required"
+              class="error"
+            >
+              Field is required.
+            </p>
+          </div>
+
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="provTerritory">
+              {{ $t('contact.provTerr') }}
+            </label>
+            <select
+              id="provTerritory"
+              v-model="contactInfo.provTerritory"
+              class="formSelect"
+              @change="onProvTerr($event)"
+            >
+              <option value="Select">
+                {{ $t('contact.selProvince') }}
+              </option>
+              <option value="Ontario">
+                {{ $t('contact.on') }}
+              </option>
+              <option value="Ontario">
+                {{ $t('contact.qc') }}
+              </option>
+              <option value="Ontario">
+                {{ $t('contact.ns') }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="contributionRefNo">
               {{ $t('contact.contrib') }}
@@ -512,7 +497,7 @@
           </div>
         </div>
 
-        <div v-if="contactInfo.type == 'External'" class="flex mb-4">
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="onStandingOffer">
               {{ $t('contact.standing') }}
@@ -530,6 +515,24 @@
                 {{ $t('contact.true') }}
               </option>
             </select>
+          </div>
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="orgWebsite">
+              {{ $t('contact.orgwebsite') }}
+            </label>
+            <input
+              id="orgWebsite"
+              v-model="contactInfo.orgWebsite"
+              class="formInput"
+              type="text"
+              placeholder="Website"
+            />
+            <p
+              v-if="$v.contactInfo.orgWebsite.$dirty && !$v.contactInfo.orgWebsite.required"
+              class="error"
+            >
+              Field is required.
+            </p>
           </div>
         </div>
 
@@ -653,13 +656,6 @@ export default {
     }
   },
   methods: {
-
-    onProvTerr2(event) {
-      // eslint-disable-next-line no-console
-      console.log('prov terr 2 = ', event.target.value)
-      this.contactInfo.provTerritory = event.target.value
-    },
-
     onProvTerr(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
@@ -729,8 +725,6 @@ export default {
 
 <style scoped>
 .contactForm {
-  width: 1200px;
-  margin: auto;
   @apply bg-white text-black;
 }
 .title {
