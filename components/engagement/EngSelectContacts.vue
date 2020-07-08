@@ -31,13 +31,13 @@
           </button>
         </div>
       </div>
-      <div class="flex flex-row mt-2">
+      <div class="btn-add flex flex-row mt-2">
         <button class="mr-4" @click.prevent="moreContacts=true">
           {{ $t ('engSelect.add') }}
         </button>
         <div class="mt-1">
           <span
-            class="border border-solid border-black rounded-full h-5 w-5 flex items-center justify-center"
+            class="plus"
           >
             +
           </span>
@@ -163,17 +163,9 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  padding-bottom: 50px;
-}
 h1,
 h2 {
-  color: #246880;
-  @apply font-bold;
-}
-tr,
-td {
-  padding: 5px;
+  @apply text-rmp-md-blue font-bold;
 }
 #contacts {
   @apply w-full cursor-pointer border border-black border-solid text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
@@ -181,6 +173,12 @@ td {
 .add-contact {
   padding-top: 20px;
   @apply underline border-none bg-white;
+}
+.plus {
+  @apply border text-rmp-orange bg-white rounded-full h-5 w-5 flex items-center justify-center
+}
+.btn-add {
+  @apply w-56 text-white bg-rmp-orange p-3 rounded-full items-center
 }
 .orange {
   background-image: url('../../assets/images/orange-star.png');
