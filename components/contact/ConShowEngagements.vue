@@ -4,7 +4,7 @@
       <div class="w-6/12 pl-2">
         <div>
           <span class="orangeText">
-            {{ $t('engagement.engagement') }}
+            {{ subject }}
           </span>
           {{ type }}, {{ date }}
         </div>
@@ -58,7 +58,7 @@ export default {
   props: {
     id: { type: String, default: '' },
     index: { type: Number, default: 1 },
-    name: { type: String, default: 'Engagement name' },
+    subject: { type: String, default: 'Engagement subject' },
     type: { type: String, default: 'Unknown' },
     date: { type: String, default: 'Unknown' },
     tags: { type: Array, default: () => [] },
