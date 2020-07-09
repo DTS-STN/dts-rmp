@@ -38,12 +38,12 @@ module.exports = {
     }
   ],
   /*
-  ** Nuxt.js dev-modules
-  */
+   ** Nuxt.js dev-modules
+   */
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
@@ -62,6 +62,13 @@ module.exports = {
     CONNECTION_STRING: process.env.VUE_APP_CONNECTION_STRING,
     API_URL: process.env.VUE_APP_API_URL
   },
+  //
+  // api/index starts the connection to the database
+  //
+  serverMiddleware: [
+    // API middleware
+    '~/api/index'
+  ],
   i18n: {
     locales: [
       {
