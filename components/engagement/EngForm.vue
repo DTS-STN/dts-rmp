@@ -274,6 +274,8 @@ export default {
   },
   methods: {
     onChildClick(value) {
+      // eslint-disable-next-line no-console
+      console.log(this.fromChild)
       this.fromChild = value
     },
     increment() {

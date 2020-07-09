@@ -11,14 +11,6 @@
         {{ $t('engSelect.name') }}
       </label>
       <div>
-        <!-- <select v-model="selected" class="formSelect contactMenu" @click="selected = undefined" @change="showContact($event)">
-          <option value="" selected="selected" disabled hidden>
-            {{ $t('engagement.selectContact') }}
-          </option>
-          <option v-for="contact in contacts" :key="contact._id">
-            {{ contact.keyContactName }}
-          </option>
-        </select> -->
         <form-select v-model="selected" @click="selected = undefined" @change="showContact($event)">
           <option value="" selected="selected" disabled hidden>
             {{ $t('engagement.selectContact') }}
@@ -79,9 +71,8 @@ export default {
   },
   data() {
     return {
-      fromChild: '',
+      contactArrayId: [],
       contactArray: [],
-      engagements: [],
       isSelected: false,
       selected: undefined
     }
@@ -113,7 +104,7 @@ export default {
             this.engagementDate = this.getLastEng(i).date
             this.participants = this.getLastEng(i).numParticipants
             this.contactArray.push({
-              uniqueId: this.id,
+              objectId: this.id,
               name: this.keyName,
               orgName: this.orgName,
               title: this.title,
@@ -122,6 +113,9 @@ export default {
               type: this.engagementType,
               date: this.engagementDate,
               participants: this.participants
+            })
+            this.contactArrayId.push({
+              objectId: this.id
             })
             this.emitToEngForm()
           }
@@ -143,7 +137,7 @@ export default {
       this.engagementDate = 'yyyy/mm/dd'
       this.participants = 0
       this.contactArray.push({
-        uniqueId: this.id,
+        objectId: this.id,
         name: this.keyName,
         orgName: this.orgName,
         title: this.title,
@@ -153,17 +147,21 @@ export default {
         date: this.engagementDate,
         participants: this.participants
       })
+      this.contactArrayId.push({
+        objectId: this.id
+      })
       this.emitToEngForm()
     },
     /* this method will get the index num of the chosen one from the child component and passes the index num to be deleted on the parent class */
     onChildClick(value) {
       this.fromChild = value
       this.contactArray.splice(value, 1)
+      this.contactArrayId.splice(value, 1)
       this.emitToEngForm()
     },
     /* this will pass all the contacts saved in contactarray to the parent EngForm to be prepare to submit to the db */
     emitToEngForm(event) {
-      this.$emit('childToParent', this.contactArray)
+      this.$emit('childToParent', this.contactArrayId)
     }
   }
 }
