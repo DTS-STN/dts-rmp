@@ -166,9 +166,16 @@
                 type="text"
               />
             </div>
+<<<<<<< HEAD
             <div class="mt-6 ml-6">
+=======
+            <div class="flex mt-6 ml-6">
+>>>>>>> 103-vuex
               <eng-tags>
                 tags
+              </eng-tags>
+              <eng-tags>
+                more tags
               </eng-tags>
             </div>
           </div>
