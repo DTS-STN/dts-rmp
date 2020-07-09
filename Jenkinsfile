@@ -14,15 +14,7 @@ pipeline {
         stage('Deploy') {
             steps {
                sh 'az login --service-principal -u $JENKINS_SPN -p $JENKINS_SPN_PASS --tenant $AZURE_TENANT_ID'
-               sh '''
-                    helm delete rmp-db-$TARGET --namespace rmp-$TARGET
-                    cd ./helmfile
-                    set +x
-                    . ./context-dev.sh
-                    set -x
-                    helmfile --environment $TARGET --selector app=rmp,tier=database apply
-                    while [[ $(kubectl get pods -l release=rmp-db-$TARGET -n rmp-$TARGET -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo "waiting for pod" && sleep 1; done
-               '''
+               sh './helmfile/scripts/deleteDatabase.sh'
                sh '''
                     cd ./helmfile
                     echo "Setting Environment Secrets. This is obfuscated"
@@ -32,11 +24,7 @@ pipeline {
                     echo "Done."
                     helmfile --environment $TARGET --selector tier=$TIER apply
                 '''
-               sh '''
-                    while [[ $(kubectl get pods -l app.kubernetes.io/instance=rmp-$TARGET -n rmp-$TARGET -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo "waiting for pod" && sleep 1; done
-                    kubectl exec deployment.apps/rmp-$TARGET-dts-rmp -n rmp-$TARGET npm run seed
-               '''
-
+               sh './helmfile/scripts/dataseed.sh'
             }
         }
     }
