@@ -12,7 +12,7 @@ ARG VUE_APP_RMP_DB_PASSWORD=placeholder
 ENV VUE_APP_RMP_DB_PASSWORD=${VUE_APP_RMP_DB_PASSWORD}
 ARG VUE_APP_JWT_SECRET=placeholder
 ENV VUE_APP_JWT_SECRET=${VUE_APP_JWT_SECRET}
-ARG baseUrl=placeholder
-ENV baseUrl=${baseUrl}
+ARG baseURL=placeholder
+ENV baseURL=${baseURL}
 EXPOSE ${NUXT_PORT}
 CMD [ "npm", "start" ]
