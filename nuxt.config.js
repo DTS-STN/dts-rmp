@@ -1,6 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
 module.exports = {
   mode: 'universal',
   /*
@@ -61,8 +58,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {
-    baseURL: process.env.VUE_APP_API_URL || 'http://localhost:3000'
+  publicRuntimeConfig: {
+    CONNECTION_STRING: process.env.VUE_APP_CONNECTION_STRING,
+    API_URL: process.env.VUE_APP_API_URL
   },
   i18n: {
     locales: [
@@ -123,11 +121,6 @@ module.exports = {
       home: '/welcome'
     }
   },
-
-  serverMiddleware: [
-    // API middleware
-    '~/api/index'
-  ],
   /*
    ** Build configuration
    */
