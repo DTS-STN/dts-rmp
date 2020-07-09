@@ -5,6 +5,18 @@
     </h1>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
+        <ConViewFields label="name">
+          {{ contactInfo.keyContactName }}
+        </ConViewFields>
+      </div>
+      <div class="w-5/12 margins">
+        <ConViewFields label="phone">
+          {{ contactInfo.keyContactPhone }}
+        </ConViewFields>
+      </div>
+    </div>
+    <div class="flex mb-4">
+      <div class="w-5/12 margins">
         <ConViewFields label="type">
           {{ contactInfo.type }}
         </ConViewFields>
@@ -20,11 +32,6 @@
       <div class="w-5/12 margins">
         <ConViewFields label="address">
           {{ contactInfo.keyContactAddress }}
-        </ConViewFields>
-      </div>
-      <div class="w-5/12 margins">
-        <ConViewFields label="phone">
-          {{ contactInfo.keyContactPhone }}
         </ConViewFields>
       </div>
     </div>
