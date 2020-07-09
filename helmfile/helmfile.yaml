@@ -1,6 +1,8 @@
 repositories:
     - name: dts
       url: https://helm.dts-stn.com
+    - name: bitnami
+      url: https://charts.bitnami.com/bitnami      
     # helm-git powered repository: You can treat any Git repository as a charts repository
     - name: dtsrmp
       url: git+https://{{ requiredEnv "GITHUB_USER" }}:{{ requiredEnv "GITHUB_TOKEN" }}@github.com/DTS-STN/dts-rmp@helm/charts?ref=main
