@@ -1,6 +1,6 @@
 <template>
   <div class="contact mb-8">
-    <h2 class="text-4xl mt-12">
+    <h2 class="font-display text-4xl mt-12">
       Contact
     </h2>
     <form class="relative mt-6 max-w-md">
@@ -49,12 +49,11 @@
         <show-contact
           :name="contactName"
           :orgname="orgName"
-          :title="title"
-          :phone="phoneNum"
           :email="contactEmail"
           :last="engagementType"
           :date="engagementDate"
           :number="participants"
+          @garbage="isSelected=false"
         />
       </div>
       <div>
@@ -75,7 +74,7 @@
 </template>
 
 <script>
-import showContact from './EngShowContacts'
+import showContact from './EngSelectedContact'
 import formSelect from './EngFormSelect'
 export default {
   components: {
@@ -151,7 +150,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 h1 {
   padding-bottom: 50px;
 }
