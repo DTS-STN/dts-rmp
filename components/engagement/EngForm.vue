@@ -151,7 +151,7 @@
             />
           </div>
 
-          <div class="flex max-w-lg sm:w-1/3 mb-4">
+          <div class="flex mb-4">
             <div>
               <label
                 class="block tracking-wide text-black text-md font-bold font-body mb-2"
@@ -166,7 +166,7 @@
                 type="text"
               />
             </div>
-            <div class="mt-6">
+            <div class="mt-6 ml-6">
               <eng-tags>
                 tags
               </eng-tags>
@@ -409,7 +409,7 @@ export default {
   @apply outline-none border-black;
 }
 .textInputTag {
-  @apply appearance-none block w-6/12 text-gray-700 border border-black rounded py-3 px-4 leading-tight;
+  @apply appearance-none block w-48 text-gray-700 border border-black rounded py-3 px-4 leading-tight;
 }
 .textInputTag:focus {
   border: 2.5px solid;
