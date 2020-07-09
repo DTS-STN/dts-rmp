@@ -233,7 +233,7 @@ export default {
   data() {
     return {
       mySVG: require('../../assets/images/calendar.svg'),
-      fromChild: [],
+      idFromChild: [],
       message: {
         type: null,
         message: null
@@ -243,8 +243,9 @@ export default {
         date: new Date(),
         description: '',
         numParticipants: 0,
-        contacts: [
-          '561fa3aac09d1fa4eb63f806'
+        contacts: [{
+          objectId: this.idFromChild
+        }
         ],
         policyProgram: '',
         comments: [
@@ -275,8 +276,8 @@ export default {
   methods: {
     onChildClick(value) {
       // eslint-disable-next-line no-console
-      console.log(this.fromChild)
-      this.fromChild = value
+      console.log(this.idFromChild)
+      this.idFromChild = value
     },
     increment() {
       this.engagementDetail.numParticipants++
