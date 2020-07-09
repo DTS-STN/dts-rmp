@@ -62,7 +62,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'https://rmp.dev.dts-stn.com' || 'http://localhost:3000'
+    baseURL: process.env.baseURL || 'http://localhost:3000'
   },
   i18n: {
     locales: [
