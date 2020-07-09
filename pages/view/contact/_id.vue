@@ -63,6 +63,7 @@
         v-for="(eng, index) in contactInfo.engagements"
         :id="eng._id"
         :key="index"
+        :subject="eng.subject"
         :index="index"
         :type="eng.type"
         :contacts="eng.contacts"
@@ -113,7 +114,8 @@ export default {
   },
 
   computed: mapState({
-    contactInfo: state => state.contacts.contact
+    contactInfo: state => state.contacts.contact,
+    engContacts: state => state.contacts.contact
   }),
 
   methods: {
