@@ -121,10 +121,6 @@ module.exports = {
     // API middleware
     '~/api/index'
   ],
-  // Ensure client side variables will be the same as the server
-  env: {
-    baseURL: process.env.baseURL || 'http://localhost:3000'
-  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
