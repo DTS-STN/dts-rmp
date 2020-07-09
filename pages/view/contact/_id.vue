@@ -57,6 +57,7 @@
         :id="eng._id"
         :key="index"
         :index="index"
+        :subject="eng.subject"
         :type="eng.type"
         :contacts="eng.contacts"
         :tags="eng.tags"
@@ -108,6 +109,10 @@ export default {
   computed: mapState({
     contactInfo: state => state.contacts.contact
   }),
+  created() {
+    // eslint-disable-next-line no-console
+    console.log(this.contactInfo)
+  },
 
   methods: {
     goBack() {
