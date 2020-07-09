@@ -134,7 +134,7 @@ export default {
     contacts: 'Contact(s):',
     numpeople: 'Number of participants:',
     otherParticipants: 'other participants',
-    selectContact: 'Select contact'
+    selectContact: 'Select one or more contact'
   },
   // EngSelectContact component
   engSelect: {

@@ -169,6 +169,7 @@ export default {
             })
             // eslint-disable-next-line no-console
             console.log(this.contactArray)
+            this.emitToParent()
           }
         }
       }
@@ -194,6 +195,7 @@ export default {
         email: this.contactEmail,
         index: this.arrayIndex
       })
+      this.emitToParent()
     },
     onChildClick(value) {
       this.fromChild = value
@@ -202,8 +204,14 @@ export default {
       // eslint-disable-next-line no-console
       console.log(value)
       this.contactArray.splice(value, 1)
+      this.emitToParent()
       // eslint-disable-next-line no-console
       console.log(this.contactArray)
+    },
+    emitToParent(event) {
+      this.$emit('childToParent', this.contactArray)
+      // eslint-disable-next-line no-console
+      console.log('its clicked')
     }
   }
 }
