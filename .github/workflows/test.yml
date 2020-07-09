@@ -33,6 +33,7 @@ jobs:
         env:
           VUE_APP_CONNECTION_STRING: ${{ secrets.VUE_APP_CONNECTION_STRING }}
           VUE_APP_RMP_DB_PASSWORD: ${{ secrets.VUE_APP_RMP_DB_PASSWORD }}
+          VUE_APP_API_URL: ${{ secrets.VUE_APP_API_URL }}
           baseURL: http://localhost:3000/
         with:
           browser: chrome

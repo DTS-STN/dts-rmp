@@ -17,7 +17,9 @@ export const actions = {
     // eslint-disable-next-line no-console
     console.log('client side baseURL: ' + this.$axios.defaults.baseURL)
     // eslint-disable-next-line no-console
-    console.log('env variable baseURL: ' + process.env.baseURL)
+    console.log('env variable VUE_APP_API_URL: ' + process.env.VUE_APP_API_URL)
+    // eslint-disable-next-line no-console
+    console.log('env variable VUE_APP_CONNECTION_STRING: ' + process.env.VUE_APP_CONNECTION_STRING)
     return this.$axios.get('/api/contact/contacts')
       .then((response) => {
         commit('SET_CONTACTS', response.data)
