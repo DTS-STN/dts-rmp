@@ -127,7 +127,11 @@
               type="text"
               class="textArea"
               maxlength="1000"
+              @blur="$v.engagementDetail.description.$touch()"
             />
+            <p v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.required" class="error">
+              field is required
+            </p>
           </div>
         </div>
         <div class="flex flex-wrap mb-8">
@@ -221,6 +225,7 @@
 </template>
 
 <script>
+import { required, minValue, maxLength } from 'vuelidate/lib/validators'
 import SelectContact from './EngSelectContacts.vue'
 import AppButton from '@/components/app/AppButton.vue'
 
@@ -271,6 +276,15 @@ export default {
         { type: 'Scrum/Sprint' },
         { type: 'Advisory board/Council Meeting' }
       ]
+    }
+  },
+  validations: {
+    engagementDetail: {
+      type: { required },
+      date: { required },
+      description: { required, maxChar: maxLength(1000) },
+      numParticipants: { required, minVal: minValue(1) },
+      contacts: { required }
     }
   },
   methods: {
