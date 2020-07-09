@@ -1,3 +1,4 @@
+import axios from '~/plugins/axios'
 export const state = () => ({
   engagements: [],
   engagement: []
@@ -14,14 +15,14 @@ export const mutations = {
 
 export const actions = {
   fetchEngagements({ commit }) {
-    return this.$axios.get('/api/engagement/engagements')
+    return axios.get('/api/engagement/engagements')
       .then((response) => {
         commit('SET_ENGAGEMENTS', response.data)
       })
   },
 
   fetchEngagement({ commit }, id) {
-    return this.$axios.get(`/api/engagement/engagement?id=${id}`)
+    return axios.get(`/api/engagement/engagement?id=${id}`)
       .then((response) => {
         commit('SET_ENGAGEMENT', response.data)
       })

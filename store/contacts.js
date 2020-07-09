@@ -1,3 +1,5 @@
+import axios from '~/plugins/axios'
+
 export const state = () => ({
   contacts: [],
   contact: []
@@ -14,14 +16,14 @@ export const mutations = {
 
 export const actions = {
   fetchContacts({ commit }) {
-    return this.$axios.get('/api/contact/contacts')
+    return axios.get('/api/contact/contacts')
       .then((response) => {
         commit('SET_CONTACTS', response.data)
       })
   },
 
   fetchContact({ commit }, id) {
-    return this.$axios.get('/api/contact/contact?id=' + id)
+    return axios.get('/api/contact/contact?id=' + id)
       .then((response) => {
         commit('SET_CONTACT', response.data)
       })
