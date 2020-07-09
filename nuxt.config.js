@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 module.exports = {
   mode: 'universal',
   /*
@@ -113,10 +116,22 @@ module.exports = {
       home: '/welcome'
     }
   },
+
   serverMiddleware: [
     // API middleware
-    '~/api/index.js'
+    '~/api/index'
   ],
+  // Ensure client side variables will be the same as the server
+  env: {
+    baseURL: process.env.baseURL || 'http://localhost:3000'
+  },
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {
+    baseURL: process.env.baseURL || 'http://localhost:3000'
+  },
   /*
    ** Build configuration
    */

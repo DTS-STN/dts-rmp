@@ -14,6 +14,7 @@ export const mutations = {
 
 export const actions = {
   fetchEngagements({ commit }) {
+    console.log(this.$axios.defaults)
     return this.$axios.get('/api/engagement/engagements')
       .then((response) => {
         commit('SET_ENGAGEMENTS', response.data)
