@@ -75,7 +75,7 @@
             <div class="relative max-w-xs">
               <input
                 :value="engagementDetail.date && engagementDetail.date.toISOString().split('T')[0]"
-                placeholder="yyyy-mm-dd"
+                placeholder="dd/mm/yyyy"
                 class="dateStyle"
                 type="date"
                 @input="engagementDetail.date = $event.target.valueAsDate"
@@ -286,6 +286,11 @@ export default {
       contacts: { required }
     }
   },
+  computed: {
+    invalidFields() {
+      return Object.keys(this.$v.engagementDetail.$param).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
+    }
+  },
   methods: {
     onChildClick(value) {
       // eslint-disable-next-line no-console
@@ -317,15 +322,22 @@ export default {
     },
 
     async submitForm(engagementDetail) {
-      try {
-        await this.$axios.post('/api/engagement/addEngagement', {
-          engagementDetail
-        })
-        this.notification('success', 'engagment created')
-      } catch (e) {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
         // eslint-disable-next-line no-console
-        console.log('error : ', e.response)
-        this.notification('error', e.response.data.message)
+        console.log(this.invalidFields)
+        this.$scrollTo(this.$refs.displayErrors)
+      } else {
+        try {
+          await this.$axios.post('/api/engagement/addEngagement', {
+            engagementDetail
+          })
+          this.notification('success', 'engagment created')
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.log('error : ', e.response)
+          this.notification('error', e.response.data.message)
+        }
       }
     }
   }
