@@ -41,12 +41,12 @@ module.exports = {
     }
   ],
   /*
-   ** Nuxt.js dev-modules
-   */
+  ** Nuxt.js dev-modules
+  */
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
   /*
-   ** Nuxt.js modules
-   */
+  ** Nuxt.js modules
+  */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
@@ -57,6 +57,13 @@ module.exports = {
     // https://nuxt-community.github.io/nuxt-i18n/
     'nuxt-i18n'
   ],
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {
+    baseURL: process.env.baseURL || 'http://localhost:3000'
+  },
   i18n: {
     locales: [
       {
@@ -121,13 +128,6 @@ module.exports = {
     // API middleware
     '~/api/index'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {
-    baseURL: process.env.baseURL || 'http://localhost:3000'
-  },
   /*
    ** Build configuration
    */
