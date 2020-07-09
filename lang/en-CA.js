@@ -53,12 +53,12 @@ export default {
     fetching: 'Fetching Information',
     fetcherror: 'Error while getting information',
     // titles
+    create: 'Create new contact',
     contact: 'Contact Information',
     organization: 'Organization',
     information: 'information',
     engagements: 'Engagements',
     // fields
-    create: 'Create new contact',
     type: 'Contact Type',
     name: 'Full Name',
     title: 'Title',

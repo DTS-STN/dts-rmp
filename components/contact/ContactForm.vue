@@ -3,7 +3,12 @@
   <div class="contactForm font-body mt-8 ml-12">
     <div>
       <h1 class="title font-display">
-        {{ $t('contact.create') }}
+        <span v-if="editmode">
+          {{ $t('contact.edit') }}
+        </span>
+        <span v-else>
+          {{ $t('contact.create') }}
+        </span>
       </h1>
 
       <div>
@@ -532,6 +537,11 @@ export default {
     AppButton
   },
 
+  props: {
+    editmode: { type: Boolean, default: false },
+    contactdata: { type: Array, default: () => [] }
+  },
+
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
@@ -579,59 +589,55 @@ export default {
     }
   },
 
+  beforeMount() {
+    if (this.editmode) {
+      this.contactInfo = this.contactdata
+    }
+  },
+
   methods: {
-    // eslint-disable-next-line space-before-function-paren
-    onProvTerr2(event) {
-      // eslint-disable-next-line no-console
-      console.log('prov terr 2 = ', event.target.value)
-      this.contactInfo.provTerritory = event.target.value
-    },
-    // eslint-disable-next-line space-before-function-paren
     onProvTerr(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.provTerritory = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onStanding(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.onStandingOffer = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onOrgCountry(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.orgCountry = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onContactCountry(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.keyContactCountry = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onType(event) {
       // eslint-disable-next-line no-console
       console.log(event.target.value)
       this.contactInfo.type = event.target.value
     },
 
-    // eslint-disable-next-line space-before-function-paren
     notification(type, message) {
       this.message.type = type
       this.message.message = message
       this.timeout = setTimeout(() => this.clearMessage(), 5000)
     },
 
-    // eslint-disable-next-line space-before-function-paren
     clearMessage() {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
     },
 
-    // eslint-disable-next-line space-before-function-paren
     async submitForm(contactInfo) {
       try {
         await this.$axios.post('/api/contact/addContact', {

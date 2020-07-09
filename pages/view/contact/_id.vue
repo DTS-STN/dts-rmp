@@ -81,7 +81,7 @@
         </AppButton>
       </div>
       <div class="w-3/12 margins">
-        <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton">
+        <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton" @click="goEdit">
           {{ $t('contact.edit') }}
         </AppButton>
       </div>
@@ -114,13 +114,16 @@ export default {
   },
 
   computed: mapState({
-    contactInfo: state => state.contacts.contact,
-    engContacts: state => state.contacts.contact
+    contactInfo: state => state.contacts.contact
   }),
 
   methods: {
     goBack() {
       this.$router.back()
+    },
+
+    goEdit() {
+      this.$router.push('/' + this.$i18n.locale + '/edit/contact/' + this.$route.params.id)
     }
   }
 }
