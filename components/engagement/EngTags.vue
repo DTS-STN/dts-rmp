@@ -1,7 +1,7 @@
 <template>
   <div class="tags mr-2">
     <slot />
-    <button class="delete-btn">
+    <button class="delete-btn" disabled>
       x
     </button>
   </div>

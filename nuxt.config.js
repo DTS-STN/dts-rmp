@@ -33,7 +33,7 @@ module.exports = {
   plugins: [
     {
       src: '~/plugins/Vuelidate.js',
-      ssr: false
+      ssr: true
     },
     { src: '~/plugins/vue2-editor', ssr: false },
     {

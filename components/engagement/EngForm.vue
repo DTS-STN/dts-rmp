@@ -166,11 +166,7 @@
                 type="text"
               />
             </div>
-<<<<<<< HEAD
-            <div class="mt-6 ml-6">
-=======
             <div class="flex mt-6 ml-6">
->>>>>>> 103-vuex
               <eng-tags>
                 tags
               </eng-tags>
@@ -260,6 +256,7 @@ export default {
         message: null
       },
       engagementDetail: {
+        subject: '',
         type: '',
         date: new Date(),
         description: '',
@@ -276,7 +273,7 @@ export default {
             date: new Date().toISOString().slice(0, 10)
           }
         ],
-        tags: ''
+        tags: []
       },
       engagementTypes: [
         { type: 'One-on-one' },
@@ -296,11 +293,20 @@ export default {
   },
   validations: {
     engagementDetail: {
-      type: { required },
+      subject: { required, maxChar: maxLength(50) },
       date: { required },
       description: { required, maxChar: maxLength(1000) },
       numParticipants: { required, minVal: minValue(1) },
-      contacts: { required }
+      contacts: { required },
+      policyProgram: { maxChar: maxLength(50) },
+      comments: {
+        $each: {
+          value: { maxChar: maxLength(140) }
+        }
+      }
+    },
+    engagementType: {
+      type: { required }
     }
   },
   computed: {
