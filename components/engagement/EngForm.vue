@@ -151,19 +151,26 @@
             />
           </div>
 
-          <div class="max-w-lg sm:w-1/3 mb-4">
-            <label
-              class="block tracking-wide text-black text-md font-bold font-body mb-2"
-              for="tags"
-            >
-              {{ $t('engagement.tags') }}
-            </label>
-            <input
-              id="tags"
-              v-model="engagementDetail.tags"
-              class="textInputTag"
-              type="text"
-            />
+          <div class="flex max-w-lg sm:w-1/3 mb-4">
+            <div>
+              <label
+                class="block tracking-wide text-black text-md font-bold font-body mb-2"
+                for="tags"
+              >
+                {{ $t('engagement.tags') }}
+              </label>
+              <input
+                id="tags"
+                v-model="engagementDetail.tags"
+                class="textInputTag"
+                type="text"
+              />
+            </div>
+            <div class="mt-6">
+              <eng-tags>
+                tags
+              </eng-tags>
+            </div>
           </div>
         </div>
         <div class="flex flex-wrap">
@@ -227,18 +234,20 @@
 <script>
 import { required, minValue, maxLength } from 'vuelidate/lib/validators'
 import SelectContact from './EngSelectContacts.vue'
+import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
   name: 'EngagementForm',
   components: {
     AppButton,
-    SelectContact
+    SelectContact,
+    EngTags
   },
   data() {
     return {
       mySVG: require('../../assets/images/calendar.svg'),
-      fromChild: [],
+      idFromChild: [],
       message: {
         type: null,
         message: null
@@ -248,8 +257,9 @@ export default {
         date: new Date(),
         description: '',
         numParticipants: 0,
-        contacts: [
-          '561fa3aac09d1fa4eb63f806'
+        contacts: [{
+          objectId: this.idFromChild
+        }
         ],
         policyProgram: '',
         comments: [
@@ -294,8 +304,8 @@ export default {
   methods: {
     onChildClick(value) {
       // eslint-disable-next-line no-console
-      console.log(this.fromChild)
-      this.fromChild = value
+      console.log(this.idFromChild)
+      this.idFromChild = value
     },
     increment() {
       this.engagementDetail.numParticipants++

@@ -25,7 +25,6 @@
           data_cypress="link"
           @click="garbageClicked"
         />
-        {{ arrayIndex }}
       </div>
     </div>
   </div>
@@ -49,7 +48,6 @@ export default {
 
   methods: {
     garbageClicked(event) {
-      this.$emit('garbage')
       this.$emit('childToParent', this.arrayIndex)
     }
   }
@@ -81,7 +79,7 @@ export default {
   @apply border-t-2;
 }
 button.btn-round {
-  background-image: url('../../assets/images/garbage.png') ;
+  background-image: url('../../assets/images/garbage.svg') ;
   background-size: 58px 56px;
   height: 58px;
   width: 56px;

@@ -71,6 +71,7 @@ export default {
   },
   data() {
     return {
+      item: [],
       contactArrayId: [],
       contactArray: [],
       isSelected: false,
@@ -84,8 +85,14 @@ export default {
     /* display contact info when select contact name in the dropdown menu */
     showContact(event) {
       this.contactName = event.target.value
-      this.getContactInfo()
-      this.isSelected = true
+      this.items = this.contactArray.filter(item => item.name.includes(this.contactName))
+      // eslint-disable-next-line no-console
+      console.log(this.items)
+
+      if (this.items.length === 0) {
+        this.getContactInfo()
+        this.isSelected = true
+      }
     },
     /* get contact and engagement information */
     getContactInfo() {
@@ -161,6 +168,7 @@ export default {
     },
     /* this will pass all the contacts saved in contactarray to the parent EngForm to be prepare to submit to the db */
     emitToEngForm(event) {
+      this.items.splice(0, this.items.length)
       this.$emit('childToParent', this.contactArrayId)
     }
   }
