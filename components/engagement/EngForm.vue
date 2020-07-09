@@ -195,7 +195,7 @@
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
           <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
-            {{ $t('engagement.save') }}
+            {{ $t('engagement.cancel') }}
           </AppButton>
         </div>
         <div class="w-3/12 margins">
@@ -275,9 +275,6 @@ export default {
   methods: {
     onChildClick(value) {
       this.fromChild = value
-      // eslint-disable-next-line no-console
-      console.log(this.fromChild.length)
-      // eslint-disable-next-line no-console
     },
     increment() {
       this.engagementDetail.numParticipants++

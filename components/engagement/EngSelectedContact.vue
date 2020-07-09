@@ -51,10 +51,6 @@ export default {
     garbageClicked(event) {
       this.$emit('garbage')
       this.$emit('childToParent', this.arrayIndex)
-      // eslint-disable-next-line no-console
-      console.log('its clicked')
-      // eslint-disable-next-line no-console
-      console.log(this.arrayIndex)
     }
   }
 }

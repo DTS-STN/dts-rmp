@@ -56,11 +56,6 @@
           @childToParent="onChildClick"
         />
       </div>
-      <!-- <div>
-        <button @click="isSelected=false">
-          {{ $t ('engSelect.remove') }}
-        </button>
-      </div> -->
     </div>
   </div>
 </template>
@@ -85,50 +80,14 @@ export default {
   data() {
     return {
       fromChild: '',
-      contactIdArray: [],
       contactArray: [],
       engagements: [],
-      contacts: [{
-        _id: 321,
-        keyContactName: 'kevin',
-        orgName: 'esdc',
-        keyContactTitle: 'engineer',
-        keyContactPhone: 6136088800,
-        keyContactEmail: 'kevin@gmail.com',
-        engagements: [{ engagementType: 'esdc', engagementDate: '2020', participants: 14 }]
-      }, {
-        _id: 5231,
-        keyContactName: 'john',
-        orgName: '27',
-        keyContactTitle: 'owner',
-        keyContactPhone: 6136232800,
-        keyContactEmail: 'john@gmail.com',
-        engagements: [{ engagementType: 'meeting', engagementDate: '2020', participants: 12 }]
-      }, {
-        _id: 121,
-        keyContactName: 'ming',
-        orgName: 'abc',
-        keyContactTitle: 'labour',
-        keyContactPhone: 6138088800,
-        keyContactEmail: 'ming@gmail.com',
-        engagements: [{ engagementType: 'training', engagementDate: '2020', participants: 5 }]
-      }, {
-        _id: 3211,
-        keyContactName: 'naomi',
-        orgName: 'sky',
-        keyContactTitle: 'artist',
-        keyContactPhone: 6135088800,
-        keyContactEmail: 'naromi@gmail.com',
-        engagements: [{ engagementType: 'training', engagementDate: '2020', participants: 4 }]
-      }],
-      participants: 0,
-      moreContacts: false,
       isSelected: false,
       selected: undefined
     }
   },
   computed: mapState({
-    contacts1: state => state.contacts.contacts
+    contacts: state => state.contacts.contacts
   }),
   methods: {
     /* display contact info when select contact name in the dropdown menu */
@@ -139,8 +98,6 @@ export default {
     },
     /* get contact and engagement information */
     getContactInfo() {
-      // eslint-disable-next-line no-console
-      console.log('over here')
       for (let i = 0; i < this.contacts.length; i++) {
         if (this.contactName === this.contacts[i].keyContactName) {
           this.id = this.contacts[i]._id
@@ -164,12 +121,9 @@ export default {
               email: this.contactEmail,
               type: this.engagementType,
               date: this.engagementDate,
-              participants: this.participants,
-              index: this.arrayIndex
+              participants: this.participants
             })
-            // eslint-disable-next-line no-console
-            console.log(this.contactArray)
-            this.emitToParent()
+            this.emitToEngForm()
           }
         }
       }
@@ -189,29 +143,27 @@ export default {
       this.engagementDate = 'yyyy/mm/dd'
       this.participants = 0
       this.contactArray.push({
-        name: this.orgName,
+        uniqueId: this.id,
+        name: this.keyName,
+        orgName: this.orgName,
         title: this.title,
         phone: this.phoneNum,
         email: this.contactEmail,
-        index: this.arrayIndex
+        type: this.engagementType,
+        date: this.engagementDate,
+        participants: this.participants
       })
-      this.emitToParent()
+      this.emitToEngForm()
     },
+    /* this method will get the index num of the chosen one from the child component and passes the index num to be deleted on the parent class */
     onChildClick(value) {
       this.fromChild = value
-      // eslint-disable-next-line no-console
-      console.log('parent page ')
-      // eslint-disable-next-line no-console
-      console.log(value)
       this.contactArray.splice(value, 1)
-      this.emitToParent()
-      // eslint-disable-next-line no-console
-      console.log(this.contactArray)
+      this.emitToEngForm()
     },
-    emitToParent(event) {
+    /* this will pass all the contacts saved in contactarray to the parent EngForm to be prepare to submit to the db */
+    emitToEngForm(event) {
       this.$emit('childToParent', this.contactArray)
-      // eslint-disable-next-line no-console
-      console.log('its clicked')
     }
   }
 }
