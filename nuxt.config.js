@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 module.exports = {
   mode: 'universal',
   /*
@@ -19,7 +22,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#39b982' },
+  loading: { color: '#39b982', height: '4px' },
   /*
    ** Global CSS
    */
@@ -37,15 +40,15 @@ module.exports = {
     }
   ],
   /*
-   ** Nuxt.js dev-modules
-   */
+  ** Nuxt.js dev-modules
+  */
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
   /*
-   ** Nuxt.js modules
-   */
+  ** Nuxt.js modules
+  */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    ['@nuxtjs/axios', { baseURL: 'http://localhost:3000' }],
+    '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Nuxt Authorization module
@@ -54,6 +57,13 @@ module.exports = {
     'nuxt-i18n',
     'vue-scrollto/nuxt'
   ],
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {
+    baseURL: process.env.VUE_APP_API_URL || 'http://localhost:3000'
+  },
   i18n: {
     locales: [
       {
@@ -115,15 +125,9 @@ module.exports = {
   },
 
   serverMiddleware: [
-    { path: '/api', handler: '~/api/index' }
+    // API middleware
+    '~/api/index'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {
-    baseURL: process.env.baseURL
-  },
   /*
    ** Build configuration
    */

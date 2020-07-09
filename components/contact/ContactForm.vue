@@ -1,5 +1,6 @@
 <template>
-  <div class="contactForm font-body xl:flex xl:mx-16 sm:flex justify-between p-4">
+  <!-- eslint-disable space-before-function-paren -->
+  <div class="contactForm font-body mt-8 ml-12">
     <div>
       <p ref="displayErrors" class="error">
         <b>
@@ -350,7 +351,125 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div class="w-5/12 margins">
+          <label class="formLabel orange" for="orgWebsite">
+            {{ $t('contact.orgwebsite') }}
+          </label>
+          <input
+            id="orgWebsite"
+            v-model="contactInfo.orgWebsite"
+            class="formInput"
+            type="text"
+            placeholder="Website"
+          />
+        </div>
+
+        <div v-if="contactInfo.type == 'Federal'">
+          <div class="flex mb-4">
+            <div class="w-5/12 margins">
+              <label class="formLabel orange" for="department">
+                {{ $t('contact.department') }}
+              </label>
+              <input
+                id="department"
+                v-model="contactInfo.department"
+                class="formInput"
+                type="text"
+                placeholder="Department"
+              />
+            </div>
+            <div class="w-5/12 margins">
+              <label class="formLabel orange" for="branch">
+                {{ $t('contact.branch') }}
+              </label>
+              <input
+                id="branch"
+                v-model="contactInfo.branch"
+                class="formInput"
+                type="text"
+                placeholder="Branch"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          v-if="
+            contactInfo.type == 'Federal' || contactInfo.type == 'Provincial'
+          "
+        >
+          <div class="flex mb-4">
+            <div class="w-5/12 margins">
+              <label class="formLabel orange" for="directorate">
+                {{ $t('contact.directorate') }}
+              </label>
+              <input
+                id="directorate"
+                v-model="contactInfo.directorate"
+                class="formInput"
+                type="text"
+                placeholder="Directorate"
+              />
+            </div>
+
+            <div v-if="contactInfo.type == 'Provincial'" class="w-5/12 margins">
+              <label class="formLabel orange" for="provTerritory">
+                {{ $t('contact.provTerr') }}
+              </label>
+              <select
+                id="provTerritory"
+                v-model="contactInfo.provTerritory"
+                class="formSelect"
+                @change="onProvTerr($event)"
+              >
+                <option value="Select">
+                  {{ $t('contact.selProvince') }}
+                </option>
+                <option value="AB">
+                  {{ $t('contact.ab') }}
+                </option>
+                <option value="BC">
+                  {{ $t('contact.bc') }}
+                </option>
+                <option value="MB">
+                  {{ $t('contact.mb') }}
+                </option>
+                <option value="NB">
+                  {{ $t('contact.nb') }}
+                </option>
+                <option value="NFL">
+                  {{ $t('contact.nfl') }}
+                </option>
+                <option value="NS">
+                  {{ $t('contact.ns') }}
+                </option>
+                <option value="ON">
+                  {{ $t('contact.on') }}
+                </option>
+                <option value="PEI">
+                  {{ $t('contact.pei') }}
+                </option>
+                <option value="QC">
+                  {{ $t('contact.qc') }}
+                </option>
+                <option value="SK">
+                  {{ $t('contact.sk') }}
+                </option>
+                <option value="NWT">
+                  {{ $t('contact.nwt') }}
+                </option>
+                <option value="NU">
+                  {{ $t('contact.nu') }}
+                </option>
+                <option value="YK">
+                  {{ $t('contact.yk') }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgName">
               {{ $t('contact.orgName') }}
@@ -785,6 +904,7 @@ export default {
 
 <style scoped>
 .contactForm {
+  width: 1200px;
   @apply bg-white text-black;
 }
 .title {

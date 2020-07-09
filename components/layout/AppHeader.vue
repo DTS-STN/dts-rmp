@@ -23,20 +23,20 @@
     </div>
     <div id="blue-background" class="relative">
       <div class="flex justify-between absolute bottom-0 w-full px-5 py-3">
-        <nuxt-link :to="localePath('/')">
+        <nuxt-link :to="localePath('/search/engagement')">
           <img
             data-cy="home-button"
             src="@/assets/images/Home.svg"
-            class="h-20"
+            class="h-20 pl-6"
             :alt="$t('header.homeAlt')"
           />
         </nuxt-link>
-        <span class="hidden sm:block pt-5 text-2xl">
-          Text placeholder
+        <span class="hidden pl-4 sm:block pt-5 text-center text-3xl font-bold text-white">
+          {{ $t('app.dts') }}
         </span>
         <div id="userInfo">
           <div class="flex p-6">
-            <ul class="underline mr-2">
+            <ul class="underline mr-2 text-white font-bold text-right">
               <li>
                 <nuxt-link :to="localePath('/dashboard')" data-cy="dashboard-link" class="text-xl">
                   {{ $t('header.dashboard') }}
@@ -49,7 +49,13 @@
                 </a>
               </li>
             </ul>
-            <div id="userImg" />
+            <img
+              data-cy="personIcon-button"
+              src="@/assets/images/person_icon.svg"
+              class="h-16 pl-2"
+              :alt="$t('header.homeAlt')"
+            />
+            <!-- <div id="userImg" /> -->
           </div>
         </div>
       </div>
@@ -75,13 +81,6 @@ export default {
   /* min-height: 400px; */
   height: 225px;
   @apply bg-local bg-top bg-cover bg-no-repeat bg-white;
-}
-#userImg {
-  height: 60px;
-  width: 60px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
 }
 @media (max-width: 420px) {
   #canadaImg {

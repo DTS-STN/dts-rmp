@@ -4,7 +4,7 @@
       <div class="w-6/12 pl-2">
         <div>
           <span class="orangeText">
-            {{ $t('engagement.engagement') }}
+            {{ subject }}
           </span>
           {{ type }}, {{ date }}
         </div>
@@ -21,7 +21,7 @@
             {{ $t('engagement.contacts') }}
           </span>
           <ul class="inline-block">
-            <li v-for="contact in just(contacts)" :key="contact.id" class="inline-block ml-2 ">
+            <li v-for="contact in max3Contacts(contacts)" :key="contact.id" class="inline-block ml-2 ">
               {{ contact.keyContactName }}
             </li>
           </ul>
@@ -35,10 +35,15 @@
       </div>
 
       <div class="w-1/12">
-        <button
+        <!-- <button
           class="btn-round"
           data_cypress="link"
           @click="modalDisplay(id)"
+        /> -->
+        <button
+          class="btn-round"
+          data_cypress="link"
+          @click="goto(id)"
         />
       </div>
     </div>
@@ -53,7 +58,7 @@ export default {
   props: {
     id: { type: String, default: '' },
     index: { type: Number, default: 1 },
-    name: { type: String, default: 'Engagement name' },
+    subject: { type: String, default: 'Engagement subject' },
     type: { type: String, default: 'Unknown' },
     date: { type: String, default: 'Unknown' },
     tags: { type: Array, default: () => [] },
@@ -74,8 +79,11 @@ export default {
       // this.$router.push('/' + this.$i18n.locale + '/view/contact/' + id)
       this.$emit('modalDisplay', this.selectedID)
     },
+    goto(id) {
+      this.$router.push('/' + this.$i18n.locale + '/view/engagement/' + id)
+    },
 
-    just(inputArray) {
+    max3Contacts(inputArray) {
       if (inputArray.length > 3) {
         this.moreContacts = true
         return inputArray.slice(0, 3)
@@ -116,7 +124,7 @@ export default {
   width: 56px;
 }
 .tag {
-  @apply bg-rmp-dk-orange text-white rounded-full px-4 py-1 ml-2
+  @apply bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-1 ml-2;
 }
 @media (max-width: 768px) {
   .leftborder { @apply hidden; }

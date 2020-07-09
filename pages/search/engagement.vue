@@ -1,42 +1,28 @@
 <template>
   <div class="main pt-1 xl:mx-16">
-    <AppNavSearching class="my-16" @filterResults="filter" />
+    <div class="ml-12">
+      <AppNavSearching class="my-16" @filterResults="filter" />
 
-    <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
-      <ConShowEngagaments
-        v-for="(eng, index) in filteredEngagements"
-        :id="eng._id"
-        :key="index"
-        :index="index"
-        :type="eng.type"
-        :contacts="eng.contacts"
-        :tags="eng.tags"
-        :date="(eng.date).substring(0, 10)"
-        :description="eng.description"
-        :number="eng.numParticipants"
-        @modalDisplay="modalDisplay"
-      />
+      <div class="text-sm font-body font-semibold">
+        {{ totalRecords }} results
+      </div>
+
+      <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
+        <ConShowEngagaments
+          v-for="(eng, index) in filteredEngagements"
+          :id="eng._id"
+          :key="index"
+          :subject="eng.subject"
+          :index="index"
+          :type="eng.type"
+          :contacts="eng.contacts"
+          :tags="eng.tags"
+          :date="(eng.date).substring(0, 10)"
+          :description="eng.description"
+          :number="eng.numParticipants"
+        />
+      </div>
     </div>
-    <AppModal v-if="showModal" :id="selectedID" @close="showModal = false">
-      <p class="text-xl">
-        This is placeholder text
-      </p>
-      <br />
-      <br />
-      <p class="text-xl">
-        To show that it is reactive to what we pass in the slot
-      </p>
-      <br />
-      <br />
-      <p class="text-xl">
-        Pass engagement Form here
-      </p>
-      <br />
-      <br />
-      <p class="text-xl">
-        You selected ID: {{ selectedID }}
-      </p>
-    </AppModal>
   </div>
 </template>
 
@@ -44,12 +30,10 @@
 import { mapState } from 'vuex'
 
 import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
-import AppModal from '@/components/app/AppModal.vue'
 
 export default {
   components: {
-    ConShowEngagaments,
-    AppModal
+    ConShowEngagaments
   },
 
   async asyncData({ app, params, store }) {
@@ -64,8 +48,7 @@ export default {
   data() {
     return {
       filteredEngagements: [],
-      showModal: false,
-      selectedID: -1
+      totalRecords: 0
     }
   },
 
@@ -75,14 +58,10 @@ export default {
 
   beforeMount() {
     this.filteredEngagements = this.engagements
+    this.totalRecords = this.engagements.length
   },
 
   methods: {
-    modalDisplay(id) {
-      this.showModal = true
-      this.selectedID = id
-    },
-
     filter(input) {
       const searchText = input.toLowerCase()
 
@@ -104,6 +83,7 @@ export default {
       })
 
       this.filteredEngagements = results
+      this.totalRecords = results.length
     }
   }
 

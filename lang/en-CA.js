@@ -34,10 +34,10 @@ export default {
 
   // app
   app: {
-    dts: 'dts-rmp',
+    dts: 'Relationship Management Portal',
     welcome: 'relationship management portal proof of concept!',
-    search: 'Search',
-    add: 'Add'
+    search: 'Search Test',
+    add: 'Add new'
   },
 
   // error pages
@@ -93,9 +93,19 @@ export default {
     mexico: 'Mexico',
     england: 'England',
     selProvince: 'Select a country',
-    on: 'Ontario',
-    qc: 'Quebec',
+    ab: 'Alberta',
+    bc: 'British Columbia',
+    mb: 'Manitoba',
+    nb: 'New Brunswick',
+    nfl: 'Newfoundland and Labrador',
     ns: 'Nova Scotia',
+    on: 'Ontario',
+    pei: 'Prince Edward Island',
+    qc: 'Quebec',
+    sk: 'Saskatchewan',
+    nwt: 'Northwest Territories',
+    nu: 'Nunavut',
+    yk: 'Yukon',
     true: 'True',
     false: 'False',
     // buttons
@@ -125,25 +135,28 @@ export default {
     date: 'Date',
     participants: 'Number of participants',
     description:
-      'Description maximum 1000 characters. Additional characters will not be saved.',
+      'Description (Maximum 1000 characters. Additional characters will not be saved.)',
     policy: 'Policy / program',
     tags: 'Tags',
     comments:
       'Comments (Maximum 140 characters. Additional characters will not be saved.)',
     cancel: 'Cancel',
-    save: ' Save',
+    save: 'Save',
+    edit: 'Edit',
     typing: 'Start by typing',
     // view contact card
     engagement: 'Engagement:',
     contacts: 'Contact(s):',
-    numpeople: 'Number of participants:'
+    numpeople: 'Number of participants:',
+    otherParticipants: 'other participants'
   },
   // EngSelectContact component
   engSelect: {
-    engagement: 'New Engagement',
+    engagement: 'Create new engagement',
     name: 'Contact name',
     contact2: 'Contact number 2',
     remove: 'Remove',
-    add: 'Add more contacts'
+    add: 'Add more contacts',
+    selectDefault: 'Select One'
   }
 }

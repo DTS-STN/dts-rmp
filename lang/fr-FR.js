@@ -34,7 +34,7 @@ export default {
 
   // app
   app: {
-    dts: 'dts-rmp-French',
+    dts: 'Portail de Gestion des Relations',
     welcome: 'relationship management portal proof of concept!',
     search: 'Recherche',
     add: 'Ajouter'
@@ -94,16 +94,26 @@ export default {
     mexico: 'FR-Mexico',
     england: 'FR-England',
     selProvince: 'FR-Select a country',
-    on: 'FR-Ontario',
-    qc: 'FR-Quebec',
-    ns: 'FR-Nova Scotia',
+    ab: 'Alberta',
+    bc: 'fr-British Columbia',
+    mb: 'fr-Manitoba',
+    nb: 'fr-New Brunswick',
+    nfl: 'fr-Newfoundland and Labrador',
+    ns: 'fr-Nova Scotia',
+    on: 'fr-Ontario',
+    pei: 'fr-Prince Edward Island',
+    qc: 'fr-Quebec',
+    sk: 'fr-Saskatchewan',
+    nwt: 'fr-Northwest Territories',
+    nu: 'fr-Nunavut',
+    yk: 'fr-Yukon',
     true: 'FR-True',
     false: 'FR-False',
     // buttons
     cancel: 'FR-Cancel',
-    save: ' FR-Save',
-    back: 'FR-Go Back',
-    edit: 'FR-Edit Contact',
+    save: 'Sauvegarder',
+    back: 'Retour', // We can say Retourner as well
+    edit: 'Modifier',
     // view contact
     otherpeople: 'FR-other participants'
   },
@@ -124,20 +134,22 @@ export default {
     subject: 'Matière',
     type: "Type d'engagement",
     date: 'Date',
-    participants: "Nombre de participants'",
+    participants: 'Nombre de participants',
     description:
-      'Description 1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.',
+      'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     policy: 'Politique / programme',
     tags: 'Mots clés',
     comments:
       'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     cancel: 'Annuler',
     save: 'Sauver',
+    edit: 'Modifier',
     typing: 'Commencez par taper',
     // view contact card
     engagement: 'FR-Engagement :',
     contacts: 'FR-Contact(s) :',
-    numpeople: 'FR-Number of participants :'
+    numpeople: 'FR-Number of participants :',
+    otherParticipants: 'autres participants'
   },
   // EngSelectContact component
   engSelect: {
@@ -146,6 +158,7 @@ export default {
     name: 'Nom du contact',
     contact2: 'Numéro de contact 2',
     remove: 'Retirer',
-    add: 'Ajouter plus de contacts'
+    add: 'Ajouter plus de contacts',
+    selectDefault: 'Sélectionner un'
   }
 }
