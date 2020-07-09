@@ -65,9 +65,8 @@
         :key="index"
         :subject="eng.subject"
         :index="index"
-        :subject="eng.subject"
         :type="eng.type"
-        :contacts="eng.contacts"
+        :contacts="getName(eng.contacts)"
         :tags="eng.tags"
         :date="(eng.date).substring(0, 10)"
         :description="eng.description"
@@ -116,16 +115,19 @@ export default {
 
   computed: mapState({
     contactInfo: state => state.contacts.contact,
-    engContacts: state => state.contacts.contact
+    contacts: state => state.contacts.contacts
   }),
-  created() {
-    // eslint-disable-next-line no-console
-    console.log(this.contactInfo)
-  },
 
   methods: {
     goBack() {
       this.$router.back()
+    },
+    getName(idToFind) {
+      const contact = []
+      idToFind.forEach((element) => {
+        contact.push(this.contacts.find(contact => contact._id === element))
+      })
+      return contact
     }
   }
 }

@@ -15,7 +15,8 @@ export default {
     homeAlt: 'RMP Home page link',
     link: 'https://www.canada.ca/en.html',
     dashboard: 'Dashboard',
-    logout: 'Log out'
+    logout: 'Log out',
+    personIcon: 'User Icon'
   },
 
   // footer
