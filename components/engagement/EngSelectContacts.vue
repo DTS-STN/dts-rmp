@@ -1,6 +1,6 @@
 <template>
   <div class="contact mb-8">
-    <h2 class="text-4xl mt-12">
+    <h2 class="font-display text-4xl mt-12">
       Contact
     </h2>
     <form class="relative mt-6 max-w-md">
@@ -11,16 +11,24 @@
         {{ $t('engSelect.name') }}
       </label>
       <div>
-        <select class="formSelect contactMenu" @change="showContact($event)">
-          <option value="" disabled selected hidden>
+        <!-- <select v-model="selected" class="formSelect contactMenu" @click="selected = undefined" @change="showContact($event)">
+          <option value="" selected="selected" disabled hidden>
             {{ $t('engagement.selectContact') }}
           </option>
           <option v-for="contact in contacts" :key="contact._id">
             {{ contact.keyContactName }}
           </option>
-        </select>
+        </select> -->
+        <form-select v-model="selected" @click="selected = undefined" @change="showContact($event)">
+          <option value="" selected="selected" disabled hidden>
+            {{ $t('engagement.selectContact') }}
+          </option>
+          <option v-for="contact in contacts" :key="contact._id">
+            {{ contact.keyContactName }}
+          </option>
+        </form-select>
       </div>
-      <div class="btn-add flex flex-row mt-2">
+      <!-- <div class="btn-add flex flex-row mt-2">
         <button class="mr-4" @click.prevent="moreContacts=true">
           {{ $t ('engSelect.add') }}
         </button>
@@ -31,36 +39,40 @@
             +
           </span>
         </div>
-      </div>
+      </div> -->
     </form>
     <div v-if="isSelected === true">
       <div class="mt-4">
         <show-contact
-          :name="contactName"
-          :orgname="orgName"
-          :title="title"
-          :phone="phoneNum"
-          :email="contactEmail"
-          :last="engagementType"
-          :date="engagementDate"
-          :number="participants"
+          v-for="(contactList, index) in contactArray"
+          :key="contactList._id"
+          :name="contactList.name"
+          :orgname="contactList.orgName"
+          :email="contactList.email"
+          :last="contactList.email"
+          :date="contactList.date"
+          :number="contactList.participants"
+          :array-index="index"
+          @childToParent="onChildClick"
         />
       </div>
-      <div>
+      <!-- <div>
         <button @click="isSelected=false">
           {{ $t ('engSelect.remove') }}
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import showContact from './EngShowContacts'
+import showContact from './EngSelectedContact'
+import formSelect from './EngFormSelect'
 export default {
   components: {
-    showContact
+    showContact,
+    formSelect
   },
   async fetch() {
     try {
@@ -72,20 +84,51 @@ export default {
   },
   data() {
     return {
-      contactName: '',
-      orgName: '',
-      title: '',
-      contactEmail: '',
-      phoneNum: '',
-      engagementType: '',
-      engagementDate: '',
+      fromChild: '',
+      contactIdArray: [],
+      contactArray: [],
+      engagements: [],
+      contacts: [{
+        _id: 321,
+        keyContactName: 'kevin',
+        orgName: 'esdc',
+        keyContactTitle: 'engineer',
+        keyContactPhone: 6136088800,
+        keyContactEmail: 'kevin@gmail.com',
+        engagements: [{ engagementType: 'esdc', engagementDate: '2020', participants: 14 }]
+      }, {
+        _id: 5231,
+        keyContactName: 'john',
+        orgName: '27',
+        keyContactTitle: 'owner',
+        keyContactPhone: 6136232800,
+        keyContactEmail: 'john@gmail.com',
+        engagements: [{ engagementType: 'meeting', engagementDate: '2020', participants: 12 }]
+      }, {
+        _id: 121,
+        keyContactName: 'ming',
+        orgName: 'abc',
+        keyContactTitle: 'labour',
+        keyContactPhone: 6138088800,
+        keyContactEmail: 'ming@gmail.com',
+        engagements: [{ engagementType: 'training', engagementDate: '2020', participants: 5 }]
+      }, {
+        _id: 3211,
+        keyContactName: 'naomi',
+        orgName: 'sky',
+        keyContactTitle: 'artist',
+        keyContactPhone: 6135088800,
+        keyContactEmail: 'naromi@gmail.com',
+        engagements: [{ engagementType: 'training', engagementDate: '2020', participants: 4 }]
+      }],
       participants: 0,
       moreContacts: false,
-      isSelected: false
+      isSelected: false,
+      selected: undefined
     }
   },
   computed: mapState({
-    contacts: state => state.contacts.contacts
+    contacts1: state => state.contacts.contacts
   }),
   methods: {
     /* display contact info when select contact name in the dropdown menu */
@@ -96,8 +139,12 @@ export default {
     },
     /* get contact and engagement information */
     getContactInfo() {
+      // eslint-disable-next-line no-console
+      console.log('over here')
       for (let i = 0; i < this.contacts.length; i++) {
         if (this.contactName === this.contacts[i].keyContactName) {
+          this.id = this.contacts[i]._id
+          this.keyName = this.contacts[i].keyContactName
           this.orgName = this.contacts[i].orgName
           this.title = this.contacts[i].keyContactTitle
           this.phoneNum = this.contacts[i].keyContactPhone
@@ -108,6 +155,20 @@ export default {
             this.engagementType = this.getLastEng(i).type
             this.engagementDate = this.getLastEng(i).date
             this.participants = this.getLastEng(i).numParticipants
+            this.contactArray.push({
+              uniqueId: this.id,
+              name: this.keyName,
+              orgName: this.orgName,
+              title: this.title,
+              phone: this.phoneNum,
+              email: this.contactEmail,
+              type: this.engagementType,
+              date: this.engagementDate,
+              participants: this.participants,
+              index: this.arrayIndex
+            })
+            // eslint-disable-next-line no-console
+            console.log(this.contactArray)
           }
         }
       }
@@ -126,12 +187,32 @@ export default {
       this.engagementType = 'No engagement found'
       this.engagementDate = 'yyyy/mm/dd'
       this.participants = 0
+      this.contactArray.push({
+        name: this.orgName,
+        title: this.title,
+        phone: this.phoneNum,
+        email: this.contactEmail,
+        index: this.arrayIndex
+      })
+    },
+    onChildClick(value) {
+      this.fromChild = value
+      // eslint-disable-next-line no-console
+      console.log('parent page ')
+      // eslint-disable-next-line no-console
+      console.log(value)
+      this.contactArray.splice(value, 1)
+      // eslint-disable-next-line no-console
+      console.log(this.contactArray)
     }
   }
 }
 </script>
 
-<style scoped>
+<style >
+h1 {
+  padding-bottom: 50px;
+}
 h1,
 h2 {
   @apply text-rmp-md-blue font-bold;
