@@ -390,6 +390,9 @@ export default {
   @apply outline-none border-black;
 }
 .error {
-  @apply bg-red-700;
+  @apply text-red-500 text-xs italic;
+}
+.form-error {
+  @apply appearance-none border border-red-500 rounded w-full
 }
 </style>
