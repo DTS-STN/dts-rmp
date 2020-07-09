@@ -1,6 +1,6 @@
 <template>
   <div class="contact mb-8">
-    <h2 class="text-4xl mt-12">
+    <h2 class="font-display text-4xl mt-12">
       Contact
     </h2>
     <form class="relative mt-6 max-w-md">
@@ -10,105 +10,76 @@
       >
         {{ $t('engSelect.name') }}
       </label>
-      <div class="contact-1">
-        <form-select @change="showContact($event)">
-          <option selected="selected" disabled>
-            {{ $t('engSelect.selectDefault') }}
+      <div>
+        <form-select v-model="selected" @click="selected = undefined" @change="showContact($event)">
+          <option value="" selected="selected" disabled hidden>
+            {{ $t('engagement.selectContact') }}
           </option>
           <option v-for="contact in contacts" :key="contact._id">
             {{ contact.keyContactName }}
           </option>
         </form-select>
       </div>
-      <div v-if="moreContacts === true" class="contact-2">
-        <!--
-          add more contact dropdown
-        -->
-        <div />
-        <div>
-          <button class="underline" @click.prevent="moreContacts=false">
-            {{ $t ('engSelect.remove') }}
-          </button>
-        </div>
-      </div>
-      <div class="flex flex-row mt-2">
+      <!-- <div class="btn-add flex flex-row mt-2">
         <button class="mr-4" @click.prevent="moreContacts=true">
           {{ $t ('engSelect.add') }}
         </button>
-        <div class="mt-6">
+        <div class="mt-1">
           <span
-            class="border border-solid border-black rounded-full h-5 w-5 flex items-center justify-center"
+            class="plus"
           >
             +
           </span>
         </div>
-      </div>
+      </div> -->
     </form>
     <div v-if="isSelected === true">
       <div class="mt-4">
         <show-contact
-          :name="contactName"
-          :orgname="orgName"
-          :title="title"
-          :phone="phoneNum"
-          :email="contactEmail"
-          :last="engagementType"
-          :date="engagementDate"
-          :number="participants"
+          v-for="(contactList, index) in contactArray"
+          :key="contactList._id"
+          :name="contactList.name"
+          :orgname="contactList.orgName"
+          :email="contactList.email"
+          :last="contactList.email"
+          :date="contactList.date"
+          :number="contactList.participants"
+          :array-index="index"
+          @childToParent="onChildClick"
         />
       </div>
-      <div>
-        <button @click="isSelected=false">
-          {{ $t ('engSelect.remove') }}
-        </button>
-      </div>
     </div>
-    <!--
-    <div v-if="isSelected2" class="show-contact2">
-      display contact info here
-      <button @click="isSelected2=false">
-        {{ $t ('engSelect.remove') }}
-      </button>
-    </div>
-    -->
   </div>
 </template>
 
 <script>
-import showContact from './EngShowContacts'
+import { mapState } from 'vuex'
+import showContact from './EngSelectedContact'
 import formSelect from './EngFormSelect'
 export default {
   components: {
-    formSelect,
-    showContact
+    showContact,
+    formSelect
+  },
+  async fetch() {
+    try {
+      await this.$store.dispatch('contacts/fetchContacts')
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error: ', e.response)
+    }
   },
   data() {
     return {
-      contactName: '',
-      orgName: '',
-      title: '',
-      contactEmail: '',
-      phoneNum: '',
-      engagementType: '',
-      engagementDate: '',
-      participants: 0,
-      contacts: [],
-      engagements: [],
-      moreContacts: false,
-      isSelected: false
+      contactArrayId: [],
+      contactArray: [],
+      isSelected: false,
+      selected: undefined
     }
   },
-  // eslint-disable-next-line space-before-function-paren
-  async created() {
-    try {
-      const res = await this.$axios.get('/api/contact/contacts')
-      this.contacts = res.data
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log('error : ', e.response)
-      this.notification('error', e.response.data.message)
-    }
-  },
+  computed: mapState({
+    contacts: state => state.contacts.contacts
+  }),
   methods: {
     /* display contact info when select contact name in the dropdown menu */
     showContact(event) {
@@ -120,6 +91,8 @@ export default {
     getContactInfo() {
       for (let i = 0; i < this.contacts.length; i++) {
         if (this.contactName === this.contacts[i].keyContactName) {
+          this.id = this.contacts[i]._id
+          this.keyName = this.contacts[i].keyContactName
           this.orgName = this.contacts[i].orgName
           this.title = this.contacts[i].keyContactTitle
           this.phoneNum = this.contacts[i].keyContactPhone
@@ -130,6 +103,21 @@ export default {
             this.engagementType = this.getLastEng(i).type
             this.engagementDate = this.getLastEng(i).date
             this.participants = this.getLastEng(i).numParticipants
+            this.contactArray.push({
+              objectId: this.id,
+              name: this.keyName,
+              orgName: this.orgName,
+              title: this.title,
+              phone: this.phoneNum,
+              email: this.contactEmail,
+              type: this.engagementType,
+              date: this.engagementDate,
+              participants: this.participants
+            })
+            this.contactArrayId.push({
+              objectId: this.id
+            })
+            this.emitToEngForm()
           }
         }
       }
@@ -145,24 +133,47 @@ export default {
     },
     /* reset engagement title (type) to default */
     noLastEngagement() {
-      this.engagementType = ''
+      this.engagementType = 'No engagement found'
+      this.engagementDate = 'yyyy/mm/dd'
+      this.participants = 0
+      this.contactArray.push({
+        objectId: this.id,
+        name: this.keyName,
+        orgName: this.orgName,
+        title: this.title,
+        phone: this.phoneNum,
+        email: this.contactEmail,
+        type: this.engagementType,
+        date: this.engagementDate,
+        participants: this.participants
+      })
+      this.contactArrayId.push({
+        objectId: this.id
+      })
+      this.emitToEngForm()
+    },
+    /* this method will get the index num of the chosen one from the child component and passes the index num to be deleted on the parent class */
+    onChildClick(value) {
+      this.fromChild = value
+      this.contactArray.splice(value, 1)
+      this.contactArrayId.splice(value, 1)
+      this.emitToEngForm()
+    },
+    /* this will pass all the contacts saved in contactarray to the parent EngForm to be prepare to submit to the db */
+    emitToEngForm(event) {
+      this.$emit('childToParent', this.contactArrayId)
     }
   }
 }
 </script>
 
-<style scoped>
+<style >
 h1 {
   padding-bottom: 50px;
 }
 h1,
 h2 {
-  color: #246880;
-  @apply font-bold;
-}
-tr,
-td {
-  padding: 5px;
+  @apply text-rmp-md-blue font-bold;
 }
 #contacts {
   @apply w-full cursor-pointer border border-black border-solid text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
@@ -170,6 +181,12 @@ td {
 .add-contact {
   padding-top: 20px;
   @apply underline border-none bg-white;
+}
+.plus {
+  @apply border text-rmp-orange bg-white rounded-full h-5 w-5 flex items-center justify-center
+}
+.btn-add {
+  @apply w-56 text-white bg-rmp-orange p-3 rounded-full items-center
 }
 .orange {
   background-image: url('../../assets/images/orange-star.png');
@@ -182,5 +199,17 @@ button {
 button:focus,
 option:focus {
   @apply outline-none;
+}
+.contactMenu {
+  width: 1200px;
+  margin: auto;
+  font-family: 'DejaVu Serif', 'Roboto slab', 'sans-serif', 'Helvetica Neue';
+  @apply bg-white text-black;
+}
+.formSelect {
+  @apply w-full h-12 border-2 bg-white border-gray-400 rounded;
+}
+.formselect:focus {
+  @apply outline-none border-blue-500;
 }
 </style>

@@ -3,7 +3,7 @@
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
-    <select-contact />
+    <select-contact @childToParent="onChildClick" />
     <h1 class="title font-display">
       {{ $t('engagement.engagment') }}
     </h1>
@@ -199,7 +199,7 @@
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
           <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
-            {{ $t('engagement.save') }}
+            {{ $t('engagement.cancel') }}
           </AppButton>
         </div>
         <div class="w-3/12 margins">
@@ -238,17 +238,16 @@ export default {
   data() {
     return {
       mySVG: require('../../assets/images/calendar.svg'),
+      fromChild: [],
       message: {
         type: null,
         message: null
       },
       engagementDetail: {
-        // vmodel binding
         type: '',
         date: new Date(),
         description: '',
         numParticipants: 0,
-        // for testing contact
         contacts: [
           '561fa3aac09d1fa4eb63f806'
         ],
@@ -288,6 +287,11 @@ export default {
     }
   },
   methods: {
+    onChildClick(value) {
+      // eslint-disable-next-line no-console
+      console.log(this.fromChild)
+      this.fromChild = value
+    },
     increment() {
       this.engagementDetail.numParticipants++
     },

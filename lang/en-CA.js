@@ -84,10 +84,10 @@ export default {
     service: 'Service Contract',
     standing: 'On standing offer list',
     // Options
-    federal: 'Federal',
-    external: 'External',
-    provincial: 'Provincial',
-    international: 'International',
+    federal: 'Federal Governments and Agencies',
+    external: 'External Stakeholders',
+    provincial: 'Provincial Teritories/Municipal and Indigenous entities',
+    international: 'International Stakeholders',
     selCountry: 'Select a country',
     canada: 'Canada',
     mexico: 'Mexico',
@@ -143,7 +143,8 @@ export default {
     engagement: 'Engagement:',
     contacts: 'Contact(s):',
     numpeople: 'Number of participants:',
-    otherParticipants: 'other participants'
+    otherParticipants: 'other participants',
+    selectContact: 'Select one or more contact'
   },
   // EngSelectContact component
   engSelect: {
@@ -151,7 +152,6 @@ export default {
     name: 'Contact name',
     contact2: 'Contact number 2',
     remove: 'Remove',
-    add: 'Add more contacts',
-    selectDefault: 'Select One'
+    add: 'Add more contacts'
   }
 }
