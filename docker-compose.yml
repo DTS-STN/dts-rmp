@@ -7,6 +7,7 @@ services:
       args:
         VUE_APP_CONNECTION_STRING: ${VUE_APP_CONNECTION_STRING}
         VUE_APP_RMP_DB_PASSWORD: ${VUE_APP_RMP_DB_PASSWORD}
+        VUE_APP_API_URL: ${VUE_APP_API_URL}
     container_name: dts-rmp
     restart: always
     ports:
