@@ -94,8 +94,6 @@ sw.*
 
 # MongoDB
 data/
-database/
-
 #vscode
 .vscode
 

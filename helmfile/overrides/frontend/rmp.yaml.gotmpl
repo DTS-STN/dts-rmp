@@ -11,7 +11,7 @@ extraEnv:
     value: {{ requiredEnv "VUE_APP_KMP_DB_PASSWORD" }}
   - name: VUE_APP_CONNECTION_STRING
     value: mongodb://dbuser:-password-@rmp-db-{{ .Environment.Name }}-mongodb:27017/dts-rmp?authSource=dts-rmp
-  - name: baseURL
+  - name: VUE_APP_API_URL
     value: https://rmp.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN"}}
 
 ingress:

@@ -12,6 +12,7 @@
           v-for="(eng, index) in filteredEngagements"
           :id="eng._id"
           :key="index"
+          :subject="eng.subject"
           :index="index"
           :type="eng.type"
           :contacts="eng.contacts"

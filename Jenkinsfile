@@ -14,6 +14,7 @@ pipeline {
         stage('Deploy') {
             steps {
                sh 'az login --service-principal -u $JENKINS_SPN -p $JENKINS_SPN_PASS --tenant $AZURE_TENANT_ID'
+               sh './helmfile/scripts/deleteDatabase.sh'
                sh '''
                     cd ./helmfile
                     echo "Setting Environment Secrets. This is obfuscated"
@@ -23,6 +24,7 @@ pipeline {
                     echo "Done."
                     helmfile --environment $TARGET --selector tier=$TIER apply
                 '''
+               sh './helmfile/scripts/dataseed.sh'
             }
         }
     }
