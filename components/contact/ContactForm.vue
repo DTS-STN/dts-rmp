@@ -2,16 +2,18 @@
   <!-- eslint-disable space-before-function-paren -->
   <div class="contactForm font-body mt-8 ml-12">
     <div>
-      <p ref="displayErrors" class="error">
-        <b>
-          The following fields have errors:
-        </b>
-      </p>
-      <ul class="list-disc error">
-        <li v-for="invalidField in invalidFields" :key="invalidField">
-          {{ invalidField }}
-        </li>
-      </ul>
+      <div v-if="didAttemptSubmit && invalidFields">
+        <p ref="displayErrors" class="error">
+          <b>
+            The following fields have errors:
+          </b>
+        </p>
+        <ul class="list-disc error">
+          <li v-for="invalidField in invalidFields" :key="invalidField">
+            {{ invalidField }}
+          </li>
+        </ul>
+      </div>
       <h1 class="title font-display">
         {{ $t('contact.create') }}
       </h1>
@@ -768,6 +770,7 @@ export default {
       },
 
       timeout: null,
+      didAttemptSubmit: false,
 
       contactInfo: {
         type: 'Federal',
@@ -882,6 +885,7 @@ export default {
 
     async submitForm(contactInfo) {
       this.$v.$touch()
+      this.didAttemptSubmit = true
       if (this.$v.$invalid) {
         // eslint-disable-next-line no-console
         console.log(this.invalidFields)
