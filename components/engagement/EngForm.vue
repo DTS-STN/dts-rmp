@@ -23,7 +23,12 @@
               :placeholder="$t('engagement.typing')"
               class="textInput"
               type="text"
+              :class="{invalid: $v.engagementDetail.subject.$error}"
+              @blur="$v.engagementDetail.subject.$touch()"
             />
+            <p v-if="$v.engagementDetail.subject.$dirty && !$v.engagementDetail.subject.required" class="error">
+              field is required
+            </p>
           </div>
 
           <div class="max-w-lg sm:w-1/3 mb-4">
@@ -37,6 +42,8 @@
               <select
                 v-model="engagementDetail.type"
                 class="textInput bg-white"
+                :class="{invalid: $v.engagementDetail.type.$error}"
+                @blur="$v.engagementDetail.type.$touch()"
               >
                 <option value="" disabled selected hidden>
                   {{ $t('engagement.type') }}
@@ -48,6 +55,9 @@
                   {{ engagementType.type }}
                 </option>
               </select>
+              <p v-if="$v.engagementDetail.type.$dirty && !$v.engagementDetail.type.required" class="error">
+                field is required
+              </p>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
               >
@@ -78,7 +88,9 @@
                 placeholder="dd/mm/yyyy"
                 class="dateStyle"
                 type="date"
+                :class="{invalid: $v.engagementDetail.date.$error}"
                 @input="engagementDetail.date = $event.target.valueAsDate"
+                @blur="$v.engagementDetail.date.$touch()"
               />
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -86,6 +98,9 @@
                 <img :src="mySVG" />
               </div>
             </div>
+            <p v-if="$v.engagementDetail.date.$dirty && !$v.engagementDetail.date.required" class="error">
+              Please pick a date
+            </p>
           </div>
 
           <div class="max-w-lg sm:w-1/3 mb-4">
@@ -101,6 +116,8 @@
                 v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
                 type="text"
+                :class="{invalid: $v.engagementDetail.numParticipants.$error}"
+                @blur="$v.engagementDetail.numParticipants.$touch()"
               />
               <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
                 <button class="items-end" @click.prevent="increment">
@@ -111,6 +128,9 @@
                 </button>
               </div>
             </div>
+            <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.required" class="error">
+              Please add at least one participant
+            </p>
           </div>
         </div>
         <div class="flex flex-wrap">
@@ -127,9 +147,10 @@
               type="text"
               class="textArea"
               maxlength="1000"
+              :class="{invalid: $v.engagementDetail.description.$error}"
               @blur="$v.engagementDetail.description.$touch()"
             />
-            <p v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.required" class="error">
+            <p v-if="$v.engagementDetail.description.$dirty" class="error">
               field is required
             </p>
           </div>
@@ -148,7 +169,12 @@
               :placeholder="$t('engagement.typing')"
               class="textInput"
               type="text"
+              :class="{invalid: $v.engagementDetail.policyProgram.$error}"
+              @blur="$v.engagementDetail.policyProgram.$touch()"
             />
+            <p v-if="$v.engagementDetail.policyProgram.$dirty && !$v.engagementDetail.policyProgram.maxChar" class="error">
+              string cannot exceed 50 characters
+            </p>
           </div>
 
           <div class="flex mb-4">
@@ -164,7 +190,12 @@
                 v-model="engagementDetail.tags"
                 class="textInputTag"
                 type="text"
+                :class="{invalid: $v.engagementDetail.tags.$error}"
+                @blur="$v.engagementDetail.tags.$touch()"
               />
+              <p v-if="$v.engagementDetail.tags.$dirty && !$v.engagementDetail.tags.maxChar" class="error">
+                tag name too long
+              </p>
             </div>
             <div class="flex mt-6 ml-6">
               <eng-tags>
@@ -294,19 +325,13 @@ export default {
   validations: {
     engagementDetail: {
       subject: { required, maxChar: maxLength(50) },
+      type: { required },
       date: { required },
-      description: { required, maxChar: maxLength(1000) },
+      description: { required },
       numParticipants: { required, minVal: minValue(1) },
       contacts: { required },
       policyProgram: { maxChar: maxLength(50) },
-      comments: {
-        $each: {
-          value: { maxChar: maxLength(140) }
-        }
-      }
-    },
-    engagementType: {
-      type: { required }
+      tags: { maxChar: maxLength(10) }
     }
   },
   computed: {
@@ -431,7 +456,7 @@ export default {
 .error {
   @apply text-red-500 text-xs italic;
 }
-.form-error {
+.invalid {
   @apply appearance-none border border-red-500 rounded w-full
 }
 </style>
