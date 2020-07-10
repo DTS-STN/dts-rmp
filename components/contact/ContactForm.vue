@@ -2,15 +2,14 @@
   <!-- eslint-disable space-before-function-paren -->
   <div class="contactForm font-body mt-8 ml-12">
     <div>
-      <div v-if="didAttemptSubmit && invalidFields">
-        <p ref="displayErrors" class="error">
-          <b>
-            The following fields have errors:
-          </b>
-        </p>
+      <!-- <div v-if="didAttemptSubmit && invalidFields"> -->
+      <div v-if="true" class="error-list">
+        <h1 ref="displayErrors">
+          The following fields have errors:
+        </h1>
         <ul class="list-disc error">
           <li v-for="invalidField in invalidFields" :key="invalidField">
-            {{ invalidField }}
+            {{ $t('contact.' + invalidField) }}
           </li>
         </ul>
       </div>
@@ -55,7 +54,7 @@
         <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactName">
-              {{ $t('contact.name') }}
+              {{ $t('contact.keyContactName') }}
             </label>
             <input
               id="keyContactName"
@@ -75,7 +74,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactTitle">
-              {{ $t('contact.title') }}
+              {{ $t('contact.keyContactTitle') }}
             </label>
             <input
               id="keyContactTitle"
@@ -98,7 +97,7 @@
         <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactAddress">
-              {{ $t('contact.address') }}
+              {{ $t('contact.keyContactAddress') }}
             </label>
             <input
               id="keyContactAddress"
@@ -199,7 +198,7 @@
         <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactEmail">
-              {{ $t('contact.email') }}
+              {{ $t('contact.keyContactEmail') }}
             </label>
             <input
               id="keyContactEmail"
@@ -225,7 +224,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactPhone">
-              {{ $t('contact.phone') }}
+              {{ $t('contact.orgPhone') }}
             </label>
             <input
               id="keyContactPhone"
@@ -355,7 +354,7 @@
 
         <div class="w-5/12 margins">
           <label class="formLabel orange" for="orgWebsite">
-            {{ $t('contact.orgwebsite') }}
+            {{ $t('contact.orgWebsite') }}
           </label>
           <input
             id="orgWebsite"
@@ -526,7 +525,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgSector">
-              {{ $t('contact.sector') }}
+              {{ $t('contact.orgSector') }}
             </label>
             <input
               id="orgSector"
@@ -656,7 +655,7 @@
 
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="provTerritory">
-              {{ $t('contact.provTerr') }}
+              {{ $t('contact.provTerritory') }}
             </label>
             <select
               id="provTerritory"
@@ -988,6 +987,12 @@ export default {
 
 .form-error {
   @apply appearance-none border border-red-500 rounded w-full;
+}
+
+.error-list {
+  width: 50%;
+  background-color: rgba(255,0,0,0.1);
+  @apply border border-red-500;
 }
 
 </style>
