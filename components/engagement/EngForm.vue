@@ -147,7 +147,7 @@
             />
           </div>
 
-          <div class="flex max-w-lg sm:w-1/3 mb-4">
+          <div class="flex mb-4">
             <div>
               <label
                 class="block tracking-wide text-black text-md font-bold font-body mb-2"
@@ -157,17 +157,18 @@
               </label>
               <input
                 id="tags"
-                v-model="engagementDetail.tags"
+                v-model="inputTag"
                 class="textInputTag"
                 type="text"
+                @keyup.enter="getTagFromInput()"
               />
             </div>
-            <div class="flex mt-6 ml-6">
-              <eng-tags>
-                tags
-              </eng-tags>
-              <eng-tags>
-                more tags
+            <div v-if="showTag" class="flex mt-6 ml-6">
+              <eng-tags v-for="tag in engagementDetail.tags" :key="tag">
+                {{ tag }}
+                <button class="delete-btn" @click.prevent="deleteTag($event)">
+                  x
+                </button>
               </eng-tags>
             </div>
           </div>
@@ -267,8 +268,9 @@ export default {
             date: new Date().toISOString().slice(0, 10)
           }
         ],
-        tags: ''
+        tags: []
       },
+      inputTag: '',
       engagementTypes: [
         { type: 'One-on-one' },
         { type: 'Conference' },
@@ -282,7 +284,8 @@ export default {
         { type: 'Minister office briefing' },
         { type: 'Scrum/Sprint' },
         { type: 'Advisory board/Council Meeting' }
-      ]
+      ],
+      showTag: false
     }
   },
   methods: {
@@ -298,6 +301,13 @@ export default {
       if (this.engagementDetail.numParticipants > 0) {
         this.engagementDetail.numParticipants--
       }
+    },
+    getTagFromInput() {
+      this.engagementDetail.tags.push(this.inputTag)
+      this.showTag = true
+    },
+    deleteTag(event) {
+      this.engagementDetail.tags.splice(this.engagementDetail.tags.indexOf(event), 1)
     },
     // dateAdj() {
     //   return this.engagementDetail.date.setDate(
@@ -391,6 +401,9 @@ export default {
 .textInputTag:focus {
   border: 2.5px solid;
   @apply outline-none border-black;
+}
+.delete-btn {
+  @apply text-rmp-dk-blue bg-white rounded-full items-center justify-center pl-2 pr-2 ml-2
 }
 .error {
   @apply bg-red-700;

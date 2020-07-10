@@ -1,9 +1,10 @@
 <template>
-  <div class="tags mr-2">
+  <div
+    class="tags mr-2"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <slot />
-    <button class="delete-btn">
-      x
-    </button>
   </div>
 </template>
 
@@ -21,8 +22,5 @@ export default {
 <style scoped>
     .tags {
         @apply flex text-white bg-rmp-lt-blue text-rmp-dk-blue rounded-full py-2 px-4 items-center
-    }
-    .delete-btn {
-        @apply text-rmp-dk-blue bg-white rounded-full items-center justify-center pl-2 pr-2 ml-2
     }
 </style>
