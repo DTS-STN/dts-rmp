@@ -36,7 +36,7 @@ export default {
   app: {
     dts: 'Relationship Management Portal',
     welcome: 'relationship management portal proof of concept!',
-    search: 'Search Test',
+    search: 'Search',
     add: 'Add new'
   },
 

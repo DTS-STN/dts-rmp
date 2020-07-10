@@ -1,6 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
 module.exports = {
   mode: 'universal',
   /*
@@ -40,12 +37,12 @@ module.exports = {
     }
   ],
   /*
-  ** Nuxt.js dev-modules
-  */
+   ** Nuxt.js dev-modules
+   */
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
@@ -61,9 +58,17 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {
-    baseURL: process.env.VUE_APP_API_URL || 'http://localhost:3000'
+  publicRuntimeConfig: {
+    CONNECTION_STRING: process.env.VUE_APP_CONNECTION_STRING,
+    API_URL: process.env.VUE_APP_API_URL
   },
+  //
+  // api/index starts the connection to the database
+  //
+  serverMiddleware: [
+    // API middleware
+    '~/api/index'
+  ],
   i18n: {
     locales: [
       {
@@ -123,11 +128,6 @@ module.exports = {
       home: '/welcome'
     }
   },
-
-  serverMiddleware: [
-    // API middleware
-    '~/api/index'
-  ],
   /*
    ** Build configuration
    */
