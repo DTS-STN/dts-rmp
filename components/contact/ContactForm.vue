@@ -2,12 +2,11 @@
   <!-- eslint-disable space-before-function-paren -->
   <div class="contactForm font-body mt-8 ml-12">
     <div>
-      <!-- <div v-if="didAttemptSubmit && invalidFields"> -->
-      <div v-if="true" class="error-list">
+      <div v-if="didAttemptSubmit && invalidFields">
         <h1 ref="displayErrors">
           The following fields have errors:
         </h1>
-        <ul class="list-disc error">
+        <ul class="list-disc error" style="list-style-position: inside">
           <li v-for="invalidField in invalidFields" :key="invalidField">
             {{ $t('contact.' + invalidField) }}
           </li>
@@ -641,6 +640,8 @@
               v-model="contactInfo.directorate"
               class="formInput"
               type="text"
+              list-style-position:
+              outside;
               placeholder="Directorate"
               :class="{ 'form-error': $v.contactInfo.directorate.$error }"
               @blur="$v.contactInfo.directorate.$touch()"
@@ -735,7 +736,7 @@
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgWebsite">
-              {{ $t('contact.orgwebsite') }}
+              {{ $t('contact.orgWebsite') }}
             </label>
             <input
               id="orgWebsite"
