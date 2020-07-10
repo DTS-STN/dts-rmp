@@ -4,9 +4,9 @@
       {{ $t('engSelect.engagement') }}
     </h1>
     <select-contact @childToParent="onChildClick" />
-    <h1 class="title font-display">
+    <h2 class="title font-display">
       {{ $t('engagement.engagment') }}
-    </h1>
+    </h2>
     <form @submit.prevent="submitForm(engagementDetail)">
       <div class="w-full">
         <div class="flex flex-wrap mb-8">
