@@ -61,6 +61,7 @@ export default {
     showContact,
     formSelect
   },
+  /* fetch data from vuex store */
   async fetch() {
     try {
       await this.$store.dispatch('contacts/fetchContacts')

@@ -307,7 +307,7 @@ export default {
       this.showTag = true
     },
     deleteTag(event) {
-      this.engagementDetail.tags.splice(this.engagementDetail.tags.indexOf(event), 1)
+      this.engagementDetail.tags.splice(event, 1)
     },
     // dateAdj() {
     //   return this.engagementDetail.date.setDate(
