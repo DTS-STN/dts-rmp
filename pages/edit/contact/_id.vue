@@ -1,16 +1,16 @@
 <template>
   <div class="pt-1 xl:mx-16">
-    <ContactForm :editmode="true" :contactdata="contactInfo" />
+    <ContactForm2 :editmode="true" :contactdata="contactInfo" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import ContactForm from '@/components/contact/ContactForm.vue'
+import ContactForm2 from '@/components/contact/ContactForm.vue'
 
 export default {
   components: {
-    ContactForm
+    ContactForm2
   },
 
   computed: mapState({
