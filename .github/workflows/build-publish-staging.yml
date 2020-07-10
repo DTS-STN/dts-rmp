@@ -1,12 +1,9 @@
-
-name: Build and Publish Release
+name: Build and Publish Staging
 
 on:
-  release:
+  push:
     branches:
       - main
-    types:
-      - created
 
 jobs:
   build_publish:
@@ -25,7 +22,7 @@ jobs:
           login-server: mtscontainers.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
-          
+
       - name: docker build and push client server
         run: |
           docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-rmp:latest .
@@ -33,11 +30,11 @@ jobs:
           docker push mtscontainers.azurecr.io/dts-rmp:latest
           docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
 
-      - name: 'Deploy Release'
+      - name: 'Deploy Staging'
         uses: enflo/jenkins-action@master
         with:
-          url: 'https://jenkins.dts-stn.com'
+          url: 'https://jenkins.dev.dts-stn.com'
           user: dtsrobot
           token: ${{ secrets.DTSROBOT_API_TOKEN }}
           job: 'job/deploy_rmp'
-          parameters: 'latest&release&frontend'
+          parameters: 'latest&dev&frontend'
