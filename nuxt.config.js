@@ -54,6 +54,21 @@ module.exports = {
     // https://nuxt-community.github.io/nuxt-i18n/
     'nuxt-i18n'
   ],
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  publicRuntimeConfig: {
+    CONNECTION_STRING: process.env.VUE_APP_CONNECTION_STRING,
+    API_URL: process.env.VUE_APP_API_URL
+  },
+  //
+  // api/index starts the connection to the database
+  //
+  serverMiddleware: [
+    // API middleware
+    '~/api/index'
+  ],
   i18n: {
     locales: [
       {
@@ -113,10 +128,6 @@ module.exports = {
       home: '/welcome'
     }
   },
-  serverMiddleware: [
-    // API middleware
-    '~/api/index.js'
-  ],
   /*
    ** Build configuration
    */
