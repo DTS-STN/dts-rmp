@@ -1,0 +1,14 @@
+mongodbUsername: dbuser
+mongodbPassword: {{ requiredEnv "VUE_APP_KMP_DB_PASSWORD" }}
+mongodbDatabase: dts-rmp
+mongodbRootPassword: {{ requiredEnv "MONGO_DB_ROOT_PASS" }}
+persistence:
+   enabled: true
+   {{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+   storageClass: dtsstorageclass
+   {{- else }}
+   storageClass: dtsstorageclass-dev
+   {{- end }}
+image:
+    tag: 4.2.4-debian-10-r0
+{{/* mongodb://dbuser:-password-@poc-intake-db-dev-mongodb:27017/poc */}}
