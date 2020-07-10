@@ -70,7 +70,7 @@
               v-if="$v.contactInfo.keyContactName.$dirty && !$v.contactInfo.keyContactName.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
           <div class="w-5/12 margins">
@@ -90,7 +90,7 @@
               v-if="$v.contactInfo.keyContactTitle.$dirty && !$v.contactInfo.keyContactTitle.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
         </div>
@@ -113,7 +113,7 @@
               v-if="$v.contactInfo.keyContactAddress.$dirty && !$v.contactInfo.keyContactAddress.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
           <div class="w-5/12 margins">
@@ -214,13 +214,13 @@
               v-if="$v.contactInfo.keyContactEmail.$dirty && !$v.contactInfo.keyContactEmail.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
             <p
               v-if="$v.contactInfo.keyContactEmail.$dirty && !$v.contactInfo.keyContactEmail.email"
               class="error"
             >
-              Not a valid email
+              {{ $t('contactValidation.invalidEmail') }}
             </p>
           </div>
           <div class="w-5/12 margins">
@@ -240,7 +240,7 @@
               v-if="$v.contactInfo.keyContactPhone.$dirty && !$v.contactInfo.keyContactPhone.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
         </div>
@@ -270,7 +270,7 @@
               v-if="$v.contactInfo.orgAddress.$dirty && !$v.contactInfo.orgAddress.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
           <div class="w-5/12 margins">
@@ -363,7 +363,15 @@
             class="formInput"
             type="text"
             placeholder="Website"
+            :class="{ 'form-error': $v.contactInfo.orgWebsite.$error }"
+            @blur="$v.contactInfo.orgWebsite.$touch()"
           />
+          <p
+            v-if="$v.contactInfo.orgWebsite.$dirty && !$v.contactInfo.orgWebsite.required"
+            class="error"
+          >
+            {{ $t('contactValidation.required') }}
+          </p>
         </div>
 
         <div v-if="contactInfo.type == 'Federal'">
@@ -378,7 +386,15 @@
                 class="formInput"
                 type="text"
                 placeholder="Department"
+                :class="{ 'form-error': $v.contactInfo.department.$error }"
+                @blur="$v.contactInfo.department.$touch()"
               />
+              <p
+                v-if="$v.contactInfo.department.$dirty && !$v.contactInfo.department.required"
+                class="error"
+              >
+                {{ $t('contactValidation.required') }}
+              </p>
             </div>
             <div class="w-5/12 margins">
               <label class="formLabel orange" for="branch">
@@ -390,7 +406,15 @@
                 class="formInput"
                 type="text"
                 placeholder="Branch"
+                :class="{ 'form-error': $v.contactInfo.branch.$error }"
+                @blur="$v.contactInfo.branch.$touch()"
               />
+              <p
+                v-if="$v.contactInfo.branch.$dirty && !$v.contactInfo.branch.required"
+                class="error"
+              >
+                {{ $t('contactValidation.required') }}
+              </p>
             </div>
           </div>
         </div>
@@ -411,7 +435,15 @@
                 class="formInput"
                 type="text"
                 placeholder="Directorate"
+                :class="{ 'form-error': $v.contactInfo.directorate.$error }"
+                @blur="$v.contactInfo.directorate.$touch()"
               />
+              <p
+                v-if="$v.contactInfo.directorate.$dirty && !$v.contactInfo.directorate.required"
+                class="error"
+              >
+                {{ $t('contactValidation.required') }}
+              </p>
             </div>
 
             <div v-if="contactInfo.type == 'Provincial'" class="w-5/12 margins">
@@ -489,7 +521,7 @@
               v-if="$v.contactInfo.orgName.$dirty && !$v.contactInfo.orgName.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
           <div class="w-5/12 margins">
@@ -509,7 +541,7 @@
               v-if="$v.contactInfo.orgSector.$dirty && !$v.contactInfo.orgSector.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
         </div>
@@ -532,7 +564,7 @@
               v-if="$v.contactInfo.orgEmail.$dirty && !$v.contactInfo.orgEmail.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
           <div class="w-5/12 margins">
@@ -552,7 +584,7 @@
               v-if="$v.contactInfo.orgPhone.$dirty && !$v.contactInfo.orgPhone.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
         </div>
@@ -575,7 +607,7 @@
               v-if="$v.contactInfo.department.$dirty && !$v.contactInfo.department.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
           <div class="w-5/12 margins">
@@ -595,7 +627,7 @@
               v-if="$v.contactInfo.branch.$dirty && !$v.contactInfo.branch.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
         </div>
@@ -618,7 +650,7 @@
               v-if="$v.contactInfo.directorate.$dirty && !$v.contactInfo.directorate.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
 
@@ -651,7 +683,7 @@
               v-if="$v.contactInfo.provTerritory.$dirty && !$v.contactInfo.provTerritory.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
         </div>
@@ -719,7 +751,7 @@
               v-if="$v.contactInfo.orgWebsite.$dirty && !$v.contactInfo.orgWebsite.required"
               class="error"
             >
-              Field is required.
+              {{ $t('contactValidation.required') }}
             </p>
           </div>
         </div>
@@ -889,8 +921,9 @@ export default {
       if (this.$v.$invalid) {
         // eslint-disable-next-line no-console
         console.log(this.invalidFields)
-        this.$scrollTo(this.$refs.displayErrors)
-        // this.$scrollTo(document.getElementById('displayErrors'))
+        this.$nextTick(() => {
+          this.$scrollTo(this.$refs.displayErrors)
+        })
       } else {
         try {
           await this.$axios.post('/api/contact/addContact', {
