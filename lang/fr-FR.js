@@ -119,8 +119,8 @@ export default {
   },
 
   contactValidation: {
-    required: 'PLACEHOLDER',
-    invalidEmail: 'PLACEHOLDER'
+    required: 'FR-This field is required',
+    invalidEmail: 'FR-Not a valid email address'
   },
 
   // Navigation search Component
