@@ -22,7 +22,7 @@ environments:
     prod-blue:
     prod-green: 
 
-releases:
+      releases:
 ##### rmp #####
 # rmp app
   - name: rmp-{{ .Environment.Name }}
@@ -34,6 +34,7 @@ releases:
         category: dts
         app: rmp
         tier: frontend
+        docker_tage: {{ requiredEnv "DOCKER_TAG" }}
     namespace: rmp-{{ .Environment.Name }}
     installed: true
     wait: false
