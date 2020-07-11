@@ -100,8 +100,9 @@
                 id="numParticipants"
                 v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
-                type="text"
+                type="number"
               />
+              <!--
               <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
                 <button class="items-end" @click.prevent="increment">
                   +
@@ -110,6 +111,7 @@
                   -
                 </button>
               </div>
+              -->
             </div>
           </div>
         </div>
@@ -160,7 +162,7 @@
                 v-model="inputTag"
                 class="textInputTag"
                 type="text"
-                @keyup.enter="getTagFromInput()"
+                @keyup.enter.prevent="getTagFromInput()"
               />
             </div>
             <div v-if="showTag" class="flex mt-6 ml-6">
@@ -294,6 +296,7 @@ export default {
       console.log(this.idFromChild)
       this.idFromChild = value
     },
+    /*
     increment() {
       this.engagementDetail.numParticipants++
     },
@@ -302,6 +305,7 @@ export default {
         this.engagementDetail.numParticipants--
       }
     },
+    */
     getTagFromInput() {
       this.engagementDetail.tags.push(this.inputTag)
       this.showTag = true
