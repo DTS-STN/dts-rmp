@@ -100,9 +100,8 @@
                 id="numParticipants"
                 v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
-                type="number"
+                type="text"
               />
-              <!--
               <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
                 <button class="items-end" @click.prevent="increment">
                   +
@@ -111,7 +110,6 @@
                   -
                 </button>
               </div>
-              -->
             </div>
           </div>
         </div>
@@ -159,13 +157,12 @@
               </label>
               <input
                 id="tags"
-                v-model="engagementDetail.tags"
+                v-model="inputTag"
                 class="textInputTag"
                 type="text"
-                @keyup.enter.prevent="getTagFromInput()"
+                @keyup.enter="getTagFromInput()"
               />
             </div>
-            <!--
             <div v-if="showTag" class="flex mt-6 ml-6">
               <eng-tags v-for="tag in engagementDetail.tags" :key="tag">
                 {{ tag }}
@@ -174,7 +171,6 @@
                 </button>
               </eng-tags>
             </div>
-            -->
           </div>
         </div>
         <div class="flex flex-wrap">
@@ -237,15 +233,15 @@
 
 <script>
 import SelectContact from './EngSelectContacts.vue'
-// import EngTags from './EngTags'
+import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
   name: 'EngagementForm',
   components: {
     AppButton,
-    SelectContact
-    // EngTags
+    SelectContact,
+    EngTags
   },
   data() {
     return {
@@ -272,7 +268,7 @@ export default {
             date: new Date().toISOString().slice(0, 10)
           }
         ],
-        tags: ''
+        tags: []
       },
       inputTag: '',
       engagementTypes: [
@@ -298,7 +294,6 @@ export default {
       console.log(this.idFromChild)
       this.idFromChild = value
     },
-    /*
     increment() {
       this.engagementDetail.numParticipants++
     },
@@ -307,9 +302,9 @@ export default {
         this.engagementDetail.numParticipants--
       }
     },
-    */
     getTagFromInput() {
       this.engagementDetail.tags.push(this.inputTag)
+      this.inputTag = ''
       this.showTag = true
     },
     deleteTag(event) {
@@ -330,7 +325,6 @@ export default {
       this.message.message = null
       clearTimeout(this.timeout)
     },
-
     async submitForm(engagementDetail) {
       try {
         await this.$axios.post('/api/engagement/addEngagement', {
