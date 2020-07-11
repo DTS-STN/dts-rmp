@@ -4,9 +4,9 @@
       {{ $t('engSelect.engagement') }}
     </h1>
     <select-contact @childToParent="onChildClick" />
-    <h1 class="title font-display">
+    <h2 class="title font-display">
       {{ $t('engagement.engagment') }}
-    </h1>
+    </h2>
     <form @submit.prevent="submitForm(engagementDetail)">
       <div class="w-full">
         <div class="flex flex-wrap mb-8">
@@ -159,12 +159,13 @@
               </label>
               <input
                 id="tags"
-                v-model="inputTag"
+                v-model="engagementDetail.tags"
                 class="textInputTag"
                 type="text"
                 @keyup.enter.prevent="getTagFromInput()"
               />
             </div>
+            <!--
             <div v-if="showTag" class="flex mt-6 ml-6">
               <eng-tags v-for="tag in engagementDetail.tags" :key="tag">
                 {{ tag }}
@@ -173,6 +174,7 @@
                 </button>
               </eng-tags>
             </div>
+            -->
           </div>
         </div>
         <div class="flex flex-wrap">
@@ -235,15 +237,15 @@
 
 <script>
 import SelectContact from './EngSelectContacts.vue'
-import EngTags from './EngTags'
+// import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
   name: 'EngagementForm',
   components: {
     AppButton,
-    SelectContact,
-    EngTags
+    SelectContact
+    // EngTags
   },
   data() {
     return {
@@ -270,7 +272,7 @@ export default {
             date: new Date().toISOString().slice(0, 10)
           }
         ],
-        tags: []
+        tags: ''
       },
       inputTag: '',
       engagementTypes: [
