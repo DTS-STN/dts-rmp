@@ -15,7 +15,8 @@ export default {
     homeAlt: "Lien vers la page d'acceuil RMP",
     link: 'https://www.canada.ca/fr.html',
     dashboard: 'Tableau de bord',
-    logout: 'Se déconnecter'
+    logout: 'Se déconnecter',
+    personIcon: "icône d'utilisateur"
   },
 
   // footer
@@ -143,7 +144,8 @@ export default {
     engagement: 'FR-Engagement :',
     contacts: 'FR-Contact(s) :',
     numpeople: 'FR-Number of participants :',
-    otherParticipants: 'autres participants'
+    otherParticipants: 'autres participants',
+    selectContact: 'Sélectionnez un contact'
   },
   // EngSelectContact component
   engSelect: {
@@ -152,7 +154,6 @@ export default {
     name: 'Nom du contact',
     contact2: 'Numéro de contact 2',
     remove: 'Retirer',
-    add: 'Ajouter plus de contacts',
-    selectDefault: 'Sélectionner un'
+    add: 'Ajouter plus de contacts'
   }
 }

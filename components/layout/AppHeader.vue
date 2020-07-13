@@ -53,7 +53,7 @@
               data-cy="personIcon-button"
               src="@/assets/images/person_icon.svg"
               class="h-16 pl-2"
-              :alt="$t('header.homeAlt')"
+              :alt="$t('header.personIcon')"
             />
             <!-- <div id="userImg" /> -->
           </div>
