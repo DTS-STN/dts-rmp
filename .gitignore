@@ -19,7 +19,7 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
-#cypress reports
+# cypress reports
 cypress/reports/
 
 # nyc test coverage
@@ -94,9 +94,12 @@ sw.*
 
 # MongoDB
 data/
-#vscode
+#v scode
 .vscode
 
 package-lock.json
 
 .gitattributes
+
+# .env backup file 
+*.bak
