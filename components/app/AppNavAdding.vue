@@ -1,16 +1,20 @@
 <template>
-  <div id="navContainer" class="ml-12">
-    <div class="mt-16">
-      <h2 class="newAdd font-display">
-        {{ $t('app.add') }}
-      </h2>
-      <div>
-        <p class="orange requireFields t-2 font-body">
-          {{ $t('form.required') }}
-        </p>
+  <div id="navContainer" class="ml-12 mt-12">
+    <div>
+      <div id="navContainer">
+        <div class="mt-16">
+          <h2 class="newAdd font-display">
+            {{ $t('app.add') }}
+          </h2>
+          <div>
+            <p class="orange requireFields t-2 font-body">
+              {{ $t('form.required') }}
+            </p>
+          </div>
+        </div>
+        <AppEngConToggle :search="false" />
       </div>
     </div>
-    <AppEngConToggle :search="false" />
   </div>
 </template>
 

@@ -3,10 +3,10 @@
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
-    <select-contact />
-    <h1 class="title font-display">
+    <select-contact @childToParent="onChildClick" />
+    <h2 class="title font-display">
       {{ $t('engagement.engagment') }}
-    </h1>
+    </h2>
     <form @submit.prevent="submitForm(engagementDetail)">
       <div class="w-full">
         <div class="flex flex-wrap mb-8">
@@ -147,19 +147,32 @@
             />
           </div>
 
-          <div class="max-w-lg sm:w-1/3 mb-4">
-            <label
-              class="block tracking-wide text-black text-md font-bold font-body mb-2"
-              for="tags"
-            >
-              {{ $t('engagement.tags') }}
-            </label>
-            <input
-              id="tags"
-              v-model="engagementDetail.tags"
-              class="textInputTag"
-              type="text"
-            />
+          <div class="flex mb-4">
+            <div>
+              <label
+                class="block tracking-wide text-black text-md font-bold font-body mb-2"
+                for="tags"
+              >
+                {{ $t('engagement.tags') }}
+              </label>
+              <input
+                id="tags"
+                v-model="engagementDetail.tags"
+                class="textInputTag"
+                type="text"
+                @keyup.enter="getTagFromInput()"
+              />
+            </div>
+            <!--
+            <div v-if="showTag" class="flex mt-6 ml-6">
+              <eng-tags v-for="tag in engagementDetail.tags" :key="tag">
+                {{ tag }}
+                <button class="delete-btn" @click.prevent="deleteTag($event)">
+                  x
+                </button>
+              </eng-tags>
+            </div>
+            -->
           </div>
         </div>
         <div class="flex flex-wrap">
@@ -195,7 +208,7 @@
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
           <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
-            {{ $t('engagement.save') }}
+            {{ $t('engagement.cancel') }}
           </AppButton>
         </div>
         <div class="w-3/12 margins">
@@ -222,6 +235,7 @@
 
 <script>
 import SelectContact from './EngSelectContacts.vue'
+// import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
@@ -229,23 +243,24 @@ export default {
   components: {
     AppButton,
     SelectContact
+    // EngTags
   },
   data() {
     return {
       mySVG: require('../../assets/images/calendar.svg'),
+      idFromChild: [],
       message: {
         type: null,
         message: null
       },
       engagementDetail: {
-        // vmodel binding
         type: '',
         date: new Date(),
         description: '',
         numParticipants: 0,
-        // for testing contact
-        contacts: [
-          '561fa3aac09d1fa4eb63f806'
+        contacts: [{
+          objectId: this.idFromChild
+        }
         ],
         policyProgram: '',
         comments: [
@@ -257,6 +272,7 @@ export default {
         ],
         tags: ''
       },
+      inputTag: '',
       engagementTypes: [
         { type: 'One-on-one' },
         { type: 'Conference' },
@@ -270,10 +286,16 @@ export default {
         { type: 'Minister office briefing' },
         { type: 'Scrum/Sprint' },
         { type: 'Advisory board/Council Meeting' }
-      ]
+      ],
+      showTag: false
     }
   },
   methods: {
+    onChildClick(value) {
+      // eslint-disable-next-line no-console
+      console.log(this.idFromChild)
+      this.idFromChild = value
+    },
     increment() {
       this.engagementDetail.numParticipants++
     },
@@ -281,6 +303,13 @@ export default {
       if (this.engagementDetail.numParticipants > 0) {
         this.engagementDetail.numParticipants--
       }
+    },
+    getTagFromInput() {
+      this.engagementDetail.tags.push(this.inputTag)
+      this.showTag = true
+    },
+    deleteTag(event) {
+      this.engagementDetail.tags.splice(this.engagementDetail.tags.indexOf(event), 1)
     },
     // dateAdj() {
     //   return this.engagementDetail.date.setDate(
@@ -369,11 +398,14 @@ export default {
   @apply outline-none border-black;
 }
 .textInputTag {
-  @apply appearance-none block w-6/12 text-gray-700 border border-black rounded py-3 px-4 leading-tight;
+  @apply appearance-none block w-48 text-gray-700 border border-black rounded py-3 px-4 leading-tight;
 }
 .textInputTag:focus {
   border: 2.5px solid;
   @apply outline-none border-black;
+}
+.delete-btn {
+  @apply text-rmp-dk-blue bg-white rounded-full items-center justify-center pl-2 pr-2 ml-2
 }
 .error {
   @apply bg-red-700;

@@ -11,9 +11,9 @@
           </li>
         </ul>
       </div>
-      <h1 class="title font-display">
+      <h2 class="title font-display">
         {{ $t('contact.create') }}
-      </h1>
+      </h2>
 
       <div>
         <p class="orange font-body">
@@ -833,7 +833,8 @@ export default {
   @apply bg-white text-black;
 }
 .title {
-  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
+  font-size: 28pt;
+  @apply text-rmp-md-blue font-display text-left tracking-wide font-extrabold text-4xl pt-4;
 }
 .formLabel {
   @apply font-bold;
