@@ -45,7 +45,6 @@ export default {
     id: { type: String, default: '' },
     arrayIndex: { type: Number, default: 0 }
   },
-
   methods: {
     garbageClicked(event) {
       this.$emit('childToParent', this.arrayIndex)

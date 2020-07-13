@@ -5,12 +5,6 @@
     v-on="$listeners"
   >
     <slot />
-<<<<<<< HEAD
-    <button class="delete-btn" disabled>
-      x
-    </button>
-=======
->>>>>>> 103-multiple-tags
   </div>
 </template>
 

@@ -128,11 +128,8 @@
                 v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
                 type="number"
-<<<<<<< HEAD
                 :class="{invalid: $v.engagementDetail.numParticipants.$error}"
                 @blur="$v.engagementDetail.numParticipants.$touch()"
-=======
->>>>>>> 103-multiple-tags
               />
               <!--
               <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
@@ -145,7 +142,7 @@
               </div>
               -->
             </div>
-            <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.required" class="error">
+            <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.minVal" class="error">
               {{ $t('engagementValidation.minParticipant') }}
             </p>
           </div>
@@ -202,32 +199,20 @@
                 v-model="inputTag"
                 class="textInputTag"
                 type="text"
-<<<<<<< HEAD
-                :class="{invalid: $v.engagementDetail.tags.$error}"
-                @blur="$v.engagementDetail.tags.$touch()"
-=======
+                :class="{invalid: $v.inputTag.$error}"
+                @input="$v.inputTag.$touch()"
                 @keydown.enter.prevent="getTagFromInput()"
->>>>>>> 103-multiple-tags
               />
-              <p v-if="$v.engagementDetail.tags.$dirty && !$v.engagementDetail.tags.maxChar" class="error">
+              <p v-if="$v.inputTag && !$v.inputTag.maxChar" class="error">
                 {{ $t('engagementValidation.maxTagLength') }}
               </p>
-              <p v-if="$v.engagementDetail.tags.$dirty && !$v.engagementDetail.tags.maxIndex" class="error">
-                {{ $t('engagementValidation.maxTags') }}
-              </p>
             </div>
-<<<<<<< HEAD
-            <div class="flex mt-6 ml-6">
-              <eng-tags>
-                tags
-=======
             <div v-if="showTag" class="flex mt-6 ml-6">
               <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="tag">
                 {{ tag }}
                 <button class="delete-btn" @click.prevent="deleteTag(index)">
                   x
                 </button>
->>>>>>> 103-multiple-tags
               </eng-tags>
             </div>
           </div>
@@ -344,7 +329,7 @@ export default {
         { type: 'Scrum/Sprint' },
         { type: 'Advisory board/Council Meeting' }
       ],
-<<<<<<< HEAD
+      showTag: false,
       timeout: null,
       attemptSubmit: false
     }
@@ -357,20 +342,13 @@ export default {
       description: { required },
       numParticipants: { required, minVal: minValue(1) },
       contacts: { required },
-      tags: {
-        maxChar: maxLength(10),
-        values: {
-          maxIndex: maxLength(3)
-        }
-      }
-    }
+      tags: { maxSize: maxLength(10) }
+    },
+    inputTag: { maxChar: maxLength(10) }
   },
   computed: {
     invalidFields() {
       return Object.keys(this.$v.engagementDetail.$param).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
-=======
-      showTag: false
->>>>>>> 103-multiple-tags
     }
   },
   methods: {
@@ -389,17 +367,18 @@ export default {
       }
     },
     */
-<<<<<<< HEAD
-=======
     getTagFromInput() {
-      this.engagementDetail.tags.push(this.inputTag)
+      if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10) {
+        return
+      } else {
+        this.engagementDetail.tags.push(this.inputTag)
+      }
       this.inputTag = ''
       this.showTag = true
     },
     deleteTag(index) {
       this.engagementDetail.tags.splice(index, 1)
     },
->>>>>>> 103-multiple-tags
     // dateAdj() {
     //   return this.engagementDetail.date.setDate(
     //     this.engagementDetail.date.getDate() + 1
