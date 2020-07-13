@@ -478,6 +478,12 @@
             >
               {{ $t('contactValidation.required') }}
             </p>
+            <p
+              v-if="$v.contactInfo.orgEmail.$dirty && !$v.contactInfo.orgEmail.email"
+              class="error"
+            >
+              {{ $t('contactValidation.invalidEmail') }}
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgPhone">
