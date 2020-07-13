@@ -1,7 +1,7 @@
 <template>
   <div class="contactForm font-body mt-8 ml-12">
     <div>
-      <div v-if="didAttemptSubmit && invalidFields" class="error-list">
+      <div v-if="didAttemptSubmit && invalidFields.length" class="error-list">
         <h1 ref="displayErrors" class="text-xl text-red-600">
           {{ $t('contactValidation.errorListTitle') }}
         </h1>
@@ -94,7 +94,7 @@
 
         <div class="flex mb-4">
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="keyContactAddress">
+            <label class="formLabel" for="keyContactAddress">
               {{ $t('contact.keyContactAddress') }}
             </label>
             <input
@@ -103,15 +103,7 @@
               class="formInput"
               type="text"
               placeholder="Street"
-              :class="{ 'form-error': $v.contactInfo.keyContactAddress.$error }"
-              @blur="$v.contactInfo.keyContactAddress.$touch()"
             />
-            <p
-              v-if="$v.contactInfo.keyContactAddress.$dirty && !$v.contactInfo.keyContactAddress.required"
-              class="error"
-            >
-              {{ $t('contactValidation.required') }}
-            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel" for="keyContactAddress2">
@@ -744,7 +736,7 @@ export default {
       // Key Contact
       keyContactName: { required },
       keyContactTitle: { required },
-      keyContactAddress: { required },
+      keyContactAddress: { },
       keyContactAddress2: { },
       keyContactCity: { },
       keyContactProvState: { },
