@@ -130,9 +130,8 @@ export default {
   methods: {
     getLastEngagement(id) {
       const contact = this.getContact(id)
-      const lasteng = contact.engagements.shift()
-      console.log(lasteng)
-      return 'Test'
+      const lastEngagement = contact.engagements[0]
+      return lastEngagement.subject
     },
 
     getContact(id) {
@@ -142,8 +141,6 @@ export default {
           ...contact
         })
       })
-      console.log('Clone array: ')
-      console.log(clone)
       return clone.find(contact => id === contact._id)
     },
 
