@@ -118,6 +118,7 @@ export default {
   },
 
   contactValidation: {
+    errorListTitle: 'The following fields have errors:',
     required: 'This field is required',
     invalidEmail: 'Not a valid email address'
   },

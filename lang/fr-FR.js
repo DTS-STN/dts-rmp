@@ -78,7 +78,7 @@ export default {
     department: 'FR-Department',
     branch: 'FR-Branch',
     directorate: 'FR-Directorate',
-    provTerr: 'FR-Province / Territory / Indigenous',
+    provTerritory: 'FR-Province / Territory / Indigenous',
     orgName: 'FR-Oranization Name',
     orgSector: 'FR-Organization Sector',
     contrib: 'FR-Contribution Agreement Reference',
@@ -119,6 +119,7 @@ export default {
   },
 
   contactValidation: {
+    errorListTitle: 'FR-The following fields have errors:',
     required: 'FR-This field is required',
     invalidEmail: 'FR-Not a valid email address'
   },
