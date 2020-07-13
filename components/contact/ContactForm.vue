@@ -1,7 +1,16 @@
 <template>
-  <!-- eslint-disable space-before-function-paren -->
   <div class="contactForm font-body mt-8 ml-12">
     <div>
+      <div v-if="didAttemptSubmit && invalidFields.length" class="error-list">
+        <h1 ref="displayErrors" class="text-xl text-red-600">
+          {{ $t('contactValidation.errorListTitle') }}
+        </h1>
+        <ul class="list-disc text-sm text-red-600 italic" style="list-style-position: inside">
+          <li v-for="invalidField in invalidFields" :key="invalidField">
+            {{ $t('contact.' + invalidField) }}
+          </li>
+        </ul>
+      </div>
       <h2 class="title font-display">
         {{ $t('contact.create') }}
       </h2>
@@ -43,19 +52,27 @@
         <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactName">
-              {{ $t('contact.name') }}
+              {{ $t('contact.keyContactName') }}
             </label>
             <input
               id="keyContactName"
               v-model="contactInfo.keyContactName"
               class="formInput"
+              :class="{ 'form-error': $v.contactInfo.keyContactName.$error }"
               type="text"
               placeholder="name"
+              @blur="$v.contactInfo.keyContactName.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.keyContactName.$dirty && !$v.contactInfo.keyContactName.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactTitle">
-              {{ $t('contact.title') }}
+              {{ $t('contact.keyContactTitle') }}
             </label>
             <input
               id="keyContactTitle"
@@ -63,14 +80,22 @@
               class="formInput"
               type="text"
               placeholder="title"
+              :class="{ 'form-error': $v.contactInfo.keyContactTitle.$error }"
+              @blur="$v.contactInfo.keyContactTitle.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.keyContactTitle.$dirty && !$v.contactInfo.keyContactTitle.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
           </div>
         </div>
 
         <div class="flex mb-4">
           <div class="w-5/12 margins">
-            <label class="formLabel orange" for="keyContactAddress">
-              {{ $t('contact.address') }}
+            <label class="formLabel" for="keyContactAddress">
+              {{ $t('contact.keyContactAddress') }}
             </label>
             <input
               id="keyContactAddress"
@@ -163,7 +188,7 @@
         <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactEmail">
-              {{ $t('contact.email') }}
+              {{ $t('contact.keyContactEmail') }}
             </label>
             <input
               id="keyContactEmail"
@@ -171,11 +196,25 @@
               class="formInput"
               type="text"
               placeholder="Email"
+              :class="{ 'form-error': $v.contactInfo.keyContactEmail.$error }"
+              @blur="$v.contactInfo.keyContactEmail.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.keyContactEmail.$dirty && !$v.contactInfo.keyContactEmail.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
+            <p
+              v-if="$v.contactInfo.keyContactEmail.$dirty && !$v.contactInfo.keyContactEmail.email"
+              class="error"
+            >
+              {{ $t('contactValidation.invalidEmail') }}
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="keyContactPhone">
-              {{ $t('contact.phone') }}
+              {{ $t('contact.keyContactPhone') }}
             </label>
             <input
               id="keyContactPhone"
@@ -183,7 +222,15 @@
               class="formInput"
               type="text"
               placeholder="999-999-9999"
+              :class="{ 'form-error': $v.contactInfo.keyContactPhone.$error }"
+              @blur="$v.contactInfo.keyContactPhone.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.keyContactPhone.$dirty && !$v.contactInfo.keyContactPhone.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
           </div>
         </div>
 
@@ -205,11 +252,19 @@
               class="formInput"
               type="text"
               placeholder="Address"
+              :class="{ 'form-error': $v.contactInfo.orgAddress.$error }"
+              @blur="$v.contactInfo.orgAddress.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgAddress.$dirty && !$v.contactInfo.orgAddress.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel" for="orgAddress2">
-              &nbsp;
+              {{ $t('contact.address2') }}
             </label>
             <input
               id="orgAddress2"
@@ -223,6 +278,9 @@
 
         <div class="flex mb-4">
           <div class="w-5/12  margins">
+            <label class="formLabel" for="keyContactCity">
+              {{ $t('contact.city') }}
+            </label>
             <input
               id="orgCity"
               v-model="contactInfo.orgCity"
@@ -231,26 +289,17 @@
               placeholder="City"
             />
           </div>
-          <div class="w-5/12 margins">
-            <input
-              id="orgProvState"
-              v-model="contactInfo.orgProvState"
-              class="formInput"
-              type="text"
-              placeholder="Province / State"
-            />
-          </div>
-        </div>
-
-        <div class="flex mb-4">
           <div class="w-5/12  margins">
+            <label class="formLabel" for="keyContactCountry">
+              {{ $t('contact.country') }}
+            </label>
             <select
               id="orgCountry"
               v-model="contactInfo.orgCountry"
               class="formSelect"
               @change="onOrgCountry($event)"
             >
-              <option value="Select">
+              <option value="Select" selected>
                 {{ $t('contact.selCountry') }}
               </option>
               <option value="Canada">
@@ -264,7 +313,13 @@
               </option>
             </select>
           </div>
+        </div>
+
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
+            <label class="formLabel" for="keyContactPostal">
+              {{ $t('contact.postal') }}
+            </label>
             <input
               id="orgPostalCode"
               v-model="contactInfo.orgPostalCode"
@@ -273,127 +328,86 @@
               placeholder="Postal Code"
             />
           </div>
-        </div>
-
-        <div class="w-5/12 margins">
-          <label class="formLabel orange" for="orgWebsite">
-            {{ $t('contact.orgwebsite') }}
-          </label>
-          <input
-            id="orgWebsite"
-            v-model="contactInfo.orgWebsite"
-            class="formInput"
-            type="text"
-            placeholder="Website"
-          />
-        </div>
-
-        <div v-if="contactInfo.type == 'Federal'">
-          <div class="flex mb-4">
-            <div class="w-5/12 margins">
-              <label class="formLabel orange" for="department">
-                {{ $t('contact.department') }}
-              </label>
-              <input
-                id="department"
-                v-model="contactInfo.department"
-                class="formInput"
-                type="text"
-                placeholder="Department"
-              />
-            </div>
-            <div class="w-5/12 margins">
-              <label class="formLabel orange" for="branch">
-                {{ $t('contact.branch') }}
-              </label>
-              <input
-                id="branch"
-                v-model="contactInfo.branch"
-                class="formInput"
-                type="text"
-                placeholder="Branch"
-              />
-            </div>
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="orgWebsite">
+              {{ $t('contact.orgWebsite') }}
+            </label>
+            <input
+              id="orgWebsite"
+              v-model="contactInfo.orgWebsite"
+              class="formInput"
+              type="text"
+              placeholder="Website"
+              :class="{ 'form-error': $v.contactInfo.orgWebsite.$error }"
+              @blur="$v.contactInfo.orgWebsite.$touch()"
+            />
+            <p
+              v-if="$v.contactInfo.orgWebsite.$dirty && !$v.contactInfo.orgWebsite.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
           </div>
         </div>
 
-        <div
-          v-if="
-            contactInfo.type == 'Federal' || contactInfo.type == 'Provincial'
-          "
-        >
-          <div class="flex mb-4">
-            <div class="w-5/12 margins">
-              <label class="formLabel orange" for="directorate">
-                {{ $t('contact.directorate') }}
-              </label>
-              <input
-                id="directorate"
-                v-model="contactInfo.directorate"
-                class="formInput"
-                type="text"
-                placeholder="Directorate"
-              />
-            </div>
-
-            <div v-if="contactInfo.type == 'Provincial'" class="w-5/12 margins">
-              <label class="formLabel orange" for="provTerritory">
-                {{ $t('contact.provTerr') }}
-              </label>
-              <select
-                id="provTerritory"
-                v-model="contactInfo.provTerritory"
-                class="formSelect"
-                @change="onProvTerr($event)"
-              >
-                <option value="Select">
-                  {{ $t('contact.selProvince') }}
-                </option>
-                <option value="AB">
-                  {{ $t('contact.ab') }}
-                </option>
-                <option value="BC">
-                  {{ $t('contact.bc') }}
-                </option>
-                <option value="MB">
-                  {{ $t('contact.mb') }}
-                </option>
-                <option value="NB">
-                  {{ $t('contact.nb') }}
-                </option>
-                <option value="NFL">
-                  {{ $t('contact.nfl') }}
-                </option>
-                <option value="NS">
-                  {{ $t('contact.ns') }}
-                </option>
-                <option value="ON">
-                  {{ $t('contact.on') }}
-                </option>
-                <option value="PEI">
-                  {{ $t('contact.pei') }}
-                </option>
-                <option value="QC">
-                  {{ $t('contact.qc') }}
-                </option>
-                <option value="SK">
-                  {{ $t('contact.sk') }}
-                </option>
-                <option value="NWT">
-                  {{ $t('contact.nwt') }}
-                </option>
-                <option value="NU">
-                  {{ $t('contact.nu') }}
-                </option>
-                <option value="YK">
-                  {{ $t('contact.yk') }}
-                </option>
-              </select>
-            </div>
+        <div class="flex mb-4">
+          <div v-if="contactInfo.type == 'Provincial'" class="w-5/12 margins">
+            <label class="formLabel orange" for="provTerritory">
+              {{ $t('contact.provTerr') }}
+            </label>
+            <select
+              id="provTerritory"
+              v-model="contactInfo.provTerritory"
+              class="formSelect"
+              @change="onProvTerr($event)"
+            >
+              <option selected value="Select">
+                {{ $t('contact.selProvince') }}
+              </option>
+              <option value="AB">
+                {{ $t('contact.ab') }}
+              </option>
+              <option value="BC">
+                {{ $t('contact.bc') }}
+              </option>
+              <option value="MB">
+                {{ $t('contact.mb') }}
+              </option>
+              <option value="NB">
+                {{ $t('contact.nb') }}
+              </option>
+              <option value="NFL">
+                {{ $t('contact.nfl') }}
+              </option>
+              <option value="NS">
+                {{ $t('contact.ns') }}
+              </option>
+              <option value="ON">
+                {{ $t('contact.on') }}
+              </option>
+              <option value="PEI">
+                {{ $t('contact.pei') }}
+              </option>
+              <option value="QC">
+                {{ $t('contact.qc') }}
+              </option>
+              <option value="SK">
+                {{ $t('contact.sk') }}
+              </option>
+              <option value="NWT">
+                {{ $t('contact.nwt') }}
+              </option>
+              <option value="NU">
+                {{ $t('contact.nu') }}
+              </option>
+              <option value="YK">
+                {{ $t('contact.yk') }}
+              </option>
+            </select>
           </div>
         </div>
 
-        <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgName">
               {{ $t('contact.orgName') }}
@@ -404,11 +418,19 @@
               class="formInput"
               type="text"
               placeholder="Name"
+              :class="{ 'form-error': $v.contactInfo.orgName.$error }"
+              @blur="$v.contactInfo.orgName.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgName.$dirty && !$v.contactInfo.orgName.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgSector">
-              {{ $t('contact.sector') }}
+              {{ $t('contact.orgSector') }}
             </label>
             <input
               id="orgSector"
@@ -416,11 +438,19 @@
               class="formInput"
               type="text"
               placeholder="Sector"
+              :class="{ 'form-error': $v.contactInfo.orgSector.$error }"
+              @blur="$v.contactInfo.orgSector.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgSector.$dirty && !$v.contactInfo.orgSector.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
           </div>
         </div>
 
-        <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgEmail">
               {{ $t('contact.orgEmail') }}
@@ -431,7 +461,21 @@
               class="formInput"
               type="text"
               placeholder="Email"
+              :class="{ 'form-error': $v.contactInfo.orgEmail.$error }"
+              @blur="$v.contactInfo.orgEmail.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgEmail.$dirty && !$v.contactInfo.orgEmail.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
+            <p
+              v-if="$v.contactInfo.orgEmail.$dirty && !$v.contactInfo.orgEmail.email"
+              class="error"
+            >
+              {{ $t('contactValidation.invalidEmail') }}
+            </p>
           </div>
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgPhone">
@@ -443,11 +487,118 @@
               class="formInput"
               type="text"
               placeholder="Phone"
+              :class="{ 'form-error': $v.contactInfo.orgPhone.$error }"
+              @blur="$v.contactInfo.orgPhone.$touch()"
             />
+            <p
+              v-if="$v.contactInfo.orgPhone.$dirty && !$v.contactInfo.orgPhone.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
           </div>
         </div>
 
-        <div v-if="contactInfo.type == 'External'" class="flex mb-4">
+        <div class="flex mb-4">
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="department">
+              {{ $t('contact.department') }}
+            </label>
+            <input
+              id="department"
+              v-model="contactInfo.department"
+              class="formInput"
+              type="text"
+              placeholder="Department"
+              :class="{ 'form-error': $v.contactInfo.department.$error }"
+              @blur="$v.contactInfo.department.$touch()"
+            />
+            <p
+              v-if="$v.contactInfo.department.$dirty && !$v.contactInfo.department.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
+          </div>
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="branch">
+              {{ $t('contact.branch') }}
+            </label>
+            <input
+              id="branch"
+              v-model="contactInfo.branch"
+              class="formInput"
+              type="text"
+              placeholder="Branch"
+              :class="{ 'form-error': $v.contactInfo.branch.$error }"
+              @blur="$v.contactInfo.branch.$touch()"
+            />
+            <p
+              v-if="$v.contactInfo.branch.$dirty && !$v.contactInfo.branch.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex mb-4">
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="directorate">
+              {{ $t('contact.directorate') }}
+            </label>
+            <input
+              id="directorate"
+              v-model="contactInfo.directorate"
+              class="formInput"
+              type="text"
+              placeholder="Directorate"
+              :class="{ 'form-error': $v.contactInfo.directorate.$error }"
+              @blur="$v.contactInfo.directorate.$touch()"
+            />
+            <p
+              v-if="$v.contactInfo.directorate.$dirty && !$v.contactInfo.directorate.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
+          </div>
+
+          <div class="w-5/12 margins">
+            <label class="formLabel orange" for="provTerritory">
+              {{ $t('contact.provTerritory') }}
+            </label>
+            <select
+              id="provTerritory"
+              v-model="contactInfo.provTerritory"
+              class="formSelect"
+              :class="{ 'form-error': $v.contactInfo.provTerritory.$error }"
+              @change="onProvTerr($event)"
+              @blur="$v.contactInfo.provTerritory.$touch()"
+            >
+              <option value="Select">
+                {{ $t('contact.selProvince') }}
+              </option>
+              <option value="Ontario">
+                {{ $t('contact.on') }}
+              </option>
+              <option value="Ontario">
+                {{ $t('contact.qc') }}
+              </option>
+              <option value="Ontario">
+                {{ $t('contact.ns') }}
+              </option>
+            </select>
+            <p
+              v-if="$v.contactInfo.provTerritory.$dirty && !$v.contactInfo.provTerritory.required"
+              class="error"
+            >
+              {{ $t('contactValidation.required') }}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="contributionRefNo">
               {{ $t('contact.contrib') }}
@@ -474,7 +625,7 @@
           </div>
         </div>
 
-        <div v-if="contactInfo.type == 'External'" class="flex mb-4">
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel" for="onStandingOffer">
               {{ $t('contact.standing') }}
@@ -523,6 +674,7 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
@@ -532,7 +684,6 @@ export default {
     AppButton
   },
 
-  // eslint-disable-next-line space-before-function-paren
   data() {
     return {
       message: {
@@ -541,13 +692,14 @@ export default {
       },
 
       timeout: null,
+      didAttemptSubmit: false,
 
       contactInfo: {
         type: 'Federal',
         // Key Contact
         keyContactName: '',
         keyContactTitle: '',
-        keyContactAddress: '2',
+        keyContactAddress: '',
         keyContactAddress2: '',
         keyContactCity: '',
         keyContactProvState: '',
@@ -578,70 +730,97 @@ export default {
       }
     }
   },
-
+  validations: {
+    contactInfo: {
+      type: { required },
+      // Key Contact
+      keyContactName: { required },
+      keyContactTitle: { required },
+      keyContactAddress: { },
+      keyContactAddress2: { },
+      keyContactCity: { },
+      keyContactProvState: { },
+      keyContactCountry: { },
+      keyContactPostalCode: { },
+      keyContactEmail: { required, email },
+      keyContactPhone: { required },
+      // Organization
+      orgAddress: { required },
+      orgAddress2: { },
+      orgCity: { },
+      orgProvState: { },
+      orgCountry: { },
+      orgPostalCode: { },
+      orgName: { required },
+      orgSector: { required },
+      orgEmail: { required, email },
+      orgPhone: { required },
+      contributionRefNo: { },
+      serviceContrNo: { },
+      onStandingOffer: { },
+      orgWebsite: { required },
+      // Federal & Provincial
+      department: { required },
+      branch: { required },
+      directorate: { required },
+      provTerritory: { required }
+    }
+  },
+  computed: {
+    invalidFields() {
+      return Object.keys(this.$v.contactInfo.$params)
+        .filter(fieldName => this.$v.contactInfo[fieldName].$invalid)
+    }
+  },
   methods: {
-    // eslint-disable-next-line space-before-function-paren
-    onProvTerr2(event) {
-      // eslint-disable-next-line no-console
-      console.log('prov terr 2 = ', event.target.value)
-      this.contactInfo.provTerritory = event.target.value
-    },
-    // eslint-disable-next-line space-before-function-paren
     onProvTerr(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.provTerritory = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onStanding(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.onStandingOffer = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onOrgCountry(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.orgCountry = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onContactCountry(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.keyContactCountry = event.target.value
     },
-    // eslint-disable-next-line space-before-function-paren
+
     onType(event) {
-      // eslint-disable-next-line no-console
-      console.log(event.target.value)
       this.contactInfo.type = event.target.value
     },
 
-    // eslint-disable-next-line space-before-function-paren
     notification(type, message) {
       this.message.type = type
       this.message.message = message
       this.timeout = setTimeout(() => this.clearMessage(), 5000)
     },
 
-    // eslint-disable-next-line space-before-function-paren
     clearMessage() {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
     },
 
-    // eslint-disable-next-line space-before-function-paren
     async submitForm(contactInfo) {
-      try {
-        await this.$axios.post('/api/contact/addContact', {
-          contactInfo
+      this.$v.$touch()
+      this.didAttemptSubmit = true
+      if (this.$v.$invalid) {
+        this.$nextTick(() => {
+          this.$scrollTo(this.$refs.displayErrors)
         })
-        this.notification('success', 'contact created')
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log('error : ', e.response)
-        this.notification('error', e.response.data.message)
+      } else {
+        try {
+          await this.$axios.post('/api/contact/addContact', {
+            contactInfo
+          })
+          this.notification('success', 'contact created')
+        } catch (e) {
+          this.notification('error', e.response.data.message)
+        }
       }
     }
   }
@@ -689,7 +868,21 @@ export default {
 .messageBox {
   @apply text-center text-2xl align-bottom mb-4 h-12 min-h-0 mt-2 text-black bg-green-700;
 }
-.error {
+/* .error {
   @apply bg-red-700;
+} */
+.error {
+  @apply text-red-500 text-xs italic;
 }
+
+.form-error {
+  @apply appearance-none border border-red-500 rounded w-full;
+}
+
+.error-list {
+  width: 50%;
+  background-color: rgba(255,0,0,0.1);
+  @apply border border-red-500;
+}
+
 </style>
