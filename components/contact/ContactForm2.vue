@@ -292,7 +292,7 @@
               v-model="contactInfo.orgAddress2"
               class="formInput"
               type="text"
-              placeholder="Adress"
+              placeholder="Address"
             />
           </div>
         </div>
