@@ -27,7 +27,6 @@
         </ConViewFields>
       </div>
     </div>
-
     <div class="flex mb-4">
       <div class="w-5/12 margins">
         <ConViewFields label="address">
@@ -35,12 +34,10 @@
         </ConViewFields>
       </div>
     </div>
-
     <h2 class="title">
       {{ $t('contact.organization') }} <br />
       {{ $t('contact.information') }}
     </h2>
-
     <div class="flex mb-4">
       <div class="w-5/12 margins">
         <ConViewFields label="address">
@@ -53,11 +50,9 @@
         </ConViewFields>
       </div>
     </div>
-
     <h2 class="title">
       {{ $t('contact.engagements') }}
     </h2>
-
     <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
       <ConShowEngagaments
         v-for="(eng, index) in contactInfo.engagements"
@@ -66,66 +61,94 @@
         :subject="eng.subject"
         :index="index"
         :type="eng.type"
-        :contacts="eng.contacts"
+        :contacts="getNames(eng.contacts)"
         :tags="eng.tags"
-        :date="(eng.date).substring(0, 10)"
+        :date="eng.date.substring(0, 10)"
         :description="eng.description"
         :number="eng.numParticipants"
       />
     </div>
-
     <div class="flex justify-start mb-4">
       <div class="w-3/12 margins">
-        <AppButton custom_style="btn-cancel" data_cypress="contactDetailBackButton" @click="goBack">
+        <AppButton
+          custom_style="btn-cancel"
+          data_cypress="contactDetailBackButton"
+          @click="goBack"
+        >
           {{ $t('contact.back') }}
         </AppButton>
       </div>
       <div class="w-3/12 margins">
-        <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton">
+        <AppButton
+          custom_style="btn-extra"
+          data_cypress="contactDetailEditButton"
+        >
           {{ $t('contact.edit') }}
         </AppButton>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import { mapState } from 'vuex'
 import AppButton from '@/components/app/AppButton.vue'
 import ConViewFields from '@/components/contact/ConViewFields.vue'
 import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
-
 export default {
   name: 'ContactView',
-
   components: {
     ConViewFields,
     ConShowEngagaments,
     AppButton
   },
-
-  async fetch() {
+  async asyncData({ app, params, store }) {
     try {
-      await this.$store.dispatch('contacts/fetchContact', this.$route.params.id)
+      await store.dispatch('contacts/fetchContact', params.id)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('Error: ', e.response)
     }
   },
-
   computed: mapState({
-    contactInfo: state => state.contacts.contact,
-    engContacts: state => state.contacts.contact
+    // eslint-disable-next-line arrow-parens
+    contactInfo: (state) => state.contacts.contact,
+    // eslint-disable-next-line arrow-parens
+    contacts: (state) => state.contacts.contacts
   }),
-
+  created() {
+    if (this.contacts.length === 0) {
+      try {
+        this.$store.dispatch('contacts/fetchContacts').then(
+          mapState({
+            // eslint-disable-next-line arrow-parens
+            contacts: (state) => state.contacts.contacts
+          })
+        )
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log('Error: ', e.response)
+      }
+    }
+  },
   methods: {
     goBack() {
       this.$router.back()
+    },
+    getNames(ListOfIdsToFind) {
+      if (this.contacts.length > 0) {
+        const contact = []
+        ListOfIdsToFind.forEach((element) => {
+          // eslint-disable-next-line arrow-parens
+          contact.push(this.contacts.find((contact) => contact._id === element))
+        })
+        return contact
+      } else {
+        return []
+      }
     }
   }
 }
 </script>
-
 <style scoped>
 .contactForm {
   width: 1200px;
