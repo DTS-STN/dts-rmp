@@ -415,7 +415,7 @@
           </div>
         </div>
 
-        <div v-if="contactInfo.type != 'Federal'" class="flex mb-4">
+        <div class="flex mb-4">
           <div class="w-5/12 margins">
             <label class="formLabel orange" for="orgName">
               {{ $t('contact.orgName') }}
