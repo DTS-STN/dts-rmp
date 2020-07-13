@@ -77,7 +77,9 @@
         :index="index"
         :name="con.keyContactName"
         :orgname="con.orgName"
-        :last="getLastEngagement(con._id)"
+        :last="getLastEngagement(con._id).subject"
+        :date="getLastEngagement(con._id).date"
+        :number="getLastEngagement(con._id).numParticipants"
         :title="con.keyContactTitle"
         :phone="con.keyContactPhone"
         :email="con.keyContactEmail"
@@ -131,7 +133,7 @@ export default {
     getLastEngagement(id) {
       const contact = this.getContact(id)
       const lastEngagement = contact.engagements[0]
-      return lastEngagement.subject
+      return lastEngagement
     },
 
     getContact(id) {
