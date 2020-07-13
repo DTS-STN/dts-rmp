@@ -1,5 +1,17 @@
 <template>
   <div title="engagementForm" class="ml-12">
+    <!--
+    <div>
+      <h1 ref="displayErrors">
+        The following fields have errors:
+      </h1>
+      <ul class="list-disc error" style="list-style-position: inside">
+        <li v-for="invalidField in invalidFields" :key="invalidField">
+          {{ $t('engagement.' + invalidField) }}
+        </li>
+      </ul>
+    </div>
+    -->
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
@@ -201,9 +213,6 @@
               <eng-tags>
                 tags
               </eng-tags>
-              <eng-tags>
-                more tags
-              </eng-tags>
             </div>
           </div>
         </div>
@@ -226,7 +235,6 @@
           </div>
         </div>
       </div>
-
       <div
         v-if="message.message != null"
         class="messageBox"
@@ -236,7 +244,6 @@
           {{ message.message }}
         </span>
       </div>
-
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
           <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
@@ -304,7 +311,7 @@ export default {
             date: new Date().toISOString().slice(0, 10)
           }
         ],
-        tags: []
+        tags: ''
       },
       engagementTypes: [
         { type: 'One-on-one' },
@@ -319,7 +326,9 @@ export default {
         { type: 'Minister office briefing' },
         { type: 'Scrum/Sprint' },
         { type: 'Advisory board/Council Meeting' }
-      ]
+      ],
+      timeout: null,
+      attemptSubmit: false
     }
   },
   validations: {
@@ -368,13 +377,17 @@ export default {
       this.message.message = null
       clearTimeout(this.timeout)
     },
-
     async submitForm(engagementDetail) {
       this.$v.$touch()
+      this.attemptSubmit = true
       if (this.$v.$invalid) {
         // eslint-disable-next-line no-console
         console.log(this.invalidFields)
-        this.$scrollTo(this.$refs.displayErrors)
+        /*
+        this.$nextTick(() => {
+          this.$scrollTo(this.$refs.displayErrors)
+        })
+        */
       } else {
         try {
           await this.$axios.post('/api/engagement/addEngagement', {

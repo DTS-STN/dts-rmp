@@ -146,6 +146,11 @@ export default {
     otherParticipants: 'other participants',
     selectContact: 'Select one or more contact'
   },
+  engagementValidation: {
+    required: 'This field is required',
+    maxTags: 'You cannot create more than 3 tags',
+    maxTagLength: 'The text length cannot exceed 10 characters'
+  },
   // EngSelectContact component
   engSelect: {
     engagement: 'Create new engagement',

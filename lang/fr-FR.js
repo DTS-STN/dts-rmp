@@ -146,6 +146,11 @@ export default {
     otherParticipants: 'autres participants',
     selectContact: 'Sélectionnez un contact'
   },
+  engagementValidation: {
+    required: 'Ce champ est requis',
+    maxTags: 'Vous ne pouvez pas créer plus de 3 balises',
+    maxTagLength: 'La longueur du texte ne doit pas dépasser 10 caractères'
+  },
   // EngSelectContact component
   engSelect: {
     engagement: 'Nouvel engagement',
