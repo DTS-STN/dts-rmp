@@ -15,7 +15,7 @@
         </ul>
       </div>
       <h2 class="title font-display">
-        {{ $t('contact.create') }}
+        {{ $t('contact.edit') }}
       </h2>
 
       <div>
