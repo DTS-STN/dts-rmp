@@ -16,9 +16,9 @@
       {{ $t('engSelect.engagement') }}
     </h1>
     <select-contact @childToParent="onChildClick" />
-    <h1 class="title font-display">
+    <h2 class="title font-display">
       {{ $t('engagement.engagment') }}
-    </h1>
+    </h2>
     <form @submit.prevent="submitForm(engagementDetail)">
       <div class="w-full">
         <div class="flex flex-wrap mb-8">
@@ -128,8 +128,11 @@
                 v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
                 type="number"
+<<<<<<< HEAD
                 :class="{invalid: $v.engagementDetail.numParticipants.$error}"
                 @blur="$v.engagementDetail.numParticipants.$touch()"
+=======
+>>>>>>> 103-multiple-tags
               />
               <!--
               <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
@@ -196,11 +199,15 @@
               </label>
               <input
                 id="tags"
-                v-model="engagementDetail.tags"
+                v-model="inputTag"
                 class="textInputTag"
                 type="text"
+<<<<<<< HEAD
                 :class="{invalid: $v.engagementDetail.tags.$error}"
                 @blur="$v.engagementDetail.tags.$touch()"
+=======
+                @keydown.enter.prevent="getTagFromInput()"
+>>>>>>> 103-multiple-tags
               />
               <p v-if="$v.engagementDetail.tags.$dirty && !$v.engagementDetail.tags.maxChar" class="error">
                 {{ $t('engagementValidation.maxTagLength') }}
@@ -209,9 +216,18 @@
                 {{ $t('engagementValidation.maxTags') }}
               </p>
             </div>
+<<<<<<< HEAD
             <div class="flex mt-6 ml-6">
               <eng-tags>
                 tags
+=======
+            <div v-if="showTag" class="flex mt-6 ml-6">
+              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="tag">
+                {{ tag }}
+                <button class="delete-btn" @click.prevent="deleteTag(index)">
+                  x
+                </button>
+>>>>>>> 103-multiple-tags
               </eng-tags>
             </div>
           </div>
@@ -311,8 +327,9 @@ export default {
             date: new Date().toISOString().slice(0, 10)
           }
         ],
-        tags: ''
+        tags: []
       },
+      inputTag: '',
       engagementTypes: [
         { type: 'One-on-one' },
         { type: 'Conference' },
@@ -327,6 +344,7 @@ export default {
         { type: 'Scrum/Sprint' },
         { type: 'Advisory board/Council Meeting' }
       ],
+<<<<<<< HEAD
       timeout: null,
       attemptSubmit: false
     }
@@ -350,6 +368,9 @@ export default {
   computed: {
     invalidFields() {
       return Object.keys(this.$v.engagementDetail.$param).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
+=======
+      showTag: false
+>>>>>>> 103-multiple-tags
     }
   },
   methods: {
@@ -368,6 +389,17 @@ export default {
       }
     },
     */
+<<<<<<< HEAD
+=======
+    getTagFromInput() {
+      this.engagementDetail.tags.push(this.inputTag)
+      this.inputTag = ''
+      this.showTag = true
+    },
+    deleteTag(index) {
+      this.engagementDetail.tags.splice(index, 1)
+    },
+>>>>>>> 103-multiple-tags
     // dateAdj() {
     //   return this.engagementDetail.date.setDate(
     //     this.engagementDetail.date.getDate() + 1
@@ -471,6 +503,9 @@ export default {
 .textInputTag:focus {
   border: 2.5px solid;
   @apply outline-none border-black;
+}
+.delete-btn {
+  @apply text-rmp-dk-blue bg-white rounded-full items-center justify-center pl-2 pr-2 ml-2
 }
 .error {
   @apply text-red-500 text-xs italic;
