@@ -2,14 +2,9 @@
   <!-- eslint-disable space-before-function-paren -->
   <div class="contactForm font-body mt-8 ml-12">
     <div>
-      <h1 class="title font-display">
-        <span v-if="editmode">
-          {{ $t('contact.edit') }}
-        </span>
-        <span v-else>
-          {{ $t('contact.create') }}
-        </span>
-      </h1>
+      <h2 class="title font-display">
+        {{ $t('contact.create') }}
+      </h2>
 
       <div>
         <p class="orange font-body">
@@ -537,11 +532,6 @@ export default {
     AppButton
   },
 
-  props: {
-    editmode: { type: Boolean, default: false },
-    contactdata: { type: Array, default: () => [] }
-  },
-
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
@@ -586,12 +576,6 @@ export default {
         directorate: '',
         provTerritory: ''
       }
-    }
-  },
-
-  beforeMount() {
-    if (this.editmode) {
-      this.contactInfo = this.contactdata
     }
   },
 
@@ -660,7 +644,8 @@ export default {
   @apply bg-white text-black;
 }
 .title {
-  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
+  font-size: 28pt;
+  @apply text-rmp-md-blue font-display text-left tracking-wide font-extrabold text-4xl pt-4;
 }
 .formLabel {
   @apply font-bold;

@@ -3,12 +3,7 @@
   <div class="contactForm font-body mt-8 ml-12">
     <div>
       <h1 class="title font-display">
-        <span v-if="editmode">
-          {{ $t('contact.edit') }}
-        </span>
-        <span v-else>
-          {{ $t('contact.create') }}
-        </span>
+        {{ $t('contact.edit') }}
       </h1>
 
       <div>
@@ -535,11 +530,6 @@ export default {
 
   components: {
     AppButton
-  },
-
-  props: {
-    editmode: { type: Boolean, default: false },
-    contactdata: { type: Array, default: () => [] }
   },
 
   // eslint-disable-next-line space-before-function-paren
