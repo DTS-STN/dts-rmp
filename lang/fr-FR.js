@@ -149,7 +149,8 @@ export default {
   engagementValidation: {
     required: 'Ce champ est requis',
     maxTags: 'Vous ne pouvez pas créer plus de 3 balises',
-    maxTagLength: 'La longueur du texte ne doit pas dépasser 10 caractères'
+    maxTagLength: 'La longueur du texte ne doit pas dépasser 10 caractères',
+    minParticipant: 'Vous ne pouvez pas avoir moins de 1 participant'
   },
   // EngSelectContact component
   engSelect: {

@@ -127,10 +127,11 @@
                 id="numParticipants"
                 v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
-                type="text"
+                type="number"
                 :class="{invalid: $v.engagementDetail.numParticipants.$error}"
                 @blur="$v.engagementDetail.numParticipants.$touch()"
               />
+              <!--
               <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
                 <button class="items-end" @click.prevent="increment">
                   +
@@ -139,9 +140,10 @@
                   -
                 </button>
               </div>
+              -->
             </div>
             <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.required" class="error">
-              Please add at least one participant
+              {{ $t('engagementValidation.minParticipant') }}
             </p>
           </div>
         </div>
@@ -181,12 +183,7 @@
               :placeholder="$t('engagement.typing')"
               class="textInput"
               type="text"
-              :class="{invalid: $v.engagementDetail.policyProgram.$error}"
-              @blur="$v.engagementDetail.policyProgram.$touch()"
             />
-            <p v-if="$v.engagementDetail.policyProgram.$dirty && !$v.engagementDetail.policyProgram.maxChar" class="error">
-              string cannot exceed 50 characters
-            </p>
           </div>
 
           <div class="flex mb-4">
@@ -206,7 +203,10 @@
                 @blur="$v.engagementDetail.tags.$touch()"
               />
               <p v-if="$v.engagementDetail.tags.$dirty && !$v.engagementDetail.tags.maxChar" class="error">
-                tag name too long
+                {{ $t('engagementValidation.maxTagLength') }}
+              </p>
+              <p v-if="$v.engagementDetail.tags.$dirty && !$v.engagementDetail.tags.maxIndex" class="error">
+                {{ $t('engagementValidation.maxTags') }}
               </p>
             </div>
             <div class="flex mt-6 ml-6">
@@ -339,8 +339,12 @@ export default {
       description: { required },
       numParticipants: { required, minVal: minValue(1) },
       contacts: { required },
-      policyProgram: { maxChar: maxLength(50) },
-      tags: { maxChar: maxLength(10) }
+      tags: {
+        maxChar: maxLength(10),
+        values: {
+          maxIndex: maxLength(3)
+        }
+      }
     }
   },
   computed: {
@@ -354,6 +358,7 @@ export default {
       console.log(this.idFromChild)
       this.idFromChild = value
     },
+    /*
     increment() {
       this.engagementDetail.numParticipants++
     },
@@ -362,6 +367,7 @@ export default {
         this.engagementDetail.numParticipants--
       }
     },
+    */
     // dateAdj() {
     //   return this.engagementDetail.date.setDate(
     //     this.engagementDetail.date.getDate() + 1
