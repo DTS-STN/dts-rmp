@@ -100,8 +100,9 @@
                 id="numParticipants"
                 v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
-                type="text"
+                type="number"
               />
+              <!--
               <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
                 <button class="items-end" @click.prevent="increment">
                   +
@@ -110,6 +111,7 @@
                   -
                 </button>
               </div>
+              -->
             </div>
           </div>
         </div>
@@ -160,13 +162,13 @@
                 v-model="inputTag"
                 class="textInputTag"
                 type="text"
-                @keyup.enter="getTagFromInput()"
+                @keydown.enter.prevent="getTagFromInput()"
               />
             </div>
             <div v-if="showTag" class="flex mt-6 ml-6">
-              <eng-tags v-for="tag in engagementDetail.tags" :key="tag">
+              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="tag">
                 {{ tag }}
-                <button class="delete-btn" @click.prevent="deleteTag($event)">
+                <button class="delete-btn" @click.prevent="deleteTag(index)">
                   x
                 </button>
               </eng-tags>
@@ -294,6 +296,7 @@ export default {
       console.log(this.idFromChild)
       this.idFromChild = value
     },
+    /*
     increment() {
       this.engagementDetail.numParticipants++
     },
@@ -302,13 +305,14 @@ export default {
         this.engagementDetail.numParticipants--
       }
     },
+    */
     getTagFromInput() {
       this.engagementDetail.tags.push(this.inputTag)
       this.inputTag = ''
       this.showTag = true
     },
-    deleteTag(event) {
-      this.engagementDetail.tags.splice(event, 1)
+    deleteTag(index) {
+      this.engagementDetail.tags.splice(index, 1)
     },
     // dateAdj() {
     //   return this.engagementDetail.date.setDate(
