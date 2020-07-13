@@ -15,7 +15,7 @@
       <div class="flex mb-4">
         <div class="w-5/12 margins">
           <select
-            :value="contactInfo.type"
+            v-model="contactInfo.type"
             class="formSelect"
             @change="onStanding($event)"
           >
@@ -47,7 +47,7 @@
             </label>
             <input
               id="keyContactName"
-              :value="contactInfo.keyContactName"
+              v-model="contactInfo.keyContactName"
               class="formInput"
               type="text"
               placeholder="name"
@@ -59,7 +59,7 @@
             </label>
             <input
               id="keyContactTitle"
-              :value="contactInfo.keyContactTitle"
+              v-model="contactInfo.keyContactTitle"
               class="formInput"
               type="text"
               placeholder="title"
@@ -74,7 +74,7 @@
             </label>
             <input
               id="keyContactAddress"
-              :value="contactInfo.keyContactAddress"
+              v-model="contactInfo.keyContactAddress"
               class="formInput"
               type="text"
               placeholder="Street"
@@ -86,7 +86,7 @@
             </label>
             <input
               id="keyContactAddress2"
-              :value="contactInfo.keyContactAddress2"
+              v-model="contactInfo.keyContactAddress2"
               class="formInput"
               type="text"
               placeholder="Street"
@@ -101,7 +101,7 @@
             </label>
             <input
               id="keyContactCity"
-              :value="contactInfo.keyContactCity"
+              v-model="contactInfo.keyContactCity"
               class="formInput"
               type="text"
               placeholder="City"
@@ -113,7 +113,7 @@
             </label>
             <input
               id="keyContactProv"
-              :value="contactInfo.keyContactProvState"
+              v-model="contactInfo.keyContactProvState"
               class="formInput"
               type="text"
               placeholder="Province / State"
@@ -128,7 +128,7 @@
             </label>
             <select
               id="keyContactCountry"
-              :value="contactInfo.keyContactCountry"
+              v-model="contactInfo.keyContactCountry"
               class="formSelect"
               @change="onContactCountry($event)"
             >
@@ -152,7 +152,7 @@
             </label>
             <input
               id="keyContactPostalCode"
-              :value="contactInfo.keyContactPostalCode"
+              v-model="contactInfo.keyContactPostalCode"
               class="formInput"
               type="text"
               placeholder="Postal code"
@@ -167,7 +167,7 @@
             </label>
             <input
               id="keyContactEmail"
-              :value="contactInfo.keyContactEmail"
+              v-model="contactInfo.keyContactEmail"
               class="formInput"
               type="text"
               placeholder="Email"
@@ -179,7 +179,7 @@
             </label>
             <input
               id="keyContactPhone"
-              :value="contactInfo.keyContactPhone"
+              v-model="contactInfo.keyContactPhone"
               class="formInput"
               type="text"
               placeholder="999-999-9999"
@@ -201,7 +201,7 @@
             </label>
             <input
               id="orgAddress"
-              :value="contactInfo.orgAddress"
+              v-model="contactInfo.orgAddress"
               class="formInput"
               type="text"
               placeholder="Address"
@@ -213,7 +213,7 @@
             </label>
             <input
               id="orgAddress2"
-              :value="contactInfo.orgAddress2"
+              v-model="contactInfo.orgAddress2"
               class="formInput"
               type="text"
               placeholder="Adress"
@@ -225,7 +225,7 @@
           <div class="w-5/12  margins">
             <input
               id="orgCity"
-              :value="contactInfo.orgCity"
+              v-model="contactInfo.orgCity"
               class="formInput"
               type="text"
               placeholder="City"
@@ -234,7 +234,7 @@
           <div class="w-5/12 margins">
             <input
               id="orgProvState"
-              :value="contactInfo.orgProvState"
+              v-model="contactInfo.orgProvState"
               class="formInput"
               type="text"
               placeholder="Province / State"
@@ -246,7 +246,7 @@
           <div class="w-5/12  margins">
             <select
               id="orgCountry"
-              :value="contactInfo.orgCountry"
+              v-model="contactInfo.orgCountry"
               class="formSelect"
               @change="onOrgCountry($event)"
             >
@@ -267,7 +267,7 @@
           <div class="w-5/12 margins">
             <input
               id="orgPostalCode"
-              :value="contactInfo.orgPostalCode"
+              v-model="contactInfo.orgPostalCode"
               class="formInput"
               type="text"
               placeholder="Postal Code"
@@ -281,7 +281,7 @@
           </label>
           <input
             id="orgWebsite"
-            :value="contactInfo.orgWebsite"
+            v-model="contactInfo.orgWebsite"
             class="formInput"
             type="text"
             placeholder="Website"
@@ -296,7 +296,7 @@
               </label>
               <input
                 id="department"
-                :value="contactInfo.department"
+                v-model="contactInfo.department"
                 class="formInput"
                 type="text"
                 placeholder="Department"
@@ -308,7 +308,7 @@
               </label>
               <input
                 id="branch"
-                :value="contactInfo.branch"
+                v-model="contactInfo.branch"
                 class="formInput"
                 type="text"
                 placeholder="Branch"
@@ -329,7 +329,7 @@
               </label>
               <input
                 id="directorate"
-                :value="contactInfo.directorate"
+                v-model="contactInfo.directorate"
                 class="formInput"
                 type="text"
                 placeholder="Directorate"
@@ -342,7 +342,7 @@
               </label>
               <select
                 id="provTerritory"
-                :value="contactInfo.provTerritory"
+                v-model="contactInfo.provTerritory"
                 class="formSelect"
                 @change="onProvTerr($event)"
               >
@@ -400,7 +400,7 @@
             </label>
             <input
               id="orgName"
-              :value="contactInfo.orgName"
+              v-model="contactInfo.orgName"
               class="formInput"
               type="text"
               placeholder="Name"
@@ -412,7 +412,7 @@
             </label>
             <input
               id="orgSector"
-              :value="contactInfo.orgSector"
+              v-model="contactInfo.orgSector"
               class="formInput"
               type="text"
               placeholder="Sector"
@@ -427,7 +427,7 @@
             </label>
             <input
               id="orgEmail"
-              :value="contactInfo.orgEmail"
+              v-model="contactInfo.orgEmail"
               class="formInput"
               type="text"
               placeholder="Email"
@@ -439,7 +439,7 @@
             </label>
             <input
               id="orgPhone"
-              :value="contactInfo.orgPhone"
+              v-model="contactInfo.orgPhone"
               class="formInput"
               type="text"
               placeholder="Phone"
@@ -454,7 +454,7 @@
             </label>
             <input
               id="contributionRefNo"
-              :value="contactInfo.contributionRefNo"
+              v-model="contactInfo.contributionRefNo"
               class="formInput"
               type="text"
               placeholder="Contribution"
@@ -466,7 +466,7 @@
             </label>
             <input
               id="serviceContrNo"
-              :value="contactInfo.serviceContrNo"
+              v-model="contactInfo.serviceContrNo"
               class="formInput"
               type="text"
               placeholder="Service Contract"
@@ -481,7 +481,7 @@
             </label>
             <select
               id="onStandingOffer"
-              :value="contactInfo.onStandingOffer"
+              v-model="contactInfo.onStandingOffer"
               class="formSelect"
               @change="onStanding($event)"
             >
@@ -499,15 +499,19 @@
           v-if="message.message != null"
           class="messageBox"
           :class="[message.type == 'error' ? ' error' : ' ']"
+          role="alert"
         >
-          <span>
-            {{ message.message }}
-          </span>
+          <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
+          <span> {{ message.message }} testing message </span>
         </div>
 
         <div class="flex justify-start mb-4">
           <div class="w-3/12 margins">
-            <AppButton custom_style="btn-cancel" data_cypress="formButton">
+            <AppButton
+              custom_style="btn-cancel"
+              data_cypress="formButton"
+              @click="goBack"
+            >
               {{ $t('contact.cancel') }}
             </AppButton>
           </div>
@@ -532,7 +536,22 @@ export default {
     AppButton
   },
 
-  // eslint-disable-next-line space-before-function-paren
+  async fetch() {
+    try {
+      this.$axios.defaults.baseURL = this.$config.API_URL
+      await this.$axios
+        .get(`/api/contact/contact?id=${this.$route.params.id}`)
+        .then((response) => {
+          // eslint-disable-next-line no-console
+          console.log(response.data)
+          this.contactInfo = response.data
+        })
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error fetching Contact : ', e)
+    }
+  },
+
   data() {
     return {
       message: {
@@ -628,12 +647,17 @@ export default {
       clearTimeout(this.timeout)
     },
 
+    goBack() {
+      this.$router.back()
+    },
+
     async submitForm(contactInfo) {
       try {
-        await this.$axios.post('/api/contact/addContact', {
-          contactInfo
-        })
-        this.notification('success', 'contact created')
+        await this.$axios
+          .post(`/api/contact/update?id=${this.$route.params.id}`, {
+            contactInfo
+          })
+          .then(this.notification('success', 'contact updated'))
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log('error : ', e.response)
@@ -682,9 +706,9 @@ export default {
   @apply w-11/12 h-12 justify-start;
 }
 .messageBox {
-  @apply text-center text-2xl align-bottom mb-4 h-12 min-h-0 mt-2 text-black bg-green-700;
+  @apply bg-green-100 border border-green-400 px-4 rounded text-center text-2xl font-medium mb-4 h-16 pt-3 min-h-0 mt-2 text-green-800;
 }
 .error {
-  @apply bg-red-700;
+  @apply bg-red-100 border border-red-400 text-red-700 px-4 rounded;
 }
 </style>

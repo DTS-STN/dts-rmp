@@ -677,9 +677,9 @@ export default {
   @apply w-11/12 h-12 justify-start;
 }
 .messageBox {
-  @apply text-center text-2xl align-bottom mb-4 h-12 min-h-0 mt-2 text-black bg-green-700;
+  @apply bg-green-100 border border-green-400 px-4 rounded text-center text-2xl font-medium mb-4 h-16 pt-3 min-h-0 mt-2 text-green-800;
 }
 .error {
-  @apply bg-red-700;
+  @apply bg-red-100 border border-red-400 text-red-700 px-4 rounded;
 }
 </style>
