@@ -61,26 +61,26 @@ export default {
     engagements: 'Engagements',
     // fields
     type: 'Contact Type',
-    name: 'Full Name',
-    title: 'Title',
-    email: 'Email',
-    address: 'Address',
+    keyContactName: 'Full Name',
+    keyContactTitle: 'Title',
+    keyContactEmail: 'Email',
+    keyContactAddress: 'Address',
     address2: 'Apt / suite / etc.',
     city: 'City',
     provState: 'Prov. / State / Territory',
     country: 'Country',
     postal: 'Postal Code',
-    phone: 'Phone',
+    keyContactPhone: 'Phone',
     orgEmail: 'Organization Email',
     orgAddress: 'Organization Address',
     orgPhone: 'Organization phone',
-    orgwebsite: 'Organization Website',
+    orgWebsite: 'Organization Website',
     department: 'Department',
     branch: 'Branch',
     directorate: 'Directorate',
-    provTerr: 'Province / Territory / Indigenous',
+    provTerritory: 'Province / Territory / Indigenous',
     orgName: 'Oranization Name',
-    sector: 'Organization Sector',
+    orgSector: 'Organization Sector',
     contrib: 'Contribution Agreement Reference',
     service: 'Service Contract',
     standing: 'On standing offer list',
@@ -116,6 +116,12 @@ export default {
     edit: 'Edit Contact',
     // view contact
     otherpeople: 'other participants'
+  },
+
+  contactValidation: {
+    errorListTitle: 'The following fields have errors:',
+    required: 'This field is required',
+    invalidEmail: 'Not a valid email address'
   },
 
   NavBtn: {
