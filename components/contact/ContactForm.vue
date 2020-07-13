@@ -622,17 +622,47 @@
               @change="onProvTerr($event)"
               @blur="$v.contactInfo.provTerritory.$touch()"
             >
-              <option value="Select">
+              <option selected value="Select">
                 {{ $t('contact.selProvince') }}
               </option>
-              <option value="Ontario">
+              <option value="AB">
+                {{ $t('contact.ab') }}
+              </option>
+              <option value="BC">
+                {{ $t('contact.bc') }}
+              </option>
+              <option value="MB">
+                {{ $t('contact.mb') }}
+              </option>
+              <option value="NB">
+                {{ $t('contact.nb') }}
+              </option>
+              <option value="NFL">
+                {{ $t('contact.nfl') }}
+              </option>
+              <option value="NS">
+                {{ $t('contact.ns') }}
+              </option>
+              <option value="ON">
                 {{ $t('contact.on') }}
               </option>
-              <option value="Ontario">
+              <option value="PEI">
+                {{ $t('contact.pei') }}
+              </option>
+              <option value="QC">
                 {{ $t('contact.qc') }}
               </option>
-              <option value="Ontario">
-                {{ $t('contact.ns') }}
+              <option value="SK">
+                {{ $t('contact.sk') }}
+              </option>
+              <option value="NWT">
+                {{ $t('contact.nwt') }}
+              </option>
+              <option value="NU">
+                {{ $t('contact.nu') }}
+              </option>
+              <option value="YK">
+                {{ $t('contact.yk') }}
               </option>
             </select>
             <p
