@@ -39,4 +39,4 @@ jobs:
          username: 'dtsrobot'
          token: '${{ secrets.DTSROBOT_API_TOKEN }}'
          job: 'deploy_rmp'
-         params: '{"DOCKER_TAG": "${{ buildnum }}", "TIER": "frontend", "TARGET": "dev"}'
+         params: '{"DOCKER_TAG": "${{ env.buildnum }}", "TIER": "frontend", "TARGET": "dev"}'
