@@ -28,13 +28,6 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-<<<<<<< HEAD
-    {
-      src: '~/plugins/Vuelidate.js',
-      ssr: true
-    },
-=======
->>>>>>> main
     { src: '~/plugins/vue2-editor', ssr: false },
     {
       src: '~/plugins/global.js'

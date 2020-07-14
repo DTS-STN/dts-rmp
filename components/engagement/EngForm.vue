@@ -96,9 +96,9 @@
             </label>
             <div class="relative max-w-xs">
               <input
+                v-model="engagementDetail.date"
                 class="dateStyle"
                 type="date"
-                v-model="engagementDetail.date"
                 :class="{invalid: $v.engagementDetail.date.$error}"
                 @input="engagementDetail.date = $event.target.valueAsDate"
                 @blur="$v.engagementDetail.date.$touch()"
