@@ -112,9 +112,9 @@ export default {
     EngShowContacts
   },
 
-  async fetch() {
+  async asyncData({ app, params, store }) {
     try {
-      await this.$store.dispatch('engagements/fetchEngagement', this.$route.params.id)
+      await store.dispatch('engagements/fetchEngagement', params.id)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('Error: ', e.response)
