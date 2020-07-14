@@ -29,15 +29,6 @@ jobs:
           docker tag mtscontainers.azurecr.io/dts-rmp:latest mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
           docker push mtscontainers.azurecr.io/dts-rmp:latest
           docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
-
-#       - name: 'Deploy Staging'
-#         uses: enflo/jenkins-action@master
-#         with:
-#           url: 'https://jenkins.dev.dts-stn.com'
-#           user: dtsrobot
-#           token: ${{ secrets.DTSROBOT_API_TOKEN }}
-#           job: 'job/deploy_rmp'
-#           parameters: "$BUILD_NUMBER&dev&frontend"
       
       - name: 'Deploy Staging (migration test)'
         uses: stigmelling/jenkins-action@v1.1
