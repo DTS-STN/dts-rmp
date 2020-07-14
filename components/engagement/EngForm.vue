@@ -13,7 +13,14 @@
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
-    <select-contact />
+    <select-contact
+      v-model="engagementDetail.contacts"
+      :class="{invalidId: $v.engagementDetail.contacts.$error}"
+      @blur="$v.engagementDetail.contacts.$touch()"
+    />
+    <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.$minSize" class="error">
+      {{ $t('engagementValidation.required') }}
+    </p>
     <h2 class="title font-display">
       {{ $t('engagement.engagment') }}
     </h2>
@@ -37,7 +44,7 @@
               @blur="$v.engagementDetail.subject.$touch()"
             />
             <p v-if="$v.engagementDetail.subject.$dirty && !$v.engagementDetail.subject.required" class="error">
-              {{ $t('engagementDetail.required') }}
+              {{ $t('engagementValidation.required') }}
             </p>
           </div>
 
@@ -66,7 +73,7 @@
                 </option>
               </select>
               <p v-if="$v.engagementDetail.type.$dirty && !$v.engagementDetail.type.required" class="error">
-                field is required
+                {{ $t('engagementValidation.required') }}
               </p>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -117,7 +124,7 @@
               class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
               for="numParticipants"
             >
-              {{ $t('engagement.participants') }}
+              {{ $t('engagement.numParticipants') }}
             </label>
             <div class="flex relative w-20 ">
               <input
@@ -125,6 +132,7 @@
                 v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
                 type="number"
+                min="0"
                 :class="{invalid: $v.engagementDetail.numParticipants.$error}"
                 @blur="$v.engagementDetail.numParticipants.$touch()"
               />
@@ -202,6 +210,9 @@
               />
               <p v-if="$v.inputTag && !$v.inputTag.maxChar" class="error">
                 {{ $t('engagementValidation.maxTagLength') }}
+              </p>
+              <p v-if="duplicateTags()" class="error">
+                {{ $t('engagementValidation.duplicateTags') }}
               </p>
             </div>
             <div v-if="showTag" class="flex mt-6 ml-6">
@@ -297,10 +308,13 @@ export default {
         date: new Date(),
         description: '',
         numParticipants: 0,
+        contacts: this.idFromChild,
+        /*
         contacts: [{
           objectId: this.idFromChild
         }
         ],
+        */
         policyProgram: '',
         comments: [
           {
@@ -338,7 +352,7 @@ export default {
       date: { required },
       description: { required },
       numParticipants: { required, minVal: minValue(1) },
-      contacts: { required },
+      contacts: { minSize: minValue(1) },
       tags: { maxSize: maxLength(10) }
     },
     inputTag: { maxChar: maxLength(10) }
@@ -365,13 +379,18 @@ export default {
     },
     */
     getTagFromInput() {
-      if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10) {
+      if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10 || this.inputTag.length === 0 || this.duplicateTags()) {
         return
       } else {
         this.engagementDetail.tags.push(this.inputTag)
       }
       this.inputTag = ''
       this.showTag = true
+    },
+    duplicateTags() {
+      for (let i = 0; i < this.engagementDetail.tags.length; i++) {
+        return (this.engagementDetail.tags[i] === this.inputTag)
+      }
     },
     deleteTag(index) {
       this.engagementDetail.tags.splice(index, 1)

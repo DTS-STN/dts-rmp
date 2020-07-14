@@ -132,10 +132,11 @@ export default {
   // engagement
   engagement: {
     engagment: 'Engagement',
+    contactName: 'Contact Name',
     subject: 'Subject',
     type: 'Engagement type',
     date: 'Date',
-    participants: 'Number of participants',
+    numParticipants: 'Number of participants',
     description:
       'Description (Maximum 1000 characters. Additional characters will not be saved.)',
     policy: 'Policy / program',
@@ -158,12 +159,12 @@ export default {
     maxTags: 'You cannot create more than 3 tags',
     maxTagLength: 'The text length cannot exceed 10 characters',
     minParticipant: 'You cannot have less than 1 participant',
-    validDate: 'Please pick a date'
+    validDate: 'Please pick a date',
+    duplicateTags: 'Tag already exist, please enter another tag name'
   },
   // EngSelectContact component
   engSelect: {
     engagement: 'Create new engagement',
-    name: 'Contact name',
     contact2: 'Contact number 2',
     remove: 'Remove',
     add: 'Add more contacts'

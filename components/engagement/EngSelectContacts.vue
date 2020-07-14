@@ -1,5 +1,5 @@
 <template>
-  <div class="contact mb-8">
+  <div class="contact">
     <h2 class="font-display text-4xl mt-12">
       Contact
     </h2>

@@ -133,10 +133,11 @@ export default {
   // engagement
   engagement: {
     engagment: 'Engagement',
+    contactName: 'Nom du contact',
     subject: 'Matière',
     type: "Type d'engagement",
     date: 'Date',
-    participants: 'Nombre de participants',
+    numParticipants: 'Nombre de participants',
     description:
       'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     policy: 'Politique / programme',
@@ -159,13 +160,13 @@ export default {
     maxTags: 'Vous ne pouvez pas créer plus de 3 balises',
     maxTagLength: 'La longueur du texte ne doit pas dépasser 10 caractères',
     minParticipant: 'Vous ne pouvez pas avoir moins de 1 participant',
-    validDate: 'Veuillez choisir une date'
+    validDate: 'Veuillez choisir une date',
+    duplicateTags: 'La balise existe déjà, veuillez entrer un autre nom de balise'
   },
   // EngSelectContact component
   engSelect: {
     engagement: 'Nouvel engagement',
     contact: 'Contact',
-    name: 'Nom du contact',
     contact2: 'Numéro de contact 2',
     remove: 'Retirer',
     add: 'Ajouter plus de contacts'
