@@ -29,11 +29,13 @@ jobs:
           docker tag mtscontainers.azurecr.io/dts-rmp:latest mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
           docker push mtscontainers.azurecr.io/dts-rmp:latest
           docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
-      
+          
+      - name: 'build vars'
+        run: echo concat_parms
+        env: 
+          concat_parms: '{"DOCKER_TAG": "${{ env.BUILD_NUMBER }}", "TIER": "frontend", "TARGET": "dev"}'
       - name: 'Deploy Staging (migration test)'
         uses: stigmelling/jenkins-action@v1.1
-        env: 
-          concat_parms: '{"DOCKER_TAG": "$BUILD_NUMBER", "TIER": "frontend", "TARGET": "dev"}'
         with:
          jenkinsUrl: 'https://jenkins.dev.dts-stn.com'
          username: 'dtsrobot'
