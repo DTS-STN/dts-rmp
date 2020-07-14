@@ -36,9 +36,3 @@ export const actions = {
     })
   }
 }
-
-// export const getters = {
-//   getContactByIdandReturnLastEngagement: (state) => (id) => {
-//     return state.contacts.find
-//   }
-// }
