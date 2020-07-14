@@ -13,17 +13,19 @@ jobs:
       - name: 'Checkout Github Action'
         uses: actions/checkout@v1
 
-      - name: Generate build number
+      - name: 'Generate Build Number'
         uses: einaregilsson/build-number@v1
         with:
           token: ${{secrets.github_token}}
-      - uses: azure/docker-login@v1
+
+      - name: 'Login to Azure Cloud'
+        uses: azure/docker-login@v1
         with:
           login-server: mtscontainers.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-      - name: docker build and push client server
+      - name: 'Docker Build and Push Images to Azure Repo'
         run: |
           docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-rmp:latest .
           docker tag mtscontainers.azurecr.io/dts-rmp:latest mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
@@ -35,10 +37,10 @@ jobs:
         env: 
           concat_params: '{ "DOCKER_TAG": "${{ env.BUILD_NUMBER }}", "TIER": "frontend", "TARGET": "dev"}'
 
-      - name: 'Verify Jenkins params'
+      - name: 'Verify Jenkins Parameters'
         run: echo ${{ env.params }}
         
-      - name: 'Deploy Staging (migration test)'
+      - name: 'Deploy to Staging using Jenkins (migration test)'
         uses: stigmelling/jenkins-action@v1.1
         with:
          jenkinsUrl: 'https://jenkins.dev.dts-stn.com'
