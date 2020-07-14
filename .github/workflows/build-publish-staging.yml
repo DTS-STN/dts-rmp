@@ -37,4 +37,4 @@ jobs:
           user: dtsrobot
           token: ${{ secrets.DTSROBOT_API_TOKEN }}
           job: 'job/deploy_rmp'
-          parameters: "$BUILD_NUMBER&dev&frontend"
+          parameters: "$BUILD_NUMBER,dev,frontend"
