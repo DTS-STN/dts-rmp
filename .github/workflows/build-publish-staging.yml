@@ -23,18 +23,23 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-      - name: docker build and push client server
-        run: |
-          docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-rmp:latest .
-          docker tag mtscontainers.azurecr.io/dts-rmp:latest mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
-          docker push mtscontainers.azurecr.io/dts-rmp:latest
-          docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
+#       - name: docker build and push client server
+#         run: |
+#           docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-rmp:latest .
+#           docker tag mtscontainers.azurecr.io/dts-rmp:latest mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
+#           docker push mtscontainers.azurecr.io/dts-rmp:latest
+#           docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
+          
+      - name: 'Build Jenkins Parameters'
+        run: echo ${{ env.concat_parms }}
+        env: 
+          concat_parms: "{ 'DOCKER_TAG': '${{ env.BUILD_NUMBER }}', 'TIER': 'frontend', 'TARGET': 'dev'}"
 
-      - name: 'Deploy Staging'
-        uses: enflo/jenkins-action@master
+      - name: 'Deploy Staging (migration test)'
+        uses: stigmelling/jenkins-action@v1.1
         with:
-          url: 'https://jenkins.dev.dts-stn.com'
-          user: dtsrobot
-          token: ${{ secrets.DTSROBOT_API_TOKEN }}
-          job: 'job/deploy_rmp'
-          parameters: "$BUILD_NUMBER&dev&frontend"
+         jenkinsUrl: 'https://jenkins.dev.dts-stn.com'
+         username: 'dtsrobot'
+         token: '${{ secrets.DTSROBOT_API_TOKEN }}'
+         job: 'deploy_rmp'
+         params: '${{ env.concat_params }}'
