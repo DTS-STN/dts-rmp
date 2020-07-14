@@ -23,12 +23,12 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-#       - name: docker build and push client server
-#         run: |
-#           docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-rmp:latest .
-#           docker tag mtscontainers.azurecr.io/dts-rmp:latest mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
-#           docker push mtscontainers.azurecr.io/dts-rmp:latest
-#           docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
+      - name: docker build and push client server
+        run: |
+          docker build --build-arg DB_NAME=temp -t mtscontainers.azurecr.io/dts-rmp:latest .
+          docker tag mtscontainers.azurecr.io/dts-rmp:latest mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
+          docker push mtscontainers.azurecr.io/dts-rmp:latest
+          docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
           
       - name: 'Build Jenkins Parameters'
         run: echo ::set-env name=params::$(echo $concat_params)
