@@ -8,7 +8,7 @@
         class="orange block tracking-wide text-black text-md font-bold mb-2"
         for="subject"
       >
-        {{ $t('engSelect.name') }}
+        {{ $t('engagement.contactName') }}
       </label>
       <div>
         <form-select v-model="selected" @click="selected = undefined" @change="showContact($event)">
