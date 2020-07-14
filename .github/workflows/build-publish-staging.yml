@@ -31,10 +31,9 @@ jobs:
 #           docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
           
       - name: 'Build Jenkins Parameters'
-        run: echo ${{ env.concat_parms }}
+        run: echo ::set-env name=params::$(echo $concat_params)
         env: 
-          bn: "${{ env.BUILD_NUMBER }}"
-          concat_parms: '{ "DOCKER_TAG": ${{ env.bn }}, "TIER": "frontend", "TARGET": "dev"}'
+          concat_params: '{ "DOCKER_TAG": "${{ env.BUILD_NUMBER }}", "TIER": "frontend", "TARGET": "dev"}'
 
       - name: 'Deploy Staging (migration test)'
         uses: stigmelling/jenkins-action@v1.1
@@ -43,4 +42,4 @@ jobs:
          username: 'dtsrobot'
          token: '${{ secrets.DTSROBOT_API_TOKEN }}'
          job: 'deploy_rmp'
-         params: '${{ env.concat_parms }}'
+         params: '${{ env.params }}'
