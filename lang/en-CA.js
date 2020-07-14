@@ -159,7 +159,7 @@ export default {
     maxTags: 'You cannot create more than 3 tags',
     maxTagLength: 'The text length cannot exceed 10 characters',
     minParticipant: 'You cannot have less than 1 participant',
-    validDate: 'Please pick a date',
+    validDate: 'Please pick a valid date',
     duplicateTags: 'Tag already exist, please enter another tag name'
   },
   // EngSelectContact component

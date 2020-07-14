@@ -171,6 +171,21 @@ export default {
     emitToEngForm(event) {
       this.items.splice(0, this.items.length)
       this.$emit('childToParent', this.contactArrayId)
+    },
+    validDate(date) {
+      const today = new Date()
+      const day = today.getDate()
+      const month = today.getMonth() + 1
+      const year = today.getFullYear()
+      if (date.getDate() < day && (date.getMonth() + 1) > month && date.getFullYear() > year) {
+        return true
+      } else if ((date.getMonth() + 1) > month && date.getFullYear() > year) {
+        return true
+      } else if (date.getFullYear() > year) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }

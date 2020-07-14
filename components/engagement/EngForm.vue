@@ -104,7 +104,7 @@
                 :value="engagementDetail.date.toISOString().split('T')[0]"
                 class="dateStyle"
                 type="date"
-                :class="{invalid: $v.engagementDetail.date.$error}"
+                :class="{invalid: !isValidDate(engagementDetail.date)}"
                 @input="engagementDetail.date = $event.target.valueAsDate"
                 @blur="$v.engagementDetail.date.$touch()"
               />
@@ -114,7 +114,7 @@
                 <img :src="mySVG" />
               </div>
             </div>
-            <p v-if="$v.engagementDetail.date.$dirty && !$v.engagementDetail.date.required" class="error">
+            <p v-if="!isValidDate(engagementDetail.date)" class="error">
               {{ $t('engagementValidation.validDate') }}
             </p>
           </div>
@@ -296,6 +296,7 @@ export default {
   },
   data() {
     return {
+      datetest: new Date().toISOString(),
       mySVG: require('../../assets/images/calendar.svg'),
       idFromChild: [],
       message: {
@@ -409,6 +410,33 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
+    },
+    /* compare the date from the input with current date, check if the date that user picked is the past date */
+    isValidDate(date) {
+      // change the date to the correct date format
+      const inputDate = date.toISOString()
+
+      // get the day, month, year of the current date
+      const today = new Date().toISOString()
+      const day = parseInt(today.slice(0, 4))
+      const month = parseInt(today.slice(5, 7))
+      const year = parseInt(today.slice(8, 10))
+
+      // get the day, month, year of the input date
+      const inputDay = parseInt(inputDate.slice(0, 4))
+      const inputMonth = parseInt(inputDate.slice(5, 7))
+      const inputYear = parseInt(inputDate.slice(8, 10))
+
+      // compare current date and input date
+      if (inputYear > year) {
+        return true
+      } else if (inputMonth > month && inputYear >= year) {
+        return true
+      } else if (inputDay >= day && inputMonth >= month && inputYear >= year) {
+        return true
+      } else {
+        return false
+      }
     },
     async submitForm(engagementDetail) {
       this.$v.$touch()
