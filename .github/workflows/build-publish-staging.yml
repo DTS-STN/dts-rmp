@@ -35,6 +35,9 @@ jobs:
         env: 
           concat_params: '{ "DOCKER_TAG": "${{ env.BUILD_NUMBER }}", "TIER": "frontend", "TARGET": "dev"}'
 
+      - name: 'Verify Jenkins params'
+        run: echo ${{ env.params }}
+        
       - name: 'Deploy Staging (migration test)'
         uses: stigmelling/jenkins-action@v1.1
         with:
