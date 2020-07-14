@@ -150,7 +150,8 @@ export default {
     required: 'This field is required',
     maxTags: 'You cannot create more than 3 tags',
     maxTagLength: 'The text length cannot exceed 10 characters',
-    minParticipant: 'You cannot have less than 1 participant'
+    minParticipant: 'You cannot have less than 1 participant',
+    validDate: 'Please pick a date'
   },
   // EngSelectContact component
   engSelect: {

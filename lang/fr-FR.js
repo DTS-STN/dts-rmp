@@ -150,7 +150,8 @@ export default {
     required: 'Ce champ est requis',
     maxTags: 'Vous ne pouvez pas créer plus de 3 balises',
     maxTagLength: 'La longueur du texte ne doit pas dépasser 10 caractères',
-    minParticipant: 'Vous ne pouvez pas avoir moins de 1 participant'
+    minParticipant: 'Vous ne pouvez pas avoir moins de 1 participant',
+    validDate: 'Veuillez choisir une date'
   },
   // EngSelectContact component
   engSelect: {

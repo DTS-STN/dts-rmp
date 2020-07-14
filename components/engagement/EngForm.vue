@@ -39,7 +39,7 @@
               @blur="$v.engagementDetail.subject.$touch()"
             />
             <p v-if="$v.engagementDetail.subject.$dirty && !$v.engagementDetail.subject.required" class="error">
-              field is required
+              {{ $t('engagementDetail.required') }}
             </p>
           </div>
 
@@ -96,10 +96,9 @@
             </label>
             <div class="relative max-w-xs">
               <input
-                :value="engagementDetail.date && engagementDetail.date.toISOString().split('T')[0]"
-                placeholder="dd/mm/yyyy"
                 class="dateStyle"
                 type="date"
+                v-model="engagementDetail.date"
                 :class="{invalid: $v.engagementDetail.date.$error}"
                 @input="engagementDetail.date = $event.target.valueAsDate"
                 @blur="$v.engagementDetail.date.$touch()"
@@ -111,7 +110,7 @@
               </div>
             </div>
             <p v-if="$v.engagementDetail.date.$dirty && !$v.engagementDetail.date.required" class="error">
-              Please pick a date
+              {{ $t('engagementValidation.validDate') }}
             </p>
           </div>
 
@@ -165,7 +164,7 @@
               @blur="$v.engagementDetail.description.$touch()"
             />
             <p v-if="$v.engagementDetail.description.$dirty" class="error">
-              field is required
+              {{ $t('engagementValidation.required') }}
             </p>
           </div>
         </div>
