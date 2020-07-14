@@ -33,15 +33,14 @@ jobs:
       - name: 'Build Jenkins Parameters'
         run: echo ${{ env.concat_parms }}
         env: 
-          concat_parms: '{ "DOCKER_TAG": ${{ env.BUILD_NUMBER }}, "TIER": "frontend", "TARGET": "dev"}'
+          bn: "$BUILD_NUMBER"
+          concat_parms: '{ "DOCKER_TAG": ${{ env.bn }}, "TIER": "frontend", "TARGET": "dev"}'
 
       - name: 'Deploy Staging (migration test)'
         uses: stigmelling/jenkins-action@v1.1
-        env:
-          parms: ${{ env.concat_parms }}
         with:
          jenkinsUrl: 'https://jenkins.dev.dts-stn.com'
          username: 'dtsrobot'
          token: '${{ secrets.DTSROBOT_API_TOKEN }}'
          job: 'deploy_rmp'
-         params: '${{ env.parms }}'
+         params: '${{ env.concat_parms }}'
