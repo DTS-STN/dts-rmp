@@ -33,7 +33,7 @@ jobs:
       - name: 'Build Jenkins Parameters'
         run: echo ${{ env.concat_parms }}
         env: 
-          bn: "$BUILD_NUMBER"
+          bn: "${{ env.BUILD_NUMBER }}"
           concat_parms: '{ "DOCKER_TAG": ${{ env.bn }}, "TIER": "frontend", "TARGET": "dev"}'
 
       - name: 'Deploy Staging (migration test)'
