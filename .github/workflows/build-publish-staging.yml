@@ -40,7 +40,7 @@ jobs:
 #           parameters: "$BUILD_NUMBER&dev&frontend"
       
       - name: 'Deploy Staging (migration test)'
-        uses: stigmelling/jenkins-action@v1
+        uses: stigmelling/jenkins-action@v1.1
         with:
          jenkinsUrl: 'https://jenkins.dev.dts-stn.com'
          username: 'dtsrobot'
