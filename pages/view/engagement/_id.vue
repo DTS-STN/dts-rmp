@@ -19,7 +19,7 @@
     <div class="flex mb-4">
       <div class="w-5/12 margins">
         <EngViewFields label="date">
-          {{ engagement.date.substring(0, 10) }}
+          {{ engagement.date }}
         </EngViewFields>
       </div>
       <div class="w-5/12 margins">
@@ -115,13 +115,9 @@ export default {
     EngShowContacts
   },
 
-  async asyncData({ app, params, store }) {
+  async fetch() {
     try {
-      await store.dispatch('engagements/fetchEngagement', params.id)
-<<<<<<< HEAD
-=======
-      await store.dispatch('contacts/fetchContacts')
->>>>>>> main
+      await this.$store.dispatch('engagements/fetchEngagement', this.$router.params.id)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('Error: ', e.response)
