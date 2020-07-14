@@ -149,3 +149,7 @@ export function randomTimeSlot() {
   const timeslots = [0, 15, 30, 45]
   return timeslots[Math.floor(Math.random() * timeslots.length)]
 }
+
+export function randomDateBeforeDate(start, days) {
+  return new Date(start.getTime() + Math.random() * days * 24 * 60 * 60 * 1000)
+}
