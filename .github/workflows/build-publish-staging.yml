@@ -31,7 +31,7 @@ jobs:
 #           docker push mtscontainers.azurecr.io/dts-rmp:$BUILD_NUMBER
           
       - name: 'build vars'
-        run: echo concat_parms
+        run: echo ${{ env.concat_parms }}
         env: 
           concat_parms: '{"DOCKER_TAG": "${{ env.BUILD_NUMBER }}", "TIER": "frontend", "TARGET": "dev"}'
       - name: 'Deploy Staging (migration test)'
