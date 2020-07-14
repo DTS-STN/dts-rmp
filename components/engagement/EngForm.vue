@@ -1,21 +1,19 @@
 <template>
   <div title="engagementForm" class="ml-12">
-    <!--
-    <div>
-      <h1 ref="displayErrors">
+    <div v-if="attemptSubmit && invalidFields.length" class="error-list mt-6">
+      <h1 ref="displayErrors" class="text-xl text-red-600">
         The following fields have errors:
       </h1>
-      <ul class="list-disc error" style="list-style-position: inside">
+      <ul class="list-disc text-sm text-red-600 italic" style="list-style-position: inside">
         <li v-for="invalidField in invalidFields" :key="invalidField">
           {{ $t('engagement.' + invalidField) }}
         </li>
       </ul>
     </div>
-    -->
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
-    <select-contact @childToParent="onChildClick" />
+    <select-contact />
     <h2 class="title font-display">
       {{ $t('engagement.engagment') }}
     </h2>
@@ -96,7 +94,7 @@
             </label>
             <div class="relative max-w-xs">
               <input
-                v-model="engagementDetail.date"
+                :value="engagementDetail.date.toISOString().split('T')[0]"
                 class="dateStyle"
                 type="date"
                 :class="{invalid: $v.engagementDetail.date.$error}"
@@ -347,7 +345,7 @@ export default {
   },
   computed: {
     invalidFields() {
-      return Object.keys(this.$v.engagementDetail.$param).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
+      return Object.keys(this.$v.engagementDetail.$params).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
     }
   },
   methods: {
@@ -399,11 +397,9 @@ export default {
       if (this.$v.$invalid) {
         // eslint-disable-next-line no-console
         console.log(this.invalidFields)
-        /*
         this.$nextTick(() => {
           this.$scrollTo(this.$refs.displayErrors)
         })
-        */
       } else {
         try {
           await this.$axios.post('/api/engagement/addEngagement', {
@@ -490,5 +486,10 @@ export default {
 }
 .invalid {
   @apply appearance-none border border-red-500 rounded w-full
+}
+.error-list {
+  width: 50%;
+  background-color: rgba(255,0,0,0.1);
+  @apply border border-red-500;
 }
 </style>
