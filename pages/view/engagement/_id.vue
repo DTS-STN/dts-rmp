@@ -131,19 +131,9 @@ export default {
   }),
   methods: {
     getLastEngagement(id) {
-      const contact = this.getContact(id)
+      const contact = this.contacts.find(contact => id === contact._id)
       const lastEngagement = contact.engagements[0]
       return lastEngagement
-    },
-
-    getContact(id) {
-      const clone = []
-      this.contacts.forEach((contact) => {
-        clone.push({
-          ...contact
-        })
-      })
-      return clone.find(contact => id === contact._id)
     },
 
     goBack() {
