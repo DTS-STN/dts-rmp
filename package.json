@@ -30,6 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "5.9.10",
     "morgan": "^1.10.0",
+    "vue-scrollto": "^2.18.1",
     "nuxt": "2.13.0",
     "nuxt-i18n": "^6.13.1",
     "vue2-editor": "^2.10.2",
