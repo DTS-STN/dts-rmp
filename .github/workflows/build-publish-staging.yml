@@ -41,4 +41,4 @@ jobs:
          username: 'dtsrobot'
          token: '${{ secrets.DTSROBOT_API_TOKEN }}'
          job: 'deploy_rmp'
-         params: ${{ env.concat_params }}
+         params: '${{ env.concat_params }}'
