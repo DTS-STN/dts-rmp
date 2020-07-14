@@ -77,6 +77,9 @@
         :index="index"
         :name="con.keyContactName"
         :orgname="con.orgName"
+        :last="getLastEngagement(con._id).subject"
+        :date="getLastEngagement(con._id).date"
+        :number="getLastEngagement(con._id).numParticipants"
         :title="con.keyContactTitle"
         :phone="con.keyContactPhone"
         :email="con.keyContactEmail"
@@ -112,9 +115,10 @@ export default {
     EngShowContacts
   },
 
-  async fetch() {
+  async asyncData({ app, params, store }) {
     try {
-      await this.$store.dispatch('engagements/fetchEngagement', this.$route.params.id)
+      await store.dispatch('engagements/fetchEngagement', params.id)
+      await store.dispatch('contacts/fetchContacts')
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('Error: ', e.response)
@@ -122,9 +126,16 @@ export default {
   },
 
   computed: mapState({
-    engagement: state => state.engagements.engagement
+    engagement: state => state.engagements.engagement,
+    contacts: state => state.contacts.contacts
   }),
   methods: {
+    getLastEngagement(id) {
+      const contact = this.contacts.find(contact => id === contact._id)
+      const lastEngagement = contact.engagements[0]
+      return lastEngagement
+    },
+
     goBack() {
       this.$router.back()
     }
