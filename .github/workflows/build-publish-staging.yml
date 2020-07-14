@@ -37,9 +37,11 @@ jobs:
 
       - name: 'Deploy Staging (migration test)'
         uses: stigmelling/jenkins-action@v1.1
+        env:
+          parms: ${{ env.concat_parms }}
         with:
          jenkinsUrl: 'https://jenkins.dev.dts-stn.com'
          username: 'dtsrobot'
          token: '${{ secrets.DTSROBOT_API_TOKEN }}'
          job: 'deploy_rmp'
-         params: '${{ env.concat_params }}'
+         params: '${{ env.parms }}'
