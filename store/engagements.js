@@ -1,6 +1,7 @@
 export const state = () => ({
   engagements: [],
-  engagement: []
+  engagement: [],
+  comments: []
 })
 
 export const mutations = {
@@ -9,6 +10,11 @@ export const mutations = {
   },
   SET_ENGAGEMENT(state, engagement) {
     state.engagement = engagement
+  },
+  ADD_COMMENT(state, comment) {
+    state.comments.push({
+      ...comment
+    })
   }
 }
 
@@ -27,5 +33,15 @@ export const actions = {
       .then((response) => {
         commit('SET_ENGAGEMENT', response.data)
       })
+  },
+
+  addComment({ commit }, comment) {
+    commit('ADD_COMMENT', comment)
+  }
+}
+
+export const getters = {
+  getCommentForId: state => (id) => {
+    return state.comments.find(comment => comment.id === id)
   }
 }
