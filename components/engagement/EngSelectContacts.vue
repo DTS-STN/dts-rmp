@@ -11,7 +11,7 @@
         {{ $t('engagement.contactName') }}
       </label>
       <div>
-        <form-select v-model="selected" @click="selected = undefined" @change="showContact($event)">
+        <form-select v-model="selected" @click="selected = undefined" @input="showContact($event)">
           <option value="" selected="selected" disabled hidden>
             {{ $t('engagement.selectContact') }}
           </option>
