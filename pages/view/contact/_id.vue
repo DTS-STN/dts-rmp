@@ -71,6 +71,7 @@
       <div class="w-3/12 margins">
         <AppButton
           custom_style="btn-cancel"
+          type="button"
           data_cypress="contactDetailBackButton"
           @click="goBack"
         >
@@ -80,7 +81,6 @@
       <div class="w-3/12 margins">
         <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton" @click="goEdit">
           {{ $t('contact.edit') }}
-        </AppButton>
         </appbutton>
       </div>
     </div>
