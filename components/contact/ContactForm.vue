@@ -555,7 +555,7 @@
 
         <div class="flex justify-start mb-4">
           <div class="w-3/12 margins">
-            <AppButton custom_style="btn-cancel" data_cypress="cancelButton" type="button">
+            <AppButton custom_style="btn-cancel" data_cypress="cancelButton" type="button" @click="goBack">
               {{ $t('contact.cancel') }}
             </AppButton>
           </div>
