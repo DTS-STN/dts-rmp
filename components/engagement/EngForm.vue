@@ -16,16 +16,6 @@
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
-    <!--
-    <select-contact
-      :class="{invalidId: engagementDetail.contacts.$error}"
-      @childToParent="onChildClick"
-      @blur="$v.engagementDetail.contacts.$touch()"
-    />
-    <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.minSize" class="error">
-      {{ $t('engagementValidation.required') }}
-    </p>
-    -->
     <form @submit.prevent="submitForm(engagementDetail)">
       <div class="w-full">
         <h2 class="font-display text-4xl">
@@ -276,20 +266,6 @@
             {{ $t('engagement.save') }}
           </AppButton>
         </div>
-        <span>
-          <!-- Subject Selected: {{ engagementDetail.subject }}
-          Contact Selected: {{ engagementDetail.contacts }}
-          Type Selected: {{ engagementDetail.type }}
-          Date Selected: {{ engagementDetail.date }}
-          numParticipants Selected: {{ engagementDetail.numParticipants }}
-          description Selected: {{ engagementDetail.description }}
-          policyProgram Selected: {{ engagementDetail.policyProgram }}
-          tags Selected: {{ engagementDetail.tags }}
-          Comments Selected: {{ engagementDetail.comments.content }}
-          Comments Selected: {{ engagementDetail.comments.content }}
-          description Selected: {{ engagementDetail.description }}
-          contacts Selected: {{ engagementDetail.contacts }} -->
-        </span>
       </div>
     </form>
   </div>
@@ -380,11 +356,6 @@ export default {
       this.showTag = true
     },
     duplicateTags() {
-      /*
-      for (let i = 0; i < this.engagementDetail.tags.length; i++) {
-        return (this.inputTag === this.engagementDetail.tags[i])
-      }
-      */
       if (this.inputTag.length !== 0 && this.inputTag === this.engagementDetail.tags[0]) {
         return true
       } else if (this.inputTag === this.engagementDetail.tags[1]) {
