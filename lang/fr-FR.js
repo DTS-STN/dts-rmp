@@ -166,7 +166,8 @@ export default {
     maxTagLength: 'La longueur du texte ne doit pas dépasser 10 caractères',
     minParticipant: 'Vous ne pouvez pas avoir moins de 1 participant',
     validDate: 'Veuillez choisir une date',
-    duplicateTags: 'La balise existe déjà, veuillez entrer un autre nom de balise'
+    duplicateTags: 'La balise existe déjà, veuillez entrer un autre nom de balise',
+    duplicateContacts: 'Le contact existe déjà, veuillez sélectionner un autre nom de contact'
   },
   // EngSelectContact component
   engSelect: {

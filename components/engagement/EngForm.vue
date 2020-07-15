@@ -274,8 +274,8 @@
             {{ $t('engagement.save') }}
           </AppButton>
         </div>
-        <span>
-          <!-- Subject Selected: {{ engagementDetail.subject }}
+        <!-- <span>
+          Subject Selected: {{ engagementDetail.subject }}
           Contact Selected: {{ engagementDetail.contacts }}
           Type Selected: {{ engagementDetail.type }}
           Date Selected: {{ engagementDetail.date }}
@@ -283,11 +283,11 @@
           description Selected: {{ engagementDetail.description }}
           policyProgram Selected: {{ engagementDetail.policyProgram }}
           tags Selected: {{ engagementDetail.tags }}
-          Comments Selected: {{ engagementDetail.comments.content }} -->
+          Comments Selected: {{ engagementDetail.comments.content }}
           Comments Selected: {{ engagementDetail.comments.content }}
           description Selected: {{ engagementDetail.description }}
           contacts Selected: {{ engagementDetail.contacts }}
-        </span>
+        </span> -->
       </div>
     </form>
   </div>
