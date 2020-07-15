@@ -19,7 +19,7 @@
     <div class="flex mb-4">
       <div class="w-5/12 margins">
         <EngViewFields label="date">
-          {{ engagement.date }}
+          {{ engagement.date.substring(0, 10) }}
         </EngViewFields>
       </div>
       <div class="w-5/12 margins">
@@ -144,6 +144,12 @@ export default {
 </script>
 
 <style scoped>
+.engagementForm {
+  width: 1200px;
+  margin: auto;
+  font-family: 'DejaVu Serif', 'Roboto slab', 'sans-serif', 'Helvetica Neue';
+  @apply bg-white text-black;
+}
 .btn-cancel {
   @apply justify-start bg-gray-300 w-11/12 text-black h-12;
 }
