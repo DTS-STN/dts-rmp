@@ -23,6 +23,7 @@ environments:
     release:
     prod-blue:
     prod-green: 
+    localdev:
 
 releases:
 ##### rmp #####
