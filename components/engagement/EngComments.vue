@@ -34,10 +34,22 @@
         </div>
       </div>
     </form>
+
+    <div class="bg-orange-300 border p-4 mb-6">
+      <ul>
+        <li v-for="(comment, index) in storedComments" :key="index">
+          <span>
+            {{ comment.content }}
+          </span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
@@ -55,6 +67,10 @@ export default {
       }
     }
   },
+
+  computed: mapState({
+    storedComments: state => state.engagements.comments
+  }),
 
   methods: {
     goBack() {

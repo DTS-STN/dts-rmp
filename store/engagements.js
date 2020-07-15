@@ -39,9 +39,3 @@ export const actions = {
     commit('ADD_COMMENT', comment)
   }
 }
-
-export const getters = {
-  getCommentForId: state => (id) => {
-    return state.comments.find(comment => comment.id === id)
-  }
-}
