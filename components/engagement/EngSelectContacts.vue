@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 import showContact from './EngSelectedContact'
 import formSelect from './EngFormSelect'
 export default {
@@ -74,14 +74,47 @@ export default {
     return {
       item: [],
       contactArrayId: [],
+      contacts: [{
+        _id: 3321,
+        keyContactName: 'kevin',
+        orgName: 'esdc',
+        keyContactTitle: 'engineer',
+        keyContactPhone: 6136088800,
+        keyContactEmail: 'kevin@gmail.com',
+        engagements: [{ engagementType: 'esdc', engagementDate: '2020', participants: 14 }]
+      }, {
+        _id: 5231,
+        keyContactName: 'john',
+        orgName: '27',
+        keyContactTitle: 'owner',
+        keyContactPhone: 6136232800,
+        keyContactEmail: 'john@gmail.com',
+        engagements: [{ engagementType: 'meeting', engagementDate: '2020', participants: 12 }]
+      }, {
+        _id: 121,
+        keyContactName: 'ming',
+        orgName: 'abc',
+        keyContactTitle: 'labour',
+        keyContactPhone: 6138088800,
+        keyContactEmail: 'ming@gmail.com',
+        engagements: [{ engagementType: 'training', engagementDate: '2020', participants: 5 }]
+      }, {
+        _id: 321,
+        keyContactName: 'naomi',
+        orgName: 'sky',
+        keyContactTitle: 'artist',
+        keyContactPhone: 6135088800,
+        keyContactEmail: 'naromi@gmail.com',
+        engagements: [{ engagementType: 'training', engagementDate: '2020', participants: 4 }]
+      }],
       contactArray: [],
       isSelected: false,
       selected: undefined
     }
   },
-  computed: mapState({
-    contacts: state => state.contacts.contacts
-  }),
+  // computed: mapState({
+  //   contacts: state => state.contacts.contacts
+  // }),
   methods: {
     /* display contact info when select contact name in the dropdown menu */
     showContact(event) {
