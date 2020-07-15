@@ -2,7 +2,7 @@
   <div title="engagementForm" class="ml-12">
     <div v-if="attemptSubmit && invalidFields.length" class="error-list mt-6">
       <h1 ref="displayErrors" class="text-xl text-red-600">
-        The following fields have errors:
+        {{ $t('engagementValidation.messageTitle') }}
       </h1>
       <ul class="list-disc text-sm text-red-600 italic" style="list-style-position: inside">
         <li v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.$minSize">
