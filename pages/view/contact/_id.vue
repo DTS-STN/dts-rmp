@@ -5,7 +5,7 @@
     </h1>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
-        <ConViewFields label="name">
+        <ConViewFields label="keyContactName">
           {{ contactInfo.keyContactName }}
         </ConViewFields>
       </div>
@@ -22,7 +22,7 @@
         </ConViewFields>
       </div>
       <div class="w-5/12 margins">
-        <ConViewFields label="email">
+        <ConViewFields label="keyContactEmail">
           {{ contactInfo.keyContactEmail }}
         </ConViewFields>
       </div>
@@ -39,7 +39,7 @@
     </h2>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
-        <ConViewFields label="orgAddress">
+        <ConViewFields label="address">
           {{ contactInfo.orgAddress }}
         </ConViewFields>
       </div>
