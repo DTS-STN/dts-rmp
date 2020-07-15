@@ -40,12 +40,12 @@
     </h2>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
-        <ConViewFields label="address">
+        <ConViewFields label="orgAddress">
           {{ contactInfo.orgAddress }}
         </ConViewFields>
       </div>
       <div class="w-5/12 margins">
-        <ConViewFields label="email">
+        <ConViewFields label="orgEmail">
           {{ contactInfo.orgEmail }}
         </ConViewFields>
       </div>
