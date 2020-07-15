@@ -360,7 +360,7 @@ export default {
       description: { required },
       numParticipants: { required, minVal: minValue(1) },
       contacts: { minSize: minValue(1) },
-      tags: { maxSize: maxLength(10) }
+      tags: { maxSize: maxLength(3) }
     },
     inputTag: { maxChar: maxLength(10) }
   },

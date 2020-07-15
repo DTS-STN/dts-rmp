@@ -155,6 +155,7 @@ export default {
     selectContact: 'Select one or more contact'
   },
   engagementValidation: {
+    messageTitle: 'The following fields have errors',
     required: 'This field is required',
     maxTags: 'You cannot create more than 3 tags',
     maxTagLength: 'The text length cannot exceed 10 characters',

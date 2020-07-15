@@ -156,6 +156,7 @@ export default {
     selectContact: 'Sélectionnez un contact'
   },
   engagementValidation: {
+    messageTitle: 'Les champs suivants contiennent des erreurs',
     required: 'Ce champ est requis',
     maxTags: 'Vous ne pouvez pas créer plus de 3 balises',
     maxTagLength: 'La longueur du texte ne doit pas dépasser 10 caractères',
