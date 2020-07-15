@@ -36,7 +36,6 @@ export default {
   color: #D87C4F;
   background-color: white;
   padding: 25px;
-  box-shadow: none;
   @apply cursor-pointer text-3xl font-display font-bold text-center w-full border underline;
 }
 
@@ -47,7 +46,7 @@ export default {
 .nav-link-selected {
   color: white;
   background-color: #D87C4F;
-  box-shadow: 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)';
+  box-shadow: inset 0 10px 30px 0 rgba(0, 0, 0, 0.5)
 }
 
 @media (max-width: 660px) {
