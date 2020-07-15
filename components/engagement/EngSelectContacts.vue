@@ -1,9 +1,6 @@
 <template>
   <div class="contact">
-    <h2 class="font-display text-4xl mt-12">
-      Contact
-    </h2>
-    <form class="relative mt-6 max-w-md">
+    <div class="relative mt-6 max-w-md">
       <label
         class="orange block tracking-wide text-black text-md font-bold mb-2"
         for="subject"
@@ -20,19 +17,7 @@
           </option>
         </form-select>
       </div>
-      <!-- <div class="btn-add flex flex-row mt-2">
-        <button class="mr-4" @click.prevent="moreContacts=true">
-          {{ $t ('engSelect.add') }}
-        </button>
-        <div class="mt-1">
-          <span
-            class="plus"
-          >
-            +
-          </span>
-        </div>
-      </div> -->
-    </form>
+    </div>
     <div v-if="isSelected === true">
       <div class="mt-4">
         <show-contact

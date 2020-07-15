@@ -16,6 +16,7 @@
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
+    <!--
     <select-contact
       :class="{invalidId: engagementDetail.contacts.$error}"
       @childToParent="onChildClick"
@@ -24,11 +25,24 @@
     <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.minSize" class="error">
       {{ $t('engagementValidation.required') }}
     </p>
-    <h2 class="title font-display">
-      {{ $t('engagement.engagment') }}
-    </h2>
+    -->
     <form @submit.prevent="submitForm(engagementDetail)">
       <div class="w-full">
+        <h2 class="font-display text-4xl">
+          Contact
+        </h2>
+        <select-contact
+          v-model="engagementDetail.contacts"
+          :class="{invalidId: engagementDetail.contacts.$error}"
+          @childToParent="onChildClick"
+          @blur="$v.engagementDetail.contacts.$touch()"
+        />
+        <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.required" class="error">
+          {{ $t('engagementValidation.required') }}
+        </p>
+        <h2 class="title font-display mt-6">
+          {{ $t('engagement.engagment') }}
+        </h2>
         <div class="flex flex-wrap mb-8">
           <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
             <label
@@ -282,7 +296,7 @@
 </template>
 
 <script>
-import { required, minLength, minValue, maxLength } from 'vuelidate/lib/validators'
+import { required, minValue, maxLength } from 'vuelidate/lib/validators'
 import SelectContact from './EngSelectContacts.vue'
 import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
@@ -341,7 +355,7 @@ export default {
       date: { required },
       description: { required },
       numParticipants: { required, minVal: minValue(1) },
-      contacts: { required, minSize: minLength(1) },
+      contacts: { required },
       tags: { maxSize: maxLength(3) }
     },
     inputTag: { maxChar: maxLength(10) }
