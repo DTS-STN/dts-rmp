@@ -284,6 +284,7 @@
           policyProgram Selected: {{ engagementDetail.policyProgram }}
           tags Selected: {{ engagementDetail.tags }}
           Comments Selected: {{ engagementDetail.comments.content }} -->
+          Comments Selected: {{ engagementDetail.comments.content }}
           description Selected: {{ engagementDetail.description }}
           contacts Selected: {{ engagementDetail.contacts }}
         </span>
