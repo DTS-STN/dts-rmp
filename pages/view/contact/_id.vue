@@ -35,8 +35,7 @@
       </div>
     </div>
     <h2 class="title">
-      {{ $t('contact.organization') }} <br />
-      {{ $t('contact.information') }}
+      {{ $t('contact.organization') }}
     </h2>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
