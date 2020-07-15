@@ -5,9 +5,6 @@
         {{ $t('engagementValidation.messageTitle') }}
       </h1>
       <ul class="list-disc text-sm text-red-600 italic" style="list-style-position: inside">
-        <li v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.minSize">
-          {{ $t('engagement.contactName') }}
-        </li>
         <li v-for="invalidField in invalidFields" :key="invalidField">
           {{ $t('engagement.' + invalidField) }}
         </li>
@@ -20,8 +17,7 @@
       {{ $t('engSelect.engagement') }}
     </h1>
     <select-contact
-      v-model="engagementDetail.contacts"
-      :class="{invalidId: $v.engagementDetail.contacts.$error}"
+      :class="{invalidId: engagementDetail.contacts.$error}"
       @childToParent="onChildClick"
       @blur="$v.engagementDetail.contacts.$touch()"
     />
@@ -143,16 +139,6 @@
                 :class="{invalid: $v.engagementDetail.numParticipants.$error}"
                 @blur="$v.engagementDetail.numParticipants.$touch()"
               />
-              <!--
-              <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
-                <button class="items-end" @click.prevent="increment">
-                  +
-                </button>
-                <button class="items-end" @click.prevent="decrement">
-                  -
-                </button>
-              </div>
-              -->
             </div>
             <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.minVal" class="error">
               {{ $t('engagementValidation.minParticipant') }}
@@ -207,7 +193,9 @@
                 class="block tracking-wide text-black text-md font-bold font-body mb-2"
                 for="tags"
               >
-                {{ $t('engagement.tags') }}
+                {{ $t('engagement.tags') }} <span class="text-xs">
+                  {{ $t('engagement.tagLabel') }}
+                </span>
               </label>
               <input
                 id="tags"
@@ -226,7 +214,7 @@
               </p>
             </div>
             <div v-if="showTag" class="flex mt-6 ml-6">
-              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="tag">
+              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index">
                 {{ tag }}
                 <button class="delete-btn" @click.prevent="deleteTag(index)">
                   x
@@ -283,10 +271,10 @@
           description Selected: {{ engagementDetail.description }}
           policyProgram Selected: {{ engagementDetail.policyProgram }}
           tags Selected: {{ engagementDetail.tags }}
-          Comments Selected: {{ engagementDetail.comments.content }} -->
+          Comments Selected: {{ engagementDetail.comments.content }}
           Comments Selected: {{ engagementDetail.comments.content }}
           description Selected: {{ engagementDetail.description }}
-          contacts Selected: {{ engagementDetail.contacts }}
+          contacts Selected: {{ engagementDetail.contacts }} -->
         </span>
       </div>
     </form>
@@ -353,7 +341,7 @@ export default {
       date: { required },
       description: { required },
       numParticipants: { required, minVal: minValue(1) },
-      contacts: { minSize: minLength(1) },
+      contacts: { required, minSize: minLength(1) },
       tags: { maxSize: maxLength(3) }
     },
     inputTag: { maxChar: maxLength(10) }
@@ -368,16 +356,6 @@ export default {
       this.engagementDetail.contacts = value
       // eslint-disable-next-line no-console
     },
-    /*
-    increment() {
-      this.engagementDetail.numParticipants++
-    },
-    decrement() {
-      if (this.engagementDetail.numParticipants > 0) {
-        this.engagementDetail.numParticipants--
-      }
-    },
-    */
     getTagFromInput() {
       if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10 || this.inputTag.length === 0 || this.duplicateTags()) {
         return
@@ -388,18 +366,24 @@ export default {
       this.showTag = true
     },
     duplicateTags() {
+      /*
       for (let i = 0; i < this.engagementDetail.tags.length; i++) {
-        return (this.engagementDetail.tags[i] === this.inputTag)
+        return (this.inputTag === this.engagementDetail.tags[i])
+      }
+      */
+      if (this.inputTag.length !== 0 && this.inputTag === this.engagementDetail.tags[0]) {
+        return true
+      } else if (this.inputTag === this.engagementDetail.tags[1]) {
+        return true
+      } else if (this.inputTag === this.engagementDetail.tags[2]) {
+        return true
+      } else {
+        return false
       }
     },
     deleteTag(index) {
       this.engagementDetail.tags.splice(index, 1)
     },
-    // dateAdj() {
-    //   return this.engagementDetail.date.setDate(
-    //     this.engagementDetail.date.getDate() + 1
-    //   )
-    // },
     notification(type, message) {
       this.message.type = type
       this.message.message = message
@@ -409,6 +393,9 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
+    },
+    emptyContacts() {
+      return (this.engagementDetail.contacts.length === 0)
     },
     /* compare the date from the input with current date, check if the date that user picked is the past date */
     isValidDate(date) {

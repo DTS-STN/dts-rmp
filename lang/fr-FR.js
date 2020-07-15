@@ -145,7 +145,8 @@ export default {
     description:
       'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     policy: 'Politique / programme',
-    tags: 'Mots clés',
+    tags: 'Mots clés:',
+    tagLabel: 'Commencez à taper et sélectionnez la balise existante ou appuyez sur Entrée pour ajouter de nouvelles balises',
     comments:
       'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     cancel: 'Annuler',
