@@ -5,8 +5,14 @@
         The following fields have errors:
       </h1>
       <ul class="list-disc text-sm text-red-600 italic" style="list-style-position: inside">
+        <li v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.$minSize">
+          {{ $t('engagement.contactName') }}
+        </li>
         <li v-for="invalidField in invalidFields" :key="invalidField">
           {{ $t('engagement.' + invalidField) }}
+        </li>
+        <li v-if="!isValidDate(engagementDetail.date)">
+          {{ $t('engagement.date') }}
         </li>
       </ul>
     </div>
