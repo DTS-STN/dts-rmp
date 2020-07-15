@@ -150,7 +150,8 @@ export default {
     contacts: 'Contact(s):',
     numpeople: 'Number of participants:',
     otherParticipants: 'other participants',
-    selectContact: 'Select one or more contact'
+    selectContact: 'Select one or more contact',
+    notFound: 'No Engagement found'
   },
   // EngSelectContact component
   engSelect: {
