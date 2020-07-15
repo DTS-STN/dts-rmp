@@ -5,7 +5,7 @@
         {{ $t('engagementValidation.messageTitle') }}
       </h1>
       <ul class="list-disc text-sm text-red-600 italic" style="list-style-position: inside">
-        <li v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.$minSize">
+        <li v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.minSize">
           {{ $t('engagement.contactName') }}
         </li>
         <li v-for="invalidField in invalidFields" :key="invalidField">
@@ -22,9 +22,10 @@
     <select-contact
       v-model="engagementDetail.contacts"
       :class="{invalidId: $v.engagementDetail.contacts.$error}"
+      @childToParent="onChildClick"
       @blur="$v.engagementDetail.contacts.$touch()"
     />
-    <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.$minSize" class="error">
+    <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.minSize" class="error">
       {{ $t('engagementValidation.required') }}
     </p>
     <h2 class="title font-display">
@@ -175,7 +176,10 @@
               :class="{invalid: $v.engagementDetail.description.$error}"
               @blur="$v.engagementDetail.description.$touch()"
             />
-            <p v-if="$v.engagementDetail.description.$dirty" class="error">
+            <p
+              v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.required"
+              class="error"
+            >
               {{ $t('engagementValidation.required') }}
             </p>
           </div>
@@ -270,8 +274,8 @@
             {{ $t('engagement.save') }}
           </AppButton>
         </div>
-        <!-- <span>
-          Subject Selected: {{ engagementDetail.subject }}
+        <span>
+          <!-- Subject Selected: {{ engagementDetail.subject }}
           Contact Selected: {{ engagementDetail.contacts }}
           Type Selected: {{ engagementDetail.type }}
           Date Selected: {{ engagementDetail.date }}
@@ -279,16 +283,17 @@
           description Selected: {{ engagementDetail.description }}
           policyProgram Selected: {{ engagementDetail.policyProgram }}
           tags Selected: {{ engagementDetail.tags }}
-          Comments Selected: {{ engagementDetail.comments.content }}
-          Comments Selected: {{ engagementDetail.comments.date }}
-        </span> -->
+          Comments Selected: {{ engagementDetail.comments.content }} -->
+          description Selected: {{ engagementDetail.description }}
+          contacts Selected: {{ engagementDetail.contacts }}
+        </span>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import { required, minValue, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength, minValue, maxLength } from 'vuelidate/lib/validators'
 import SelectContact from './EngSelectContacts.vue'
 import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
@@ -315,13 +320,7 @@ export default {
         date: new Date(),
         description: '',
         numParticipants: 0,
-        contacts: this.idFromChild,
-        /*
-        contacts: [{
-          objectId: this.idFromChild
-        }
-        ],
-        */
+        contacts: [],
         policyProgram: '',
         comments: [
           {
@@ -359,7 +358,7 @@ export default {
       date: { required },
       description: { required },
       numParticipants: { required, minVal: minValue(1) },
-      contacts: { minSize: minValue(1) },
+      contacts: { minSize: minLength(1) },
       tags: { maxSize: maxLength(3) }
     },
     inputTag: { maxChar: maxLength(10) }
@@ -371,9 +370,8 @@ export default {
   },
   methods: {
     onChildClick(value) {
+      this.engagementDetail.contacts = value
       // eslint-disable-next-line no-console
-      console.log(this.idFromChild)
-      this.idFromChild = value
     },
     /*
     increment() {

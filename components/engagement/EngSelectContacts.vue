@@ -122,9 +122,9 @@ export default {
               date: this.engagementDate,
               participants: this.participants
             })
-            this.contactArrayId.push({
-              objectId: this.id
-            })
+            this.contactArrayId.push(
+              this.id
+            )
             this.emitToEngForm()
           }
         }
@@ -155,9 +155,9 @@ export default {
         date: this.engagementDate,
         participants: this.participants
       })
-      this.contactArrayId.push({
-        objectId: this.id
-      })
+      this.contactArrayId.push(
+        this.id
+      )
       this.emitToEngForm()
     },
     /* this method will get the index num of the chosen one from the child component and passes the index num to be deleted on the parent class */
