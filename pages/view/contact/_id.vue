@@ -5,7 +5,7 @@
     </h1>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
-        <ConViewFields label="name">
+        <ConViewFields label="keyContactName">
           {{ contactInfo.keyContactName }}
         </ConViewFields>
       </div>
@@ -22,7 +22,7 @@
         </ConViewFields>
       </div>
       <div class="w-5/12 margins">
-        <ConViewFields label="email">
+        <ConViewFields label="keyContactEmail">
           {{ contactInfo.keyContactEmail }}
         </ConViewFields>
       </div>
@@ -35,12 +35,11 @@
       </div>
     </div>
     <h2 class="title">
-      {{ $t('contact.organization') }} <br />
-      {{ $t('contact.information') }}
+      {{ $t('contact.organization') }}
     </h2>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
-        <ConViewFields label="orgAddress">
+        <ConViewFields label="address">
           {{ contactInfo.orgAddress }}
         </ConViewFields>
       </div>
@@ -79,21 +78,21 @@
         </AppButton>
       </div>
       <div class="w-3/12 margins">
-        <AppButton
-          custom_style="btn-extra"
-          data_cypress="contactDetailEditButton"
-        >
+        <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton" @click="goEdit">
           {{ $t('contact.edit') }}
         </AppButton>
+        </appbutton>
       </div>
     </div>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
+
 import AppButton from '@/components/app/AppButton.vue'
 import ConViewFields from '@/components/contact/ConViewFields.vue'
 import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
+
 export default {
   name: 'ContactView',
   components: {
@@ -101,6 +100,7 @@ export default {
     ConShowEngagaments,
     AppButton
   },
+
   async asyncData({ app, params, store }) {
     try {
       await store.dispatch('contacts/fetchContact', params.id)
@@ -109,19 +109,18 @@ export default {
       console.log('Error: ', e.response)
     }
   },
+
   computed: mapState({
-    // eslint-disable-next-line arrow-parens
-    contactInfo: (state) => state.contacts.contact,
-    // eslint-disable-next-line arrow-parens
-    contacts: (state) => state.contacts.contacts
+    contactInfo: state => state.contacts.contact,
+    contacts: state => state.contacts.contacts
   }),
+
   created() {
     if (this.contacts.length === 0) {
       try {
         this.$store.dispatch('contacts/fetchContacts').then(
           mapState({
-            // eslint-disable-next-line arrow-parens
-            contacts: (state) => state.contacts.contacts
+            contacts: state => state.contacts.contacts
           })
         )
       } catch (e) {
@@ -130,16 +129,21 @@ export default {
       }
     }
   },
+
   methods: {
     goBack() {
       this.$router.back()
     },
+
+    goEdit() {
+      this.$router.push('/' + this.$i18n.locale + '/edit/contact/' + this.$route.params.id)
+    },
+
     getNames(ListOfIdsToFind) {
       if (this.contacts.length > 0) {
         const contact = []
         ListOfIdsToFind.forEach((element) => {
-          // eslint-disable-next-line arrow-parens
-          contact.push(this.contacts.find((contact) => contact._id === element))
+          contact.push(this.contacts.find(contact => contact._id === element))
         })
         return contact
       } else {
@@ -149,6 +153,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .contactForm {
   width: 1200px;
