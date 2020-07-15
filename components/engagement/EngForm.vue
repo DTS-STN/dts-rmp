@@ -245,7 +245,7 @@
             </label>
             <br />
             <textarea
-              v-model="engagementDetail.comments.content"
+              v-model="engagementDetail.comments"
               type="text"
               name="KeyNotes"
               class="textArea"
@@ -323,13 +323,7 @@ export default {
         numParticipants: 0,
         contacts: [],
         policyProgram: '',
-        comments: [
-          {
-            user: 'unknown',
-            content: '',
-            date: new Date().toISOString().slice(0, 10)
-          }
-        ],
+        comments: '',
         tags: []
       },
       inputTag: '',
