@@ -69,18 +69,13 @@
     </div>
     <div class="flex justify-start mb-4">
       <div class="w-3/12 margins">
-        <AppButton
-          custom_style="btn-cancel"
-          data_cypress="contactDetailBackButton"
-          @click="goBack"
-        >
+        <AppButton custom_style="btn-cancel" type="button" data_cypress="contactDetailBackButton" @click="goBack">
           {{ $t('contact.back') }}
         </AppButton>
       </div>
       <div class="w-3/12 margins">
         <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton" @click="goEdit">
           {{ $t('contact.edit') }}
-        </AppButton>
         </appbutton>
       </div>
     </div>
