@@ -5,9 +5,6 @@
         {{ $t('engagementValidation.messageTitle') }}
       </h1>
       <ul class="list-disc text-sm text-red-600 italic" style="list-style-position: inside">
-        <li v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.minSize">
-          {{ $t('engagement.contactName') }}
-        </li>
         <li v-for="invalidField in invalidFields" :key="invalidField">
           {{ $t('engagement.' + invalidField) }}
         </li>
@@ -19,20 +16,23 @@
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>
-    <select-contact
-      v-model="engagementDetail.contacts"
-      :class="{invalidId: $v.engagementDetail.contacts.$error}"
-      @childToParent="onChildClick"
-      @blur="$v.engagementDetail.contacts.$touch()"
-    />
-    <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.minSize" class="error">
-      {{ $t('engagementValidation.required') }}
-    </p>
-    <h2 class="title font-display">
-      {{ $t('engagement.engagment') }}
-    </h2>
     <form @submit.prevent="submitForm(engagementDetail)">
       <div class="w-full">
+        <h2 class="font-display text-4xl">
+          Contact
+        </h2>
+        <select-contact
+          v-model="engagementDetail.contacts"
+          :class="{invalidId: engagementDetail.contacts.$error}"
+          @childToParent="onChildClick"
+          @blur="$v.engagementDetail.contacts.$touch()"
+        />
+        <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.required" class="error">
+          {{ $t('engagementValidation.required') }}
+        </p>
+        <h2 class="title font-display mt-6">
+          {{ $t('engagement.engagment') }}
+        </h2>
         <div class="flex flex-wrap mb-8">
           <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
             <label
@@ -143,16 +143,6 @@
                 :class="{invalid: $v.engagementDetail.numParticipants.$error}"
                 @blur="$v.engagementDetail.numParticipants.$touch()"
               />
-              <!--
-              <div class="flex flex-col absolute inset-y-0 right-0 items-center px-2">
-                <button class="items-end" @click.prevent="increment">
-                  +
-                </button>
-                <button class="items-end" @click.prevent="decrement">
-                  -
-                </button>
-              </div>
-              -->
             </div>
             <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.minVal" class="error">
               {{ $t('engagementValidation.minParticipant') }}
@@ -207,7 +197,9 @@
                 class="block tracking-wide text-black text-md font-bold font-body mb-2"
                 for="tags"
               >
-                {{ $t('engagement.tags') }}
+                {{ $t('engagement.tags') }} <span class="text-xs">
+                  {{ $t('engagement.tagLabel') }}
+                </span>
               </label>
               <input
                 id="tags"
@@ -226,7 +218,7 @@
               </p>
             </div>
             <div v-if="showTag" class="flex mt-6 ml-6">
-              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="tag">
+              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index">
                 {{ tag }}
                 <button class="delete-btn" @click.prevent="deleteTag(index)">
                   x
@@ -274,27 +266,13 @@
             {{ $t('engagement.save') }}
           </AppButton>
         </div>
-        <!-- <span>
-          Subject Selected: {{ engagementDetail.subject }}
-          Contact Selected: {{ engagementDetail.contacts }}
-          Type Selected: {{ engagementDetail.type }}
-          Date Selected: {{ engagementDetail.date }}
-          numParticipants Selected: {{ engagementDetail.numParticipants }}
-          description Selected: {{ engagementDetail.description }}
-          policyProgram Selected: {{ engagementDetail.policyProgram }}
-          tags Selected: {{ engagementDetail.tags }}
-          Comments Selected: {{ engagementDetail.comments.content }}
-          Comments Selected: {{ engagementDetail.comments.content }}
-          description Selected: {{ engagementDetail.description }}
-          contacts Selected: {{ engagementDetail.contacts }}
-        </span> -->
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import { required, minLength, minValue, maxLength } from 'vuelidate/lib/validators'
+import { required, minValue, maxLength } from 'vuelidate/lib/validators'
 import SelectContact from './EngSelectContacts.vue'
 import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
@@ -353,7 +331,7 @@ export default {
       date: { required },
       description: { required },
       numParticipants: { required, minVal: minValue(1) },
-      contacts: { minSize: minLength(1) },
+      contacts: { required },
       tags: { maxSize: maxLength(3) }
     },
     inputTag: { maxChar: maxLength(10) }
@@ -368,16 +346,6 @@ export default {
       this.engagementDetail.contacts = value
       // eslint-disable-next-line no-console
     },
-    /*
-    increment() {
-      this.engagementDetail.numParticipants++
-    },
-    decrement() {
-      if (this.engagementDetail.numParticipants > 0) {
-        this.engagementDetail.numParticipants--
-      }
-    },
-    */
     getTagFromInput() {
       if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10 || this.inputTag.length === 0 || this.duplicateTags()) {
         return
@@ -388,18 +356,19 @@ export default {
       this.showTag = true
     },
     duplicateTags() {
-      for (let i = 0; i < this.engagementDetail.tags.length; i++) {
-        return (this.engagementDetail.tags[i] === this.inputTag)
+      if (this.inputTag.length !== 0 && this.inputTag === this.engagementDetail.tags[0]) {
+        return true
+      } else if (this.inputTag === this.engagementDetail.tags[1]) {
+        return true
+      } else if (this.inputTag === this.engagementDetail.tags[2]) {
+        return true
+      } else {
+        return false
       }
     },
     deleteTag(index) {
       this.engagementDetail.tags.splice(index, 1)
     },
-    // dateAdj() {
-    //   return this.engagementDetail.date.setDate(
-    //     this.engagementDetail.date.getDate() + 1
-    //   )
-    // },
     notification(type, message) {
       this.message.type = type
       this.message.message = message
@@ -409,6 +378,9 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
+    },
+    emptyContacts() {
+      return (this.engagementDetail.contacts.length === 0)
     },
     /* compare the date from the input with current date, check if the date that user picked is the past date */
     isValidDate(date) {

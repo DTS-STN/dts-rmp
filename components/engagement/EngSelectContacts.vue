@@ -1,9 +1,6 @@
 <template>
   <div class="contact">
-    <h2 class="font-display text-4xl mt-12">
-      Contact
-    </h2>
-    <form class="relative mt-6 max-w-md">
+    <div class="relative mt-6 max-w-md">
       <label
         class="orange block tracking-wide text-black text-md font-bold mb-2"
         for="subject"
@@ -20,7 +17,7 @@
           </option>
         </form-select>
       </div>
-    </form>
+    </div>
     <p v-if="showDuplicate" class="error">
       {{ $t('engagementValidation.duplicateContacts') }}
     </p>
