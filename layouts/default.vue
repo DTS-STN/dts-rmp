@@ -2,7 +2,7 @@
   <div class="main-container">
     <header>
       <AppHeader />
-      <AppNavBtn />
+      <AppNavBtn v-if="shouldDisplayNav" />
     </header>
     <main>
       <!-- <TitleComponent /> -->
@@ -15,8 +15,13 @@
   </div>
 </template>
 <script>
-// import TitleComponent from '@/components/TitleComponent.vue'
-export default {}
+export default {
+  computed: {
+    shouldDisplayNav() {
+      return !this.$route.path.includes('view')
+    }
+  }
+}
 </script>
 <style>
 html {
