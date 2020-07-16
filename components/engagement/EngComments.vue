@@ -5,7 +5,7 @@
         v-model.trim="newComment"
         type="text"
         class="comment-text"
-        placeholder="Leave a comment..."
+        :placeholder="$t('engagement.leaveComment')"
         maxlength="250"
         required
         @keyup.enter="submitComment"
