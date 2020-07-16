@@ -269,7 +269,7 @@
       </div>
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
-          <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
+          <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton" type="button" @click="goBack">
             {{ $t('engagement.cancel') }}
           </AppButton>
         </div>
@@ -303,7 +303,8 @@ export default {
       idFromChild: [],
       message: {
         type: null,
-        message: null
+        message: null,
+        goBack: false
       },
       engagementDetail: {
         subject: '',
@@ -385,15 +386,23 @@ export default {
     notification(type, message) {
       this.message.type = type
       this.message.message = message
+      this.message.goBack = (type === 'error')
       this.timeout = setTimeout(() => this.clearMessage(), 5000)
     },
     clearMessage() {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
+      if (!this.message.goBack) {
+        this.message.goBack = false
+        this.goBack()
+      }
     },
     emptyContacts() {
       return (this.engagementDetail.contacts.length === 0)
+    },
+    goBack() {
+      this.$router.back()
     },
     /* compare the date from the input with current date, check if the date that user picked is the past date */
     isValidDate(date) {
