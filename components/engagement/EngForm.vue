@@ -269,7 +269,7 @@
       </div>
       <div class="flex justify-start mb-12">
         <div class="w-3/12 margins">
-          <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton" type="button" @click="goBack">
+          <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton" btntype="button" @click="goBack">
             {{ $t('engagement.cancel') }}
           </AppButton>
         </div>
@@ -411,14 +411,24 @@ export default {
 
       // get the day, month, year of the current date
       const today = new Date().toISOString()
-      const day = parseInt(today.slice(0, 4))
+      const year = parseInt(today.slice(0, 4))
       const month = parseInt(today.slice(5, 7))
-      const year = parseInt(today.slice(8, 10))
+      const day = parseInt(today.slice(8, 10))
+      /*
+      console.log('day: ', day)
+      console.log('month: ', month)
+      console.log('year: ', year)
+      */
 
       // get the day, month, year of the input date
-      const inputDay = parseInt(inputDate.slice(0, 4))
+      const inputYear = parseInt(inputDate.slice(0, 4))
       const inputMonth = parseInt(inputDate.slice(5, 7))
-      const inputYear = parseInt(inputDate.slice(8, 10))
+      const inputDay = parseInt(inputDate.slice(8, 10))
+      /*
+      console.log('inputday: ', inputDay)
+      console.log('inputmonth: ', inputMonth)
+      console.log('inputyear: ', inputYear)
+      */
 
       // compare current date and input date
       if (inputYear > year) {
