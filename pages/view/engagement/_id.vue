@@ -145,7 +145,6 @@ export default {
 
 <style scoped>
 .engagementForm {
-  width: 1200px;
   margin: auto;
   font-family: 'DejaVu Serif', 'Roboto slab', 'sans-serif', 'Helvetica Neue';
   @apply bg-white text-black;
