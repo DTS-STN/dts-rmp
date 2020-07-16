@@ -51,7 +51,7 @@ export function randomOrgSector() {
   const orgs = [
     'notProfit', //    Not for profit organizations, Municipal governements, Indigenious organizations
     'forProfit', //    For-profit organizations,
-    'provGovCoorp', // Provincial and territorial government Insititutions agencies and crown corporations
+    'provGovCorp', // Provincial and territorial government Insititutions agencies and crown corporations
     'fedGovDept' //    Federal government departments and agencies and other publicly funded entities
   ]
   return orgs[Math.floor(Math.random() * orgs.length)]

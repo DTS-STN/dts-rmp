@@ -89,7 +89,7 @@ export default {
     selSector: 'fr-Select a Sector',
     notProfit: 'FR-Not for profit organizations, Municipal governements, Indigenious organizations',
     forProfit: 'FR-For-profit organizations',
-    provGovCoorp: 'FR- Provincial and territorial government Insititutions agencies and crown corporations',
+    provGovCorp: 'FR- Provincial and territorial government Insititutions agencies and crown corporations',
     fedGovDept: 'FR- Federal government departments and agencies and other publicly funded entities',
     //
     selProvince: 'FR-Select a province',
