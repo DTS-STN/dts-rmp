@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div title="engagementForm" class="ml-12">
     <div v-if="attemptSubmit && invalidFields.length" class="error-list mt-6">
       <h1 ref="displayErrors" class="text-xl text-red-600">
@@ -14,276 +13,273 @@
         </li>
       </ul>
     </div>
-=======
-  <div title="engagementForm" class="mx-12">
->>>>>>> main
-    <h1 class="formTitle font-display mt-8">
-      {{ $t('engSelect.engagement') }}
-    </h1>
-    <form @submit.prevent="submitForm(engagementDetail)">
-      <div class="w-full">
-        <h2 class="font-display text-4xl">
-          Contact
-        </h2>
-        <select-contact
-          v-model="engagementDetail.contacts"
-          :class="{invalidId: engagementDetail.contacts.$error}"
-          @childToParent="onChildClick"
-          @blur="$v.engagementDetail.contacts.$touch()"
-        />
-        <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.required" class="error">
-          {{ $t('engagementValidation.required') }}
-        </p>
-        <h2 class="title font-display mt-6">
-          {{ $t('engagement.engagment') }}
-        </h2>
-        <div class="flex flex-wrap mb-8">
-          <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
-            <label
-              class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
-              for="subject"
-            >
-              {{ $t('engagement.subject') }}
-            </label>
-            <input
-              id="subject"
-              v-model="engagementDetail.subject"
-              :placeholder="$t('engagement.typing')"
-              class="textInput"
-              type="text"
-              :class="{invalid: $v.engagementDetail.subject.$error}"
-              @blur="$v.engagementDetail.subject.$touch()"
-            />
-            <p v-if="$v.engagementDetail.subject.$dirty && !$v.engagementDetail.subject.required" class="error">
-              {{ $t('engagementValidation.required') }}
-            </p>
-          </div>
-
-          <div class="max-w-lg sm:w-1/3 mb-4">
-            <label
-              class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
-              for="type"
-            >
-              {{ $t('engagement.type') }}
-            </label>
-            <div class="relative max-w-md">
-              <select
-                v-model="engagementDetail.type"
-                class="textInput bg-white"
-                :class="{invalid: $v.engagementDetail.type.$error}"
-                @blur="$v.engagementDetail.type.$touch()"
-              >
-                <option value="" disabled selected hidden>
-                  {{ $t('engagement.type') }}
-                </option>
-                <option
-                  v-for="engagementType in engagementTypes"
-                  :key="engagementType.type"
-                >
-                  {{ engagementType.type }}
-                </option>
-              </select>
-              <p v-if="$v.engagementDetail.type.$dirty && !$v.engagementDetail.type.required" class="error">
-                {{ $t('engagementValidation.required') }}
-              </p>
-              <div
-                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-              >
-                <svg
-                  class="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-wrap mb-8">
-          <div class="max-w-lg w-2/3 mb-4 mr-20">
-            <label
-              class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
-              for="date"
-            >
-              {{ $t('engagement.date') }}
-            </label>
-            <div class="relative max-w-xs">
-              <input
-                :value="engagementDetail.date.toISOString().split('T')[0]"
-                class="dateStyle"
-                type="date"
-                :class="{invalid: !isValidDate(engagementDetail.date)}"
-                @input="engagementDetail.date = $event.target.valueAsDate"
-                @blur="$v.engagementDetail.date.$touch()"
-              />
-              <div
-                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-              >
-                <img :src="mySVG" />
-              </div>
-            </div>
-            <p v-if="!isValidDate(engagementDetail.date)" class="error">
-              {{ $t('engagementValidation.validDate') }}
-            </p>
-          </div>
-
-          <div class="max-w-lg sm:w-1/3 mb-4">
-            <label
-              class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
-              for="numParticipants"
-            >
-              {{ $t('engagement.participants') }}
-            </label>
-            <div class="flex relative w-20 ">
-              <input
-                id="numParticipants"
-                v-model="engagementDetail.numParticipants"
-                class="numberIncrement"
-                type="number"
-                min="0"
-                :class="{invalid: $v.engagementDetail.numParticipants.$error}"
-                @blur="$v.engagementDetail.numParticipants.$touch()"
-              />
-            </div>
-            <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.minVal" class="error">
-              {{ $t('engagementValidation.minParticipant') }}
-            </p>
-          </div>
-        </div>
-        <div class="flex flex-wrap">
-          <div class="w-full sm:w-6/12 mb-8">
-            <label
-              class="orange block tracking-wide text-black text-md font-bold font-body mb-4"
-              for="description"
-            >
-              {{ $t('engagement.description') }}
-            </label>
-            <br />
-            <textarea
-              v-model="engagementDetail.description"
-              type="text"
-              class="textArea"
-              :class="{invalid: $v.engagementDetail.description.$error}"
-              @blur="$v.engagementDetail.description.$touch()"
-            />
-            <p
-              v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.required"
-              class="error"
-            >
-              {{ $t('engagementValidation.required') }}
-            </p>
-            <p
-              v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.maxLen"
-              class="error"
-            >
-              {{ $t('engagementValidation.maxDescription') }}
-            </p>
-          </div>
-        </div>
-        <div class="flex flex-wrap mb-8">
-          <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
-            <label
-              class="block tracking-wide text-black text-md font-bold font-body mb-2"
-              for="policyProgram"
-            >
-              {{ $t('engagement.policy') }}
-            </label>
-            <input
-              id="policyProgram"
-              v-model="engagementDetail.policyProgram"
-              :placeholder="$t('engagement.typing')"
-              class="textInput"
-              type="text"
-            />
-          </div>
-
-          <div class="flex h-20 mb-4">
-            <div>
+    <div title="engagementForm" class="mx-12">
+      <h1 class="formTitle font-display mt-8">
+        {{ $t('engSelect.engagement') }}
+      </h1>
+      <form @submit.prevent="submitForm(engagementDetail)">
+        <div class="w-full">
+          <h2 class="font-display text-4xl">
+            Contact
+          </h2>
+          <select-contact
+            @childToParent="onChildClick"
+            @blur="$v.engagementDetail.contacts.$touch()"
+          />
+          <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.required" class="error">
+            {{ $t('engagementValidation.required') }}
+          </p>
+          <h2 class="title font-display mt-6">
+            {{ $t('engagement.engagment') }}
+          </h2>
+          <div class="flex flex-wrap mb-8">
+            <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
               <label
-                class="block tracking-wide text-black text-md font-bold font-body mb-2"
-                for="tags"
+                class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
+                for="subject"
               >
-                {{ $t('engagement.tags') }} <span class="text-xs">
-                  {{ $t('engagement.tagLabel') }}
-                </span>
+                {{ $t('engagement.subject') }}
               </label>
               <input
-                id="tags"
-                v-model="inputTag"
-                class="textInputTag"
+                id="subject"
+                v-model="engagementDetail.subject"
+                :placeholder="$t('engagement.typing')"
+                class="textInput"
                 type="text"
-                :class="{invalid: $v.inputTag.$error}"
-                @input="$v.inputTag.$touch()"
-                @keydown.enter.prevent="getTagFromInput()"
+                :class="{invalid: $v.engagementDetail.subject.$error}"
+                @blur="$v.engagementDetail.subject.$touch()"
               />
-              <p v-if="$v.inputTag && !$v.inputTag.maxChar" class="error">
-                {{ $t('engagementValidation.maxTagLength') }}
-              </p>
-              <p v-if="duplicateTags()" class="error">
-                {{ $t('engagementValidation.duplicateTags') }}
+              <p v-if="$v.engagementDetail.subject.$dirty && !$v.engagementDetail.subject.required" class="error">
+                {{ $t('engagementValidation.required') }}
               </p>
             </div>
-            <div v-if="showTag" class="flex mt-6 ml-6">
-              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index">
-                {{ tag }}
-                <button class="delete-btn" @click.prevent="deleteTag(index)">
-                  x
-                </button>
-              </eng-tags>
+
+            <div class="max-w-lg sm:w-1/3 mb-4">
+              <label
+                class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
+                for="type"
+              >
+                {{ $t('engagement.type') }}
+              </label>
+              <div class="relative max-w-md">
+                <select
+                  v-model="engagementDetail.type"
+                  class="textInput bg-white"
+                  :class="{invalid: $v.engagementDetail.type.$error}"
+                  @blur="$v.engagementDetail.type.$touch()"
+                >
+                  <option value="" disabled selected hidden>
+                    {{ $t('engagement.type') }}
+                  </option>
+                  <option
+                    v-for="engagementType in engagementTypes"
+                    :key="engagementType.type"
+                  >
+                    {{ engagementType.type }}
+                  </option>
+                </select>
+                <p v-if="$v.engagementDetail.type.$dirty && !$v.engagementDetail.type.required" class="error">
+                  {{ $t('engagementValidation.required') }}
+                </p>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                >
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap mb-8">
+            <div class="max-w-lg w-2/3 mb-4 mr-20">
+              <label
+                class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
+                for="date"
+              >
+                {{ $t('engagement.date') }}
+              </label>
+              <div class="relative max-w-xs">
+                <input
+                  :value="engagementDetail.date.toISOString().split('T')[0]"
+                  class="dateStyle"
+                  type="date"
+                  :class="{invalid: !isValidDate(engagementDetail.date)}"
+                  @input="engagementDetail.date = $event.target.valueAsDate"
+                  @blur="$v.engagementDetail.date.$touch()"
+                />
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                >
+                  <img :src="mySVG" />
+                </div>
+              </div>
+              <p v-if="!isValidDate(engagementDetail.date)" class="error">
+                {{ $t('engagementValidation.validDate') }}
+              </p>
+            </div>
+
+            <div class="max-w-lg sm:w-1/3 mb-4">
+              <label
+                class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
+                for="numParticipants"
+              >
+                {{ $t('engagement.participants') }}
+              </label>
+              <div class="flex relative w-20 ">
+                <input
+                  id="numParticipants"
+                  v-model="engagementDetail.numParticipants"
+                  class="numberIncrement"
+                  type="number"
+                  min="0"
+                  :class="{invalid: $v.engagementDetail.numParticipants.$error}"
+                  @blur="$v.engagementDetail.numParticipants.$touch()"
+                />
+              </div>
+              <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.minVal" class="error">
+                {{ $t('engagementValidation.minParticipant') }}
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-wrap">
+            <div class="w-full sm:w-6/12 mb-8">
+              <label
+                class="orange block tracking-wide text-black text-md font-bold font-body mb-4"
+                for="description"
+              >
+                {{ $t('engagement.description') }}
+              </label>
+              <br />
+              <textarea
+                v-model="engagementDetail.description"
+                type="text"
+                class="textArea"
+                :class="{invalid: $v.engagementDetail.description.$error}"
+                @blur="$v.engagementDetail.description.$touch()"
+              />
+              <p
+                v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.required"
+                class="error"
+              >
+                {{ $t('engagementValidation.required') }}
+              </p>
+              <p
+                v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.maxLen"
+                class="error"
+              >
+                {{ $t('engagementValidation.maxDescription') }}
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-wrap mb-8">
+            <div class="max-w-lg sm:w-1/3 mb-4 mr-20">
+              <label
+                class="block tracking-wide text-black text-md font-bold font-body mb-2"
+                for="policyProgram"
+              >
+                {{ $t('engagement.policy') }}
+              </label>
+              <input
+                id="policyProgram"
+                v-model="engagementDetail.policyProgram"
+                :placeholder="$t('engagement.typing')"
+                class="textInput"
+                type="text"
+              />
+            </div>
+
+            <div class="flex h-20 mb-4">
+              <div>
+                <label
+                  class="block tracking-wide text-black text-md font-bold font-body mb-2"
+                  for="tags"
+                >
+                  {{ $t('engagement.tags') }} <span class="text-xs">
+                    {{ $t('engagement.tagLabel') }}
+                  </span>
+                </label>
+                <input
+                  id="tags"
+                  v-model="inputTag"
+                  class="textInputTag"
+                  type="text"
+                  :class="{invalid: $v.inputTag.$error}"
+                  @input="$v.inputTag.$touch()"
+                  @keydown.enter.prevent="getTagFromInput()"
+                />
+                <p v-if="$v.inputTag && !$v.inputTag.maxChar" class="error">
+                  {{ $t('engagementValidation.maxTagLength') }}
+                </p>
+                <p v-if="duplicateTags()" class="error">
+                  {{ $t('engagementValidation.duplicateTags') }}
+                </p>
+              </div>
+              <div v-if="showTag" class="flex mt-6 ml-6">
+                <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index">
+                  {{ tag }}
+                  <button class="delete-btn" @click.prevent="deleteTag(index)">
+                    x
+                  </button>
+                </eng-tags>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap">
+            <div class="w-full sm:w-6/12 mb-8">
+              <label
+                class="block tracking-wide text-black text-md font-bold font-body mb-4"
+                for="comments"
+              >
+                {{ $t('engagement.comments') }}
+              </label>
+              <br />
+              <textarea
+                v-model="engagementDetail.comments"
+                type="text"
+                name="KeyNotes"
+                class="textArea"
+                :class="{invalid: $v.engagementDetail.comments.$error}"
+                @input="$v.engagementDetail.comments.$touch()"
+              />
+              <p
+                v-if="$v.engagementDetail.comments.$dirty && !$v.engagementDetail.comments.maxLen"
+                class="error"
+              >
+                {{ $t('engagementValidation.maxComment') }}
+              </p>
             </div>
           </div>
         </div>
-        <div class="flex flex-wrap">
-          <div class="w-full sm:w-6/12 mb-8">
-            <label
-              class="block tracking-wide text-black text-md font-bold font-body mb-4"
-              for="comments"
-            >
-              {{ $t('engagement.comments') }}
-            </label>
-            <br />
-            <textarea
-              v-model="engagementDetail.comments"
-              type="text"
-              name="KeyNotes"
-              class="textArea"
-              :class="{invalid: $v.engagementDetail.comments.$error}"
-              @input="$v.engagementDetail.comments.$touch()"
-            />
-            <p
-              v-if="$v.engagementDetail.comments.$dirty && !$v.engagementDetail.comments.maxLen"
-              class="error"
-            >
-              {{ $t('engagementValidation.maxComment') }}
-            </p>
+        <div
+          v-if="message.message != null"
+          class="messageBox"
+          :class="[message.type == 'error' ? ' error' : ' ']"
+        >
+          <span>
+            {{ message.message }}
+          </span>
+        </div>
+        <div class="flex justify-start mb-12">
+          <div class="w-3/12 margins">
+            <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton" btntype="button" @click="goBack">
+              {{ $t('engagement.cancel') }}
+            </AppButton>
+          </div>
+          <div class="w-3/12 margins">
+            <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
+              {{ $t('engagement.save') }}
+            </AppButton>
           </div>
         </div>
-      </div>
-      <div
-        v-if="message.message != null"
-        class="messageBox"
-        :class="[message.type == 'error' ? ' error' : ' ']"
-      >
-        <span>
-          {{ message.message }}
-        </span>
-      </div>
-      <div class="flex justify-start mb-12">
-        <div class="w-3/12 margins">
-          <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton" btntype="button" @click="goBack">
-            {{ $t('engagement.cancel') }}
-          </AppButton>
-        </div>
-        <div class="w-3/12 margins">
-          <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
-            {{ $t('engagement.save') }}
-          </AppButton>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
