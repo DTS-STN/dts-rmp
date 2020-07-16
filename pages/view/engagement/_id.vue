@@ -56,12 +56,15 @@
       <div class="margins">
         <EngViewFields label="comments">
           <br />
-          <!-- Nothing will show up since there are no engagement with comments. -->
-          <ul>
+          <EngComments
+            :comments="engagement.comments"
+            @submit-comment="submitComment"
+          />
+          <!-- <ul>
             <li v-for="(comment, index) in engagement.comments" :key="index">
               {{ comment }}
             </li>
-          </ul>
+          </ul> -->
         </EngViewFields>
       </div>
     </div>
@@ -106,13 +109,15 @@ import { mapState } from 'vuex'
 import AppButton from '@/components/app/AppButton.vue'
 import EngViewFields from '@/components/engagement/EngViewFields.vue'
 import EngShowContacts from '@/components/engagement/EngShowContacts.vue'
+import EngComments from '@/components/engagement/EngComments.vue'
 export default {
   name: 'EngagementView',
 
   components: {
     AppButton,
     EngViewFields,
-    EngShowContacts
+    EngShowContacts,
+    EngComments
   },
 
   async asyncData({ app, params, store }) {
@@ -138,6 +143,15 @@ export default {
 
     goBack() {
       this.$router.back()
+    },
+    submitComment(newComment) {
+      // this.engagement.comments.push({
+      //   // id: this.comments.length + 1, generate new id here
+      //   // date: new Date(),
+      //   // content: newComment
+      //   newComment
+      // })
+      this.$store.dispatch('engagements/addComment', newComment)
     }
   }
 }
