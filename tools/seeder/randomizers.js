@@ -9,7 +9,8 @@ export function randomContactType() {
   const types = [
     'Federal Governments and Agencies',
     'External Stakeholders',
-    'Provincial Teritories/Municipal and Indigenous entities'
+    'Provincial Teritories/Municipal and Indigenous entities',
+    'International Stakeholders'
   ]
   return types[Math.floor(Math.random() * types.length)]
 }

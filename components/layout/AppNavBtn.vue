@@ -4,18 +4,16 @@
       <nuxt-link
         :to="localePath('/search/engagement')"
         data-cy="search-nav"
-        class="switch underline"
-        :style="{ color: txtColorAdd, 'background-color': bgColorAdd, 'box-shadow': boxShadowAdd }"
-        @click.native="colorChange(true)"
+        class="nav-link"
+        :class="{ 'nav-link-selected' : currentPath.includes('search')}"
       >
         {{ $t('NavBtn.SearchConEn') }}
       </nuxt-link>
       <nuxt-link
         :to="localePath('/add/engagement')"
         data-cy="add-nav"
-        class="switch underline"
-        :style="{ color: txtColorSearch, 'background-color': bgColorSearch, 'box-shadow': boxShadowSearch }"
-        @click.native="colorChange(false)"
+        class="nav-link"
+        :class="{ 'nav-link-selected' : currentPath.includes('add')}"
       >
         {{ $t('NavBtn.AddConEn') }}
       </nuxt-link>
@@ -25,82 +23,38 @@
 
 <script>
 export default {
-  data() {
-    return {
-      txtColorAdd: '#D87C4F',
-      bgColorAdd: 'white',
-      txtColorSearch: 'white',
-      bgColorSearch: '#D87C4F',
-      boxShadowAdd: 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)',
-      boxShadowSearch: 'none',
-      isSelected: Boolean
-    }
-  },
-  created() {
-    if (this.$route.path.includes('add')) {
-      this.txtColorSearch = 'white'
-      this.bgColorSearch = '#D87C4F'
-      this.txtColorAdd = '#D87C4F'
-      this.bgColorAdd = 'white'
-      this.boxShadowAdd = 'none'
-      this.boxShadowSearch = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
-    } else {
-      this.txtColorSearch = '#D87C4F'
-      this.bgColorSearch = 'white'
-      this.txtColorAdd = 'white'
-      this.bgColorAdd = '#D87C4F'
-      this.boxShadowAdd = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
-      this.boxShadowSearch = 'none'
-    }
-  },
-  methods: {
-    colorChange(select) {
-      if (select) {
-        this.txtColorAdd = 'white'
-        this.bgColorAdd = '#D87C4F'
-        this.bgColorSearch = 'white'
-        this.txtColorSearch = '#D87C4F'
-        this.boxShadowAdd = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
-        this.boxShadowSearch = 'none'
-        this.isSelected = true
-      } else {
-        this.txtColorAdd = '#D87C4F'
-        this.bgColorAdd = 'white'
-        this.bgColorSearch = '#D87C4F'
-        this.txtColorSearch = 'white'
-        this.boxShadowAdd = 'none'
-        this.boxShadowSearch = 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)'
-        this.isSelected = false
-      }
+  computed: {
+    currentPath() {
+      return this.$route.path
     }
   }
 }
 </script>
 
 <style scoped>
-.switch:focus {
-  outline: none;
-}
-.switch {
-  padding: 25px;
-  @apply cursor-pointer text-3xl font-display font-bold text-center w-full border;
-}
-.not-selected{
-  color: white;
-  background-color: #D87C4F;
-  box-shadow: none;
-
-}
-.selected{
+.nav-link {
   color: #D87C4F;
   background-color: white;
-  box-shadow: 'inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 10px rgba(255, 255, 255, 0.5)';
+  padding: 25px;
+  @apply cursor-pointer text-3xl font-display font-bold text-center w-full border underline;
 }
+
+.nav-link:focus {
+  outline: none;
+}
+
+.nav-link-selected {
+  color: white;
+  background-color: #D87C4F;
+  box-shadow: inset 0 10px 30px 0 rgba(0, 0, 0, 0.5)
+}
+
 @media (max-width: 660px) {
   #btna {
     @apply flex-col w-auto;
   }
 }
+
 @media (max-width: 660px) {
   #h2Text {
     @apply text-2xl;

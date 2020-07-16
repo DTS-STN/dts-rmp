@@ -5,7 +5,7 @@
     </h1>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
-        <ConViewFields label="name">
+        <ConViewFields label="keyContactName">
           {{ contactInfo.keyContactName }}
         </ConViewFields>
       </div>
@@ -22,7 +22,7 @@
         </ConViewFields>
       </div>
       <div class="w-5/12 margins">
-        <ConViewFields label="email">
+        <ConViewFields label="keyContactEmail">
           {{ contactInfo.keyContactEmail }}
         </ConViewFields>
       </div>
@@ -35,8 +35,7 @@
       </div>
     </div>
     <h2 class="title">
-      {{ $t('contact.organization') }} <br />
-      {{ $t('contact.information') }}
+      {{ $t('contact.organization') }}
     </h2>
     <div class="flex mb-4">
       <div class="w-5/12 margins">
@@ -45,7 +44,7 @@
         </ConViewFields>
       </div>
       <div class="w-5/12 margins">
-        <ConViewFields label="email">
+        <ConViewFields label="orgEmail">
           {{ contactInfo.orgEmail }}
         </ConViewFields>
       </div>
@@ -70,18 +69,13 @@
     </div>
     <div class="flex justify-start mb-4">
       <div class="w-3/12 margins">
-        <AppButton
-          custom_style="btn-cancel"
-          data_cypress="contactDetailBackButton"
-          @click="goBack"
-        >
+        <AppButton custom_style="btn-cancel" type="button" data_cypress="contactDetailBackButton" @click="goBack">
           {{ $t('contact.back') }}
         </AppButton>
       </div>
       <div class="w-3/12 margins">
         <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton" @click="goEdit">
           {{ $t('contact.edit') }}
-        </AppButton>
         </appbutton>
       </div>
     </div>

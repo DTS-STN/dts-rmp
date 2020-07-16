@@ -555,12 +555,12 @@
 
         <div class="flex justify-start mb-4">
           <div class="w-3/12 margins">
-            <AppButton custom_style="btn-cancel" data_cypress="formButton">
+            <AppButton custom_style="btn-cancel" data_cypress="cancelButton" type="button" @click="goBack">
               {{ $t('contact.cancel') }}
             </AppButton>
           </div>
           <div class="w-3/12 margins">
-            <AppButton custom_style="btn-extra" data_cypress="formButton">
+            <AppButton custom_style="btn-extra" data_cypress="submitButton">
               {{ $t('contact.save') }}
             </AppButton>
           </div>
@@ -587,8 +587,6 @@ export default {
       await this.$axios
         .get(`/api/contact/contact?id=${this.$route.params.id}`)
         .then((response) => {
-          // eslint-disable-next-line no-console
-          console.log(response.data)
           this.contactInfo = response.data
         })
     } catch (e) {
