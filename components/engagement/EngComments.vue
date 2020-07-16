@@ -38,10 +38,6 @@ export default {
 
   data() {
     return {
-      // commentInfo: {
-      //   eng_id: '5ef4ee00a7cc2a950e1d5641',
-      //   content: ''
-      // }
       newComment: ''
     }
   },
@@ -52,7 +48,7 @@ export default {
 
   methods: {
     submitComment() {
-      if (this.newComment !== '') {
+      if (this.newComment) {
         this.$emit('submit-comment', this.newComment)
         this.newComment = ''
       }
@@ -71,7 +67,7 @@ export default {
 
 .comment-bar {
     background-color: #E9E9E9;
-    @apply flex relative items-center overflow-hidden rounded-full py-1 px-3;
+    @apply flex relative items-center overflow-hidden rounded py-1 px-3;
 }
 
 .comment-text {

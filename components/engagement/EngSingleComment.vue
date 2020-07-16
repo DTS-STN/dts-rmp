@@ -29,7 +29,7 @@ export default {
     padding: 10px;
     margin-bottom: 10px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    @apply font-display rounded-full bg-gray-300;
+    @apply font-display rounded bg-gray-300 break-all;
 }
 
 .text {

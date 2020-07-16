@@ -60,11 +60,6 @@
             :comments="engagement.comments"
             @submit-comment="submitComment"
           />
-          <!-- <ul>
-            <li v-for="(comment, index) in engagement.comments" :key="index">
-              {{ comment }}
-            </li>
-          </ul> -->
         </EngViewFields>
       </div>
     </div>
@@ -145,12 +140,6 @@ export default {
       this.$router.back()
     },
     submitComment(newComment) {
-      // this.engagement.comments.push({
-      //   // id: this.comments.length + 1, generate new id here
-      //   // date: new Date(),
-      //   // content: newComment
-      //   newComment
-      // })
       this.$store.dispatch('engagements/addComment', newComment)
     }
   }
