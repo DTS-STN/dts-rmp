@@ -39,11 +39,18 @@
         </ul>
         <div class="flex justify-between xl:inline-block xl:mx-auto">
           <div class="pt-6 pl-2 xl:hidden">
+            <!--
             <a href="#nav-top-page">
               <span class="glyphicon glyphicon-chevron-up">{{
                 $t('footer.top')
               }}</span>
             </a>
+            -->
+            <button @click="goToTop()">
+              <span class="glyphicon glyphicon-chevron-up">{{
+                $t('footer.top')
+              }}</span>
+            </button>
           </div>
           <div id="footer-img">
             <img
@@ -63,7 +70,12 @@
 
 <script>
 export default {
-  name: 'AppFooterLinks'
+  name: 'AppFooterLinks',
+  methods: {
+    goToTop() {
+      this.$scrollTo(this.$refs.top)
+    }
+  }
 }
 </script>
 
