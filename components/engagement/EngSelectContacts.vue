@@ -180,7 +180,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 h1 {
   padding-bottom: 50px;
 }
