@@ -19,6 +19,8 @@ export default {
   },
   computed: {
     errorPage() {
+      // eslint-disable-next-line no-console
+      console.log('error : ', this.error.message)
       return (this.error.statusCode === 404) ? Error404 : Error500
     }
   }
