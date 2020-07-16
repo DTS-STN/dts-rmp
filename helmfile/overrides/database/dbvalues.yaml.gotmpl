@@ -12,3 +12,7 @@ persistence:
 image:
     tag: 4.2.4-debian-10-r0
 {{/* mongodb://dbuser:-password-@poc-intake-db-dev-mongodb:27017/poc */}}
+{{- if (eq .Environment.Name "localdev") }}
+service:
+    type: LoadBalancer
+{{- end }}
