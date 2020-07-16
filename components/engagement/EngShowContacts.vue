@@ -78,9 +78,6 @@ export default {
 .bottom {
   @apply border-b-2;
 }
-.top {
-  @apply border-t-2;
-}
 .btn-round {
   background-image: url('../../assets/images/orange-arrow.png');
   background-size: 58px 56px;

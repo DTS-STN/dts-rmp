@@ -216,18 +216,6 @@
             {{ $t('engagement.save') }}
           </AppButton>
         </div>
-        <!-- <span>
-          Subject Selected: {{ engagementDetail.subject }}
-          Contact Selected: {{ engagementDetail.contacts }}
-          Type Selected: {{ engagementDetail.type }}
-          Date Selected: {{ engagementDetail.date }}
-          numParticipants Selected: {{ engagementDetail.numParticipants }}
-          description Selected: {{ engagementDetail.description }}
-          policyProgram Selected: {{ engagementDetail.policyProgram }}
-          tags Selected: {{ engagementDetail.tags }}
-          Comments Selected: {{ engagementDetail.comments.content }}
-          Comments Selected: {{ engagementDetail.comments.date }}
-        </span> -->
       </div>
     </form>
   </div>
@@ -274,18 +262,18 @@ export default {
       },
       inputTag: '',
       engagementTypes: [
-        { type: 'One-on-one' },
-        { type: 'Conference' },
-        { type: 'Conference call' },
-        { type: 'Workshop' },
-        { type: 'Webinar' },
-        { type: 'Phone call' },
-        { type: 'Committee meeting' },
-        { type: 'Working group' },
-        { type: 'Senior management briefing' },
-        { type: 'Minister office briefing' },
-        { type: 'Scrum/Sprint' },
-        { type: 'Advisory board/Council Meeting' }
+        { type: this.$t('engagementTypes.one') },
+        { type: this.$t('engagementTypes.Conference') },
+        { type: this.$t('engagementTypes.ConferenceCall') },
+        { type: this.$t('engagementTypes.Workshop') },
+        { type: this.$t('engagementTypes.Webinar') },
+        { type: this.$t('engagementTypes.PhoneCall') },
+        { type: this.$t('engagementTypes.CommitteeMeeting') },
+        { type: this.$t('engagementTypes.WorkingGroup') },
+        { type: this.$t('engagementTypes.SeniorManagementBriefing') },
+        { type: this.$t('engagementTypes.MinisterOfficeBriefing') },
+        { type: this.$t('engagementTypes.ScrumSprint') },
+        { type: this.$t('engagementTypes.Advisory') }
       ],
       showTag: false
     }
