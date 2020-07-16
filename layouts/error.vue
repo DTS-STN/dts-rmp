@@ -19,8 +19,9 @@ export default {
   },
   computed: {
     errorPage() {
+      // DO NOT REMOVED the console log error message because it fails silently
       // eslint-disable-next-line no-console
-      console.log('error : ', this.error.message)
+      console.log(' error :', this.error.message)
       return (this.error.statusCode === 404) ? Error404 : Error500
     }
   }
