@@ -15,7 +15,7 @@
         </ul>
       </div>
       <h2 class="title font-display">
-        {{ $t('contact.create') }}
+        {{ $t('contact.edit') }}
       </h2>
 
       <div>
@@ -581,6 +581,20 @@ export default {
     AppButton
   },
 
+  async fetch() {
+    try {
+      this.$axios.defaults.baseURL = this.$config.API_URL
+      await this.$axios
+        .get(`/api/contact/contact?id=${this.$route.params.id}`)
+        .then((response) => {
+          this.contactInfo = response.data
+        })
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error fetching Contact : ', e)
+    }
+  },
+
   data() {
     return {
       message: {
@@ -597,7 +611,7 @@ export default {
         // Key Contact
         keyContactName: '',
         keyContactTitle: '',
-        keyContactAddress: '',
+        keyContactAddress: '2',
         keyContactAddress2: '',
         keyContactCity: '',
         keyContactProvState: '',
@@ -665,6 +679,7 @@ export default {
       provTerritory: { }
     }
   },
+
   computed: {
     invalidFields() {
       return Object.keys(this.$v.contactInfo.$params).filter(
@@ -673,6 +688,7 @@ export default {
       )
     }
   },
+
   methods: {
     onProvTerr(event) {
       this.contactInfo.provTerritory = event.target.value
@@ -720,10 +736,11 @@ export default {
         })
       } else {
         try {
-          await this.$axios.post('/api/contact/addContact', {
-            contactInfo
-          })
-          this.notification('success', 'contact created')
+          await this.$axios
+            .post(`/api/contact/update?id=${this.$route.params.id}`, {
+              contactInfo
+            })
+            .then(this.notification('success', 'contact updated'))
         } catch (e) {
           this.notification('error', e.response.data.message)
         }
