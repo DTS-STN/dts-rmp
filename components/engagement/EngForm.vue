@@ -191,7 +191,7 @@
             />
           </div>
 
-          <div class="mb-4">
+          <div class="flex h-20 mb-4">
             <div>
               <label
                 class="block tracking-wide text-black text-md font-bold font-body mb-2"
