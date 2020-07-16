@@ -1,28 +1,26 @@
 <template>
   <div class="main pt-1 xl:mx-16">
-    <div class="ml-12">
-      <AppNavSearching class="my-16" @filterResults="filter" />
-      <div class="text-sm font-body font-semibold">
-        {{ totalRecords }} results
-      </div>
-      <!-- Loop through contacts here. look at 'search/engagement' for guidance -->
-      <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
-        <!-- Still requires "last" property for last engagement to be setup, discussion on "date" property TODO -->
-        <EngShowContacts
-          v-for="(con, index) in filteredContacts"
-          :id="con._id"
-          :key="index"
-          :index="index"
-          :name="con.keyContactName"
-          :orgname="con.orgName"
-          :title="con.keyContactTitle"
-          :phone="con.keyContactPhone"
-          :email="con.keyContactEmail"
-          :last="con.engagements[0] ? con.engagements[0].type : undefined"
-          :date="con.engagements[0] ? con.engagements[0].date.substring(0, 10) : undefined"
-          :number="con.engagements[0] ? con.engagements[0].numParticipants : undefined"
-        />
-      </div>
+    <AppNavSearching class="my-16 mx-8 sm:mx-12" @filterResults="filter" />
+    <div class="mx-12 text-sm font-body font-semibold">
+      {{ totalRecords }} results
+    </div>
+    <!-- Loop through contacts here. look at 'search/engagement' for guidance -->
+    <div class="max-w-full px-4 py-6 my-8 md:mx-12 border border-gray-500">
+      <!-- Still requires "last" property for last engagement to be setup, discussion on "date" property TODO -->
+      <EngShowContacts
+        v-for="(con, index) in filteredContacts"
+        :id="con._id"
+        :key="index"
+        :index="index"
+        :name="con.keyContactName"
+        :orgname="con.orgName"
+        :title="con.keyContactTitle"
+        :phone="con.keyContactPhone"
+        :email="con.keyContactEmail"
+        :last="con.engagements[0] ? con.engagements[0].type : undefined"
+        :date="con.engagements[0] ? con.engagements[0].date.substring(0, 10) : undefined"
+        :number="con.engagements[0] ? con.engagements[0].numParticipants : undefined"
+      />
     </div>
   </div>
 </template>

@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div title="engagementForm" class="ml-12">
     <div v-if="attemptSubmit && invalidFields.length" class="error-list mt-6">
       <h1 ref="displayErrors" class="text-xl text-red-600">
@@ -13,6 +14,9 @@
         </li>
       </ul>
     </div>
+=======
+  <div title="engagementForm" class="mx-12">
+>>>>>>> main
     <h1 class="formTitle font-display mt-8">
       {{ $t('engSelect.engagement') }}
     </h1>

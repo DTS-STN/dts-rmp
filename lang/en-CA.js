@@ -154,7 +154,8 @@ export default {
     numpeople: 'Number of participants:',
     otherParticipants: 'other participants',
     selectContact: 'Select one or more contact',
-    notFound: 'No Engagement found'
+    notFound: 'No Engagement found',
+    leaveComment: 'Leave a comment...'
   },
   engagementValidation: {
     messageTitle: 'The following fields have errors',

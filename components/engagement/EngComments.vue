@@ -1,70 +1,44 @@
 <template>
-  <div class="contactForm font-body mt-8 ml-12">
-    <h2 class="title font-display">
-      Add a comment
-    </h2>
-
-    <form @submit.prevent="submitForm(commentInfo)">
-      <div class="flex mb-4">
-        <div class="w-5/12 margins">
-          <label class="formLabel" for="comment">
-            Comment
-          </label>
-          <textarea
-            id="comment"
-            v-model="commentInfo.content"
-            type="text"
-            name="Comment"
-            class="textArea"
-            maxlength="140"
-          />
-        </div>
-      </div>
-
-      <div class="flex justify-start mb-4">
-        <div class="w-3/12 margins">
-          <AppButton custom_style="btn-cancel" data_cypress="formCancelButton">
-            {{ $t('contact.cancel') }}
-          </AppButton>
-        </div>
-        <div class="w-3/12 margins">
-          <AppButton custom_style="btn-extra" data_cypress="formSaveButton">
-            {{ $t('contact.save') }}
-          </AppButton>
-        </div>
-      </div>
-    </form>
-
-    <div class="bg-orange-300 border p-4 mb-6">
-      <ul>
-        <li v-for="(comment, index) in storedComments" :key="index">
-          <span>
-            {{ comment.content }}
-          </span>
-        </li>
-      </ul>
+  <div class="comments-wrapper">
+    <div class="comment-bar">
+      <input
+        v-model.trim="newComment"
+        type="text"
+        class="comment-text"
+        :placeholder="$t('engagement.leaveComment')"
+        maxlength="250"
+        required
+        @keyup.enter="submitComment"
+      />
+      <button class="comment-btn" @click.prevent="submitComment">
+        Comment
+      </button>
     </div>
+    <hr class="my-2" />
+    <EngSingleComment
+      v-for="(comment, index) in comments"
+      :key="index"
+      :comment="comment"
+    />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 
-import AppButton from '@/components/app/AppButton.vue'
+import EngSingleComment from '@/components/engagement/EngSingleComment.vue'
 
 export default {
   name: 'EngComments',
 
   components: {
-    AppButton
+    EngSingleComment
   },
+  props: { comments: { type: Array, default: () => [] } },
 
   data() {
     return {
-      commentInfo: {
-        eng_id: '5ef4ee00a7cc2a950e1d5641',
-        content: 'Testing new comments '
-      }
+      newComment: ''
     }
   },
 
@@ -73,43 +47,58 @@ export default {
   }),
 
   methods: {
-    goBack() {
-      this.$router.back()
-    },
-
-    submitForm(commentInfo) {
-      this.$store.dispatch('engagements/addComment', commentInfo)
+    submitComment() {
+      if (this.newComment) {
+        this.$emit('submit-comment', this.newComment)
+        this.newComment = ''
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.contactForm {
-  width: 1200px;
-  @apply bg-white text-black;
+
+.comments-wrapper {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 10px;
 }
-.title {
-  font-size: 28pt;
-  @apply text-rmp-md-blue font-display text-left tracking-wide font-extrabold text-4xl pt-4;
+
+.comment-bar {
+    background-color: #E9E9E9;
+    @apply flex relative items-center overflow-hidden rounded py-1 px-3;
 }
-.formLabel {
-  @apply font-bold;
+
+.comment-text {
+    min-height: 40px;
+    @apply p-2 border-none shadow-none bg-transparent outline-none w-full mr-2;
 }
-.textArea {
-  @apply w-full border h-32 border-black;
+
+input.comment-text:valid {
+    margin-right: 90px;
 }
-.textArea:focus {
-  border: 2.5px solid;
-  @apply outline-none border-black;
+
+input.comment-text:valid + .comment-btn {
+    right: 10px;
 }
-.margins {
-  @apply px-1 py-2 m-2;
+
+.comment-btn {
+    right: -100px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out, border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out, right 0.25s ease-in-out;
+    @apply absolute py-1 px-3 bg-transparent border border-rmp-md-blue text-rmp-md-blue rounded-full text-sm outline-none inline-block leading-normal font-normal text-center whitespace-no-wrap align-middle select-none;
 }
-.btn-cancel {
-  @apply justify-start bg-gray-300 w-11/12 text-black h-12;
+
+.comment-btn:hover {
+ @apply bg-rmp-md-blue text-white;
 }
-.btn-extra {
-  @apply w-11/12 h-12 justify-start;
+
+.comment-btn:focus,
+.comment-btn:active {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
+
 </style>
