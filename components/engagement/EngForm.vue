@@ -1,5 +1,5 @@
 <template>
-  <div title="engagementForm" class="ml-12">
+  <div title="engagementForm" class="mx-12">
     <div v-if="attemptSubmit && invalidFields.length" class="error-list mt-6">
       <h1 ref="displayErrors" class="text-xl text-red-600">
         {{ $t('engagementValidation.messageTitle') }}
@@ -13,22 +13,22 @@
         </li>
       </ul>
     </div>
-    <div title="engagementForm" class="mx-12">
+    <div>
       <h1 class="formTitle font-display mt-8">
         {{ $t('engSelect.engagement') }}
       </h1>
+      <h2 class="font-display text-4xl">
+        Contact
+      </h2>
+      <select-contact
+        @childToParent="onChildClick"
+        @blur="$v.engagementDetail.contacts.$touch()"
+      />
+      <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.required" class="error">
+        {{ $t('engagementValidation.required') }}
+      </p>
       <form @submit.prevent="submitForm(engagementDetail)">
         <div class="w-full">
-          <h2 class="font-display text-4xl">
-            Contact
-          </h2>
-          <select-contact
-            @childToParent="onChildClick"
-            @blur="$v.engagementDetail.contacts.$touch()"
-          />
-          <p v-if="$v.engagementDetail.contacts.$dirty && !$v.engagementDetail.contacts.required" class="error">
-            {{ $t('engagementValidation.required') }}
-          </p>
           <h2 class="title font-display mt-6">
             {{ $t('engagement.engagment') }}
           </h2>
