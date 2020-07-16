@@ -140,7 +140,7 @@ export default {
     subject: 'Subject',
     type: 'Engagement type',
     date: 'Date',
-    numParticipants: 'Number of participants',
+    participants: 'Number of participants',
     description:
       'Description (Maximum 1000 characters. Additional characters will not be saved.)',
     policy: 'Policy / program',
@@ -165,6 +165,8 @@ export default {
     maxTags: 'You cannot create more than 3 tags',
     maxTagLength: 'The text length cannot exceed 10 characters',
     minParticipant: 'You cannot have less than 1 participant',
+    maxDescription: 'Description cannot exceed 1000 characters',
+    maxComment: 'Comment cannot exceed 140 characters',
     validDate: 'Please pick a valid date',
     duplicateTags: 'Tag already exist, please enter another tag name',
     duplicateContacts: 'Contact already exist, please select another contact name'

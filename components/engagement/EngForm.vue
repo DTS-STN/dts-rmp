@@ -131,20 +131,20 @@
               class="orange block tracking-wide text-black text-md font-bold font-body mb-2"
               for="numParticipants"
             >
-              {{ $t('engagement.numParticipants') }}
+              {{ $t('engagement.participants') }}
             </label>
             <div class="flex relative w-20 ">
               <input
                 id="numParticipants"
-                v-model="engagementDetail.numParticipants"
+                v-model="engagementDetail.participants"
                 class="numberIncrement"
                 type="number"
                 min="0"
-                :class="{invalid: $v.engagementDetail.numParticipants.$error}"
-                @blur="$v.engagementDetail.numParticipants.$touch()"
+                :class="{invalid: $v.engagementDetail.participants.$error}"
+                @blur="$v.engagementDetail.participants.$touch()"
               />
             </div>
-            <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.minVal" class="error">
+            <p v-if="$v.engagementDetail.participants.$dirty && !$v.engagementDetail.participants.minVal" class="error">
               {{ $t('engagementValidation.minParticipant') }}
             </p>
           </div>
@@ -162,7 +162,6 @@
               v-model="engagementDetail.description"
               type="text"
               class="textArea"
-              maxlength="1000"
               :class="{invalid: $v.engagementDetail.description.$error}"
               @blur="$v.engagementDetail.description.$touch()"
             />
@@ -171,6 +170,12 @@
               class="error"
             >
               {{ $t('engagementValidation.required') }}
+            </p>
+            <p
+              v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.maxLen"
+              class="error"
+            >
+              {{ $t('engagementValidation.maxDescription') }}
             </p>
           </div>
         </div>
@@ -241,8 +246,15 @@
               type="text"
               name="KeyNotes"
               class="textArea"
-              maxlength="1000"
+              :class="{invalid: $v.engagementDetail.comments.$error}"
+              @input="$v.engagementDetail.comments.$touch()"
             />
+            <p
+              v-if="$v.engagementDetail.comments.$dirty && !$v.engagementDetail.comments.maxLen"
+              class="error"
+            >
+              {{ $t('engagementValidation.maxComment') }}
+            </p>
           </div>
         </div>
       </div>
@@ -298,7 +310,7 @@ export default {
         type: '',
         date: new Date(),
         description: '',
-        numParticipants: 0,
+        participants: 0,
         contacts: [],
         policyProgram: '',
         comments: '',
@@ -329,8 +341,9 @@ export default {
       subject: { required, maxChar: maxLength(50) },
       type: { required },
       date: { required },
-      description: { required },
-      numParticipants: { required, minVal: minValue(1) },
+      description: { required, maxLen: maxLength(1000) },
+      participants: { required, minVal: minValue(1) },
+      comments: { maxLen: maxLength(140) },
       contacts: { required },
       tags: { maxSize: maxLength(3) }
     },
@@ -413,8 +426,6 @@ export default {
       this.$v.$touch()
       this.attemptSubmit = true
       if (this.$v.$invalid) {
-        // eslint-disable-next-line no-console
-        console.log(this.invalidFields)
         this.$nextTick(() => {
           this.$scrollTo(this.$refs.displayErrors)
         })
@@ -425,8 +436,6 @@ export default {
           })
           this.notification('success', 'engagment created')
         } catch (e) {
-          // eslint-disable-next-line no-console
-          console.log('error : ', e.response)
           this.notification('error', e.response.data.message)
         }
       }

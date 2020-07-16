@@ -141,7 +141,7 @@ export default {
     subject: 'Matière',
     type: "Type d'engagement",
     date: 'Date',
-    numParticipants: 'Nombre de participants',
+    participants: 'Nombre de participants',
     description:
       'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     policy: 'Politique / programme',
@@ -165,6 +165,8 @@ export default {
     required: 'Ce champ est requis',
     maxTags: 'Vous ne pouvez pas créer plus de 3 balises',
     maxTagLength: 'La longueur du texte ne doit pas dépasser 10 caractères',
+    maxDescription: 'La description ne peut pas dépasser 1 000 caractères',
+    maxComment: 'Le commentaire ne peut pas dépasser 140 caractères',
     minParticipant: 'Vous ne pouvez pas avoir moins de 1 participant',
     validDate: 'Veuillez choisir une date',
     duplicateTags: 'La balise existe déjà, veuillez entrer un autre nom de balise',
