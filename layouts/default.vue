@@ -17,7 +17,7 @@
 export default {
   computed: {
     shouldDisplayNav() {
-      return !this.$route.path.includes('view')
+      return !(this.$route.path.includes('view') || this.$route.path.includes('edit'))
     }
   }
 }
