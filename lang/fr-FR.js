@@ -152,7 +152,8 @@ export default {
     numpeople: 'FR-Number of participants :',
     otherParticipants: 'autres participants',
     selectContact: 'Sélectionnez un contact',
-    notFound: 'FR-No Engagement found'
+    notFound: 'FR-No Engagement found',
+    leaveComment: 'Laissez un commentaire...'
   },
   // EngSelectContact component
   engSelect: {

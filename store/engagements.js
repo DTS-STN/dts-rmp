@@ -12,9 +12,7 @@ export const mutations = {
     state.engagement = engagement
   },
   ADD_COMMENT(state, comment) {
-    state.comments.push({
-      ...comment
-    })
+    state.engagement.comments.unshift(comment)
   }
 }
 
