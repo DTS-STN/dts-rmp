@@ -5,7 +5,6 @@
       <AppNavBtn v-if="shouldDisplayNav" />
     </header>
     <main>
-      <!-- <TitleComponent /> -->
       <nuxt />
     </main>
     <footer>
