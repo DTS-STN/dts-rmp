@@ -160,5 +160,19 @@ export default {
     contact2: 'Contact number 2',
     remove: 'Remove',
     add: 'Add more contacts'
+  },
+  engagementTypes: {
+    one: 'One-on-one',
+    Conference: 'Conference',
+    ConferenceCall: 'Conference call',
+    Workshop: 'Workshop',
+    Webinar: 'Webinar',
+    PhoneCall: 'Phone call',
+    CommitteeMeeting: 'Committee meeting',
+    WorkingGroup: 'Working group',
+    SeniorManagementBriefing: 'Senior management briefing',
+    MinisterOfficeBriefing: 'Minister office briefing',
+    ScrumSprint: 'Scrum/Sprint',
+    Advisory: 'Advisory board/Council Meeting'
   }
 }
