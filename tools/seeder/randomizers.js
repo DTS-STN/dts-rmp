@@ -7,10 +7,10 @@ export function randomInt(min, max) {
 
 export function randomContactType() {
   const types = [
-    'Federal Governments and Agencies',
-    'External Stakeholders',
-    'Provincial Teritories/Municipal and Indigenous entities',
-    'International Stakeholders'
+    'Federal', //      = 'Federal Governments and Agencies',
+    'External', //     = 'External Stakeholders',
+    'Provincial', //   = 'Provincial Teritories/Municipal and Indigenous entities',
+    'International' // = 'International Stakeholders'
   ]
   return types[Math.floor(Math.random() * types.length)]
 }
@@ -49,12 +49,10 @@ export function randomOrgName() {
 // Returns a random date within the given range of Date objects
 export function randomOrgSector() {
   const orgs = [
-    'Not For Profit',
-    'Private',
-    'Indigenous',
-    'Internation',
-    'Accomodations',
-    'Waste Management'
+    'notProfit', //    Not for profit organizations, Municipal governements, Indigenious organizations
+    'forProfit', //    For-profit organizations,
+    'provGovCorp', // Provincial and territorial government Insititutions agencies and crown corporations
+    'fedGovDept' //    Federal government departments and agencies and other publicly funded entities
   ]
   return orgs[Math.floor(Math.random() * orgs.length)]
 }
@@ -114,16 +112,19 @@ export function randomBil() {
 // Returns random province from array
 export function randomProvince() {
   const provinces = [
-    'Ontario',
-    'Saskatchewan',
-    'Alberta',
-    'British Columbia',
-    'Prince Edward Island',
-    'Nova Scotia',
-    'Newfoundland and Labrador',
-    'New Brunswick',
-    'Manitoba',
-    'Quebec'
+    'ON', //  = 'Ontario',
+    'SK', //  = 'Saskatchewan',
+    'AB', //  = 'Alberta',
+    'BC', //  = 'British Columbia',
+    'PEI', // = 'Prince Edward Island',
+    'NS', //  = 'Nova Scotia',
+    'NFL', // = 'Newfoundland and Labrador',
+    'NB', //  = 'New Brunswick',
+    'MB', //  = 'Manitoba',
+    'QC', //  = 'Quebec'
+    'NWT', // = 'Northwestern Territories'
+    'NU', //  = 'Nunavut'
+    'YK' //   = 'Yukon'
   ]
   return provinces[Math.floor(Math.random() * provinces.length)]
 }

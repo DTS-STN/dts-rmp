@@ -89,7 +89,7 @@ export default {
     selSector: 'fr-Select a Sector',
     notProfit: 'FR-Not for profit organizations, Municipal governements, Indigenious organizations',
     forProfit: 'FR-For-profit organizations',
-    provGovCoorp: 'FR- Provincial and territorial government Insititutions agencies and crown corporations',
+    provGovCorp: 'FR- Provincial and territorial government Insititutions agencies and crown corporations',
     fedGovDept: 'FR- Federal government departments and agencies and other publicly funded entities',
     //
     selProvince: 'FR-Select a province',
@@ -176,5 +176,19 @@ export default {
     contact2: 'Numéro de contact 2',
     remove: 'Retirer',
     add: 'Ajouter plus de contacts'
+  },
+  engagementTypes: {
+    one: 'FR-One-on-one',
+    Conference: 'FR-Conference',
+    ConferenceCall: 'FR-Conference call',
+    Workshop: 'FR-Workshop',
+    Webinar: 'FR-Webinar',
+    PhoneCall: 'FR-Phone call',
+    CommitteeMeeting: 'FR-Committee meeting',
+    WorkingGroup: 'FR-Working group',
+    SeniorManagementBriefing: 'FR-Senior management briefing',
+    MinisterOfficeBriefing: 'FR-Minister office briefing',
+    ScrumSprint: 'FR-Scrum/Sprint',
+    Advisory: 'FR-Advisory board/Council Meeting'
   }
 }
