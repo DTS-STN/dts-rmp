@@ -29,8 +29,8 @@
           :name="contactList.name"
           :orgname="contactList.orgName"
           :email="contactList.email"
-          :last="contactList.email"
-          :date="contactList.date"
+          :subject="contactList.subject"
+          :date="contactList.date.substring(0, 10)"
           :number="contactList.participants"
           :array-index="index"
           @childToParent="onChildClick"
@@ -97,7 +97,7 @@ export default {
           if (this.isEmpty(i)) {
             this.noLastEngagement()
           } else {
-            this.engagementType = this.getLastEng(i).type
+            this.engagementSubject = this.getLastEng(i).subject
             this.engagementDate = this.getLastEng(i).date
             this.participants = this.getLastEng(i).numParticipants
             this.contactArray.push({
@@ -107,7 +107,7 @@ export default {
               title: this.title,
               phone: this.phoneNum,
               email: this.contactEmail,
-              type: this.engagementType,
+              subject: this.engagementSubject,
               date: this.engagementDate,
               participants: this.participants
             })
@@ -119,10 +119,17 @@ export default {
         }
       }
     },
-    /* return the last engagement in the contact list */
+    /* return the latest engagement in the contact list */
     getLastEng(index) {
-      const last = (this.contacts[index].engagements.length - 1)
-      return this.contacts[index].engagements[last]
+      const selectedContact = this.contacts[index].engagements
+      const mostRecentDate = new Date(Math.max.apply(null, selectedContact.map((e) => {
+        return new Date(e.date)
+      })))
+      const mostRecentObject = selectedContact.filter((e) => {
+        const d = new Date(e.date)
+        return d.getTime() === mostRecentDate.getTime()
+      })[0]
+      return mostRecentObject
     },
     /* check if engagement list is empty */
     isEmpty(index) {

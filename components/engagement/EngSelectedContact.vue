@@ -12,7 +12,7 @@
       <div class="w-5/12 bdr leftBorder">
         <div>
           <span class="orangeText">
-            {{ last }}
+            {{ subject }}
           </span>
         </div>
         <div>{{ date }}, {{ number }} {{ $t('contact.otherpeople') }}</div>
@@ -39,7 +39,7 @@ export default {
     name: { type: String, default: 'lastname, name' },
     orgname: { type: String, default: '' },
     email: { type: String, default: '' },
-    last: { type: String, default: 'No Engagement found' },
+    subject: { type: String, default: 'No Engagement found' },
     date: { type: String, default: 'yyyy/mm/dd' },
     number: { type: Number, default: 0 },
     id: { type: String, default: '' },
