@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="grid grid-cols-12 grid-rows-2 leading-10 bdr bottom pt-6 pb-6 px-2" :class="[index == 0 ? 'first': '']">
-      <div class="sm:col-span-10 md:col-span-6">
+    <div class="grid grid-cols-12 leading-10 bdr bottom pt-6 pb-6 px-2" :class="[index == 0 ? 'first': '']">
+      <div class="col-span-12 sm:col-span-10 md:col-span-6">
         <div>
           <span class="orangeText">
             {{ subject }}
@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="sm:col-span-12 md:col-span-5">
+      <div class="col-span-12 sm:col-span-10 md:col-span-5">
         <div>
           <span class="orangeText">
             {{ $t('engagement.contacts') }}
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="sm:col-span-2 md:col-span-1">
+      <div class="col-start-6 col-span-12 sm:col-span-2 md:col-span-1 flex items-center">
         <!-- <button
           class="btn-round"
           data_cypress="link"

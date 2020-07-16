@@ -2,17 +2,17 @@
   <!-- eslint-disable vue/singleline-html-element-content-newline -->
   <div>
     <div
-      class="flex max-w-full leading-10 bdr bottom top pt-6 pb-6"
+      class="grid grid-cols-12 leading-10 bdr bottom top pt-6 pb-6 px-2"
       :class="[index == 0 ? 'first' : '']"
     >
-      <div class="w-6/12 pl-2">
+      <div class="col-span-12 sm:col-span-10 md:col-span-6">
         <div>
           <span class="orangeText pr-0">{{ name }}</span>, {{ orgname }}, {{ title }}
         </div>
         <div><a :href="'tel:' + phone">{{ phone }}</a>, <a :href="'mailto:'+ email">{{ email }}</a></div>
       </div>
 
-      <div class="w-5/12 bdr leftBorder">
+      <div class="col-span-12 sm:col-span-10 md:col-span-5">
         <div>
           <span class="orangeText">
             {{ last }}
@@ -21,7 +21,7 @@
         <div>{{ date }}, {{ number }} {{ $t('contact.otherpeople') }}</div>
       </div>
 
-      <div class="w-1/12 flex items-center">
+      <div class="col-start-6 col-span-12 sm:col-span-2 md:col-span-1 flex items-center">
         <button
           class="btn-round"
           data_cypress="link"
