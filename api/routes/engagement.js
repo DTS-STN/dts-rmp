@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import consola from 'consola'
 import Engagement from '../models/engagement'
+import Contact from '../models/contact'
 
 const router = Router()
 
@@ -64,6 +65,25 @@ router.post('/addEngagement', async(req, res) => {
       errMessage = 'A new Engagement could not be created try again later'
       throw new Error(errMessage)
     }
+
+    // no error. Proceed to add the engagement id to each contact
+
+    const listContacts = savedEngagementDetail.contacts
+
+    listContacts.map(async(contactId) => {
+      const contact = await Contact.findById(contactId)
+
+      if (!contact) {
+        consola.error('No contact exist')
+        throw new Error('No contact exist')
+      }
+
+      contact.engagements.push(savedEngagementDetail._id)
+      await contact.save()
+    })
+
+    // no error Return the Id for confirmation
+
     res.status(200).json({
       engagement: {
         id: savedEngagementDetail._id
