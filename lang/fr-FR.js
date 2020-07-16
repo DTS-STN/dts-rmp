@@ -137,6 +137,7 @@ export default {
     type: "Type d'engagement",
     date: 'Date',
     participants: 'Nombre de participants',
+    numParticipants: 'Participants',
     description:
       'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     policy: 'Politique / programme',

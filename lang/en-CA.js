@@ -136,6 +136,7 @@ export default {
     type: 'Engagement type',
     date: 'Date',
     participants: 'Number of participants',
+    numParticipants: 'Participants',
     description:
       'Description (Maximum 1000 characters. Additional characters will not be saved.)',
     policy: 'Policy / program',

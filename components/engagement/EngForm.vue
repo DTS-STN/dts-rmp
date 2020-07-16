@@ -136,15 +136,15 @@
             <div class="flex relative w-20 ">
               <input
                 id="numParticipants"
-                v-model="engagementDetail.participants"
+                v-model="engagementDetail.numParticipants"
                 class="numberIncrement"
                 type="number"
                 min="0"
-                :class="{invalid: $v.engagementDetail.participants.$error}"
-                @blur="$v.engagementDetail.participants.$touch()"
+                :class="{invalid: $v.engagementDetail.numParticipants.$error}"
+                @blur="$v.engagementDetail.numParticipants.$touch()"
               />
             </div>
-            <p v-if="$v.engagementDetail.participants.$dirty && !$v.engagementDetail.participants.minVal" class="error">
+            <p v-if="$v.engagementDetail.numParticipants.$dirty && !$v.engagementDetail.numParticipants.minVal" class="error">
               {{ $t('engagementValidation.minParticipant') }}
             </p>
           </div>
@@ -310,7 +310,7 @@ export default {
         type: '',
         date: new Date(),
         description: '',
-        participants: 0,
+        numParticipants: 0,
         contacts: [],
         policyProgram: '',
         comments: '',
@@ -342,7 +342,7 @@ export default {
       type: { required },
       date: { required },
       description: { required, maxLen: maxLength(1000) },
-      participants: { required, minVal: minValue(1) },
+      numParticipants: { required, minVal: minValue(1) },
       comments: { maxLen: maxLength(140) },
       contacts: { required },
       tags: { maxSize: maxLength(3) }
