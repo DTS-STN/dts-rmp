@@ -1,5 +1,5 @@
 <template>
-  <div id="navContainer" class="ml-12 mt-12">
+  <div id="navContainer" class="mx-12 mt-12">
     <div>
       <div id="navContainer">
         <div class="mt-16">
