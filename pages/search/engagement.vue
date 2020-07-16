@@ -1,27 +1,25 @@
 <template>
   <div class="main pt-1 xl:mx-16">
-    <div class="ml-12">
-      <AppNavSearching class="my-16" @filterResults="filter" />
+    <AppNavSearching class="my-16 mx-12" @filterResults="filter" />
 
-      <div class="text-sm font-body font-semibold">
-        {{ totalRecords }} results
-      </div>
+    <div class="mx-12 text-sm font-body font-semibold">
+      {{ totalRecords }} results
+    </div>
 
-      <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
-        <ConShowEngagaments
-          v-for="(eng, index) in filteredEngagements"
-          :id="eng._id"
-          :key="index"
-          :subject="eng.subject"
-          :index="index"
-          :type="eng.type"
-          :contacts="eng.contacts"
-          :tags="eng.tags"
-          :date="(eng.date).substring(0, 10)"
-          :description="eng.description"
-          :number="eng.numParticipants"
-        />
-      </div>
+    <div class="max-w-full px-4 py-6 my-8 md:mx-12 border border-gray-500">
+      <ConShowEngagaments
+        v-for="(eng, index) in filteredEngagements"
+        :id="eng._id"
+        :key="index"
+        :subject="eng.subject"
+        :index="index"
+        :type="eng.type"
+        :contacts="eng.contacts"
+        :tags="eng.tags"
+        :date="(eng.date).substring(0, 10)"
+        :description="eng.description"
+        :number="eng.numParticipants"
+      />
     </div>
   </div>
 </template>

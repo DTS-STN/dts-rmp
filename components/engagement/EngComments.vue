@@ -1,5 +1,5 @@
 <template>
-  <div class="contactForm font-body mt-8 ml-12">
+  <div class="contactForm font-body mt-8 mx-12">
     <h2 class="title font-display">
       Add a comment
     </h2>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex max-w-full leading-10 bdr bottom pt-6 pb-6" :class="[index == 0 ? 'first': '']">
+    <div class="flex flex-wrap leading-10 bdr bottom pt-6 pb-6" :class="[index == 0 ? 'first': '']">
       <div class="w-6/12 pl-2">
         <div>
           <span class="orangeText">
@@ -97,9 +97,6 @@ export default {
 </script>
 
 <style scoped>
-.viewcard {
-  @apply flex max-w-full leading-10 bdr bottom pt-6 pb-6
-}
 .orangeText {
   font-family: 'Noto Sans';
   font-size: 18px;

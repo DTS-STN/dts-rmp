@@ -1,6 +1,6 @@
 <template>
   <div class="main pt-1 xl:mx-16">
-    <div class="ml-12">
+    <div class="mx-12">
       <AppNavSearching class="my-16" @filterResults="filter" />
       <div class="text-sm font-body font-semibold">
         {{ totalRecords }} results
