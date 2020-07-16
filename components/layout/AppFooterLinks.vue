@@ -39,18 +39,11 @@
         </ul>
         <div class="flex justify-between xl:inline-block xl:mx-auto">
           <div class="pt-6 pl-2 xl:hidden">
-            <!--
             <a href="#nav-top-page">
               <span class="glyphicon glyphicon-chevron-up">{{
                 $t('footer.top')
               }}</span>
             </a>
-            -->
-            <button @click="goToTop()">
-              <span class="glyphicon glyphicon-chevron-up">{{
-                $t('footer.top')
-              }}</span>
-            </button>
           </div>
           <div id="footer-img">
             <img
@@ -101,6 +94,9 @@ export default {
 .glyphicon-chevron-up::after {
   content: '^';
 }
+html {
+  scroll-behavior: smooth;
+},
 @media (min-width: 1280px) {
   #fLinks li {
     margin-left: 15px;

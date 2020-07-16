@@ -1,6 +1,7 @@
 <template>
   <div>
     <div ref="top" class="xl:flex xl:mx-16 sm:flex justify-between p-4">
+      <a name="nav-top-page" />
       <div id="canadaImg" class="w-64 lg:w-1/4" data-cy="canada-link">
         <div v-if="this.$i18n.locale === 'en'">
           <a :alt="$t('header.linkAlt')" :href="$t('header.link')" target="_blank">
