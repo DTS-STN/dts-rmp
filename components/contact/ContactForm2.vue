@@ -485,8 +485,8 @@
               <option value="forProfit">
                 {{ $t('contact.forProfit') }}
               </option>
-              <option value="provGovCoorp">
-                {{ $t('contact.provGovCoorp') }}
+              <option value="provGovCorp">
+                {{ $t('contact.provGovCorp') }}
               </option>
               <option value="fedGovDept">
                 {{ $t('contact.fedGovDept') }}
