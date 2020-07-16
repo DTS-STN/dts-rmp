@@ -21,6 +21,6 @@ export default {
 
 <style scoped>
     .tags {
-        @apply flex text-white bg-rmp-lt-blue text-rmp-dk-blue rounded-full py-2 px-4 items-center
+        @apply flex bg-rmp-lt-blue text-rmp-dk-blue rounded-full py-2 px-4 items-center
     }
 </style>
