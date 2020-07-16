@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="flex flex-wrap leading-10 bdr bottom pt-6 pb-6" :class="[index == 0 ? 'first': '']">
-      <div class="w-6/12 pl-2">
+    <div class="grid grid-cols-12 grid-rows-2 leading-10 bdr bottom pt-6 pb-6 px-2" :class="[index == 0 ? 'first': '']">
+      <div class="sm:col-span-10 md:col-span-6">
         <div>
           <span class="orangeText">
             {{ subject }}
@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="w-5/12 bdr leftborder">
+      <div class="sm:col-span-12 md:col-span-5">
         <div>
           <span class="orangeText">
             {{ $t('engagement.contacts') }}
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="w-1/12">
+      <div class="sm:col-span-2 md:col-span-1">
         <!-- <button
           class="btn-round"
           data_cypress="link"
@@ -122,8 +122,5 @@ export default {
 }
 .tag {
   @apply bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-1 ml-2;
-}
-@media (max-width: 768px) {
-  .leftborder { @apply hidden; }
 }
 </style>
