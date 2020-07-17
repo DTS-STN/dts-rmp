@@ -57,33 +57,6 @@ export function randomOrgSector() {
   return orgs[Math.floor(Math.random() * orgs.length)]
 }
 
-// Return a random ID from the array of IDs
-export function getBioKitId() {
-  const ids = ['a1234', 'b3456']
-  return ids[Math.floor(Math.random() * ids.length)]
-}
-
-// Return array of BioKit models with distinct property values
-export function generateSampleBioKits(number) {
-  const bioKits = []
-  for (let index = 1; index <= number; index++) {
-    bioKits.push(
-      // eslint-disable-next-line no-undef
-      new BiokitModel({
-        bioKitId: index,
-        accessible: index % 2,
-        private: index % 2,
-        available: index !== 2
-      })
-    )
-  }
-  return bioKits
-}
-
-export function randomTimezone(index) {
-  return index % 2 ? 'America/Toronto' : 'America/Vancouver'
-}
-
 // Returns an alphanueric string of a given length
 export function randomString(length) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'
@@ -91,20 +64,6 @@ export function randomString(length) {
   for (let i = 0; i < length; i++) {
     const rnum = Math.floor(Math.random() * chars.length)
     result += chars.substring(rnum, rnum + 1)
-  }
-  return result
-}
-
-// Returns a string in the format of the BIL# (1 letter followed by 12 digits)
-export function randomBil() {
-  const char = 'ABCDEFGHIJKLMNOPQRSTUVWXTZ'
-  const numbers = '1234567890'
-  let result = ''
-  const rchar = Math.floor(Math.random() * char.length)
-  result += char.substring(rchar, rchar + 1)
-  for (let i = 0; i < 12; i++) {
-    const rnum = Math.floor(Math.random() * numbers.length)
-    result += numbers.substring(rnum, rnum + 1)
   }
   return result
 }
@@ -144,12 +103,6 @@ export function randomTagArray() {
     tagArray.push(tags[Math.floor(Math.random() * tags.length)])
   }
   return tagArray
-}
-
-// Returns random timeslot for use in generating appointment date objects
-export function randomTimeSlot() {
-  const timeslots = [0, 15, 30, 45]
-  return timeslots[Math.floor(Math.random() * timeslots.length)]
 }
 
 export function randomDateBeforeDate(start, days) {

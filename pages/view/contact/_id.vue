@@ -1,57 +1,64 @@
 <template>
-  <div class="contactForm">
-    <h1 class="title">
+  <div class="contactForm font-body mt-8 mx-2">
+    <h1 class="title pb-6">
       {{ $t('contact.contact') }}
     </h1>
-    <div class="flex mb-4">
-      <div class="w-5/12 margins">
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
         <ConViewFields label="keyContactName">
           {{ contactInfo.keyContactName }}
         </ConViewFields>
       </div>
-      <div class="w-5/12 margins">
+      <div class="md:w-5/12 margins">
         <ConViewFields label="phone">
           {{ contactInfo.keyContactPhone }}
         </ConViewFields>
       </div>
     </div>
-    <div class="flex mb-4">
-      <div class="w-5/12 margins">
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class=" md:w-5/12 margins ">
         <ConViewFields label="type">
           {{ contactInfo.type }}
         </ConViewFields>
       </div>
-      <div class="w-5/12 margins">
+      <div class=" md:w-5/12 margins ">
         <ConViewFields label="keyContactEmail">
           {{ contactInfo.keyContactEmail }}
         </ConViewFields>
       </div>
     </div>
-    <div class="flex mb-4">
-      <div class="w-5/12 margins">
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class=" md:w-5/12 margins ">
         <ConViewFields label="address">
           {{ contactInfo.keyContactAddress }}
         </ConViewFields>
       </div>
     </div>
+
     <h2 class="title">
       {{ $t('contact.organization') }}
     </h2>
-    <div class="flex mb-4">
-      <div class="w-5/12 margins">
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class=" md:w-5/12 margins ">
         <ConViewFields label="address">
           {{ contactInfo.orgAddress }}
         </ConViewFields>
       </div>
-      <div class="w-5/12 margins">
+      <div class=" md:w-5/12 margins ">
         <ConViewFields label="orgEmail">
           {{ contactInfo.orgEmail }}
         </ConViewFields>
       </div>
     </div>
+
     <h2 class="title">
       {{ $t('contact.engagements') }}
     </h2>
+
     <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
       <ConShowEngagaments
         v-for="(eng, index) in contactInfo.engagements"
@@ -67,14 +74,15 @@
         :number="eng.numParticipants"
       />
     </div>
-    <div class="flex justify-start mb-4">
-      <div class="w-3/12 margins">
+
+    <div class="md:flex flex-wrap justify-start mb-4">
+      <div class="md:w-4/12 margins">
         <AppButton custom_style="btn-cancel" type="button" data_cypress="contactDetailBackButton" @click="goBack">
           {{ $t('contact.back') }}
         </AppButton>
       </div>
-      <div class="w-3/12 margins">
-        <AppButton custom_style="btn-extra" data_cypress="contactDetailEditButton" @click="goEdit">
+      <div class="md:w-4/12 margins">
+        <AppButton custom_style="btn-extra" type="button" data_cypress="contactDetailEditButton" @click="goEdit">
           {{ $t('contact.edit') }}
         </appbutton>
       </div>
@@ -151,8 +159,6 @@ export default {
 
 <style scoped>
 .contactForm {
-  margin: auto;
-  font-family: 'DejaVu Serif', 'Roboto slab', 'sans-serif', 'Helvetica Neue';
   @apply bg-white text-black;
 }
 .title {
@@ -162,15 +168,14 @@ export default {
   @apply px-1 py-2 m-2;
 }
 .btn-cancel {
-  @apply justify-start bg-gray-300 w-11/12 text-black h-12;
+  @apply justify-start bg-gray-300 w-full mt-2 text-black h-12 font-display;
 }
 .btn-extra {
-  @apply w-11/12 h-12 justify-start;
+  @apply w-full mt-2 h-12 justify-start font-display;
 }
-.messageBox {
-  @apply text-center text-2xl align-bottom mb-4 h-12 min-h-0 mt-2 text-black bg-green-700;
-}
-.error {
-  @apply bg-red-700;
+@media screen and (max-width: 768px) {
+  h1 { font-size: 28px !important; }
+  h2 { font-size: 18px !important; }
+  h3 { font-size: 16px !important; }
 }
 </style>

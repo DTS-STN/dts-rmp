@@ -76,6 +76,10 @@ export default {
     showContact(event) {
       this.contactName = event.target.value
       this.items = this.contactArray.filter(item => item.name.includes(this.contactName))
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
       if (this.items.length === 0) {
         this.showDuplicate = false
         this.getContactInfo()

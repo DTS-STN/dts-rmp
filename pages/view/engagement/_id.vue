@@ -1,35 +1,35 @@
 <template>
-  <div class="engagementForm">
-    <h1 class="title">
+  <div class="engagementForm font-body mt-8 mx-2 ">
+    <h1 class="title pb-6">
       {{ $t('engagement.engagement') }}
     </h1>
-    <div class="flex mb-4">
-      <div class="w-5/12 margins">
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class=" md:w-5/12 margins ">
         <EngViewFields label="subject">
           {{ engagement.subject }}
         </EngViewFields>
       </div>
-      <div class="w-5/12 margins">
+      <div class=" md:w-5/12 margins ">
         <EngViewFields label="type">
           {{ engagement.type }}
         </EngViewFields>
       </div>
     </div>
 
-    <div class="flex mb-4">
-      <div class="w-5/12 margins">
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class=" md:w-5/12 margins ">
         <EngViewFields label="date">
           {{ engagement.date.substring(0, 10) }}
         </EngViewFields>
       </div>
-      <div class="w-5/12 margins">
+      <div class=" md:w-5/12 margins ">
         <EngViewFields label="participants">
           {{ engagement.numParticipants }}
         </EngViewFields>
       </div>
     </div>
-    <div class="flex mb-4">
-      <div class="w-5/12 margins">
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class=" md:w-5/12 margins ">
         <EngViewFields label="tags">
           <ul>
             <li v-for="(tag, index) in engagement.tags" :key="index">
@@ -38,13 +38,13 @@
           </ul>
         </EngViewFields>
       </div>
-      <div class="w-5/12 margins">
+      <div class=" md:w-5/12 margins ">
         <EngViewFields label="policy">
           {{ engagement.policyProgram }}
         </EngViewFields>
       </div>
     </div>
-    <div class="flex mb-4">
+    <div class=" md:flex flex-wrap mb-4 ">
       <div class="margins break-all">
         <EngViewFields label="description">
           <br />
@@ -52,7 +52,7 @@
         </EngViewFields>
       </div>
     </div>
-    <div class="flex mb-4">
+    <div class=" md:flex flex-wrap mb-4 ">
       <div class="margins">
         <EngViewFields label="comments">
           <br />
@@ -84,13 +84,13 @@
       />
     </div>
 
-    <div class="flex justify-start mb-12">
-      <div class="w-1/4 margins">
+    <div class="md:flex flex-wrap justify-start mb-4">
+      <div class="md:w-4/12 margins">
         <AppButton class="font-display" btntype="button" custom_style="btn-cancel" data_cypress="formButton" @click="goBack">
           {{ $t('contact.back') }}
         </AppButton>
       </div>
-      <div class="w-1/4 margins">
+      <div class="md:w-4/12 margins">
         <AppButton class="font-display" btntype="button" custom_style="btn-extra" data_cypress="formButton">
           {{ $t('engagement.edit') }}
         </AppButton>
@@ -148,20 +148,23 @@ export default {
 
 <style scoped>
 .engagementForm {
-  margin: auto;
-  font-family: 'DejaVu Serif', 'Roboto slab', 'sans-serif', 'Helvetica Neue';
   @apply bg-white text-black;
 }
 .btn-cancel {
-  @apply justify-start bg-gray-300 w-11/12 text-black h-12;
+  @apply justify-start bg-gray-300 w-full mt-2 text-black h-12;
 }
 .btn-extra {
-  @apply w-11/12 h-12 justify-start;
+  @apply w-full mt-2 h-12 justify-start;
 }
 .title {
   @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
 }
 .margins {
   @apply px-1 py-2 m-2;
+}
+@media screen and (max-width: 768px) {
+  h1 { font-size: 28px !important; }
+  h2 { font-size: 18px !important; }
+  h3 { font-size: 16px !important; }
 }
 </style>
