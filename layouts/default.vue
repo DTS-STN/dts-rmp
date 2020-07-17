@@ -1,15 +1,15 @@
 <template>
   <div class="main-container">
     <header>
-      <AppHeader />
-      <AppNavBtn v-if="shouldDisplayNav" />
+      <app-header />
+      <app-nav-btn v-if="shouldDisplayNav" />
     </header>
     <main>
       <nuxt />
     </main>
     <footer>
-      <AppFooterLandscape />
-      <AppFooterLinks />
+      <app-footer-landscape />
+      <app-footer-links />
     </footer>
   </div>
 </template>

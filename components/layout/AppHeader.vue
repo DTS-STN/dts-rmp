@@ -19,7 +19,7 @@
           </a>
         </div>
       </div>
-      <AppToggleLang />
+      <app-toggle-lang />
     </div>
     <div id="blue-background" class="relative">
       <div class="flex justify-between absolute bottom-0 w-full px-5 py-3">

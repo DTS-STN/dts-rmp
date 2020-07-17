@@ -10,11 +10,11 @@ import AppSelect from '@/components/app/AppSelect'
 import AppNavAdding from '@/components/app/AppNavAdding'
 import AppNavSearching from '@/components/app/AppNavSearching'
 
-Vue.component('AppFooterLandscape', AppFooterLandscape)
-Vue.component('AppFooterLinks', AppFooterLinks)
-Vue.component('AppHeader', AppHeader)
-Vue.component('AppToggleLang', AppToggleLang)
-Vue.component('AppSelect', AppSelect)
-Vue.component('AppNavBtn', AppNavBtn)
-Vue.component('AppNavAdding', AppNavAdding)
-Vue.component('AppNavSearching', AppNavSearching)
+Vue.component('app-footer-landscape', AppFooterLandscape)
+Vue.component('app-footer-links', AppFooterLinks)
+Vue.component('app-header', AppHeader)
+Vue.component('app-toggle-lang', AppToggleLang)
+Vue.component('app-select', AppSelect)
+Vue.component('app-nav-btn', AppNavBtn)
+Vue.component('app-nav-adding', AppNavAdding)
+Vue.component('app-nav-searching', AppNavSearching)

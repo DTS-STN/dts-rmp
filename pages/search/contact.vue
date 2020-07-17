@@ -1,13 +1,13 @@
 <template>
   <div class="main pt-1 xl:mx-16">
-    <AppNavSearching class="my-16 mx-8 sm:mx-12" @filterResults="filter" />
+    <app-nav-searching class="my-16 mx-8 sm:mx-12" @filterResults="filter" />
     <div class="mx-12 text-sm font-body font-semibold">
       {{ totalRecords }} results
     </div>
     <!-- Loop through contacts here. look at 'search/engagement' for guidance -->
     <div class="max-w-full px-4 py-6 my-8 md:mx-12 border border-gray-500">
       <!-- Still requires "last" property for last engagement to be setup, discussion on "date" property TODO -->
-      <EngShowContacts
+      <eng-show-contacts
         v-for="(con, index) in filteredContacts"
         :id="con._id"
         :key="index"
@@ -32,7 +32,7 @@ import EngShowContacts from '@/components/engagement/EngShowContacts.vue'
 
 export default {
   components: {
-    EngShowContacts
+    'eng-show-contacts': EngShowContacts
   },
 
   async asyncData({ app, params, store }) {

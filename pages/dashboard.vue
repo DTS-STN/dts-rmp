@@ -19,17 +19,17 @@
     </div>
     <div>
       <form class="sm:flex">
-        <AppSelect
+        <app-select
           modelname="hello"
           :options="time"
           class="dropdowns md:w-full"
         />
-        <AppSelect
+        <app-select
           modelname="hello"
           :options="subjects"
           class="dropdowns md:w-full"
         />
-        <AppSelect
+        <app-select
           modelname="hello"
           :options="organizations"
           class="dropdowns md:w-full"
