@@ -137,13 +137,13 @@ export default {
     date: 'Date',
     participants: 'Number of participants',
     numParticipants: 'Participants',
-    description:
-      'Description (Maximum 1000 characters. Additional characters will not be saved.)',
+    description: 'Description',
+    editDescription: 'Description (Maximum 1000 characters. Additional characters will not be saved.)',
     policy: 'Policy / program',
     tags: 'Tags:',
     tagLabel: 'Start typing and press enter to add new tags',
-    comments:
-      'Comments (Maximum 140 characters. Additional characters will not be saved.)',
+    comments: 'Comments',
+    editComments: 'Comments (Maximum 140 characters. Additional characters will not be saved.)',
     cancel: 'Cancel',
     save: 'Save',
     edit: 'Edit',
