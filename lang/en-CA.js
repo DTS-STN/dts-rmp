@@ -189,5 +189,26 @@ export default {
     MinisterOfficeBriefing: 'Minister office briefing',
     ScrumSprint: 'Scrum/Sprint',
     Advisory: 'Advisory board/Council Meeting'
+  },
+  dashboard: {
+    title: 'Engagement Dashboard',
+    download: 'Download PDF',
+    // time
+    sixMonths: 'Last 6 months',
+    threeMonths: 'Last 3 months',
+    lastMonth: 'Last month',
+    // subjects
+    allSubjects: 'All Subjects',
+    EIData: 'EI Data',
+    CERB: 'CERB',
+    HomelessGrants: 'Homeless Grants',
+    // organisations
+    AllOrganisations: 'All Organisations',
+    RBC: 'RBC',
+    StatsCan: 'Stats Canada',
+    CRA: 'CRA',
+    BMO: 'BMO',
+    OntarioGov: 'Ontario Gov',
+    OttawaMission: 'Ottawa Mission'
   }
 }
