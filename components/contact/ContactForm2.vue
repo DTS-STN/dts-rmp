@@ -807,4 +807,9 @@ export default {
   background-color: rgba(255, 0, 0, 0.1);
   @apply border border-red-500;
 }
+@media screen and (max-width: 768px) {
+  h1 { font-size: 28px; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 16px; }
+}
 </style>
