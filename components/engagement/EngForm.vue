@@ -302,19 +302,6 @@ export default {
         message: null,
         goBack: false
       },
-      /*
-      engagementDetail: {
-        subject: '',
-        type: '',
-        date: new Date(),
-        description: '',
-        numParticipants: 0,
-        contacts: [],
-        policyProgram: '',
-        comments: '',
-        tags: []
-      },
-      */
       engagementDetail: this.resetForm(),
       inputTag: '',
       engagementTypes: [
