@@ -1,5 +1,5 @@
 <template>
-  <div title="engagementForm" class="mx-12">
+  <div ref="top" title="engagementForm" class="mx-12">
     <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list mt-6">
       <h1 class="text-xl text-red-600">
         {{ $t('engagementValidation.messageTitle') }}
@@ -18,6 +18,7 @@
         Contact
       </h2>
       <select-contact
+        :key="componentKey"
         @childToParent="onChildClick"
         @blur="$v.engagementDetail.contacts.$touch()"
       />
@@ -260,16 +261,6 @@
             {{ message.message }}
           </span>
         </div>
-        <div
-          v-if="message.message != null"
-          class="messageBox"
-          :class="[message.type == 'error' ? ' error' : ' ']"
-        >
-          <span>
-            {{ message.message }}
-          </span>
-        </div>
-
         <div class="md:flex flex-wrap justify-start mb-12">
           <div class=" md:w-4/12 margins">
             <AppButton class="font-display" custom_style="btn-cancel" btntype="button" data_cypress="formButton" @click="goBack">
@@ -305,22 +296,13 @@ export default {
       datetest: new Date().toISOString(),
       mySVG: require('../../assets/images/calendar.svg'),
       idFromChild: [],
+      componentKey: 0,
       message: {
         type: null,
         message: null,
         goBack: false
       },
-      engagementDetail: {
-        subject: '',
-        type: '',
-        date: new Date(),
-        description: '',
-        numParticipants: 0,
-        contacts: [],
-        policyProgram: '',
-        comments: '',
-        tags: []
-      },
+      engagementDetail: this.resetForm(),
       inputTag: '',
       engagementTypes: [
         { type: this.$t('engagementTypes.one') },
@@ -396,16 +378,28 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
-      if (!this.message.goBack) {
-        this.message.goBack = false
-        this.goBack()
-      }
     },
     emptyContacts() {
       return (this.engagementDetail.contacts.length === 0)
     },
     goBack() {
       this.$router.back()
+    },
+    reloadComponent() {
+      this.componentKey += 1
+    },
+    resetForm() {
+      return {
+        subject: '',
+        type: '',
+        date: new Date(),
+        description: '',
+        numParticipants: 0,
+        contacts: [],
+        policyProgram: '',
+        comments: '',
+        tags: []
+      }
     },
     async submitForm(engagementDetail) {
       this.$v.$touch()
@@ -420,6 +414,10 @@ export default {
             engagementDetail
           })
           this.notification('success', 'engagment created')
+          this.engagementDetail = this.resetForm()
+          this.reloadComponent()
+          setTimeout(() => { this.$v.$reset() }, 0)
+          this.attemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
         }
