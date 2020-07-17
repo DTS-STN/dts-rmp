@@ -86,8 +86,6 @@ export default {
     showContact(event) {
       this.contactName = event.target.value
       this.items = this.contactArray.filter(item => item.name.includes(this.contactName))
-      // eslint-disable-next-line no-console
-      console.log(this.items)
 
       if (this.items.length === 0) {
         this.getContactInfo()

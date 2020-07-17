@@ -280,8 +280,6 @@ export default {
   },
   methods: {
     onChildClick(value) {
-      // eslint-disable-next-line no-console
-      console.log(this.idFromChild)
       this.idFromChild = value
     },
     increment() {
