@@ -31,7 +31,7 @@
     <div class=" md:flex flex-wrap mb-4 ">
       <div class=" md:w-5/12 flex margins ">
         <EngViewFields label="tags">
-          <ul>
+          <ul class="flex">
             <li v-for="(tag, index) in engagement.tags" :key="index" class="tags">
               {{ tag }}
             </li>
@@ -163,7 +163,7 @@ export default {
   @apply px-1 py-2 m-2;
 }
 .tags {
-  @apply flex font-thin text-base bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-1 ml-2 items-center mt-2;
+  @apply flex font-thin text-base bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-1 ml-2 items-center mt-4;
 }
 @media screen and (max-width: 768px) {
   h1 { font-size: 28px !important; }
