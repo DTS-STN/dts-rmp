@@ -18,6 +18,7 @@
         Contact
       </h2>
       <select-contact
+        :contact-props="engagementDetail.contacts"
         @childToParent="onChildClick"
         @blur="$v.engagementDetail.contacts.$touch()"
       />
@@ -294,7 +295,7 @@ import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
-  name: 'EngagementForm',
+  name: 'EngagementEditForm',
   components: {
     AppButton,
     SelectContact,
