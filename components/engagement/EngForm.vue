@@ -205,13 +205,13 @@
         </span>
       </div>
 
-      <div class="flex justify-start mb-12">
-        <div class="w-3/12 margins">
+      <div class="md:flex flex-wrap justify-start mb-12">
+        <div class=" md:w-4/12 margins">
           <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
             {{ $t('engagement.cancel') }}
           </AppButton>
         </div>
-        <div class="w-3/12 margins">
+        <div class=" md:w-4/12 margins">
           <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
             {{ $t('engagement.save') }}
           </AppButton>
@@ -341,10 +341,10 @@ export default {
   @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
 }
 .btn-extra {
-  @apply w-11/12 h-12 justify-start;
+  @apply w-full mt-2 h-12 justify-start;
 }
 .btn-cancel {
-  @apply justify-start bg-gray-300 w-11/12 text-black h-12;
+  @apply justify-start bg-gray-300 w-full mt-2 text-black h-12;
 }
 .formLabel {
   @apply font-bold;

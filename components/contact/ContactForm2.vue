@@ -1,7 +1,7 @@
 <template>
   <div class="contactForm font-body mt-8 mx-12">
     <div>
-      <div v-if="didAttemptSubmit && invalidFields.length" class="error-list">
+      <div v-if="didAttemptSubmit && invalidFields.length" class="error-list md:w-full">
         <h2 ref="displayErrors" class="text-xl ml-2 text-red-600">
           {{ $t('contactValidation.errorListTitle') }}
         </h2>
@@ -24,8 +24,8 @@
         </p>
       </div>
 
-      <div class="flex mb-4">
-        <div class="w-5/12 margins">
+      <div class="md:flex flex-wrap mb-4">
+        <div class=" md:w-5/12 margins ">
           <select
             v-model="contactInfo.type"
             class="formSelect"
@@ -52,8 +52,8 @@
       </h2>
 
       <form @submit.prevent="submitForm(contactInfo)">
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel orange" for="keyContactName">
               {{ $t('contact.keyContactName') }}
             </label>
@@ -76,7 +76,7 @@
               {{ $t('contactValidation.required') }}
             </p>
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel orange" for="keyContactTitle">
               {{ $t('contact.keyContactTitle') }}
             </label>
@@ -101,8 +101,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="keyContactAddress">
               {{ $t('contact.address') }}
             </label>
@@ -114,7 +114,7 @@
               :placeholder="$t('contact.address')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="keyContactAddress2">
               {{ $t('contact.address2') }}
             </label>
@@ -128,8 +128,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="keyContactCity">
               {{ $t('contact.city') }}
             </label>
@@ -141,7 +141,7 @@
               :placeholder="$t('contact.city')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="keyContactProv">
               {{ $t('contact.provState') }}
             </label>
@@ -155,8 +155,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="keyContactCountry">
               {{ $t('contact.country') }}
             </label>
@@ -168,7 +168,7 @@
               :placeholder="$t('contact.country')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="keyContactPostal">
               {{ $t('contact.postal') }}
             </label>
@@ -182,8 +182,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel orange" for="keyContactEmail">
               {{ $t('contact.keyContactEmail') }}
             </label>
@@ -215,7 +215,7 @@
               {{ $t('contactValidation.invalidEmail') }}
             </p>
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="keyContactPhone">
               {{ $t('contact.phone') }}
             </label>
@@ -233,8 +233,8 @@
           {{ $t('contact.organization') }}
         </h2>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="orgName">
               {{ $t('contact.orgName') }}
             </label>
@@ -246,7 +246,7 @@
               :placeholder="$t('contact.orgName')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="orgWebsite">
               {{ $t('contact.orgWebsite') }}
             </label>
@@ -260,7 +260,7 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div class=" md:flex flex-wrap mb-4 ">
           <div class="w-5/12  margins">
             <label class="formLabel" for="orgAddress">
               {{ $t('contact.address') }}
@@ -273,7 +273,7 @@
               :placeholder="$t('contact.address')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="orgAddress2">
               {{ $t('contact.address2') }}
             </label>
@@ -287,7 +287,7 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div class=" md:flex flex-wrap mb-4 ">
           <div class="w-5/12  margins">
             <label class="formLabel" for="orgCity">
               {{ $t('contact.city') }}
@@ -300,7 +300,7 @@
               :placeholder="$t('contact.city')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="orgProvState">
               {{ $t('contact.provState') }}
             </label>
@@ -314,7 +314,7 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div class=" md:flex flex-wrap mb-4 ">
           <div class="w-5/12  margins">
             <label class="formLabel" for="orgCountry">
               {{ $t('contact.country') }}
@@ -327,7 +327,7 @@
               :placeholder="$t('contact.country')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="keyContactPostal">
               {{ $t('contact.postal') }}
             </label>
@@ -341,8 +341,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="orgEmail">
               {{ $t('contact.orgEmail') }}
             </label>
@@ -354,7 +354,7 @@
               :placeholder="$t('contact.orgEmail')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="orgPhone">
               {{ $t('contact.phone') }}
             </label>
@@ -368,8 +368,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="department">
               {{ $t('contact.department') }}
             </label>
@@ -381,7 +381,7 @@
               :placeholder="$t('contact.department')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="branch">
               {{ $t('contact.branch') }}
             </label>
@@ -395,8 +395,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="directorate">
               {{ $t('contact.directorate') }}
             </label>
@@ -409,7 +409,7 @@
             />
           </div>
 
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="provTerritory">
               {{ $t('contact.provTerritory') }}
             </label>
@@ -465,7 +465,7 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
+        <div class=" md:flex flex-wrap mb-4 ">
           <div class=" w-auto margins">
             <label class="formLabel" for="orgSector">
               {{ $t('contact.orgSector') }}
@@ -495,8 +495,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="contributionRefNo">
               {{ $t('contact.contrib') }}
             </label>
@@ -508,7 +508,7 @@
               :placeholder="$t('contact.contrib')"
             />
           </div>
-          <div class="w-5/12 margins">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="serviceContrNo">
               {{ $t('contact.service') }}
             </label>
@@ -522,8 +522,8 @@
           </div>
         </div>
 
-        <div class="flex mb-4">
-          <div class="w-5/12 margins">
+        <div class=" md:flex flex-wrap mb-4 ">
+          <div class=" md:w-5/12 margins ">
             <label class="formLabel" for="onStandingOffer">
               {{ $t('contact.standing') }}
             </label>
@@ -553,13 +553,13 @@
           </span>
         </div>
 
-        <div class="flex justify-start mb-4">
-          <div class="w-3/12 margins">
+        <div class=" md:flex flex-wrap justify-start mb-4">
+          <div class=" md:w-4/12 margins">
             <AppButton custom_style="btn-cancel" data_cypress="cancelButton" type="button" @click="goBack">
               {{ $t('contact.cancel') }}
             </AppButton>
           </div>
-          <div class="w-3/12 margins">
+          <div class=" md:w-4/12 margins">
             <AppButton custom_style="btn-extra" data_cypress="submitButton">
               {{ $t('contact.save') }}
             </AppButton>
@@ -752,7 +752,6 @@ export default {
 
 <style scoped>
 .contactForm {
-  width: 1200px;
   @apply bg-white text-black;
 }
 .title {
@@ -780,13 +779,13 @@ export default {
   @apply outline-none border-blue-500;
 }
 .margins {
-  @apply px-1 py-2 m-2;
+  @apply py-2 mx-2 my-1;
 }
 .btn-cancel {
-  @apply justify-start bg-gray-300 w-11/12 text-black h-12;
+  @apply justify-start bg-gray-300 w-full mt-2 text-black h-12;
 }
 .btn-extra {
-  @apply w-11/12 h-12 justify-start;
+  @apply w-full h-12 mt-2 justify-start;
 }
 .messageBox {
   font-size: 18px !important;
