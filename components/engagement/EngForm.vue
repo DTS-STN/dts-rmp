@@ -250,7 +250,6 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
         <div
           v-if="message.message != null"
           class="messageBox"
@@ -260,41 +259,27 @@
             {{ message.message }}
           </span>
         </div>
-        <div class="flex justify-start mb-12">
-          <div class="w-3/12 margins">
-            <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton" btntype="button" @click="goBack">
+        <div
+          v-if="message.message != null"
+          class="messageBox"
+          :class="[message.type == 'error' ? ' error' : ' ']"
+        >
+          <span>
+            {{ message.message }}
+          </span>
+        </div>
+
+        <div class="md:flex flex-wrap justify-start mb-12">
+          <div class=" md:w-4/12 margins">
+            <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
               {{ $t('engagement.cancel') }}
             </AppButton>
           </div>
-          <div class="w-3/12 margins">
+          <div class=" md:w-4/12 margins">
             <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
               {{ $t('engagement.save') }}
             </AppButton>
           </div>
-=======
-      </div>
-
-      <div
-        v-if="message.message != null"
-        class="messageBox"
-        :class="[message.type == 'error' ? ' error' : ' ']"
-      >
-        <span>
-          {{ message.message }}
-        </span>
-      </div>
-
-      <div class="md:flex flex-wrap justify-start mb-12">
-        <div class=" md:w-4/12 margins">
-          <AppButton class="font-display" custom_style="btn-cancel" data_cypress="formButton">
-            {{ $t('engagement.cancel') }}
-          </AppButton>
-        </div>
-        <div class=" md:w-4/12 margins">
-          <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
-            {{ $t('engagement.save') }}
-          </AppButton>
->>>>>>> main
         </div>
       </form>
     </div>
@@ -375,20 +360,8 @@ export default {
   },
   methods: {
     onChildClick(value) {
-<<<<<<< HEAD
       this.engagementDetail.contacts = value
       // eslint-disable-next-line no-console
-=======
-      this.idFromChild = value
-    },
-    increment() {
-      this.engagementDetail.numParticipants++
-    },
-    decrement() {
-      if (this.engagementDetail.numParticipants > 0) {
-        this.engagementDetail.numParticipants--
-      }
->>>>>>> main
     },
     getTagFromInput() {
       if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10 || this.inputTag.length === 0 || this.duplicateTags()) {
