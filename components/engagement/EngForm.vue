@@ -148,7 +148,7 @@
                 class="orange block tracking-wide text-black text-md font-bold font-body mb-4"
                 for="description"
               >
-                {{ $t('engagement.description') }}
+                {{ $t('engagement.editDescription') }}
               </label>
               <br />
               <textarea
@@ -231,7 +231,7 @@
                 class="block tracking-wide text-black text-md font-bold font-body mb-4"
                 for="comments"
               >
-                {{ $t('engagement.comments') }}
+                {{ $t('engagement.editComments') }}
               </label>
               <br />
               <textarea
