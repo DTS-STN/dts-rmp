@@ -295,6 +295,7 @@ export default {
       datetest: new Date().toISOString(),
       mySVG: require('../../assets/images/calendar.svg'),
       idFromChild: [],
+      componentKey: 0,
       message: {
         type: null,
         message: null,
@@ -395,6 +396,9 @@ export default {
     },
     goBack() {
       this.$router.back()
+    },
+    forceRender() {
+      this.componentKey += 1
     },
     resetForm() {
       return {
