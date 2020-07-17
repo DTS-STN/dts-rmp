@@ -1,5 +1,5 @@
 <template>
-  <div title="engagementForm" class="mx-12">
+  <div ref="top" title="engagementForm" class="mx-12">
     <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list mt-6">
       <h1 class="text-xl text-red-600">
         {{ $t('engagementValidation.messageTitle') }}
@@ -260,16 +260,6 @@
             {{ message.message }}
           </span>
         </div>
-        <div
-          v-if="message.message != null"
-          class="messageBox"
-          :class="[message.type == 'error' ? ' error' : ' ']"
-        >
-          <span>
-            {{ message.message }}
-          </span>
-        </div>
-
         <div class="md:flex flex-wrap justify-start mb-12">
           <div class=" md:w-4/12 margins">
             <AppButton class="font-display" custom_style="btn-cancel" btntype="button" data_cypress="formButton" @click="goBack">
@@ -434,6 +424,7 @@ export default {
           this.notification('success', 'engagment created')
           this.engagementDetail = this.resetForm()
           setTimeout(() => { this.$v.$reset() }, 0)
+          this.$scrollTo(this.$refs.top)
           this.attemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
