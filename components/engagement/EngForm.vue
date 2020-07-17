@@ -18,6 +18,7 @@
         Contact
       </h2>
       <select-contact
+        :key="componentKey"
         @childToParent="onChildClick"
         @blur="$v.engagementDetail.contacts.$touch()"
       />
@@ -397,7 +398,7 @@ export default {
     goBack() {
       this.$router.back()
     },
-    forceRender() {
+    reloadComponent() {
       this.componentKey += 1
     },
     resetForm() {
@@ -427,6 +428,7 @@ export default {
           })
           this.notification('success', 'engagment created')
           this.engagementDetail = this.resetForm()
+          this.reloadComponent()
           setTimeout(() => { this.$v.$reset() }, 0)
           this.$scrollTo(this.$refs.top)
           this.attemptSubmit = false
