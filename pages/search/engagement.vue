@@ -7,7 +7,7 @@
     </div>
 
     <div class="max-w-full px-4 py-6 my-8 md:mx-12 border border-gray-500">
-      <ConShowEngagaments
+      <contact-show-engagement
         v-for="(eng, index) in filteredEngagements"
         :id="eng._id"
         :key="index"
@@ -27,11 +27,11 @@
 <script>
 import { mapState } from 'vuex'
 
-import ConShowEngagaments from '@/components/contact/ConShowEngagements.vue'
+import ConShowEngagements from '@/components/contact/ConShowEngagements.vue'
 
 export default {
   components: {
-    ConShowEngagaments
+    'contact-show-engagement': ConShowEngagements
   },
 
   async asyncData({ app, params, store }) {

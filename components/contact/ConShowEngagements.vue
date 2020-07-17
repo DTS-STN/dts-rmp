@@ -53,7 +53,7 @@
 <script>
 
 export default {
-  name: 'ConShowEngagaments',
+  name: 'ConShowEngagements',
 
   props: {
     id: { type: String, default: '' },
