@@ -140,7 +140,7 @@ export default {
     description: 'Description',
     editDescription: 'Description (Maximum 1000 characters. Additional characters will not be saved.)',
     policy: 'Policy / program',
-    tags: 'Tags:',
+    tags: 'Tags',
     tagLabel: 'Start typing and press enter to add new tags',
     comments: 'Comments',
     editComments: 'Comments (Maximum 140 characters. Additional characters will not be saved.)',
