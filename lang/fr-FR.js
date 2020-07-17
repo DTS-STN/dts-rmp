@@ -137,11 +137,12 @@ export default {
     date: 'Date',
     participants: 'Nombre de participants',
     description:
-      'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+      'Description',
+    editDescription: 'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     policy: 'Politique / programme',
     tags: 'Mots clés',
-    comments:
-      'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+    comments: 'Commentaires',
+    editComments: 'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     cancel: 'Annuler',
     save: 'Sauver',
     edit: 'Modifier',
