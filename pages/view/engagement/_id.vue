@@ -52,8 +52,8 @@
         </EngViewFields>
       </div>
     </div>
-    <div class=" md:flex flex-wrap mb-4 ">
-      <div class="margins">
+    <div class="md:flex flex-wrap mb-4 ">
+      <div class="margins w-4/5">
         <EngViewFields label="comments">
           <br />
           <EngComments

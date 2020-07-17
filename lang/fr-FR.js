@@ -139,7 +139,8 @@ export default {
     participants: 'Nombre de participants',
     numParticipants: 'Participants',
     description:
-      'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+      'Description',
+    editDescription: 'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     policy: 'Politique / programme',
     tags: 'Mots clés:',
     tagLabel: 'Commencez à taper et sélectionnez la balise existante ou appuyez sur Entrée pour ajouter de nouvelles balises',

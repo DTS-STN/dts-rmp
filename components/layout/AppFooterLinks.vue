@@ -63,7 +63,12 @@
 
 <script>
 export default {
-  name: 'AppFooterLinks'
+  name: 'AppFooterLinks',
+  methods: {
+    goToTop() {
+      this.$scrollTo(this.$refs.top)
+    }
+  }
 }
 </script>
 
@@ -89,6 +94,9 @@ export default {
 .glyphicon-chevron-up::after {
   content: '^';
 }
+html {
+  scroll-behavior: smooth;
+},
 @media (min-width: 1280px) {
   #fLinks li {
     margin-left: 15px;
