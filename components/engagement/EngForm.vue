@@ -310,6 +310,7 @@ export default {
         message: null,
         goBack: false
       },
+      /*
       engagementDetail: {
         subject: '',
         type: '',
@@ -321,6 +322,8 @@ export default {
         comments: '',
         tags: []
       },
+      */
+      engagementDetail: this.resetForm(),
       inputTag: '',
       engagementTypes: [
         { type: this.$t('engagementTypes.one') },
@@ -396,16 +399,25 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
-      if (!this.message.goBack) {
-        this.message.goBack = false
-        this.goBack()
-      }
     },
     emptyContacts() {
       return (this.engagementDetail.contacts.length === 0)
     },
     goBack() {
       this.$router.back()
+    },
+    resetForm() {
+      return {
+        subject: '',
+        type: '',
+        date: new Date(),
+        description: '',
+        numParticipants: 0,
+        contacts: [],
+        policyProgram: '',
+        comments: '',
+        tags: []
+      }
     },
     async submitForm(engagementDetail) {
       this.$v.$touch()
@@ -420,6 +432,9 @@ export default {
             engagementDetail
           })
           this.notification('success', 'engagment created')
+          this.engagementDetail = this.resetForm()
+          setTimeout(() => { this.$v.$reset() }, 0)
+          this.attemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
         }
