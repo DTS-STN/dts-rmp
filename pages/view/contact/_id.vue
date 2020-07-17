@@ -1,13 +1,73 @@
 <template>
-  <div class="contactForm font-body mt-8 mx-2">
+  <div class="contactForm font-body mt-8 mx-4 xl:mx-16">
     <h1 class="title pb-6">
       {{ $t('contact.contact') }}
     </h1>
 
     <div class=" md:flex flex-wrap mb-4 ">
       <div class="md:w-5/12 margins">
+        <ConViewFields label="type">
+          {{ $t('contact.' + contactInfo.type) }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
         <ConViewFields label="keyContactName">
           {{ contactInfo.keyContactName }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="keyContactTitle">
+          {{ contactInfo.keyContactTitle }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="address">
+          {{ contactInfo.keyContactAddress }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="address2">
+          {{ contactInfo.keyContactAddress2 }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="city">
+          {{ contactInfo.keyContactCity }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="provState">
+          {{ contactInfo.keyContactProvState }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="country">
+          {{ contactInfo.keyContactCountry }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="postal">
+          {{ contactInfo.keyContactPostalCode }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="keyContactEmail">
+          {{ contactInfo.keyContactEmail }}
         </ConViewFields>
       </div>
       <div class="md:w-5/12 margins">
@@ -17,43 +77,139 @@
       </div>
     </div>
 
-    <div class=" md:flex flex-wrap mb-4 ">
-      <div class=" md:w-5/12 margins ">
-        <ConViewFields label="type">
-          {{ contactInfo.type }}
-        </ConViewFields>
-      </div>
-      <div class=" md:w-5/12 margins ">
-        <ConViewFields label="keyContactEmail">
-          {{ contactInfo.keyContactEmail }}
-        </ConViewFields>
-      </div>
-    </div>
+    <!-- =============================== -->
 
-    <div class=" md:flex flex-wrap mb-4 ">
-      <div class=" md:w-5/12 margins ">
-        <ConViewFields label="address">
-          {{ contactInfo.keyContactAddress }}
-        </ConViewFields>
-      </div>
-    </div>
-
-    <h2 class="title">
+    <h2 class="title mb-8">
       {{ $t('contact.organization') }}
     </h2>
 
     <div class=" md:flex flex-wrap mb-4 ">
-      <div class=" md:w-5/12 margins ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="orgName">
+          {{ contactInfo.orgName }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="orgWebsite">
+          {{ contactInfo.orgWebsite }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
         <ConViewFields label="address">
           {{ contactInfo.orgAddress }}
         </ConViewFields>
       </div>
-      <div class=" md:w-5/12 margins ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="address2">
+          {{ contactInfo.orgAddress2 }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="city">
+          {{ contactInfo.orgCity }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="provState">
+          {{ contactInfo.orgProvState }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="country">
+          {{ contactInfo.orgCountry }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="postal">
+          {{ contactInfo.orgPostalCode }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
         <ConViewFields label="orgEmail">
           {{ contactInfo.orgEmail }}
         </ConViewFields>
       </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="phone">
+          {{ contactInfo.orgPhone }}
+        </ConViewFields>
+      </div>
     </div>
+
+    <!-- =============================== -->
+
+    <hr class="border border-rmp-orange mx-4 my-8" />
+
+    <!-- =============================== -->
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="department">
+          {{ contactInfo.department }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="branch">
+          {{ contactInfo.branch }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="directorate">
+          {{ contactInfo.directorate }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="provTerritory">
+          {{ $t('contact.' + contactInfo.provTerritory) }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="w-auto margins">
+        <ConViewFields label="orgSector">
+          {{ $t('contact.' + contactInfo.orgSector) }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="contrib">
+          {{ contactInfo.contributionRefNo }}
+        </ConViewFields>
+      </div>
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="service">
+          {{ contactInfo.serviceContrNo }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class="md:w-5/12 margins">
+        <ConViewFields label="standing">
+          {{ $t('contact.' + contactInfo.onStandingOffer) }}
+        </ConViewFields>
+      </div>
+    </div>
+
+    <!-- =============================== -->
 
     <h2 class="title">
       {{ $t('contact.engagements') }}

@@ -320,7 +320,7 @@
               {{ $t('contact.country') }}
             </label>
             <input
-              id="keyContactCountry"
+              id="orgCountry"
               v-model="contactInfo.orgCountry"
               class="formInput"
               type="text"
@@ -423,43 +423,43 @@
                 {{ $t('contact.selProvince') }}
               </option>
               <option value="AB">
-                {{ $t('contact.ab') }}
+                {{ $t('contact.AB') }}
               </option>
               <option value="BC">
-                {{ $t('contact.bc') }}
+                {{ $t('contact.BC') }}
               </option>
               <option value="MB">
-                {{ $t('contact.mb') }}
+                {{ $t('contact.MB') }}
               </option>
               <option value="NB">
-                {{ $t('contact.nb') }}
+                {{ $t('contact.NB') }}
               </option>
               <option value="NFL">
-                {{ $t('contact.nfl') }}
+                {{ $t('contact.NFL') }}
               </option>
               <option value="NS">
-                {{ $t('contact.ns') }}
+                {{ $t('contact.NS') }}
               </option>
               <option value="ON">
-                {{ $t('contact.on') }}
+                {{ $t('contact.ON') }}
               </option>
               <option value="PEI">
-                {{ $t('contact.pei') }}
+                {{ $t('contact.PEI') }}
               </option>
               <option value="QC">
-                {{ $t('contact.qc') }}
+                {{ $t('contact.QC') }}
               </option>
               <option value="SK">
-                {{ $t('contact.sk') }}
+                {{ $t('contact.SK') }}
               </option>
               <option value="NWT">
-                {{ $t('contact.nwt') }}
+                {{ $t('contact.NWT') }}
               </option>
               <option value="NU">
-                {{ $t('contact.nu') }}
+                {{ $t('contact.NU') }}
               </option>
               <option value="YK">
-                {{ $t('contact.yk') }}
+                {{ $t('contact.YK') }}
               </option>
             </select>
           </div>
@@ -534,10 +534,10 @@
               @change="onStanding($event)"
             >
               <option :value="false">
-                {{ $t('contact.no') }}
+                {{ $t('contact.false') }}
               </option>
               <option :value="true">
-                {{ $t('contact.yes') }}
+                {{ $t('contact.true') }}
               </option>
             </select>
           </div>
