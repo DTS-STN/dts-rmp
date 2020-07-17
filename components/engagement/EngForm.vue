@@ -107,6 +107,7 @@
                   :value="engagementDetail.date.toISOString().split('T')[0]"
                   class="dateStyle"
                   type="date"
+                  required="required"
                   @input="engagementDetail.date = $event.target.valueAsDate"
                   @blur="$v.engagementDetail.date.$touch()"
                 />
@@ -361,7 +362,6 @@ export default {
   methods: {
     onChildClick(value) {
       this.engagementDetail.contacts = value
-      // eslint-disable-next-line no-console
     },
     getTagFromInput() {
       if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10 || this.inputTag.length === 0 || this.duplicateTags()) {
@@ -421,7 +421,7 @@ export default {
           })
           this.notification('success', 'engagment created')
         } catch (e) {
-          // this.notification('error', e.response.data.message)
+          this.notification('error', e.response.data.message)
         }
       }
     }
