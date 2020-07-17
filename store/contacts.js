@@ -15,15 +15,6 @@ export const mutations = {
 export const actions = {
   fetchContacts({ commit }) {
     this.$axios.defaults.baseURL = this.$config.API_URL
-    // eslint-disable-next-line no-console
-    console.log('client side baseURL: ' + this.$axios.defaults.baseURL)
-    // eslint-disable-next-line no-console
-    console.log('env variable API_URL: ' + this.$config.API_URL)
-    // eslint-disable-next-line no-console
-    console.log(
-      'env variable CONNECTION_STRING: ' +
-        this.$config.CONNECTION_STRING
-    )
     return this.$axios.get('/api/contact/contacts').then((response) => {
       commit('SET_CONTACTS', response.data)
     })

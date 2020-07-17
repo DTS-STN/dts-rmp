@@ -635,8 +635,7 @@ export default {
   computed: {
     invalidFields() {
       return Object.keys(this.$v.contactInfo.$params).filter(
-        // eslint-disable-next-line arrow-parens
-        (fieldName) => this.$v.contactInfo[fieldName].$invalid
+        fieldName => this.$v.contactInfo[fieldName].$invalid
       )
     }
   },
