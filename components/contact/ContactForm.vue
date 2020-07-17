@@ -29,7 +29,7 @@
           <select
             v-model="contactInfo.type"
             class="formSelect"
-            @change="onStanding($event)"
+            @change="onType($event)"
           >
             <option value="Federal">
               {{ $t('contact.federal') }}
@@ -533,10 +533,10 @@
               class="formSelect"
               @change="onStanding($event)"
             >
-              <option value="false">
+              <option :value="false">
                 {{ $t('contact.no') }}
               </option>
-              <option value="true">
+              <option :value="true">
                 {{ $t('contact.yes') }}
               </option>
             </select>
