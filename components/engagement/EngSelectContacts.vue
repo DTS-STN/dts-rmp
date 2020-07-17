@@ -1,17 +1,14 @@
 <template>
-  <div class="contact mb-8">
-    <h2 class="font-display text-4xl mt-12">
-      Contact
-    </h2>
-    <form class="relative mt-6 max-w-md">
+  <div class="contact">
+    <div class="relative mt-6 max-w-md">
       <label
         class="orange block tracking-wide text-black text-md font-bold mb-2"
         for="subject"
       >
-        {{ $t('engSelect.name') }}
+        {{ $t('engagement.contactName') }}
       </label>
       <div>
-        <form-select v-model="selected" @click="selected = undefined" @change="showContact($event)">
+        <form-select v-model="selected" @click="selected = undefined" @input="showContact($event)">
           <option value="" selected="selected" disabled hidden>
             {{ $t('engagement.selectContact') }}
           </option>
@@ -20,19 +17,10 @@
           </option>
         </form-select>
       </div>
-      <!-- <div class="btn-add flex flex-row mt-2">
-        <button class="mr-4" @click.prevent="moreContacts=true">
-          {{ $t ('engSelect.add') }}
-        </button>
-        <div class="mt-1">
-          <span
-            class="plus"
-          >
-            +
-          </span>
-        </div>
-      </div> -->
-    </form>
+    </div>
+    <p v-if="showDuplicate" class="error">
+      {{ $t('engagementValidation.duplicateContacts') }}
+    </p>
     <div v-if="isSelected === true">
       <div class="mt-4">
         <show-contact
@@ -41,8 +29,8 @@
           :name="contactList.name"
           :orgname="contactList.orgName"
           :email="contactList.email"
-          :last="contactList.email"
-          :date="contactList.date"
+          :subject="contactList.subject"
+          :date="contactList.date.substring(0, 10)"
           :number="contactList.participants"
           :array-index="index"
           @childToParent="onChildClick"
@@ -61,6 +49,7 @@ export default {
     showContact,
     formSelect
   },
+  /* fetch data from vuex store */
   async fetch() {
     try {
       await this.$store.dispatch('contacts/fetchContacts')
@@ -71,6 +60,7 @@ export default {
   },
   data() {
     return {
+      showDuplicate: false,
       item: [],
       contactArrayId: [],
       contactArray: [],
@@ -86,10 +76,12 @@ export default {
     showContact(event) {
       this.contactName = event.target.value
       this.items = this.contactArray.filter(item => item.name.includes(this.contactName))
-
       if (this.items.length === 0) {
+        this.showDuplicate = false
         this.getContactInfo()
         this.isSelected = true
+      } else {
+        this.showDuplicate = true
       }
     },
     /* get contact and engagement information */
@@ -105,7 +97,7 @@ export default {
           if (this.isEmpty(i)) {
             this.noLastEngagement()
           } else {
-            this.engagementType = this.getLastEng(i).type
+            this.engagementSubject = this.getLastEng(i).subject
             this.engagementDate = this.getLastEng(i).date
             this.participants = this.getLastEng(i).numParticipants
             this.contactArray.push({
@@ -115,22 +107,29 @@ export default {
               title: this.title,
               phone: this.phoneNum,
               email: this.contactEmail,
-              type: this.engagementType,
+              subject: this.engagementSubject,
               date: this.engagementDate,
               participants: this.participants
             })
-            this.contactArrayId.push({
-              objectId: this.id
-            })
+            this.contactArrayId.push(
+              this.id
+            )
             this.emitToEngForm()
           }
         }
       }
     },
-    /* return the last engagement in the contact list */
+    /* return the latest engagement in the contact list */
     getLastEng(index) {
-      const last = (this.contacts[index].engagements.length - 1)
-      return this.contacts[index].engagements[last]
+      const selectedContact = this.contacts[index].engagements
+      const mostRecentDate = new Date(Math.max.apply(null, selectedContact.map((e) => {
+        return new Date(e.date)
+      })))
+      const mostRecentObject = selectedContact.filter((e) => {
+        const d = new Date(e.date)
+        return d.getTime() === mostRecentDate.getTime()
+      })[0]
+      return mostRecentObject
     },
     /* check if engagement list is empty */
     isEmpty(index) {
@@ -152,9 +151,9 @@ export default {
         date: this.engagementDate,
         participants: this.participants
       })
-      this.contactArrayId.push({
-        objectId: this.id
-      })
+      this.contactArrayId.push(
+        this.id
+      )
       this.emitToEngForm()
     },
     /* this method will get the index num of the chosen one from the child component and passes the index num to be deleted on the parent class */
@@ -165,15 +164,30 @@ export default {
       this.emitToEngForm()
     },
     /* this will pass all the contacts saved in contactarray to the parent EngForm to be prepare to submit to the db */
-    emitToEngForm(event) {
+    emitToEngForm() {
       this.items.splice(0, this.items.length)
       this.$emit('childToParent', this.contactArrayId)
+    },
+    validDate(date) {
+      const today = new Date()
+      const day = today.getDate()
+      const month = today.getMonth() + 1
+      const year = today.getFullYear()
+      if (date.getDate() < day && (date.getMonth() + 1) > month && date.getFullYear() > year) {
+        return true
+      } else if ((date.getMonth() + 1) > month && date.getFullYear() > year) {
+        return true
+      } else if (date.getFullYear() > year) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }
 </script>
 
-<style >
+<style>
 h1 {
   padding-bottom: 50px;
 }
@@ -217,5 +231,8 @@ option:focus {
 }
 .formselect:focus {
   @apply outline-none border-blue-500;
+}
+.error {
+  @apply text-red-500 text-xs italic;
 }
 </style>
