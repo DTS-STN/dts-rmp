@@ -135,12 +135,12 @@ export default {
     type: 'Engagement type',
     date: 'Date',
     participants: 'Number of participants',
-    description:
-      'Description (Maximum 1000 characters. Additional characters will not be saved.)',
+    description: 'Description',
+    editDescription: 'Description (Maximum 1000 characters. Additional characters will not be saved.)',
     policy: 'Policy / program',
     tags: 'Tags',
-    comments:
-      'Comments (Maximum 140 characters. Additional characters will not be saved.)',
+    comments: 'Comments',
+    editComments: 'Comments (Maximum 140 characters. Additional characters will not be saved.)',
     cancel: 'Cancel',
     save: 'Save',
     edit: 'Edit',
