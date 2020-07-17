@@ -430,7 +430,6 @@ export default {
           this.engagementDetail = this.resetForm()
           this.reloadComponent()
           setTimeout(() => { this.$v.$reset() }, 0)
-          this.$scrollTo(this.$refs.top)
           this.attemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
