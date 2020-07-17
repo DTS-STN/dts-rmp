@@ -62,12 +62,6 @@ html {
   color: #fff;
   background-color: #35495e;
 }
-/* main {
-  background-image: url('../assets/images/u1.png');
-  min-height: 700px;
-  height: auto;
-  @apply bg-local bg-top bg-cover bg-no-repeat bg-white;
-} */
 footer {
   @apply bg-teal-800;
 }
