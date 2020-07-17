@@ -74,4 +74,9 @@ export default {
   font-family: 'Noto Sans', 'DejaVu Serif', 'Roboto slab', 'sans-serif',
     'Helvetica Neue';
 }
+@media screen and (max-width: 768px) {
+  h1 { font-size: 28px; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 16px; }
+}
 </style>

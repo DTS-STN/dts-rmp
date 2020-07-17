@@ -25,5 +25,7 @@ export default {
 .Label {
   @apply font-bold text-rmp-orange text-xl;
 }
-
+@media screen and (max-width: 768px) {
+  .Label { font-size: 16px !important; }
+}
 </style>
