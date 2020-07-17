@@ -686,7 +686,7 @@ export default {
           await this.$axios.post('/api/contact/addContact', {
             contactInfo
           })
-          await this.notification('success', 'contact created')
+          this.notification('success', 'contact created')
 
           this.contactInfo = this.resetForm()
           setTimeout(() => { this.$v.$reset() }, 0)
