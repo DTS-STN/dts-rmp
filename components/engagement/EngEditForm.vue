@@ -289,7 +289,6 @@
 
 <script>
 import { required, minValue, maxLength } from 'vuelidate/lib/validators'
-import { mapState } from 'vuex'
 import SelectContact from './EngSelectContacts.vue'
 import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
@@ -301,6 +300,16 @@ export default {
     SelectContact,
     EngTags
   },
+
+  props: {
+    engagementDetail: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
+
   data() {
     return {
       datetest: new Date().toISOString(),
@@ -335,10 +344,7 @@ export default {
   computed: {
     invalidFields() {
       return Object.keys(this.$v.engagementDetail.$params).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
-    },
-    ...mapState({
-      engagementDetail: state => state.engagements.engagement
-    })
+    }
   },
 
   created() {
