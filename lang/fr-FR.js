@@ -192,5 +192,26 @@ export default {
     MinisterOfficeBriefing: 'FR-Minister office briefing',
     ScrumSprint: 'FR-Scrum/Sprint',
     Advisory: 'FR-Advisory board/Council Meeting'
+  },
+  dashboard: {
+    title: "Tableau de bord d'engagement",
+    download: 'Télécharger le PDF',
+    // time
+    sixMonths: 'Dernier 6 mois',
+    threeMonths: 'Dernier 3 mois',
+    lastMonth: 'Dernier mois',
+    // subjects
+    allSubjects: 'FR-All Subjects',
+    EIData: 'FR-EI Data',
+    CERB: 'FR-CERB',
+    HomelessGrants: 'FR-Homeless Grants',
+    // organisations
+    AllOrganisations: 'FR-All Organisations',
+    RBC: 'FR-RBC',
+    StatsCan: 'FR-Stats Canada',
+    CRA: 'FR-CRA',
+    BMO: 'FR-BMO',
+    OntarioGov: 'FR-Ontario Gov',
+    OttawaMission: 'FR-Ottawa Mission'
   }
 }
