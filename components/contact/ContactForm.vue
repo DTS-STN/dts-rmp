@@ -592,40 +592,7 @@ export default {
       timeout: null,
       didAttemptSubmit: false,
 
-      contactInfo: {
-        type: 'Federal',
-        // Key Contact
-        keyContactName: '',
-        keyContactTitle: '',
-        keyContactAddress: '',
-        keyContactAddress2: '',
-        keyContactCity: '',
-        keyContactProvState: '',
-        keyContactCountry: '',
-        keyContactPostalCode: '',
-        keyContactEmail: '',
-        keyContactPhone: '',
-        // Organization
-        orgAddress: '',
-        orgAddress2: '',
-        orgCity: '',
-        orgProvState: '',
-        orgCountry: '',
-        orgPostalCode: '',
-        orgWebsite: '',
-        orgName: '',
-        orgSector: '',
-        orgEmail: '',
-        orgPhone: '',
-        contributionRefNo: 0,
-        serviceContrNo: 0,
-        onStandingOffer: false,
-        // Federal & Provincial
-        department: '',
-        branch: '',
-        directorate: '',
-        provTerritory: ''
-      }
+      contactInfo: this.resetForm()
     }
   },
 
@@ -701,10 +668,6 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
-      if (!this.message.goBack) {
-        this.message.goBack = false
-        this.goBack()
-      }
     },
 
     goBack() {
@@ -724,9 +687,51 @@ export default {
             contactInfo
           })
           this.notification('success', 'contact created')
+
+          this.contactInfo = this.resetForm()
+          setTimeout(() => { this.$v.$reset() }, 0)
+
+          this.didAttemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
         }
+      }
+    },
+
+    resetForm() {
+      return {
+        type: 'Federal',
+        // Key Contact
+        keyContactName: '',
+        keyContactTitle: '',
+        keyContactAddress: '',
+        keyContactAddress2: '',
+        keyContactCity: '',
+        keyContactProvState: '',
+        keyContactCountry: '',
+        keyContactPostalCode: '',
+        keyContactEmail: '',
+        keyContactPhone: '',
+        // Organization
+        orgAddress: '',
+        orgAddress2: '',
+        orgCity: '',
+        orgProvState: '',
+        orgCountry: '',
+        orgPostalCode: '',
+        orgWebsite: '',
+        orgName: '',
+        orgSector: '',
+        orgEmail: '',
+        orgPhone: '',
+        contributionRefNo: 0,
+        serviceContrNo: 0,
+        onStandingOffer: false,
+        // Federal & Provincial
+        department: '',
+        branch: '',
+        directorate: '',
+        provTerritory: ''
       }
     }
   }
