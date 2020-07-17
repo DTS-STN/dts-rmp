@@ -144,8 +144,8 @@ export default {
     policy: 'Politique / programme',
     tags: 'Mots clés:',
     tagLabel: 'Commencez à taper et sélectionnez la balise existante ou appuyez sur Entrée pour ajouter de nouvelles balises',
-    comments:
-      'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+    comments: 'Commentaires',
+    editComments: 'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
     cancel: 'Annuler',
     save: 'Sauver',
     edit: 'Modifier',

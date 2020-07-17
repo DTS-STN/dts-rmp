@@ -76,7 +76,7 @@
         :name="con.keyContactName"
         :orgname="con.orgName"
         :last="getLastEngagement(con._id).subject"
-        :date="getLastEngagement(con._id).date"
+        :date="getLastEngagement(con._id).date.substring(0, 10)"
         :number="getLastEngagement(con._id).numParticipants"
         :title="con.keyContactTitle"
         :phone="con.keyContactPhone"

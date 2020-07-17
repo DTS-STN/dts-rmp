@@ -96,7 +96,7 @@ export default {
 }
 html {
   scroll-behavior: smooth;
-},
+}
 @media (min-width: 1280px) {
   #fLinks li {
     margin-left: 15px;

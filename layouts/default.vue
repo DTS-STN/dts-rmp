@@ -17,7 +17,7 @@
 export default {
   computed: {
     shouldDisplayNav() {
-      return !(this.$route.path.includes('view') || this.$route.path.includes('edit'))
+      return !(this.$route.path.includes('view') || this.$route.path.includes('edit') || this.$route.path.includes('dashboard'))
     }
   }
 }
