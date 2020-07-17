@@ -1,7 +1,7 @@
 <template>
   <div title="engagementForm" class="mx-12">
-    <div v-if="attemptSubmit && invalidFields.length" class="error-list mt-6">
-      <h1 ref="displayErrors" class="text-xl text-red-600">
+    <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list mt-6">
+      <h1 class="text-xl text-red-600">
         {{ $t('engagementValidation.messageTitle') }}
       </h1>
       <ul class="list-disc text-sm text-red-600 italic" style="list-style-position: inside">
@@ -412,7 +412,7 @@ export default {
       this.attemptSubmit = true
       if (this.$v.$invalid) {
         this.$nextTick(() => {
-          this.$scrollTo(this.$refs.displayErrors)
+          this.$scrollTo(this.$refs.messageBox)
         })
       } else {
         try {
