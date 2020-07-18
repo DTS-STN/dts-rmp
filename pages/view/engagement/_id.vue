@@ -39,7 +39,7 @@
     </div>
 
     <div class=" md:flex flex-wrap mb-4 ">
-      <div class="  margins ">
+      <div class=" md:auto flex margins ">
         <EngViewFields label="tags">
           <ul class="md:inline-flex md:mt-0 display-block">
             <li v-for="(tag, index) in engagement.tags" :key="index" class="tags">

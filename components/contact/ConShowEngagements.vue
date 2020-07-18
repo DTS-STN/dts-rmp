@@ -8,15 +8,12 @@
           </span>
           {{ type }}, {{ date }}
         </div>
-        <div class=" md:auto flex ">
-          <ul class="md:inline-flex md:mt-0 display-block">
+        <div class=" md:w-auto flex ">
+          <ul class="xl:inline-flex md:mt-0 display-block">
             <li v-for="(tag) in tags" :key="tag.id" class="tag">
               {{ tag }}
             </li>
           </ul>
-          <!-- <span v-for="(tag) in tags" :key="tag.id" class="tag">
-            {{ tag }}
-          </span> -->
         </div>
       </div>
 
@@ -39,12 +36,7 @@
         </div>
       </div>
 
-      <div class="col-start-6 col-span-12 sm:col-span-2 md:col-span-1 flex items-center">
-        <!-- <button
-          class="btn-round"
-          data_cypress="link"
-          @click="modalDisplay(id)"
-        /> -->
+      <div class="min-width col-start-6 col-span-12 sm:col-span-2 md:col-span-1 flex items-center">
         <button
           class="btn-round"
           data_cypress="link"
@@ -127,5 +119,8 @@ export default {
 }
 .tag {
   @apply bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-0 leading-8 ml-2 mt-2;
+}
+.min-width {
+  min-width: 60px;
 }
 </style>
