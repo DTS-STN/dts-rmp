@@ -8,10 +8,15 @@
           </span>
           {{ type }}, {{ date }}
         </div>
-        <div>
-          <span v-for="(tag) in tags" :key="tag.id" class="tag">
+        <div class=" md:auto flex ">
+          <ul class="md:inline-flex md:mt-0 display-block">
+            <li v-for="(tag) in tags" :key="tag.id" class="tag">
+              {{ tag }}
+            </li>
+          </ul>
+          <!-- <span v-for="(tag) in tags" :key="tag.id" class="tag">
             {{ tag }}
-          </span>
+          </span> -->
         </div>
       </div>
 
@@ -84,9 +89,9 @@ export default {
     },
 
     max3Contacts(inputArray) {
-      if (inputArray.length > 3) {
+      if (inputArray.length > 1) {
         this.moreContacts = true
-        return inputArray.slice(0, 3)
+        return inputArray.slice(0, 1)
       } else {
         this.moreContacts = false
         return inputArray
@@ -121,6 +126,6 @@ export default {
   width: 56px;
 }
 .tag {
-  @apply bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-1 ml-2;
+  @apply bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-0 leading-8 ml-2 mt-2;
 }
 </style>
