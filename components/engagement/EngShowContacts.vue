@@ -7,7 +7,7 @@
     >
       <div class="col-span-12 sm:col-span-10 md:col-span-6">
         <div>
-          <span class="orangeText pr-0">{{ name }}</span>, {{ orgname }}, {{ title }}
+          <span class="orangeText pr-0">{{ name }}</span>, <span v-if="orgname">{{ orgname }},</span> {{ title }}
         </div>
         <div><a :href="'tel:' + phone">{{ phone }}</a>, <a :href="'mailto:'+ email">{{ email }}</a></div>
       </div>
