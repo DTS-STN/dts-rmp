@@ -11,17 +11,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'AppMessageBox',
 
-  data() {
-    return {
-      timeout: null
-    }
-  },
-
-  computed: mapState({ notification: state => state.notifications.notification }),
-  created() {
-    this.timeout = setTimeout(() =>
-      (this.$store.dispatch('notifications/removeNotification')), 10000)
-  }
+  computed: mapState({ notification: state => state.notifications.notification })
 }
 </script>
 
