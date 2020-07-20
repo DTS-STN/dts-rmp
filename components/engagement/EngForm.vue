@@ -148,6 +148,10 @@
             for="description"
           >
             {{ $t('engagement.editDescription') }}
+            <span class="text-xs font-normal">
+              {{ $t('engagement.editDescriptionCount') }}
+            </span>
+
           </label>
           <br />
           <textarea
@@ -157,6 +161,9 @@
             :class="{invalid: $v.engagementDetail.description.$error}"
             @blur="$v.engagementDetail.description.$touch()"
           />
+          <span class="limiter">
+            {{ charactersLeftDescription }}
+          </span>
           <p
             v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.required"
             class="error"
@@ -188,12 +195,12 @@
             />
           </div>
 
-          <div class="md:w-3/12 margins ">
+          <div class="md:w-6/12 margins ">
             <label
               class="formLabel"
               for="tags"
             >
-              {{ $t('engagement.tags') }} <span class="text-xs">
+              {{ $t('engagement.tags') }} <span class="text-xs font-normal">
                 {{ $t('engagement.tagLabel') }}
               </span>
             </label>
@@ -231,6 +238,9 @@
             for="comments"
           >
             {{ $t('engagement.editComments') }}
+            <span class="text-xs font-normal">
+              {{ $t('engagement.editCommentsCount') }}
+            </span>
           </label>
           <br />
           <textarea
@@ -241,6 +251,9 @@
             :class="{invalid: $v.engagementDetail.comments.$error}"
             @input="$v.engagementDetail.comments.$touch()"
           />
+          <span class="limiter">
+            {{ charactersLeftComment }}
+          </span>
           <p
             v-if="$v.engagementDetail.comments.$dirty && !$v.engagementDetail.comments.maxLen"
             class="error"
@@ -335,6 +348,18 @@ export default {
   computed: {
     invalidFields() {
       return Object.keys(this.$v.engagementDetail.$params).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
+    },
+    charactersLeftComment() {
+      const char = this.engagementDetail.comments.length
+      const limit = 140
+
+      return (limit - char) + ' / ' + limit + ' ' + this.$t('engagement.charactersCount')
+    },
+    charactersLeftDescription() {
+      const char = this.engagementDetail.description.length
+      const limit = 1000
+
+      return (limit - char) + ' / ' + limit + ' ' + this.$t('engagement.charactersCount')
     }
   },
   methods: {
