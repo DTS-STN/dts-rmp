@@ -480,7 +480,7 @@ export default {
   @apply outline-none border-blue-500;
 }
 .textArea {
-  @apply w-full leading-relaxed appearance-none h-32 border-2 border-gray-400 rounded text-gray-900 leading-10;
+  @apply w-full leading-relaxed appearance-none h-32 border-2 border-gray-400 rounded text-gray-900;
 }
 .textArea:focus {
   @apply outline-none border-blue-500;
