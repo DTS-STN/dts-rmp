@@ -23,7 +23,7 @@ export default {
 
 <style scoped>
 .Label {
-  @apply font-semibold text-rmp-orange text-xl;
+  @apply font-semibold text-rmp-orange text-base;
 }
 @media screen and (max-width: 768px) {
   .Label { font-size: 16px !important; }

@@ -3,7 +3,7 @@
     <p class="Label">
       {{ $t('engagement.' + label) }}
       :&nbsp;
-      <span class="text-black">
+      <span class="text-black font-medium">
         <slot>
           default text
         </slot>
@@ -23,7 +23,7 @@ export default {
 
 <style scoped>
 .Label {
-  @apply font-bold text-rmp-orange text-xl;
+  @apply font-semibold text-rmp-orange text-base;
 }
 @media screen and (max-width: 768px) {
   .Label { font-size: 16px !important; }
