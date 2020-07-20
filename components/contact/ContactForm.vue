@@ -766,7 +766,7 @@ export default {
   @apply outline-none border-blue-500;
 }
 .margins {
-  @apply py-2 mx-2 my-1;
+  @apply py-2 mr-4 my-1;
 }
 .btn-cancel {
   @apply justify-start bg-gray-300 w-full mt-2 text-black h-12;

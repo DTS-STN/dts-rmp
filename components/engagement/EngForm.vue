@@ -14,8 +14,8 @@
       <h1 class="formTitle font-display mt-8">
         {{ $t('engSelect.engagement') }}
       </h1>
-      <h2 class="font-display text-4xl">
-        Contact
+      <h2 class="font-display mb-2 text-4xl">
+        {{ $t('engSelect.contact') }}
       </h2>
       <select-contact
         :key="componentKey"
