@@ -739,7 +739,7 @@ export default {
             .post(`/api/contact/update?id=${this.$route.params.id}`, {
               contactInfo
             })
-            .then(this.$store.dispatch('notifications/addNotification', 'contact updated'))
+            .then(this.$store.dispatch('notifications/addNotification', this.$t('notifications.ContactUpdated')))
             .then(this.goBack())
         } catch (e) {
           this.notification('error', e.response.data.message)
