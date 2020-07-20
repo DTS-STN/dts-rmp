@@ -171,7 +171,7 @@ export default {
   },
   // EngSelectContact component
   engSelect: {
-    engagement: 'Create new engagement',
+    engagement: 'New engagement',
     contact2: 'Contact number 2',
     remove: 'Remove',
     add: 'Add more contacts'
