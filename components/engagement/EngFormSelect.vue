@@ -1,5 +1,5 @@
 <template>
-  <div class="md:w-2/12 margins">
+  <div class="md:w-4/12 margins">
     <select
       class="formSelect"
       v-bind="$attrs"
