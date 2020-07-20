@@ -26,6 +26,8 @@ export default {
 
 <style scoped>
 .appButton {
+  min-width: 270px;
+  max-width: 300px;
   @apply bg-rmp-orange shadow text-white font-bold mt-12 py-2 px-6 rounded;
 }
 .appButton:hover {
