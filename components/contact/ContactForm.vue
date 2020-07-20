@@ -32,16 +32,16 @@
             @change="onType($event)"
           >
             <option value="Federal">
-              {{ $t('contact.federal') }}
+              {{ $t('contact.Federal') }}
             </option>
             <option value="External">
-              {{ $t('contact.external') }}
+              {{ $t('contact.External') }}
             </option>
             <option value="Provincial">
-              {{ $t('contact.provincial') }}
+              {{ $t('contact.Provincial') }}
             </option>
             <option value="International">
-              {{ $t('contact.international') }}
+              {{ $t('contact.International') }}
             </option>
           </select>
         </div>
