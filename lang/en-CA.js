@@ -210,5 +210,11 @@ export default {
     BMO: 'BMO',
     OntarioGov: 'Ontario Gov',
     OttawaMission: 'Ottawa Mission'
+  },
+  notifications: {
+    ContactCreated: 'Contact Created',
+    ContactUpdated: 'Contact Updated',
+    EngagementCreated: 'Engagement Created',
+    EngagementUpdated: 'EngagementUpdated'
   }
 }

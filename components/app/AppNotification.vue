@@ -1,46 +1,27 @@
 <template>
-  <div v-if="message.message != null" class="messageBox" :class="messageType">
-    <span>
-      {{ message.message }}
-    </span>
+  <div
+    v-if="notification.length"
+    class="positionBox"
+  >
+    <div class="messageBox w-3/4 h-3/4">
+      <div class="mt-8 p-2">
+        {{ notification }}
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'AppMessageBox',
-
-  props: {
-    message: { type: Object, required: true }
-  },
-
-  data() {
-    return {
-      timeout: null
-    }
-  },
-
-  computed: {
-    messageType() {
-      return ` ${this.message.type}`
-    }
-  },
-
-  mounted() {
-    this.timeout = setTimeout(() => (this.message = ''), 5000)
-  },
-
-  beforeDestroy() {
-    clearTimeout(this.timeout)
-  }
+  computed: mapState({ notification: state => state.notifications.notification })
 }
 </script>
-
 <style scoped>
-.messageBox {
-  @apply text-center text-2xl align-bottom mb-4 h-12 min-h-0 mt-2 text-black bg-green-700;
+.positionBox{
+  @apply fixed mx-auto h-6 inset-0 flex items-center justify-center;
 }
-.error {
-  @apply bg-red-700;
+.messageBox {
+ @apply relative bg-green-100 border border-green-400 rounded text-center font-medium text-green-800;
 }
 </style>

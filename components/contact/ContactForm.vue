@@ -32,16 +32,16 @@
             @change="onType($event)"
           >
             <option value="Federal">
-              {{ $t('contact.federal') }}
+              {{ $t('contact.Federal') }}
             </option>
             <option value="External">
-              {{ $t('contact.external') }}
+              {{ $t('contact.External') }}
             </option>
             <option value="Provincial">
-              {{ $t('contact.provincial') }}
+              {{ $t('contact.Provincial') }}
             </option>
             <option value="International">
-              {{ $t('contact.international') }}
+              {{ $t('contact.International') }}
             </option>
           </select>
         </div>
@@ -685,11 +685,12 @@ export default {
           await this.$axios.post('/api/contact/addContact', {
             contactInfo
           })
-          this.notification('success', 'contact created')
-
+          this.$store.dispatch('notifications/addNotification', this.$t('notifications.ContactCreated'))
+          // TODO: This
+          // this.$scrollTo()
           this.contactInfo = this.resetForm()
+          // TODO: wrap this in nextTick instead of setTimeout()
           setTimeout(() => { this.$v.$reset() }, 0)
-
           this.didAttemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
