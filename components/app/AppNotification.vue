@@ -1,23 +1,27 @@
 <template>
-  <div v-if="notification.length" class="messageBox">
-    <span>
-      {{ notification }}
-    </span>
+  <div
+    v-if="notification.length"
+    class="positionBox"
+  >
+    <div class="messageBox w-3/4 h-3/4">
+      <div class="mt-8 p-2">
+        {{ notification }}
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
 import { mapState } from 'vuex'
 export default {
   name: 'AppMessageBox',
-
   computed: mapState({ notification: state => state.notifications.notification })
 }
 </script>
-
 <style scoped>
+.positionBox{
+  @apply fixed mx-auto h-6 inset-0 flex items-center justify-center;
+}
 .messageBox {
- font-size: 18px !important;
-  @apply bg-green-100 border border-green-400 px-4 rounded text-center font-medium mb-4 h-16 pt-3 min-h-0 mt-2 text-green-800;
+ @apply relative bg-green-100 border border-green-400 rounded text-center font-medium text-green-800;
 }
 </style>
