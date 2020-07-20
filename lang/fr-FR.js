@@ -159,7 +159,8 @@ export default {
     selectContact: 'Sélectionnez un contact',
     notFound: 'FR-No Engagement found',
     leaveComment: 'Laissez un commentaire...',
-    charactersCount: 'caractères restants '
+    charactersCount: 'caractères restants ',
+    user: 'RMP User'
   },
   engagementValidation: {
     messageTitle: 'Les champs suivants contiennent des erreurs',

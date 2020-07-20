@@ -2,10 +2,10 @@
   <div class="comment">
     <div class="text">
       <a class="username" href="#">
-        @Ben117
+        {{ $t('engagement.user') }}
       </a>
       <span class="date">
-        2020-07-16
+        {{ getDateAndTime(date) }}
       </span>
       <br />
       <span class="content">
@@ -18,7 +18,20 @@
 <script>
 export default {
   name: 'SingleComment',
-  props: { comment: { type: String, default: '' } }
+  props: { comment: { type: String, default: '' } },
+  data() {
+    return {
+      date: new Date()
+    }
+  },
+  methods: {
+    getDateAndTime(date) {
+      return date.toISOString().slice(0, 10) + ' ' + date.toTimeString().slice(0, 5) + this.timeOfDay(date)
+    },
+    timeOfDay(date) {
+      return (date.getHours() < 12) ? 'am' : 'pm'
+    }
+  }
 }
 </script>
 
