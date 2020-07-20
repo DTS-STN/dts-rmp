@@ -3,6 +3,7 @@
     <header>
       <AppHeader />
       <AppNavBtn v-if="shouldDisplayNav" />
+      <app-notification />
     </header>
     <main>
       <nuxt />
@@ -14,7 +15,11 @@
   </div>
 </template>
 <script>
+import AppNotification from '@/components/app/AppNotification.vue'
 export default {
+  components: {
+    'app-notification': AppNotification
+  },
   computed: {
     shouldDisplayNav() {
       return !(this.$route.path.includes('view') || this.$route.path.includes('edit') || this.$route.path.includes('dashboard'))

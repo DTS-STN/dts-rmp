@@ -1,18 +1,15 @@
 <template>
-  <div v-if="message.message != null" class="messageBox" :class="messageType">
+  <div v-if="notification.length" class="messageBox">
     <span>
-      {{ message.message }}
+      {{ notification }}
     </span>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'AppMessageBox',
-
-  props: {
-    message: { type: Object, required: true }
-  },
 
   data() {
     return {
@@ -20,27 +17,17 @@ export default {
     }
   },
 
-  computed: {
-    messageType() {
-      return ` ${this.message.type}`
-    }
-  },
-
-  mounted() {
-    this.timeout = setTimeout(() => (this.message = ''), 5000)
-  },
-
-  beforeDestroy() {
-    clearTimeout(this.timeout)
+  computed: mapState({ notification: state => state.notifications.notification }),
+  created() {
+    this.timeout = setTimeout(() =>
+      (this.$store.dispatch('notifications/removeNotification')), 10000)
   }
 }
 </script>
 
 <style scoped>
 .messageBox {
-  @apply text-center text-2xl align-bottom mb-4 h-12 min-h-0 mt-2 text-black bg-green-700;
-}
-.error {
-  @apply bg-red-700;
+ font-size: 18px !important;
+  @apply bg-green-100 border border-green-400 px-4 rounded text-center font-medium mb-4 h-16 pt-3 min-h-0 mt-2 text-green-800;
 }
 </style>
