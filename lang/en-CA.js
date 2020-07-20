@@ -139,13 +139,11 @@ export default {
     numParticipants: 'Participants',
     description: 'Description',
     editDescription: 'Description ',
-    editDescriptionCount: 'Maximum 1000 characters. Additional characters will not be saved.',
     policy: 'Policy / program',
     tags: 'Tags',
     tagLabel: 'Start typing and press enter to add new tags',
     comments: 'Comments',
     editComments: 'Comments ',
-    editCommentsCount: 'Maximum 140 characters. Additional characters will not be saved.',
     cancel: 'Cancel',
     save: 'Save',
     edit: 'Edit',
@@ -170,7 +168,8 @@ export default {
     maxComment: 'Comment cannot exceed 140 characters',
     validDate: 'Please pick a valid date',
     duplicateTags: 'Tag already exist, please enter another tag name',
-    duplicateContacts: 'Contact already exist, please select another contact name'
+    duplicateContacts: 'Contact already exist, please select another contact name',
+    limit: 'Characters reached limit'
   },
   // EngSelectContact component
   engSelect: {

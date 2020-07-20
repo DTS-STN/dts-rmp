@@ -148,33 +148,27 @@
             for="description"
           >
             {{ $t('engagement.editDescription') }}
-            <span class="text-xs font-normal">
-              {{ $t('engagement.editDescriptionCount') }}
-            </span>
-
           </label>
           <br />
           <textarea
             v-model="engagementDetail.description"
             type="text"
             class="textArea"
+            maxlength="1000"
             :class="{invalid: $v.engagementDetail.description.$error}"
             @blur="$v.engagementDetail.description.$touch()"
           />
-          <span class="limiter">
+          <p v-if="engagementDetail.description.length < 1000" class="limiter">
             {{ charactersLeftDescription }}
-          </span>
+          </p>
+          <p v-else class="text-red-500">
+            {{ $t('engagementValidation.limit') }}
+          </p>
           <p
             v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.required"
             class="error"
           >
             {{ $t('engagementValidation.required') }}
-          </p>
-          <p
-            v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.maxLen"
-            class="error"
-          >
-            {{ $t('engagementValidation.maxDescription') }}
           </p>
         </div>
 
@@ -238,9 +232,6 @@
             for="comments"
           >
             {{ $t('engagement.editComments') }}
-            <span class="text-xs font-normal">
-              {{ $t('engagement.editCommentsCount') }}
-            </span>
           </label>
           <br />
           <textarea
@@ -248,17 +239,13 @@
             type="text"
             name="KeyNotes"
             class="textArea"
-            :class="{invalid: $v.engagementDetail.comments.$error}"
-            @input="$v.engagementDetail.comments.$touch()"
+            maxlength="140"
           />
-          <span class="limiter">
+          <p v-if="engagementDetail.comments.length < 140" class="limiter">
             {{ charactersLeftComment }}
-          </span>
-          <p
-            v-if="$v.engagementDetail.comments.$dirty && !$v.engagementDetail.comments.maxLen"
-            class="error"
-          >
-            {{ $t('engagementValidation.maxComment') }}
+          </p>
+          <p v-else class="text-red-500">
+            {{ $t('engagementValidation.limit') }}
           </p>
         </div>
 
@@ -337,9 +324,8 @@ export default {
       subject: { required, maxChar: maxLength(50) },
       type: { required },
       date: { required },
-      description: { required, maxLen: maxLength(1000) },
+      description: { required },
       numParticipants: { required, minVal: minValue(1) },
-      comments: { maxLen: maxLength(140) },
       contacts: { required },
       tags: { maxSize: maxLength(3) }
     },
@@ -494,7 +480,7 @@ export default {
   @apply outline-none border-blue-500;
 }
 .textArea {
-  @apply w-full appearance-none h-32 border-2 border-gray-400 rounded text-gray-900 leading-10;
+  @apply w-full leading-relaxed appearance-none h-32 border-2 border-gray-400 rounded text-gray-900 leading-10;
 }
 .textArea:focus {
   @apply outline-none border-blue-500;
