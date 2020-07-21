@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { DateTime } from 'luxon'
+
 export default {
   name: 'SingleComment',
   props: {
@@ -23,17 +25,12 @@ export default {
   },
   methods: {
     getDateAndTime(date) {
+      console.log(date)
       if (date) {
-        return date.toISOString().slice(0, 10) + ' ' + this.twelveHourClock(date) + this.timeOfDay(date)
+        return DateTime.fromISO(date).toLocaleString(DateTime.DATETIME_SHORT)
       } else {
         return 'No date recorded'
       }
-    },
-    twelveHourClock(date) {
-      return ((date.getHours() > 12) ? (date.getHours() - 12).toString + date.toTimeString().slice(2, 5) : date.toTimeString().slice(0, 5))
-    },
-    timeOfDay(date) {
-      return (date.getHours() < 12) ? 'am' : 'pm'
     }
   }
 }

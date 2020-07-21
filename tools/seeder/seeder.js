@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon'
 import Contacts from '../../api/models/contact'
 import Engagements from '../../api/models/engagement'
 import Tags from '../../api/models/tags'
@@ -69,11 +70,11 @@ const populateDatabase = async() => {
       policyProgram: Randomizers.randomString(12),
       comments: [{
         content: `${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}`,
-        date: ''
+        date: DateTime.local().minus({ hours: 3, minutes: 10 }).toISO()
       },
       {
         content: `${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}`,
-        date: ''
+        date: DateTime.local().minus({ hours: 1, minutes: 20 }).toISO()
       }
       ],
       tags: Randomizers.randomTagArray()

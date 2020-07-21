@@ -49,7 +49,7 @@ export default {
   methods: {
     submitComment() {
       if (this.newComment.content) {
-        this.newComment.date = new Date()
+        this.newComment.date = new Date().toISOString()
         this.$emit('submit-comment', this.newComment)
         this.newComment = { content: '', date: '' }
       }
