@@ -311,7 +311,7 @@ export default {
         { type: this.$t('engagementTypes.ScrumSprint') },
         { type: this.$t('engagementTypes.Advisory') }
       ],
-      showTag: false,
+      showTag: true,
       timeout: null,
       attemptSubmit: false
     }
@@ -335,9 +335,6 @@ export default {
     }
   },
 
-  created() {
-    console.log(this.engagementDetail)
-  },
   validations: {
     engagementDetail: {
       subject: { required, maxChar: maxLength(50) },
@@ -424,14 +421,11 @@ export default {
         })
       } else {
         try {
-          await this.$axios.post('/api/engagement/addEngagement', {
+          await this.$axios.post(`/api/engagement/update?id=${this.$route.params.id}`, {
             engagementDetail
           })
-          this.$store.dispatch('notifications/addNotification', this.$t('notifications.ContactUpdated'))
+          this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementUpdated'))
           this.goBack()
-          this.engagementDetail = this.resetForm()
-          this.reloadComponent()
-          this.attemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
         }
