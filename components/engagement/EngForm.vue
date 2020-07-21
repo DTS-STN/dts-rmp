@@ -423,7 +423,7 @@ export default {
             engagementDetail
           })
 
-          this.$store.dispatch('notifications/addNotification', this.$t('notifications.ContactUpdated'))
+          this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementCreated'))
 
           this.engagementDetail = this.resetForm()
           this.reloadComponent()

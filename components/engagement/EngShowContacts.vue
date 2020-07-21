@@ -2,7 +2,7 @@
   <!-- eslint-disable vue/singleline-html-element-content-newline -->
   <div>
     <div
-      class="grid grid-cols-12 leading-10 bdr bottom top pt-6 pb-6 px-2"
+      class="grid grid-cols-12 leading-10 bdr bottom pt-6 pb-6 px-2"
       :class="[index == 0 ? 'first' : '']"
     >
       <div class="col-span-12 sm:col-span-10 md:col-span-6">
