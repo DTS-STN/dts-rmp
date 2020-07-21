@@ -91,7 +91,7 @@
             </label>
             <div class="relative md:w-5/12 max-w-xs">
               <input
-                :value="engagementDetail.date.split('T')[0]"
+                :value="getDateAndSplit(engagementDetail.date)"
                 class="dateStyle"
                 type="date"
                 required="required"
@@ -328,6 +328,13 @@ export default {
   methods: {
     onChildClick(value) {
       this.engagementDetail.contacts = value
+    },
+    getDateAndSplit(date) {
+      if (typeof date === 'string') {
+        return this.engagementDetail.date.split('T')[0]
+      } else {
+        return this.engagementDetail.date.toISOString().split('T')[0]
+      }
     },
     getTagFromInput() {
       if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10 || this.inputTag.length === 0 || this.duplicateTags()) {
