@@ -85,7 +85,7 @@ export default {
     contacts: state => state.contacts.contacts
   }),
 
-  created() {
+  beforeMount() {
     this.contactProps.forEach(contact => this.showContact(contact, true))
   },
 
