@@ -214,29 +214,6 @@
           </div>
         </div>
 
-        <div class="md:w-4/6 margins ">
-          <label
-            class="formLabel"
-            for="comments"
-          >
-            {{ $t('engagement.editComments') }}
-          </label>
-          <br />
-          <textarea
-            v-model="engagementDetail.comments"
-            type="text"
-            name="KeyNotes"
-            class="textArea"
-            maxlength="140"
-          />
-          <p v-if="engagementDetail.comments.length < 140" class="limiter">
-            {{ charactersLeftComment }}
-          </p>
-          <p v-else class="text-red-500">
-            {{ $t('engagementValidation.limit') }}
-          </p>
-        </div>
-
         <div
           v-if="message.message != null"
           class="messageBox"
