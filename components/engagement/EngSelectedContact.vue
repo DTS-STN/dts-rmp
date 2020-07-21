@@ -84,9 +84,4 @@ button.btn-round {
   width: 56px;
   min-width: 58px !important;
 }
-@media (max-width: 767px) {
-  .leftBorder {
-    @apply hidden;
-  }
-}
 </style>
