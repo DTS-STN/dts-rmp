@@ -1,6 +1,6 @@
 <template>
-  <div ref="top" title="engagementForm" class="engagementForm font-body mx-12">
-    <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list mt-6">
+  <div ref="top" title="engagementForm" class="engagementForm font-body mx-2 xl:mx-16">
+    <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list w-full md:w-1/2 mt-6">
       <h1 class="text-xl text-red-600">
         {{ $t('engagementValidation.messageTitle') }}
       </h1>
@@ -148,33 +148,27 @@
             for="description"
           >
             {{ $t('engagement.editDescription') }}
-            <span class="text-xs font-normal">
-              {{ $t('engagement.editDescriptionCount') }}
-            </span>
-
           </label>
           <br />
           <textarea
             v-model="engagementDetail.description"
             type="text"
             class="textArea"
+            maxlength="1000"
             :class="{invalid: $v.engagementDetail.description.$error}"
             @blur="$v.engagementDetail.description.$touch()"
           />
-          <span class="limiter">
+          <p v-if="engagementDetail.description.length < 1000" class="limiter">
             {{ charactersLeftDescription }}
-          </span>
+          </p>
+          <p v-else class="text-red-500">
+            {{ $t('engagementValidation.limit') }}
+          </p>
           <p
             v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.required"
             class="error"
           >
             {{ $t('engagementValidation.required') }}
-          </p>
-          <p
-            v-if="$v.engagementDetail.description.$dirty && !$v.engagementDetail.description.maxLen"
-            class="error"
-          >
-            {{ $t('engagementValidation.maxDescription') }}
           </p>
         </div>
 
@@ -238,9 +232,6 @@
             for="comments"
           >
             {{ $t('engagement.editComments') }}
-            <span class="text-xs font-normal">
-              {{ $t('engagement.editCommentsCount') }}
-            </span>
           </label>
           <br />
           <textarea
@@ -248,17 +239,13 @@
             type="text"
             name="KeyNotes"
             class="textArea"
-            :class="{invalid: $v.engagementDetail.comments.$error}"
-            @input="$v.engagementDetail.comments.$touch()"
+            maxlength="140"
           />
-          <span class="limiter">
+          <p v-if="engagementDetail.comments.length < 140" class="limiter">
             {{ charactersLeftComment }}
-          </span>
-          <p
-            v-if="$v.engagementDetail.comments.$dirty && !$v.engagementDetail.comments.maxLen"
-            class="error"
-          >
-            {{ $t('engagementValidation.maxComment') }}
+          </p>
+          <p v-else class="text-red-500">
+            {{ $t('engagementValidation.limit') }}
           </p>
         </div>
 
@@ -271,13 +258,13 @@
             {{ message.message }}
           </span>
         </div>
-        <div class="md:flex flex-wrap justify-start mb-4">
-          <div class=" md:w-4/12 margins">
+        <div class="md:flex flex-wrap justify-start mb-12">
+          <div class=" margins">
             <AppButton class="font-display" custom_style="btn-cancel" btntype="button" data_cypress="formButton" @click="goBack">
               {{ $t('engagement.cancel') }}
             </AppButton>
           </div>
-          <div class=" md:w-4/12 margins">
+          <div class=" margins">
             <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
               {{ $t('engagement.save') }}
             </AppButton>
@@ -337,9 +324,8 @@ export default {
       subject: { required, maxChar: maxLength(50) },
       type: { required },
       date: { required },
-      description: { required, maxLen: maxLength(1000) },
+      description: { required },
       numParticipants: { required, minVal: minValue(1) },
-      comments: { maxLen: maxLength(140) },
       contacts: { required },
       tags: { maxSize: maxLength(3) }
     },
@@ -434,10 +420,10 @@ export default {
           await this.$axios.post('/api/engagement/addEngagement', {
             engagementDetail
           })
-          this.notification('success', 'engagment created')
+          this.$store.dispatch('notifications/addNotification', this.$t('notifications.ContactUpdated'))
+          this.goBack()
           this.engagementDetail = this.resetForm()
           this.reloadComponent()
-          setTimeout(() => { this.$v.$reset() }, 0)
           this.attemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
@@ -494,7 +480,7 @@ export default {
   @apply outline-none border-blue-500;
 }
 .textArea {
-  @apply w-full appearance-none h-32 border-2 border-gray-400 rounded text-gray-900 leading-10;
+  @apply w-full leading-relaxed appearance-none h-32 border-2 border-gray-400 rounded text-gray-900;
 }
 .textArea:focus {
   @apply outline-none border-blue-500;
@@ -520,6 +506,9 @@ export default {
 .delete-btn {
   @apply text-rmp-dk-blue bg-white rounded-full items-center justify-center pl-2 pr-2 ml-2
 }
+.margins {
+  @apply py-2 mx-2 my-1;
+}
 .error {
   @apply text-red-500 text-xs italic;
 }
@@ -527,7 +516,6 @@ export default {
   @apply appearance-none border border-red-500 rounded w-full
 }
 .error-list {
-  width: 50%;
   background-color: rgba(255,0,0,0.1);
   @apply border border-red-500;
 }

@@ -140,13 +140,11 @@ export default {
     numParticipants: 'Participants',
     description: 'Description',
     editDescription: 'Description',
-    editDescriptionCount: '1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.',
     policy: 'Politique / programme',
     tags: 'Mots clés',
     tagLabel: 'Commencez à taper et sélectionnez la balise existante ou appuyez sur Entrée pour ajouter de nouvelles balises',
     comments: 'Commentaires',
     editComments: 'Commentaires ',
-    editCommentsCount: '140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.',
     cancel: 'Annuler',
     save: 'Sauver',
     edit: 'Modifier',
@@ -172,7 +170,8 @@ export default {
     minParticipant: 'Vous ne pouvez pas avoir moins de 1 participant',
     validDate: 'Veuillez choisir une date',
     duplicateTags: 'La balise existe déjà, veuillez entrer un autre nom de balise',
-    duplicateContacts: 'Le contact existe déjà, veuillez sélectionner un autre nom de contact'
+    duplicateContacts: 'Le contact existe déjà, veuillez sélectionner un autre nom de contact',
+    limit: 'Nombre de caractères atteint'
   },
   // EngSelectContact component
   engSelect: {
@@ -216,5 +215,11 @@ export default {
     BMO: 'FR-BMO',
     OntarioGov: 'FR-Ontario Gov',
     OttawaMission: 'FR-Ottawa Mission'
+  },
+  notifications: {
+    ContactCreated: 'FR-Contact Created',
+    ContactUpdated: 'FR-Contact Updated',
+    EngagementCreated: 'FR-Engagement Created',
+    EngagementUpdated: 'FR-EngagementUpdated'
   }
 }
