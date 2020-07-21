@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
   <div class="contactForm font-body mt-8 mx-2 xl:mx-16">
-=======
-  <div class="contactForm font-body mt-8 mx-12">
->>>>>>> main
     <div>
       <div v-if="didAttemptSubmit && invalidFields.length" class="error-list w-full md:w-1/2">
         <h2 ref="displayErrors" class="text-xl ml-2 text-red-600">
