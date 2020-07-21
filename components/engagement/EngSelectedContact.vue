@@ -2,7 +2,7 @@
   <!-- eslint-disable vue/singleline-html-element-content-newline -->
   <div>
     <div class="flex max-w-full leading-10 bdr bottom top pt-6 pb-6 first">
-      <div class="w-6/12 pl-2">
+      <div class="pl-2 w-full lg:w-6/12">
         <div>
           <span class="orangeText pr-0">{{ name }}</span>, {{ orgname }}
         </div>
@@ -18,7 +18,7 @@
         <div>{{ date }}, {{ number }} {{ $t('contact.otherpeople') }}</div>
       </div>
 
-      <div class="w-1/12 flex items-center">
+      <div class="flex items-center">
         <button
           :id="id"
           class="btn-round"
@@ -82,9 +82,10 @@ button.btn-round {
   background-size: 58px 56px;
   height: 58px;
   width: 56px;
+  min-width: 58px !important;
 }
-@media (max-width: 768px) {
-  .left {
+@media (max-width: 767px) {
+  .leftBorder {
     @apply hidden;
   }
 }
