@@ -19,6 +19,7 @@
       v-for="(comment, index) in comments"
       :key="index"
       :comment="comment"
+      :date="date"
     />
   </div>
 </template>
@@ -38,7 +39,8 @@ export default {
 
   data() {
     return {
-      newComment: ''
+      newComment: '',
+      date: new Date()
     }
   },
 

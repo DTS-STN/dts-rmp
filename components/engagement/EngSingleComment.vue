@@ -19,12 +19,8 @@
 export default {
   name: 'SingleComment',
   props: {
-    comment: { type: String, default: '' }
-  },
-  data() {
-    return {
-      date: new Date()
-    }
+    comment: { type: String, default: '' },
+    date: { type: Date, default: new Date() }
   },
   methods: {
     getDateAndTime(date) {
