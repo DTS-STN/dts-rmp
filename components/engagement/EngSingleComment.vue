@@ -18,7 +18,9 @@
 <script>
 export default {
   name: 'SingleComment',
-  props: { comment: { type: String, default: '' } },
+  props: {
+    comment: { type: String, default: '' }
+  },
   data() {
     return {
       date: new Date()
@@ -26,7 +28,10 @@ export default {
   },
   methods: {
     getDateAndTime(date) {
-      return date.toISOString().slice(0, 10) + ' ' + date.toTimeString().slice(0, 5) + this.timeOfDay(date)
+      return date.toISOString().slice(0, 10) + ' ' + this.twelveHourClock(date) + this.timeOfDay(date)
+    },
+    twelveHourClock(date) {
+      return ((date.getHours() > 12) ? (date.getHours() - 12).toString + date.toTimeString().slice(2, 5) : date.toTimeString().slice(0, 5))
     },
     timeOfDay(date) {
       return (date.getHours() < 12) ? 'am' : 'pm'
