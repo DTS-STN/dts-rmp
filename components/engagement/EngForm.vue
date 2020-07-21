@@ -217,12 +217,14 @@
             </p>
           </div>
           <div v-if="showTag" class="flex mt-6 ml-2">
-            <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index">
-              {{ tag }}
-              <button class="delete-btn" @click.prevent="deleteTag(index)">
-                x
-              </button>
-            </eng-tags>
+            <div class="flex-no-wrap md:flex">
+              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index">
+                {{ tag }}
+                <button class="delete-btn" @click.prevent="deleteTag(index)">
+                  x
+                </button>
+              </eng-tags>
+            </div>
           </div>
         </div>
 
@@ -420,10 +422,14 @@ export default {
           await this.$axios.post('/api/engagement/addEngagement', {
             engagementDetail
           })
-          this.$store.dispatch('notifications/addNotification', this.$t('notifications.ContactUpdated'))
-          this.goBack()
+
+          this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementCreated'))
+
           this.engagementDetail = this.resetForm()
           this.reloadComponent()
+
+          // next two lines avoid having a clean form with errors on it
+          setTimeout(() => { this.$v.$reset() }, 0)
           this.attemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)

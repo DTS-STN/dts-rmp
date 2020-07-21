@@ -218,6 +218,6 @@ export default {
     ContactCreated: 'Contact Created',
     ContactUpdated: 'Contact Updated',
     EngagementCreated: 'Engagement Created',
-    EngagementUpdated: 'EngagementUpdated'
+    EngagementUpdated: 'Engagement Updated'
   }
 }
