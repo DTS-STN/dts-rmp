@@ -205,12 +205,16 @@
             </p>
           </div>
           <div v-if="showTag" class="flex mt-6 ml-2">
-            <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index">
-              {{ tag }}
-              <button class="delete-btn" @click.prevent="deleteTag(index)">
-                x
-              </button>
-            </eng-tags>
+            <div class="flex-no-wrap md:flex">
+              <eng-tags class="flex justify-end" v-for="(tag, index) in engagementDetail.tags" :key="index">
+                <div class="mr-2">
+                  {{ tag }}
+                </div>
+                <button class="delete-btn ml-auto" @click.prevent="deleteTag(index)">
+                  x
+                </button>
+              </eng-tags>
+            </div>
           </div>
         </div>
 
@@ -491,7 +495,7 @@ export default {
   @apply outline-none border-blue-500;
 }
 .delete-btn {
-  @apply text-rmp-dk-blue bg-white rounded-full items-center justify-center pl-2 pr-2 ml-2
+  @apply text-rmp-dk-blue bg-white rounded-full items-center justify-end pl-2 pr-2
 }
 .error {
   @apply text-red-500 text-xs italic;
