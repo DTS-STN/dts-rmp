@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     getDateAndTime(date) {
-      console.log(date)
       if (date) {
         return DateTime.fromISO(date).toLocaleString(DateTime.DATETIME_SHORT)
       } else {
