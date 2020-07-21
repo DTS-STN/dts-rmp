@@ -138,12 +138,12 @@ export default {
     participants: 'Number of participants',
     numParticipants: 'Participants',
     description: 'Description',
-    editDescription: 'Description (Maximum 1000 characters. Additional characters will not be saved.)',
+    editDescription: 'Description ',
     policy: 'Policy / program',
     tags: 'Tags',
     tagLabel: 'Start typing and press enter to add new tags',
     comments: 'Comments',
-    editComments: 'Comments (Maximum 140 characters. Additional characters will not be saved.)',
+    editComments: 'Comments ',
     cancel: 'Cancel',
     save: 'Save',
     edit: 'Edit',
@@ -155,7 +155,8 @@ export default {
     otherParticipants: 'other participants',
     selectContact: 'Select one or more contact',
     notFound: 'No Engagement found',
-    leaveComment: 'Leave a comment...'
+    leaveComment: 'Leave a comment...',
+    charactersCount: 'characters remaining '
   },
   engagementValidation: {
     messageTitle: 'The following fields have errors',
@@ -167,11 +168,13 @@ export default {
     maxComment: 'Comment cannot exceed 140 characters',
     validDate: 'Please pick a valid date',
     duplicateTags: 'Tag already exist, please enter another tag name',
-    duplicateContacts: 'Contact already exist, please select another contact name'
+    duplicateContacts: 'Contact already exist, please select another contact name',
+    limit: 'Characters reached limit'
   },
   // EngSelectContact component
   engSelect: {
-    engagement: 'Create new engagement',
+    engagement: 'New engagement',
+    contact: 'Contact',
     contact2: 'Contact number 2',
     remove: 'Remove',
     add: 'Add more contacts'

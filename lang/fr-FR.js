@@ -138,14 +138,13 @@ export default {
     date: 'Date',
     participants: 'Nombre de participants',
     numParticipants: 'Participants',
-    description:
-      'Description',
-    editDescription: 'Description (1000 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+    description: 'Description',
+    editDescription: 'Description',
     policy: 'Politique / programme',
     tags: 'Mots clés',
     tagLabel: 'Commencez à taper et sélectionnez la balise existante ou appuyez sur Entrée pour ajouter de nouvelles balises',
     comments: 'Commentaires',
-    editComments: 'Commentaires (140 caractères maximum. Les caractères supplémentaires ne seront pas enregistrés.)',
+    editComments: 'Commentaires ',
     cancel: 'Annuler',
     save: 'Sauver',
     edit: 'Modifier',
@@ -157,7 +156,8 @@ export default {
     otherParticipants: 'autres participants',
     selectContact: 'Sélectionnez un contact',
     notFound: 'FR-No Engagement found',
-    leaveComment: 'Laissez un commentaire...'
+    leaveComment: 'Laissez un commentaire...',
+    charactersCount: 'caractères restants '
   },
   engagementValidation: {
     messageTitle: 'Les champs suivants contiennent des erreurs',
@@ -169,7 +169,8 @@ export default {
     minParticipant: 'Vous ne pouvez pas avoir moins de 1 participant',
     validDate: 'Veuillez choisir une date',
     duplicateTags: 'La balise existe déjà, veuillez entrer un autre nom de balise',
-    duplicateContacts: 'Le contact existe déjà, veuillez sélectionner un autre nom de contact'
+    duplicateContacts: 'Le contact existe déjà, veuillez sélectionner un autre nom de contact',
+    limit: 'Nombre de caractères atteint'
   },
   // EngSelectContact component
   engSelect: {

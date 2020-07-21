@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <div class="contactForm font-body mt-8 mx-2 xl:mx-16">
+=======
+  <div class="contactForm font-body mt-8 mx-12">
+>>>>>>> main
     <div>
       <div v-if="didAttemptSubmit && invalidFields.length" class="error-list w-full md:w-1/2">
         <h2 ref="displayErrors" class="text-xl ml-2 text-red-600">
@@ -767,7 +771,7 @@ export default {
   @apply outline-none border-blue-500;
 }
 .margins {
-  @apply py-2 mx-2 my-1;
+  @apply py-2 mr-4 my-1;
 }
 .btn-cancel {
   @apply justify-start bg-gray-300 w-full mt-2 text-black h-12;
