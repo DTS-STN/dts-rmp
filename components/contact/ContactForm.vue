@@ -1,5 +1,5 @@
 <template>
-  <div class="contactForm font-body mt-8 mx-2">
+  <div class="contactForm font-body mt-8 mx-12">
     <div>
       <div v-if="didAttemptSubmit && invalidFields.length" class="error-list md:w-full">
         <h2 ref="displayErrors" class="text-xl ml-2 text-red-600">
@@ -32,16 +32,16 @@
             @change="onType($event)"
           >
             <option value="Federal">
-              {{ $t('contact.federal') }}
+              {{ $t('contact.Federal') }}
             </option>
             <option value="External">
-              {{ $t('contact.external') }}
+              {{ $t('contact.External') }}
             </option>
             <option value="Provincial">
-              {{ $t('contact.provincial') }}
+              {{ $t('contact.Provincial') }}
             </option>
             <option value="International">
-              {{ $t('contact.international') }}
+              {{ $t('contact.International') }}
             </option>
           </select>
         </div>
@@ -685,11 +685,12 @@ export default {
           await this.$axios.post('/api/contact/addContact', {
             contactInfo
           })
-          this.notification('success', 'contact created')
-
+          this.$store.dispatch('notifications/addNotification', this.$t('notifications.ContactCreated'))
+          // TODO: This
+          // this.$scrollTo()
           this.contactInfo = this.resetForm()
+          // TODO: wrap this in nextTick instead of setTimeout()
           setTimeout(() => { this.$v.$reset() }, 0)
-
           this.didAttemptSubmit = false
         } catch (e) {
           this.notification('error', e.response.data.message)
@@ -766,7 +767,7 @@ export default {
   @apply outline-none border-blue-500;
 }
 .margins {
-  @apply py-2 mx-2 my-1;
+  @apply py-2 mr-4 my-1;
 }
 .btn-cancel {
   @apply justify-start bg-gray-300 w-full mt-2 text-black h-12;

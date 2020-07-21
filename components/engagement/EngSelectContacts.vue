@@ -1,22 +1,24 @@
 <template>
   <div class="contact">
-    <div class="relative mt-6 max-w-md">
-      <label
-        class="orange block tracking-wide text-black text-md font-bold mb-2"
-        for="subject"
+    <label
+      class="orange formLabel"
+      for="subject"
+    >
+      {{ $t('engagement.contactName') }}
+    </label>
+    <div>
+      <formSelect
+        v-model="selected"
+        @click="selected = undefined"
+        @input="showContact($event)"
       >
-        {{ $t('engagement.contactName') }}
-      </label>
-      <div>
-        <form-select v-model="selected" @click="selected = undefined" @input="showContact($event)">
-          <option value="" selected="selected" disabled hidden>
-            {{ $t('engagement.selectContact') }}
-          </option>
-          <option v-for="contact in contacts" :key="contact._id">
-            {{ contact.keyContactName }}
-          </option>
-        </form-select>
-      </div>
+        <option value="" selected="selected" disabled hidden>
+          {{ $t('engagement.selectContact') }}
+        </option>
+        <option v-for="contact in contacts" :key="contact._id">
+          {{ contact.keyContactName }}
+        </option>
+      </formSelect>
     </div>
     <p v-if="showDuplicate" class="error">
       {{ $t('engagementValidation.duplicateContacts') }}
@@ -243,11 +245,8 @@ button:focus,
 option:focus {
   @apply outline-none;
 }
-.contactMenu {
-  width: 1200px;
-  margin: auto;
-  font-family: 'DejaVu Serif', 'Roboto slab', 'sans-serif', 'Helvetica Neue';
-  @apply bg-white text-black;
+.formLabel {
+  @apply font-bold;
 }
 .formSelect {
   @apply w-full h-12 border-2 bg-white border-gray-400 rounded;

@@ -1,10 +1,9 @@
 <template>
-  <!-- This page has no french trasnlation since we do not know the dropdowns official values. -->
   <div class="px-10 py-5 xl:px-64">
     <div class="sm:flex sm:w-full">
       <div class="mx-2 sm:w-3/4">
-        <h2 class="text-xl">
-          Engagement Dashboard
+        <h2 class="dashboardTitle">
+          {{ $t('dashboard.title') }}
         </h2>
       </div>
       <div class="mx-2 w-1/4">
@@ -12,28 +11,79 @@
         <input
           id="pdfButton"
           type="button"
-          :value="$t('footer.symbol')"
+          :value="$t('dashboard.download')"
           class="md:float-right"
         />
       </div>
     </div>
     <div>
       <form class="sm:flex">
-        <AppSelect
-          modelname="hello"
-          :options="time"
+        <!-- Time select -->
+        <select
           class="dropdowns md:w-full"
-        />
-        <AppSelect
-          modelname="hello"
-          :options="subjects"
+        >
+          <option value="SixMonths" disabled selected hidden>
+            {{ $t('dashboard.sixMonths') }}
+          </option>
+          <option value="SixMonths">
+            {{ $t('dashboard.sixMonths') }}
+          </option>
+          <option value="threeMonths">
+            {{ $t('dashboard.threeMonths') }}
+          </option>
+          <option value="lastMonth">
+            {{ $t('dashboard.lastMonth') }}
+          </option>
+        </select>
+        <!-- Subject select -->
+        <select
           class="dropdowns md:w-full"
-        />
-        <AppSelect
-          modelname="hello"
-          :options="organizations"
+        >
+          <option value="allSubjects" disabled selected hidden>
+            {{ $t('dashboard.allSubjects') }}
+          </option>
+          <option value="allSubjects">
+            {{ $t('dashboard.allSubjects') }}
+          </option>
+          <option value="EIData">
+            {{ $t('dashboard.EIData') }}
+          </option>
+          <option value="CERB">
+            {{ $t('dashboard.CERB') }}
+          </option>
+          <option value="HomelessGrants">
+            {{ $t('dashboard.HomelessGrants') }}
+          </option>
+        </select>
+        <!-- Organisation select -->
+        <select
           class="dropdowns md:w-full"
-        />
+        >
+          <option value="AllOrganisations" disabled selected hidden>
+            {{ $t('dashboard.AllOrganisations') }}
+          </option>
+          <option value="AllOrganisations">
+            {{ $t('dashboard.AllOrganisations') }}
+          </option>
+          <option value="RBC">
+            {{ $t('dashboard.RBC') }}
+          </option>
+          <option value="StatsCan">
+            {{ $t('dashboard.StatsCan') }}
+          </option>
+          <option value="CRA">
+            {{ $t('dashboard.CRA') }}
+          </option>
+          <option value="BMO">
+            {{ $t('dashboard.BMO') }}
+          </option>
+          <option value="OntarioGov">
+            {{ $t('dashboard.OntarioGov') }}
+          </option>
+          <option value="OttawaMission">
+            {{ $t('dashboard.OttawaMission') }}
+          </option>
+        </select>
       </form>
     </div>
     <div class="flex flex-wrap justify-between">
@@ -70,32 +120,7 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      time: [
-        // { key: 0, value: '-1', options: 'Select value' },
-        { key: 1, value: 'SixMonths', options: 'Last 6 Months' },
-        { key: 2, value: 'ThreeMonths', options: 'Last 3 Months' },
-        { key: 3, value: 'OneMonth', options: 'Last Month' }],
-      subjects: [
-        // { key: 0, value: '-1', options: 'Select value' },
-        { key: 1, value: 'AllSubject', options: 'All Subjects' },
-        { key: 2, value: 'EIData', options: 'EI Data' },
-        { key: 3, value: 'CERB', options: 'CERB' },
-        { key: 3, value: 'HomelessGrants', options: 'Homeless Grants' }],
-      organizations: [
-        // { key: 0, value: '-1', options: 'Select value' },
-        { key: 1, value: 'AllOrganisations', options: 'All Organizations' },
-        { key: 2, value: 'RBC', options: 'RBC' },
-        { key: 3, value: 'StatsCan', options: 'Stats Can' },
-        { key: 4, value: 'CRA', options: 'CRA' },
-        { key: 4, value: 'BMO', options: 'BMO' },
-        { key: 4, value: 'OntarioGov', options: 'Ontario Gov' },
-        { key: 5, value: 'OttawaMission', options: 'Ottawa Mission' }]
-    }
-  }
-}
+export default {}
 </script>
 <style scoped>
 #pdfButton {
@@ -110,5 +135,9 @@ img {
 }
 .dropdowns{
   @apply w-3/4 p-3 m-2;
+}
+.dashboardTitle {
+  color: #426177;
+  @apply font-bold text-4xl;
 }
 </style>

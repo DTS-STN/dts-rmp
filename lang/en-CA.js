@@ -138,12 +138,12 @@ export default {
     participants: 'Number of participants',
     numParticipants: 'Participants',
     description: 'Description',
-    editDescription: 'Description (Maximum 1000 characters. Additional characters will not be saved.)',
+    editDescription: 'Description ',
     policy: 'Policy / program',
-    tags: 'Tags:',
+    tags: 'Tags',
     tagLabel: 'Start typing and press enter to add new tags',
     comments: 'Comments',
-    editComments: 'Comments (Maximum 140 characters. Additional characters will not be saved.)',
+    editComments: 'Comments ',
     cancel: 'Cancel',
     save: 'Save',
     edit: 'Edit',
@@ -155,7 +155,8 @@ export default {
     otherParticipants: 'other participants',
     selectContact: 'Select one or more contact',
     notFound: 'No Engagement found',
-    leaveComment: 'Leave a comment...'
+    leaveComment: 'Leave a comment...',
+    charactersCount: 'characters remaining '
   },
   engagementValidation: {
     messageTitle: 'The following fields have errors',
@@ -167,12 +168,14 @@ export default {
     maxComment: 'Comment cannot exceed 140 characters',
     validDate: 'Please pick a valid date',
     duplicateTags: 'Tag already exist, please enter another tag name',
-    duplicateContacts: 'Contact already exist, please select another contact name'
+    duplicateContacts: 'Contact already exist, please select another contact name',
+    limit: 'Characters reached limit'
   },
   // EngSelectContact component
   engSelect: {
-    engagement: 'Create new engagement',
     editEngagement: 'Edit engagament',
+    engagement: 'New engagement',
+    contact: 'Contact',
     contact2: 'Contact number 2',
     remove: 'Remove',
     add: 'Add more contacts'
@@ -190,5 +193,32 @@ export default {
     MinisterOfficeBriefing: 'Minister office briefing',
     ScrumSprint: 'Scrum/Sprint',
     Advisory: 'Advisory board/Council Meeting'
+  },
+  dashboard: {
+    title: 'Engagement Dashboard',
+    download: 'Download PDF',
+    // time
+    sixMonths: 'Last 6 months',
+    threeMonths: 'Last 3 months',
+    lastMonth: 'Last month',
+    // subjects
+    allSubjects: 'All Subjects',
+    EIData: 'EI Data',
+    CERB: 'CERB',
+    HomelessGrants: 'Homeless Grants',
+    // organisations
+    AllOrganisations: 'All Organisations',
+    RBC: 'RBC',
+    StatsCan: 'Stats Canada',
+    CRA: 'CRA',
+    BMO: 'BMO',
+    OntarioGov: 'Ontario Gov',
+    OttawaMission: 'Ottawa Mission'
+  },
+  notifications: {
+    ContactCreated: 'Contact Created',
+    ContactUpdated: 'Contact Updated',
+    EngagementCreated: 'Engagement Created',
+    EngagementUpdated: 'EngagementUpdated'
   }
 }

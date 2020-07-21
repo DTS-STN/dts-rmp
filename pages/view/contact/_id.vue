@@ -5,7 +5,7 @@
     </h1>
 
     <div class=" md:flex flex-wrap mb-4 ">
-      <div class="md:w-5/12 margins">
+      <div class="md:w-auto margins">
         <ConViewFields label="type">
           {{ $t('contact.' + contactInfo.type) }}
         </ConViewFields>
@@ -67,12 +67,16 @@
     <div class=" md:flex flex-wrap mb-4 ">
       <div class="md:w-5/12 margins">
         <ConViewFields label="keyContactEmail">
-          {{ contactInfo.keyContactEmail }}
+          <a :href="'mailto:'+ contactInfo.keyContactEmail">
+            {{ contactInfo.keyContactEmail }}
+          </a>
         </ConViewFields>
       </div>
       <div class="md:w-5/12 margins">
         <ConViewFields label="phone">
-          {{ contactInfo.keyContactPhone }}
+          <a :href="'tel:' + contactInfo.keyContactPhone">
+            {{ contactInfo.keyContactPhone }}
+          </a>
         </ConViewFields>
       </div>
     </div>
@@ -138,12 +142,16 @@
     <div class=" md:flex flex-wrap mb-4 ">
       <div class="md:w-5/12 margins">
         <ConViewFields label="orgEmail">
-          {{ contactInfo.orgEmail }}
+          <a :href="'mailto:'+ contactInfo.orgEmail">
+            {{ contactInfo.orgEmail }}
+          </a>
         </ConViewFields>
       </div>
       <div class="md:w-5/12 margins">
         <ConViewFields label="phone">
-          {{ contactInfo.orgPhone }}
+          <a :href="'mailto:'+ contactInfo.orgPhone">
+            {{ contactInfo.orgPhone }}
+          </a>
         </ConViewFields>
       </div>
     </div>
@@ -245,6 +253,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 
@@ -315,19 +324,19 @@ export default {
 
 <style scoped>
 .contactForm {
-  @apply bg-white text-black;
+  @apply bg-white text-black text-base;
 }
 .title {
-  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
+  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-2xl pt-4;
 }
 .margins {
   @apply px-1 py-2 m-2;
 }
 .btn-cancel {
-  @apply justify-start bg-gray-300 w-full mt-2 text-black h-12 font-display;
+  @apply justify-start bg-gray-300 w-full mt-2 text-black h-12;
 }
 .btn-extra {
-  @apply w-full mt-2 h-12 justify-start font-display;
+  @apply w-full mt-2 h-12 justify-start;
 }
 @media screen and (max-width: 768px) {
   h1 { font-size: 28px !important; }

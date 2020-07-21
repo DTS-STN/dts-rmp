@@ -1,14 +1,12 @@
 <template>
-  <div class="contact-menu">
-    <div class="w-5/12 margins">
-      <select
-        class="formSelect"
-        v-bind="$attrs"
-        v-on="$listeners"
-      >
-        <slot />
-      </select>
-    </div>
+  <div class="md:w-4/12 margins">
+    <select
+      class="formSelect"
+      v-bind="$attrs"
+      v-on="$listeners"
+    >
+      <slot />
+    </select>
   </div>
 </template>
 
@@ -37,5 +35,8 @@ export default {
 }
 .formselect:focus {
   @apply outline-none border-blue-500;
+}
+.margins {
+  @apply py-2 mr-4 my-1;
 }
 </style>

@@ -1,41 +1,34 @@
 <template>
-  <div class="engagementForm font-body mt-8 mx-2 ">
+  <div class="engagementForm font-body mt-8 mx-4 xl:mx-16">
     <h1 class="title pb-6">
       {{ $t('engagement.engagement') }}
     </h1>
+
     <div class=" md:flex flex-wrap mb-4 ">
-      <div class=" md:w-5/12 margins ">
+      <div class=" md:w-auto margins ">
         <EngViewFields label="subject">
           {{ engagement.subject }}
-        </EngViewFields>
-      </div>
-      <div class=" md:w-5/12 margins ">
-        <EngViewFields label="type">
-          {{ engagement.type }}
         </EngViewFields>
       </div>
     </div>
 
     <div class=" md:flex flex-wrap mb-4 ">
       <div class=" md:w-5/12 margins ">
+        <EngViewFields label="type">
+          {{ engagement.type }}
+        </EngViewFields>
+      </div>
+      <div class=" md:w-5/12 margins ">
         <EngViewFields label="date">
           {{ engagement.date.substring(0, 10) }}
         </EngViewFields>
       </div>
+    </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
       <div class=" md:w-5/12 margins ">
         <EngViewFields label="participants">
           {{ engagement.numParticipants }}
-        </EngViewFields>
-      </div>
-    </div>
-    <div class=" md:flex flex-wrap mb-4 ">
-      <div class=" md:w-5/12 margins ">
-        <EngViewFields label="tags">
-          <ul>
-            <li v-for="(tag, index) in engagement.tags" :key="index">
-              {{ tag }}
-            </li>
-          </ul>
         </EngViewFields>
       </div>
       <div class=" md:w-5/12 margins ">
@@ -44,6 +37,19 @@
         </EngViewFields>
       </div>
     </div>
+
+    <div class=" md:flex flex-wrap mb-4 ">
+      <div class=" md:auto flex margins ">
+        <EngViewFields label="tags">
+          <ul class="md:inline-flex md:mt-0 display-block">
+            <li v-for="(tag, index) in engagement.tags" :key="index" class="tags">
+              {{ tag }}
+            </li>
+          </ul>
+        </EngViewFields>
+      </div>
+    </div>
+
     <div class=" md:flex flex-wrap mb-4 ">
       <div class="margins break-all">
         <EngViewFields label="description">
@@ -52,8 +58,9 @@
         </EngViewFields>
       </div>
     </div>
+
     <div class="md:flex flex-wrap mb-4 ">
-      <div class="margins w-4/5">
+      <div class="margins w-full">
         <EngViewFields label="comments">
           <br />
           <EngComments
@@ -67,6 +74,7 @@
     <h2 class="title">
       {{ $t('engagement.contacts') }}
     </h2>
+
     <div class="max-w-full px-4 my-8 py-6 border border-gray-500">
       <EngShowContacts
         v-for="(con, index) in engagement.contacts"
@@ -152,7 +160,7 @@ export default {
 
 <style scoped>
 .engagementForm {
-  @apply bg-white text-black;
+  @apply bg-white text-black text-base;
 }
 .btn-cancel {
   @apply justify-start bg-gray-300 w-full mt-2 text-black h-12;
@@ -161,10 +169,13 @@ export default {
   @apply w-full mt-2 h-12 justify-start;
 }
 .title {
-  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-4xl pt-4;
+  @apply text-rmp-md-blue text-left tracking-wide font-extrabold text-2xl pt-4;
 }
 .margins {
   @apply px-1 py-2 m-2;
+}
+.tags {
+  @apply  bg-rmp-lt-blue text-rmp-md-blue rounded-full px-4 py-1 ml-2 mt-2;
 }
 @media screen and (max-width: 768px) {
   h1 { font-size: 28px !important; }
