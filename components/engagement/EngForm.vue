@@ -208,6 +208,9 @@
                 @input="$v.inputTag.$touch()"
                 @keydown.enter.prevent="getTagFromInput()"
               />
+              <button class="addTag" @click.prevent="getTagFromInput()">
+                +
+              </button>
             </div>
             <p v-if="$v.inputTag && !$v.inputTag.maxChar" class="error">
               {{ $t('engagementValidation.maxTagLength') }}
@@ -475,6 +478,9 @@ export default {
   background-image: url('../../assets/images/orange-star.png');
   background-repeat: no-repeat;
   @apply mt-6 pl-6 pr-4 font-bold;
+}
+.addTag{
+  @apply bg-rmp-orange text-white p-2 pl-3 pr-3 rounded-r-lg -ml-1 items-center;
 }
 .dateStyle {
   @apply appearance-none block w-full bg-white border-2  border-gray-400 rounded py-3 px-4 leading-tight;
