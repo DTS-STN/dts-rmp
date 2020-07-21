@@ -103,12 +103,17 @@ router.post('/update', async(req, res) => {
   try {
     const newEngagement = new Engagement(req.body.engagementDetail)
     const oldEngagement = await Engagement.findById(req.query.id)
+    const updatedEngagement = await Engagement.findByIdAndUpdate(req.query.id, { $set: newEngagement }, { new: true, useFindAndModify: false })
     oldEngagement.contacts.forEach(async(contact) => {
       if (!newEngagement.contacts.includes(contact)) {
-        await Contact.findByIdAndUpdate(contact, { $pull: { engagements: { $in: newEngagement._id } } }, { new: true, useFindAndModify: false })
+        await Contact.findByIdAndUpdate(contact, { $pull: { engagements: { $in: updatedEngagement._id } } }, { new: true, useFindAndModify: false })
       }
     })
-    const updatedEngagement = await Engagement.findByIdAndUpdate(req.query.id, { $set: newEngagement }, { new: true, useFindAndModify: false })
+    newEngagement.contacts.forEach(async(contact) => {
+      if (!oldEngagement.contacts.includes(contact)) {
+        await Contact.findByIdAndUpdate(contact, { $push: { engagements: updatedEngagement._id } }, { new: true, useFindAndModify: false }).then((newDoc) => { console.log(newDoc) })
+      }
+    })
     res.status(200).json({
       engagement: {
         updatedEngagement
