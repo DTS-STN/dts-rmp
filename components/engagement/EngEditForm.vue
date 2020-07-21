@@ -1,5 +1,5 @@
 <template>
-  <div ref="top" title="engagementForm" class="engagementForm font-body mx-12">
+  <div ref="top" title="engagementEditForm" class="engagementForm font-body mx-2 sm:mx-12 xl:mx-16">
     <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list mt-6">
       <h1 class="text-xl text-red-600">
         {{ $t('engagementValidation.messageTitle') }}
