@@ -5,11 +5,11 @@
         {{ $t('engagement.user') }}
       </a>
       <span class="date">
-        {{ getDateAndTime(date) }}
+        {{ getDateAndTime(comment.date) }}
       </span>
       <br />
       <span class="content">
-        {{ comment }}
+        {{ comment.content }}
       </span>
     </div>
   </div>
@@ -19,12 +19,15 @@
 export default {
   name: 'SingleComment',
   props: {
-    comment: { type: String, default: '' },
-    date: { type: Date, default: new Date() }
+    comment: { type: Object, default: () => {} }
   },
   methods: {
     getDateAndTime(date) {
-      return date.toISOString().slice(0, 10) + ' ' + this.twelveHourClock(date) + this.timeOfDay(date)
+      if (date) {
+        return date.toISOString().slice(0, 10) + ' ' + this.twelveHourClock(date) + this.timeOfDay(date)
+      } else {
+        return 'No date recorded'
+      }
     },
     twelveHourClock(date) {
       return ((date.getHours() > 12) ? (date.getHours() - 12).toString + date.toTimeString().slice(2, 5) : date.toTimeString().slice(0, 5))

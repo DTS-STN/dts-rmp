@@ -2,7 +2,7 @@
   <div class="comments-wrapper">
     <div class="comment-bar">
       <input
-        v-model.trim="newComment"
+        v-model="newComment.content"
         type="text"
         class="comment-text"
         :placeholder="$t('engagement.leaveComment')"
@@ -19,7 +19,6 @@
       v-for="(comment, index) in comments"
       :key="index"
       :comment="comment"
-      :date="date"
     />
   </div>
 </template>
@@ -39,8 +38,7 @@ export default {
 
   data() {
     return {
-      newComment: '',
-      date: new Date()
+      newComment: { content: '', date: '' }
     }
   },
 
@@ -50,9 +48,10 @@ export default {
 
   methods: {
     submitComment() {
-      if (this.newComment) {
+      if (this.newComment.content) {
+        this.newComment.date = new Date()
         this.$emit('submit-comment', this.newComment)
-        this.newComment = ''
+        this.newComment = { content: '', date: '' }
       }
     }
   }

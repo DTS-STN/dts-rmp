@@ -67,8 +67,14 @@ const populateDatabase = async() => {
       numParticipants: Randomizers.randomInt(2, 5),
       contacts: [],
       policyProgram: Randomizers.randomString(12),
-      comments: [`${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}`,
-      `${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}`
+      comments: [{
+        content: `${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}`,
+        date: ''
+      },
+      {
+        content: `${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}`,
+        date: ''
+      }
       ],
       tags: Randomizers.randomTagArray()
     })
