@@ -330,7 +330,9 @@ export default {
       this.engagementDetail.contacts = value
     },
     getDateAndSplit(date) {
-      if (typeof date === 'string') {
+      if (date === null) {
+        return new Date().toISOString().split('T')[0]
+      } else if (typeof date === 'string') {
         return this.engagementDetail.date.split('T')[0]
       } else {
         return this.engagementDetail.date.toISOString().split('T')[0]
