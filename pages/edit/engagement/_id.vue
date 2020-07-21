@@ -13,7 +13,6 @@ export default {
   },
   async asyncData(context) {
     try {
-      console.log('Test asyncdata')
       context.app.$axios.defaults.baseURL = context.env.API_URL
       const { data } = await context.app.$axios.get(`/api/engagement/engagement?id=${context.route.params.id}`)
       return { engagementDetail: data }
