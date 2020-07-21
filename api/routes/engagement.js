@@ -11,7 +11,7 @@ const router = Router()
 
 router.get('/engagements', async(req, res) => {
   try {
-    const engagements = await Engagement.find().populate('contacts')
+    const engagements = await Engagement.find().sort({ date: -1 }).populate('contacts')
 
     if (!engagements) {
       consola.error('No engagements exist')
