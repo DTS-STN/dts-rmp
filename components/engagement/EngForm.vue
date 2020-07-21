@@ -501,7 +501,6 @@ export default {
   @apply appearance-none border border-red-500 rounded w-full
 }
 .error-list {
-  width: 50%;
   background-color: rgba(255,0,0,0.1);
   @apply border border-red-500;
 }
