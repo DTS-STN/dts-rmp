@@ -1,6 +1,6 @@
 <template>
-  <div ref="top" title="engagementForm" class="engagementForm font-body mx-12">
-    <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list mt-6">
+  <div ref="top" title="engagementForm" class="engagementForm font-body mx-2 xl:mx-16">
+    <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list w-full md:w-1/2 mt-6">
       <h1 class="text-xl text-red-600">
         {{ $t('engagementValidation.messageTitle') }}
       </h1>
@@ -258,13 +258,13 @@
             {{ message.message }}
           </span>
         </div>
-        <div class="md:flex flex-wrap justify-start mb-4">
-          <div class=" md:w-4/12 margins">
+        <div class="md:flex flex-wrap justify-start mb-12">
+          <div class=" margins">
             <AppButton class="font-display" custom_style="btn-cancel" btntype="button" data_cypress="formButton" @click="goBack">
               {{ $t('engagement.cancel') }}
             </AppButton>
           </div>
-          <div class=" md:w-4/12 margins">
+          <div class=" margins">
             <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
               {{ $t('engagement.save') }}
             </AppButton>
@@ -506,6 +506,9 @@ export default {
 .delete-btn {
   @apply text-rmp-dk-blue bg-white rounded-full items-center justify-center pl-2 pr-2 ml-2
 }
+.margins {
+  @apply py-2 mx-2 my-1;
+}
 .error {
   @apply text-red-500 text-xs italic;
 }
@@ -513,7 +516,6 @@ export default {
   @apply appearance-none border border-red-500 rounded w-full
 }
 .error-list {
-  width: 50%;
   background-color: rgba(255,0,0,0.1);
   @apply border border-red-500;
 }

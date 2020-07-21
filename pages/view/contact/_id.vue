@@ -240,12 +240,12 @@
     </div>
 
     <div class="md:flex flex-wrap justify-start mb-4">
-      <div class="md:w-4/12 margins">
+      <div class=" margins">
         <AppButton custom_style="btn-cancel" type="button" data_cypress="contactDetailBackButton" @click="goBack">
           {{ $t('contact.back') }}
         </AppButton>
       </div>
-      <div class="md:w-4/12 margins">
+      <div class=" margins">
         <AppButton custom_style="btn-extra" type="button" data_cypress="contactDetailEditButton" @click="goEdit">
           {{ $t('contact.edit') }}
         </appbutton>

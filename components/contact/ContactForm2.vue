@@ -1,7 +1,7 @@
 <template>
-  <div class="contactForm font-body mt-8 mx-12">
+  <div class="contactForm font-body mt-8 mx-2 xl:mx-16">
     <div>
-      <div v-if="didAttemptSubmit && invalidFields.length" class="error-list md:w-full">
+      <div v-if="didAttemptSubmit && invalidFields.length" class="error-list w-full md:w-1/2">
         <h2 ref="displayErrors" class="text-xl ml-2 text-red-600">
           {{ $t('contactValidation.errorListTitle') }}
         </h2>
@@ -554,12 +554,12 @@
         </div>
 
         <div class=" md:flex flex-wrap justify-start mb-4">
-          <div class=" md:w-4/12 margins">
+          <div class=" margins">
             <AppButton custom_style="btn-cancel" data_cypress="cancelButton" type="button" @click="goBack">
               {{ $t('contact.cancel') }}
             </AppButton>
           </div>
-          <div class=" md:w-4/12 margins">
+          <div class=" margins">
             <AppButton custom_style="btn-extra" data_cypress="submitButton">
               {{ $t('contact.save') }}
             </AppButton>
@@ -803,7 +803,6 @@ export default {
 }
 
 .error-list {
-  width: 50%;
   background-color: rgba(255, 0, 0, 0.1);
   @apply border border-red-500;
 }
