@@ -13,12 +13,13 @@ export default {
   },
   async asyncData(context) {
     try {
-      context.app.$axios.defaults.baseURL = context.env.API_URL
+      context.app.$axios.defaults.baseURL = context.$config.API_URL
+      console.log(context.app.$axios.defaults.baseURL)
       const { data } = await context.app.$axios.get(`/api/engagement/engagement?id=${context.route.params.id}`)
       return { engagementDetail: data }
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.log('Error fetching Contact : ', e)
+      console.log('Error fetching Engagement : ', e)
     }
   },
 

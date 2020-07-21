@@ -206,7 +206,7 @@
           </div>
           <div v-if="showTag" class="flex mt-6 ml-2">
             <div class="flex-no-wrap md:flex">
-              <eng-tags class="flex justify-end" v-for="(tag, index) in engagementDetail.tags" :key="index">
+              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index" class="flex justify-end">
                 <div class="mr-2">
                   {{ tag }}
                 </div>
@@ -262,7 +262,15 @@ export default {
     engagementDetail: {
       type: Object,
       default() {
-        return {}
+        return {
+          subject: '',
+          type: '',
+          date: new Date(),
+          description: '',
+          numParticipants: 0,
+          contacts: [],
+          tags: []
+        }
       }
     }
   },
