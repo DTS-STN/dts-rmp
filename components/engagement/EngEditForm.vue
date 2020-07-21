@@ -427,7 +427,7 @@ export default {
           this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementUpdated'))
           this.goBack()
         } catch (e) {
-          this.$store.dispatch('notifications/addNotification', e.response.data.message)
+          this.notification('error', e.response.data.message)
         }
       }
     }
