@@ -364,10 +364,10 @@ export default {
       this.engagementDetail.contacts = value
     },
     getTagFromInput() {
-      if (this.inputTag.length === 0) {
+      this.duplicateTag = false
+      this.maxTags = false
+      if (this.inputTag.length === 0 || this.inputTag.length > 10) {
         return
-      } else if (this.inputTag.length > 10) {
-        this.maxTagName = true
       } else if (this.duplicateTags()) {
         this.duplicateTag = true
       } else if (this.engagementDetail.tags.length === 3) {
