@@ -420,7 +420,7 @@ export default {
           await this.$axios.post('/api/engagement/addEngagement', {
             engagementDetail
           })
-          this.$store.dispatch('notifications/addNotification', this.$t('notifications.ContactUpdated'))
+          this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementCreated'))
           this.goBack()
           this.engagementDetail = this.resetForm()
           this.reloadComponent()

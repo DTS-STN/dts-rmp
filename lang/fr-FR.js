@@ -220,6 +220,6 @@ export default {
     ContactCreated: 'FR-Contact Created',
     ContactUpdated: 'FR-Contact Updated',
     EngagementCreated: 'FR-Engagement Created',
-    EngagementUpdated: 'FR-EngagementUpdated'
+    EngagementUpdated: 'FR-Engagement Updated'
   }
 }
