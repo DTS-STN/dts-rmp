@@ -173,6 +173,7 @@ export default {
   },
   // EngSelectContact component
   engSelect: {
+    editEngagement: 'Edit engagament',
     engagement: 'New engagement',
     contact: 'Contact',
     contact2: 'Contact number 2',

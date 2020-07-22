@@ -51,6 +51,16 @@ export default {
     showContact,
     formSelect
   },
+
+  props: {
+    contactProps: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
+  },
+
   /* fetch data from vuex store */
   async fetch() {
     try {
@@ -60,6 +70,7 @@ export default {
       console.log('Error: ', e.response)
     }
   },
+
   data() {
     return {
       showDuplicate: false,
@@ -73,17 +84,29 @@ export default {
   computed: mapState({
     contacts: state => state.contacts.contacts
   }),
+
+  beforeMount() {
+    this.contactProps.forEach(contact => this.showContact(contact, true))
+  },
+
   methods: {
     /* display contact info when select contact name in the dropdown menu */
-    showContact(event) {
-      this.contactName = event.target.value
-      this.items = this.contactArray.filter(item => item.name.includes(this.contactName))
-      if (this.items.length === 0) {
-        this.showDuplicate = false
+    showContact(event, fromProps) {
+      if (fromProps) {
+        this.contactName = event.keyContactName
+        this.items = []
         this.getContactInfo()
         this.isSelected = true
       } else {
-        this.showDuplicate = true
+        this.contactName = event.target.value
+        this.items = this.contactArray.filter(item => item.name.includes(this.contactName))
+        if (this.items.length === 0) {
+          this.showDuplicate = false
+          this.getContactInfo()
+          this.isSelected = true
+        } else {
+          this.showDuplicate = true
+        }
       }
     },
     /* get contact and engagement information */
