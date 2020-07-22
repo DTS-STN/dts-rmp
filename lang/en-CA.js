@@ -141,7 +141,7 @@ export default {
     editDescription: 'Description ',
     policy: 'Policy / program',
     tags: 'Tags',
-    tagLabel: 'Start typing and press enter to add new tags',
+    tagLabel: 'Press enter or click + to add new tags',
     comments: 'Comments',
     editComments: 'Comments ',
     cancel: 'Cancel',
@@ -174,6 +174,7 @@ export default {
   },
   // EngSelectContact component
   engSelect: {
+    editEngagement: 'Edit engagament',
     engagement: 'New engagement',
     contact: 'Contact',
     contact2: 'Contact number 2',
@@ -219,6 +220,6 @@ export default {
     ContactCreated: 'Contact Created',
     ContactUpdated: 'Contact Updated',
     EngagementCreated: 'Engagement Created',
-    EngagementUpdated: 'EngagementUpdated'
+    EngagementUpdated: 'Engagement Updated'
   }
 }
