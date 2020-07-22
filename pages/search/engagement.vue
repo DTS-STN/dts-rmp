@@ -68,8 +68,12 @@ export default {
         let flag = false
 
         values.forEach((val) => {
-          if (Array.isArray(val) && typeof val[0] === 'object') {
-            return
+          if (Array.isArray(val) && typeof val[0] === 'object' && val[0].keyContactName !== undefined) {
+            val.forEach((v) => {
+              if (v.keyContactName.toLowerCase().includes(searchText)) {
+                flag = true
+              }
+            })
           }
           if (Array.isArray(val) && typeof val[0] === 'string') {
             val.forEach((v) => {
