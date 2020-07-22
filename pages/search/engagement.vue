@@ -61,7 +61,7 @@ export default {
 
   methods: {
     filter(input) {
-      const searchText = input.toLowerCase()
+      const searchText = input.toLowerCase().trim()
 
       const results = this.engagements.filter((engagement) => {
         const values = Object.values(engagement)
