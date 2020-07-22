@@ -182,18 +182,18 @@ export default {
     add: 'Add more contacts'
   },
   engagementTypes: {
-    one: 'One-on-one',
+    one: 'One-On-One',
     Conference: 'Conference',
-    ConferenceCall: 'Conference call',
+    ConferenceCall: 'Conference Call',
     Workshop: 'Workshop',
     Webinar: 'Webinar',
-    PhoneCall: 'Phone call',
-    CommitteeMeeting: 'Committee meeting',
-    WorkingGroup: 'Working group',
-    SeniorManagementBriefing: 'Senior management briefing',
-    MinisterOfficeBriefing: 'Minister office briefing',
+    PhoneCall: 'Phone Call',
+    CommitteeMeeting: 'Committee Meeting',
+    WorkingGroup: 'Working Group',
+    SeniorManagementBriefing: 'Senior Management Briefing',
+    MinisterOfficeBriefing: 'Minister Office Briefing',
     ScrumSprint: 'Scrum/Sprint',
-    Advisory: 'Advisory board/Council Meeting'
+    Advisory: 'Advisory Board/Council Meeting'
   },
   dashboard: {
     title: 'Engagement Dashboard',
