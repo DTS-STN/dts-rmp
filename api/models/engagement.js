@@ -13,7 +13,7 @@ const EngagementSchema = new Schema({
 })
 
 EngagementSchema.pre('save', function(next) {
-  if (this.comments[0].content === '') {
+  if (this.isNew && this.comments[0].content === '') {
     this.comments = undefined
   }
   next()
