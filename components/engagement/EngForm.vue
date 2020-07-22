@@ -452,6 +452,7 @@ export default {
 
           this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementCreated'))
           this.comments = ''
+          this.inputTag = ''
           this.engagementDetail = this.resetForm()
           this.reloadComponent()
 
