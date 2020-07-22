@@ -218,7 +218,7 @@
             <p v-if="duplicateTag" class="error">
               {{ $t('engagementValidation.duplicateTags') }}
             </p>
-            <p v-if="maxTags" class="error">
+            <p v-if="maxTags && engagementDetail.tags.length === 3" class="error">
               {{ $t('engagementValidation.maxTags') }}
             </p>
           </div>
