@@ -431,7 +431,7 @@ export default {
         numParticipants: 0,
         contacts: [],
         policyProgram: '',
-        comments: [{ content: '', date: new Date() }],
+        comments: [],
         tags: []
       }
     },
@@ -451,7 +451,7 @@ export default {
           })
 
           this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementCreated'))
-
+          this.comments = ''
           this.engagementDetail = this.resetForm()
           this.reloadComponent()
 
