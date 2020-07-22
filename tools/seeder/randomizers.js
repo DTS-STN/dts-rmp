@@ -24,10 +24,10 @@ export function randomEngagementType() {
     'Workshop',
     'Webinar',
     'Phone Call',
-    'Committee meeting',
+    'Committee Meeting',
     'Working Group',
-    'Senior management Briefing',
-    'Minister Office briefing',
+    'Senior Management Briefing',
+    'Minister Office Briefing',
     'Scrum/Sprint',
     'Advisory Board/Council Meeting'
   ]
