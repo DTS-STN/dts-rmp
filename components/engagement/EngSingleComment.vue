@@ -2,23 +2,36 @@
   <div class="comment">
     <div class="text">
       <a class="username" href="#">
-        @Ben117
+        {{ $t('engagement.user') }}
       </a>
       <span class="date">
-        2020-07-16
+        {{ getDateAndTime(comment.date) }}
       </span>
       <br />
       <span class="content">
-        {{ comment }}
+        {{ comment.content }}
       </span>
     </div>
   </div>
 </template>
 
 <script>
+import { DateTime } from 'luxon'
+
 export default {
   name: 'SingleComment',
-  props: { comment: { type: String, default: '' } }
+  props: {
+    comment: { type: Object, default: () => {} }
+  },
+  methods: {
+    getDateAndTime(date) {
+      if (date) {
+        return DateTime.fromISO(date).toLocaleString(DateTime.DATETIME_SHORT)
+      } else {
+        return 'No date recorded'
+      }
+    }
+  }
 }
 </script>
 

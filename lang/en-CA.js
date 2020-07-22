@@ -156,7 +156,8 @@ export default {
     selectContact: 'Select one or more contact',
     notFound: 'No Engagement found',
     leaveComment: 'Leave a comment...',
-    charactersCount: 'characters remaining '
+    charactersCount: 'characters remaining ',
+    user: 'RMP User'
   },
   engagementValidation: {
     messageTitle: 'The following fields have errors',
@@ -173,6 +174,7 @@ export default {
   },
   // EngSelectContact component
   engSelect: {
+    editEngagement: 'Edit engagament',
     engagement: 'New engagement',
     contact: 'Contact',
     contact2: 'Contact number 2',

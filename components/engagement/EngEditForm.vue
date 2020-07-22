@@ -1,6 +1,6 @@
 <template>
-  <div ref="top" title="engagementForm" class="engagementForm font-body mx-2 sm:mx-12 xl:mx-16">
-    <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list w-full md:w-1/2 mt-6">
+  <div ref="top" title="engagementEditForm" class="engagementForm font-body mx-2 sm:mx-12 xl:mx-16">
+    <div v-if="attemptSubmit && invalidFields.length" ref="messageBox" class="error-list mt-6">
       <h1 class="text-xl text-red-600">
         {{ $t('engagementValidation.messageTitle') }}
       </h1>
@@ -12,13 +12,14 @@
     </div>
     <div>
       <h1 class="formTitle font-display mt-8">
-        {{ $t('engSelect.engagement') }}
+        {{ $t('engSelect.editEngagement') }}
       </h1>
       <h2 class="font-display mb-2 text-4xl">
         {{ $t('engSelect.contact') }}
       </h2>
       <select-contact
         :key="componentKey"
+        :contact-props="engagementDetail.contacts"
         @childToParent="onChildClick"
         @blur="$v.engagementDetail.contacts.$touch()"
       />
@@ -78,19 +79,6 @@
             <p v-if="$v.engagementDetail.type.$dirty && !$v.engagementDetail.type.required" class="error">
               {{ $t('engagementValidation.required') }}
             </p>
-            <!-- <div
-                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-              >
-                <svg
-                  class="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                  />
-                </svg>
-              </div> -->
           </div>
         </div>
         <div class="md:flex flex-wrap mb-10  ">
@@ -208,53 +196,26 @@
                 @input="$v.inputTag.$touch()"
                 @keydown.enter.prevent="getTagFromInput()"
               />
-              <button class="addTag" @click.prevent="getTagFromInput()">
-                +
-              </button>
             </div>
             <p v-if="$v.inputTag && !$v.inputTag.maxChar" class="error">
               {{ $t('engagementValidation.maxTagLength') }}
             </p>
-            <p v-if="duplicateTag" class="error">
+            <p v-if="duplicateTags()" class="error">
               {{ $t('engagementValidation.duplicateTags') }}
-            </p>
-            <p v-if="maxTags && engagementDetail.tags.length === 3" class="error">
-              {{ $t('engagementValidation.maxTags') }}
             </p>
           </div>
           <div v-if="showTag" class="flex mt-6 ml-2">
             <div class="flex-no-wrap md:flex">
-              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index">
-                {{ tag }}
-                <button class="delete-btn" @click.prevent="deleteTag(index)">
+              <eng-tags v-for="(tag, index) in engagementDetail.tags" :key="index" class="flex justify-end">
+                <div class="mr-2">
+                  {{ tag }}
+                </div>
+                <button class="delete-btn ml-auto" @click.prevent="deleteTag(index)">
                   x
                 </button>
               </eng-tags>
             </div>
           </div>
-        </div>
-
-        <div class="md:w-4/6 margins ">
-          <label
-            class="formLabel"
-            for="comments"
-          >
-            {{ $t('engagement.editComments') }}
-          </label>
-          <br />
-          <textarea
-            v-model="comments"
-            type="text"
-            name="KeyNotes"
-            class="textArea"
-            maxlength="140"
-          />
-          <p v-if="comments.length < 140" class="limiter">
-            {{ charactersLeftComment }}
-          </p>
-          <p v-else class="text-red-500">
-            {{ $t('engagementValidation.limit') }}
-          </p>
         </div>
 
         <div
@@ -266,13 +227,13 @@
             {{ message.message }}
           </span>
         </div>
-        <div class="md:flex flex-wrap justify-start mb-12">
-          <div class=" margins">
+        <div class="md:flex flex-wrap justify-start mb-4">
+          <div class=" md:w-4/12 margins">
             <AppButton class="font-display" custom_style="btn-cancel" btntype="button" data_cypress="formButton" @click="goBack">
               {{ $t('engagement.cancel') }}
             </AppButton>
           </div>
-          <div class=" margins">
+          <div class=" md:w-4/12 margins">
             <AppButton class="font-display" custom_style="btn-extra" data_cypress="formButton">
               {{ $t('engagement.save') }}
             </AppButton>
@@ -290,12 +251,30 @@ import EngTags from './EngTags'
 import AppButton from '@/components/app/AppButton.vue'
 
 export default {
-  name: 'EngagementForm',
+  name: 'EngagementEditForm',
   components: {
     AppButton,
     SelectContact,
     EngTags
   },
+
+  props: {
+    engagementDetail: {
+      type: Object,
+      default() {
+        return {
+          subject: '',
+          type: '',
+          date: new Date(),
+          description: '',
+          numParticipants: 0,
+          contacts: [],
+          tags: []
+        }
+      }
+    }
+  },
+
   data() {
     return {
       mySVG: require('../../assets/images/calendar.svg'),
@@ -306,8 +285,6 @@ export default {
         message: null,
         goBack: false
       },
-      engagementDetail: this.resetForm(),
-      comments: '',
       inputTag: '',
       engagementTypes: [
         { type: this.$t('engagementTypes.one') },
@@ -323,14 +300,30 @@ export default {
         { type: this.$t('engagementTypes.ScrumSprint') },
         { type: this.$t('engagementTypes.Advisory') }
       ],
-      showTag: false,
+      showTag: true,
       timeout: null,
-      attemptSubmit: false,
-      maxTagName: false,
-      duplicateTag: false,
-      maxTags: false
+      attemptSubmit: false
     }
   },
+
+  computed: {
+    invalidFields() {
+      return Object.keys(this.$v.engagementDetail.$params).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
+    },
+    charactersLeftComment() {
+      const char = this.engagementDetail.comments.length
+      const limit = 140
+
+      return (limit - char) + ' / ' + limit + ' ' + this.$t('engagement.charactersCount')
+    },
+    charactersLeftDescription() {
+      const char = this.engagementDetail.description.length
+      const limit = 1000
+
+      return (limit - char) + ' / ' + limit + ' ' + this.$t('engagement.charactersCount')
+    }
+  },
+
   validations: {
     engagementDetail: {
       subject: { required, maxChar: maxLength(50) },
@@ -343,23 +336,7 @@ export default {
     },
     inputTag: { maxChar: maxLength(10) }
   },
-  computed: {
-    invalidFields() {
-      return Object.keys(this.$v.engagementDetail.$params).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
-    },
-    charactersLeftComment() {
-      const char = this.comments.length
-      const limit = 140
 
-      return (limit - char) + ' / ' + limit + ' ' + this.$t('engagement.charactersCount')
-    },
-    charactersLeftDescription() {
-      const char = this.engagementDetail.description.length
-      const limit = 1000
-
-      return (limit - char) + ' / ' + limit + ' ' + this.$t('engagement.charactersCount')
-    }
-  },
   methods: {
     onChildClick(value) {
       this.engagementDetail.contacts = value
@@ -374,14 +351,8 @@ export default {
       }
     },
     getTagFromInput() {
-      this.duplicateTag = false
-      this.maxTags = false
-      if (this.inputTag.length === 0 || this.inputTag.length > 10) {
+      if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10 || this.inputTag.length === 0 || this.duplicateTags()) {
         return
-      } else if (this.duplicateTags()) {
-        this.duplicateTag = true
-      } else if (this.engagementDetail.tags.length === 3) {
-        this.maxTags = true
       } else {
         this.engagementDetail.tags.push(this.inputTag)
       }
@@ -412,6 +383,10 @@ export default {
       this.message.type = ''
       this.message.message = null
       clearTimeout(this.timeout)
+      if (!this.message.goBack) {
+        this.message.goBack = false
+        this.goBack()
+      }
     },
     emptyContacts() {
       return (this.engagementDetail.contacts.length === 0)
@@ -431,7 +406,7 @@ export default {
         numParticipants: 0,
         contacts: [],
         policyProgram: '',
-        comments: [{ content: '', date: new Date() }],
+        comments: '',
         tags: []
       }
     },
@@ -443,21 +418,12 @@ export default {
           this.$scrollTo(this.$refs.messageBox)
         })
       } else {
-        this.engagementDetail.comments = []
-        this.engagementDetail.comments.push({ content: this.comments, date: new Date() })
         try {
-          await this.$axios.post('/api/engagement/addEngagement', {
+          await this.$axios.post(`/api/engagement/update?id=${this.$route.params.id}`, {
             engagementDetail
           })
-
-          this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementCreated'))
-
-          this.engagementDetail = this.resetForm()
-          this.reloadComponent()
-
-          // next two lines avoid having a clean form with errors on it
-          setTimeout(() => { this.$v.$reset() }, 0)
-          this.attemptSubmit = false
+          this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementUpdated'))
+          this.goBack()
         } catch (e) {
           this.notification('error', e.response.data.message)
         }
@@ -493,9 +459,6 @@ export default {
   background-image: url('../../assets/images/orange-star.png');
   background-repeat: no-repeat;
   @apply mt-6 pl-6 pr-4 font-bold;
-}
-.addTag{
-  @apply bg-rmp-orange text-white p-2 pl-3 pr-3 rounded-r-lg -ml-1 items-center;
 }
 .dateStyle {
   @apply appearance-none block w-full bg-white border-2  border-gray-400 rounded py-3 px-4 leading-tight;
@@ -540,10 +503,7 @@ export default {
   @apply outline-none border-blue-500;
 }
 .delete-btn {
-  @apply text-rmp-dk-blue bg-white rounded-full items-center justify-center pl-2 pr-2 ml-2
-}
-.margins {
-  @apply py-2 mx-2 my-1;
+  @apply text-rmp-dk-blue bg-white rounded-full items-center justify-end pl-2 pr-2
 }
 .error {
   @apply text-red-500 text-xs italic;
@@ -552,6 +512,7 @@ export default {
   @apply appearance-none border border-red-500 rounded w-full
 }
 .error-list {
+  width: 50%;
   background-color: rgba(255,0,0,0.1);
   @apply border border-red-500;
 }

@@ -100,19 +100,20 @@ router.post('/addEngagement', async(req, res) => {
 // @access  Public
 
 router.post('/update', async(req, res) => {
-  let errMessage = ''
-
   try {
     const newEngagement = new Engagement(req.body.engagementDetail)
-
+    const oldEngagement = await Engagement.findById(req.query.id)
     const updatedEngagement = await Engagement.findByIdAndUpdate(req.query.id, { $set: newEngagement }, { new: true, useFindAndModify: false })
-
-    if (!updatedEngagement) {
-      consola.error('There was an error updating the record ')
-      errMessage = 'Changes could not be applied, try again later'
-      throw new Error(errMessage)
-    }
-
+    oldEngagement.contacts.forEach(async(contact) => {
+      if (!newEngagement.contacts.includes(contact)) {
+        await Contact.findByIdAndUpdate(contact, { $pull: { engagements: { $in: updatedEngagement._id } } }, { new: true, useFindAndModify: false })
+      }
+    })
+    newEngagement.contacts.forEach(async(contact) => {
+      if (!oldEngagement.contacts.includes(contact)) {
+        await Contact.findByIdAndUpdate(contact, { $push: { engagements: updatedEngagement._id } }, { new: true, useFindAndModify: false })
+      }
+    })
     res.status(200).json({
       engagement: {
         updatedEngagement
@@ -120,7 +121,8 @@ router.post('/update', async(req, res) => {
     })
   } catch (e) {
     consola.error(e.message)
-    res.status(401).json({ message: errMessage })
+    res.status(401).json({ message: e.message })
+    throw e
   }
 })
 

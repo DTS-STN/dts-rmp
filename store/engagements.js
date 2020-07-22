@@ -34,6 +34,8 @@ export const actions = {
   },
 
   addComment({ commit }, comment) {
+    // eslint-disable-next-line no-console
+    console.log(comment)
     commit('ADD_COMMENT', comment)
   }
 }

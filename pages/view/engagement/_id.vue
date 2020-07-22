@@ -99,7 +99,7 @@
         </AppButton>
       </div>
       <div class=" margins">
-        <AppButton class="font-display" btntype="button" custom_style="btn-extra" data_cypress="formButton">
+        <AppButton class="font-display" btntype="button" custom_style="btn-extra" data_cypress="formButton" @click="goEdit">
           {{ $t('engagement.edit') }}
         </AppButton>
       </div>
@@ -142,6 +142,10 @@ export default {
       const contact = this.contacts.find(contact => id === contact._id)
       const lastEngagement = contact.engagements[0]
       return lastEngagement
+    },
+
+    goEdit() {
+      this.$router.push('/' + this.$i18n.locale + '/edit/engagement/' + this.$route.params.id)
     },
 
     goBack() {

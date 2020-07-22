@@ -8,7 +8,7 @@ const EngagementSchema = new Schema({
   numParticipants: { type: Number, required: true },
   contacts: [{ type: Schema.Types.ObjectId, required: true, ref: 'Contact' }],
   policyProgram: { type: String },
-  comments: [{ type: String }],
+  comments: [{ content: String, date: Date }],
   tags: [{ type: String }]
 })
 
