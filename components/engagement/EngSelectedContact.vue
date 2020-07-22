@@ -1,12 +1,14 @@
 <template>
   <!-- eslint-disable vue/singleline-html-element-content-newline -->
   <div>
-    <div class="flex max-w-full leading-10 bdr bottom top pt-6 pb-6 first">
-      <div class="w-6/12 pl-2">
+    <div class="flex max-w-full leading-10 bdr bottom pt-6 pb-6" :class="[arrayIndex == 0 ? 'first' : '']">
+      <div class="pl-2 w-6/12">
         <div>
           <span class="orangeText pr-0">{{ name }}</span>, {{ orgname }}
         </div>
-        <div><a :href="'mailto:'+ email">{{ email }}</a></div>
+        <div>
+          <a :href="'mailto:' + email">{{ email }}</a>
+        </div>
       </div>
 
       <div class="w-5/12 bdr leftBorder">
@@ -18,7 +20,7 @@
         <div>{{ date }}, {{ number }} {{ $t('contact.otherpeople') }}</div>
       </div>
 
-      <div class="w-1/12 flex items-center">
+      <div class="flex items-center">
         <button
           :id="id"
           class="btn-round"
@@ -74,18 +76,11 @@ export default {
 .bottom {
   @apply border-b-2;
 }
-.top {
-  @apply border-t-2;
-}
 button.btn-round {
-  background-image: url('../../assets/images/garbage.svg') ;
+  background-image: url('../../assets/images/garbage.svg');
   background-size: 58px 56px;
   height: 58px;
   width: 56px;
-}
-@media (max-width: 768px) {
-  .left {
-    @apply hidden;
-  }
+  min-width: 58px !important;
 }
 </style>
