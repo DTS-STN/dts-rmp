@@ -18,9 +18,9 @@ const populateDatabase = async() => {
       orgEmail: `${Randomizers.randomString(10)}@example.com`,
       orgAddress: Randomizers.randomString(5),
       orgAddress2: Randomizers.randomString(8),
-      orgCity: Randomizers.randomString(6),
-      orgProvState: Randomizers.randomString(6),
-      orgCountry: Randomizers.randomString(7),
+      orgCity: Randomizers.randomCities(),
+      orgProvState: Randomizers.randomProvState(),
+      orgCountry: Randomizers.randomCountry(),
       orgPostalCode: `${Randomizers.randomString(1)}${Randomizers.randomInt(
         1,
         9
@@ -30,16 +30,14 @@ const populateDatabase = async() => {
       )}${Randomizers.randomString(1)}${Randomizers.randomInt(1, 9)}`,
       orgPhone: Randomizers.randomInt(1000000000, 9999999999),
       orgWebsite: `http://${Randomizers.randomString(8)}.com`,
-      keyContactName: `${Randomizers.randomString(
-        6
-      )} ${Randomizers.randomString(8)}`,
-      keyContactTitle: `title_${Randomizers.randomString(8)}`,
+      keyContactName: Randomizers.randomNames(),
+      keyContactTitle: Randomizers.randomTitles(),
       keyContactEmail: `${Randomizers.randomString(10)}@example.com`,
       keyContactAddress: Randomizers.randomString(5),
       keyContactAddress2: Randomizers.randomString(8),
-      keyContactCity: Randomizers.randomString(6),
-      keyContactProvState: Randomizers.randomString(6),
-      keyContactCountry: Randomizers.randomString(6),
+      keyContactCity: Randomizers.randomCities(),
+      keyContactProvState: Randomizers.randomProvState(),
+      keyContactCountry: Randomizers.randomCountry(),
       keyContactPostalCode: `${Randomizers.randomString(
         1
       )}${Randomizers.randomInt(1, 9)}${Randomizers.randomString(

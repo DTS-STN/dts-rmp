@@ -108,3 +108,83 @@ export function randomTagArray() {
 export function randomDateBeforeDate(start, days) {
   return new Date(start.getTime() + Math.random() * days * 24 * 60 * 60 * 1000)
 }
+
+// Returns random names from array
+export function randomNames() {
+  const names = [
+    'Cate Blanchett',
+    'Natalie Portman',
+    'Uma Thurman',
+    'Helena Bonham Carter',
+    'Frances McDormand',
+    'Meryl Streep',
+    'Sigourney Weaver',
+    'Charlize Theron',
+    'Robert De Niro',
+    'Al Pacino',
+    'Leonardo DiCaprio',
+    'Tom Hanks',
+    'Denzel Washington',
+    'Michael Caine',
+    'Morgan Freeman'
+  ]
+  return names[Math.floor(Math.random() * names.length)]
+}
+
+// Returns random titles from array
+export function randomTitles() {
+  const titles = [
+    'Sr Developer',
+    'Sales representative',
+    'Director',
+    'CEO',
+    'Producer',
+    'Consultant'
+  ]
+  return titles[Math.floor(Math.random() * titles.length)]
+}
+
+// Returns random cities from array
+export function randomCities() {
+  const cities = [
+    'Ottawa',
+    'Toronto',
+    'Paris',
+    'New York',
+    'Los Angeles',
+    'Calgary',
+    'Kanata',
+    'Ciudad de Mexico',
+    'Tokio'
+  ]
+  return cities[Math.floor(Math.random() * cities.length)]
+}
+
+// Returns random provinces from array
+export function randomProvState() {
+  const provState = [
+    'Ontario',
+    'Alberta',
+    'Paris',
+    'New York',
+    'California',
+    'Manitoba',
+    'Mexico DF',
+    'Tokio'
+  ]
+  return provState[Math.floor(Math.random() * provState.length)]
+}
+
+// Returns random country from array
+export function randomCountry() {
+  const countries = [
+    'Canada',
+    'France',
+    'USA',
+    'Mexico',
+    'Spain',
+    'Singapore',
+    'Japan'
+  ]
+  return countries[Math.floor(Math.random() * countries.length)]
+}
