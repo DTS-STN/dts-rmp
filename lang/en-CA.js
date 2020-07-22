@@ -141,7 +141,7 @@ export default {
     editDescription: 'Description ',
     policy: 'Policy / program',
     tags: 'Tags',
-    tagLabel: 'Press enter or click + to add new tags',
+    tagLabel: 'Press enter or click + to add new tags (Maximum 3 tags)',
     comments: 'Comments',
     editComments: 'Comments ',
     cancel: 'Cancel',
