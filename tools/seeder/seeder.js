@@ -62,7 +62,7 @@ const populateDatabase = async() => {
   for (let j = 0; j < numEngagements; j++) {
     await Engagements.create({
       type: Randomizers.randomEngagementType(),
-      subject: Randomizers.randomString(10),
+      subject: `Subject-#${j}`,
       date: Randomizers.randomDateBeforeDate(new Date(), -7),
       description: `${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}
                     ${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}
