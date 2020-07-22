@@ -61,17 +61,28 @@ export default {
 
   methods: {
     filter(input) {
-      const searchText = input.toLowerCase()
+      const searchText = input.toLowerCase().trim()
 
       const results = this.engagements.filter((engagement) => {
         const values = Object.values(engagement)
         let flag = false
 
         values.forEach((val) => {
-          if (typeof val !== 'string') {
-            return
+          if (Array.isArray(val) && typeof val[0] === 'object' && val[0].keyContactName !== undefined) {
+            val.forEach((v) => {
+              if (v.keyContactName.toLowerCase().includes(searchText)) {
+                flag = true
+              }
+            })
           }
-          if (val.toLowerCase().includes(searchText)) {
+          if (Array.isArray(val) && typeof val[0] === 'string') {
+            val.forEach((v) => {
+              if (v.toLowerCase().includes(searchText)) {
+                flag = true
+              }
+            })
+          }
+          if (typeof val === 'string' && val.toLowerCase().includes(searchText)) {
             flag = true
           }
         })
