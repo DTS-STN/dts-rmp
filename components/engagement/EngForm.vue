@@ -240,13 +240,13 @@
           </label>
           <br />
           <textarea
-            v-model="engagementDetail.comments"
+            v-model="comments"
             type="text"
             name="KeyNotes"
             class="textArea"
             maxlength="140"
           />
-          <p v-if="engagementDetail.comments.length < 140" class="limiter">
+          <p v-if="comments.length < 140" class="limiter">
             {{ charactersLeftComment }}
           </p>
           <p v-else class="text-red-500">
@@ -304,6 +304,7 @@ export default {
         goBack: false
       },
       engagementDetail: this.resetForm(),
+      comments: '',
       inputTag: '',
       engagementTypes: [
         { type: this.$t('engagementTypes.one') },
@@ -341,7 +342,7 @@ export default {
       return Object.keys(this.$v.engagementDetail.$params).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
     },
     charactersLeftComment() {
-      const char = this.engagementDetail.comments.length
+      const char = this.comments.length
       const limit = 140
 
       return (limit - char) + ' / ' + limit + ' ' + this.$t('engagement.charactersCount')
@@ -418,7 +419,7 @@ export default {
         numParticipants: 0,
         contacts: [],
         policyProgram: '',
-        comments: '',
+        comments: [{ content: '', date: new Date() }],
         tags: []
       }
     },
@@ -430,6 +431,8 @@ export default {
           this.$scrollTo(this.$refs.messageBox)
         })
       } else {
+        this.engagementDetail.comments = []
+        this.engagementDetail.comments.push({ content: this.comments, date: new Date() })
         try {
           await this.$axios.post('/api/engagement/addEngagement', {
             engagementDetail
