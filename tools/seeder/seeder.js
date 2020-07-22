@@ -64,7 +64,9 @@ const populateDatabase = async() => {
       type: Randomizers.randomEngagementType(),
       subject: Randomizers.randomString(10),
       date: Randomizers.randomDateBeforeDate(new Date(), -7),
-      description: Randomizers.randomString(150),
+      description: `${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}
+                    ${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}
+                    ${Randomizers.randomString(6)} ${Randomizers.randomString(3)} ${Randomizers.randomString(5)} ${Randomizers.randomString(8)}`,
       numParticipants: Randomizers.randomInt(2, 5),
       contacts: [],
       policyProgram: Randomizers.randomString(12),

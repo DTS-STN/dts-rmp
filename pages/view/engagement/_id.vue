@@ -51,7 +51,7 @@
     </div>
 
     <div class=" md:flex flex-wrap mb-4 ">
-      <div class="margins break-all">
+      <div class="margins break-words">
         <EngViewFields label="description">
           <br />
           {{ engagement.description }}
