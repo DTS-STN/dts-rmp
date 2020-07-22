@@ -1,7 +1,7 @@
 <template>
   <!-- eslint-disable vue/singleline-html-element-content-newline -->
   <div>
-    <div class="flex max-w-full leading-10 bdr bottom pt-6 pb-6" :class="[arrayIndex == 0 ? 'first' : '']">
+    <div class="flex max-w-full break-all leading-10 bdr bottom pt-6 pb-6" :class="[arrayIndex == 0 ? 'first' : '']">
       <div class="pl-2 w-6/12">
         <div>
           <span class="orangeText pr-0">{{ name }}</span>, {{ orgname }}
