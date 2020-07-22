@@ -215,11 +215,11 @@
             <p v-if="$v.inputTag && !$v.inputTag.maxChar" class="error">
               {{ $t('engagementValidation.maxTagLength') }}
             </p>
-            <p v-if="duplicateTag" class="error">
-              {{ $t('engagementValidation.duplicateTags') }}
-            </p>
             <p v-if="maxTags && engagementDetail.tags.length === 3" class="error">
               {{ $t('engagementValidation.maxTags') }}
+            </p>
+            <p v-if="duplicateTag" class="error">
+              {{ $t('engagementValidation.duplicateTags') }}
             </p>
           </div>
           <div v-if="showTag" class="flex mt-6 ml-2">
@@ -378,10 +378,10 @@ export default {
       this.maxTags = false
       if (this.inputTag.length === 0 || this.inputTag.length > 10) {
         return
-      } else if (this.duplicateTags()) {
-        this.duplicateTag = true
       } else if (this.engagementDetail.tags.length === 3) {
         this.maxTags = true
+      } else if (this.duplicateTags()) {
+        this.duplicateTag = true
       } else {
         this.engagementDetail.tags.push(this.inputTag)
       }
