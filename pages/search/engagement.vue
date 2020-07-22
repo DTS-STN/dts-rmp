@@ -68,10 +68,17 @@ export default {
         let flag = false
 
         values.forEach((val) => {
-          if (typeof val !== 'string') {
+          if (Array.isArray(val) && typeof val[0] === 'object') {
             return
           }
-          if (val.toLowerCase().includes(searchText)) {
+          if (Array.isArray(val) && typeof val[0] === 'string') {
+            val.forEach((v) => {
+              if (v.toLowerCase().includes(searchText)) {
+                flag = true
+              }
+            })
+          }
+          if (typeof val === 'string' && val.toLowerCase().includes(searchText)) {
             flag = true
           }
         })
