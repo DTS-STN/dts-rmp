@@ -12,6 +12,13 @@ const EngagementSchema = new Schema({
   tags: [{ type: String }]
 })
 
+EngagementSchema.pre('save', function(next) {
+  if (this.comments[0].content === '') {
+    this.comments = undefined
+  }
+  next()
+})
+
 const Engagement = model('Engagement', EngagementSchema, true)
 
 export default Engagement
