@@ -215,7 +215,10 @@
             <p v-if="$v.inputTag && !$v.inputTag.maxChar" class="error">
               {{ $t('engagementValidation.maxTagLength') }}
             </p>
-            <p v-if="duplicateTags()" class="error">
+            <p v-if="maxTags && engagementDetail.tags.length === 3" class="error">
+              {{ $t('engagementValidation.maxTags') }}
+            </p>
+            <p v-if="duplicateTag" class="error">
               {{ $t('engagementValidation.duplicateTags') }}
             </p>
           </div>
@@ -322,7 +325,10 @@ export default {
       ],
       showTag: false,
       timeout: null,
-      attemptSubmit: false
+      attemptSubmit: false,
+      maxTagName: false,
+      duplicateTag: false,
+      maxTags: false
     }
   },
   validations: {
@@ -368,8 +374,14 @@ export default {
       }
     },
     getTagFromInput() {
-      if (this.engagementDetail.tags.length === 3 || this.inputTag.length > 10 || this.inputTag.length === 0 || this.duplicateTags()) {
+      this.duplicateTag = false
+      this.maxTags = false
+      if (this.inputTag.length === 0 || this.inputTag.length > 10) {
         return
+      } else if (this.engagementDetail.tags.length === 3) {
+        this.maxTags = true
+      } else if (this.duplicateTags()) {
+        this.duplicateTag = true
       } else {
         this.engagementDetail.tags.push(this.inputTag)
       }
@@ -419,7 +431,7 @@ export default {
         numParticipants: 0,
         contacts: [],
         policyProgram: '',
-        comments: [{ content: '', date: new Date() }],
+        comments: [],
         tags: []
       }
     },
@@ -439,7 +451,8 @@ export default {
           })
 
           this.$store.dispatch('notifications/addNotification', this.$t('notifications.EngagementCreated'))
-
+          this.comments = ''
+          this.inputTag = ''
           this.engagementDetail = this.resetForm()
           this.reloadComponent()
 

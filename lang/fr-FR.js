@@ -142,7 +142,7 @@ export default {
     editDescription: 'Description',
     policy: 'Politique / programme',
     tags: 'Mots clés',
-    tagLabel: 'Appuyez sur Entrée ou cliquez sur + pour ajouter de nouvelles balises',
+    tagLabel: 'Appuyez sur Entrée ou cliquez sur + pour ajouter de nouvelles balises (Maximum 3 balises)',
     comments: 'Commentaires',
     editComments: 'Commentaires',
     cancel: 'Annuler',
