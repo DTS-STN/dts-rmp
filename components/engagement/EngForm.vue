@@ -337,7 +337,7 @@ export default {
       return Object.keys(this.$v.engagementDetail.$params).filter(fieldName => this.$v.engagementDetail[fieldName].$invalid)
     },
     charactersLeftComment() {
-      const char = this.engagementDetail.comments.length
+      const char = this.comments.length
       const limit = 140
 
       return (limit - char) + ' / ' + limit + ' ' + this.$t('engagement.charactersCount')
@@ -405,7 +405,7 @@ export default {
         numParticipants: 0,
         contacts: [],
         policyProgram: '',
-        comments: '',
+        comments: [{ content: '', date: new Date() }],
         tags: []
       }
     },
