@@ -30,7 +30,7 @@ const populateDatabase = async() => {
       )}${Randomizers.randomString(1)}${Randomizers.randomInt(1, 9)}`,
       orgPhone: Randomizers.randomInt(1000000000, 9999999999),
       orgWebsite: `http://${Randomizers.randomString(8)}.com`,
-      keyContactName: Randomizers.randomNames(),
+      keyContactName: `${Randomizers.randomNames()}-${Randomizers.randomInt(1, 100)}`,
       keyContactTitle: Randomizers.randomTitles(),
       keyContactEmail: `${Randomizers.randomString(10)}@example.com`,
       keyContactAddress: Randomizers.randomString(5),
