@@ -266,7 +266,7 @@
             {{ message.message }}
           </span>
         </div>
-        <div class="md:flex flex-wrap justify-start mb-12">
+        <div class="md:flex flex-wrap justify-start mb-4">
           <div class=" margins">
             <AppButton class="font-display" custom_style="btn-cancel" btntype="button" data_cypress="formButton" @click="goBack">
               {{ $t('engagement.cancel') }}
