@@ -14,7 +14,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'az login --service-principal -u $JENKINS_SPN -p $JENKINS_SPN_PASS --tenant $AZURE_TENANT_ID'
-                if [ "$TARGET" = "prod-blue" ] || [ "$TARGET"= "prod-green" ]
+                sh '''if [ "$TARGET" = "prod-blue" ] || [ "$TARGET"= "prod-green" ]
                     then
                     echo "Prod"
                     . ./context-prod.sh > /dev/null
@@ -22,6 +22,7 @@ pipeline {
                     echo "Dev"
                     . ./context-dev.sh > /dev/null
                 fi 
+                '''
                 sh './helmfile/scripts/deleteDatabase.sh'
                 sh '''
                         cd ./helmfile
