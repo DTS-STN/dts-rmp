@@ -19,20 +19,35 @@ pipeline {
                 if [ "$TARGET" = "prod-blue" ] || [ "$TARGET"= "prod-green" ]
                     then
                     echo "Prod"
+                    set +x
+                    echo "Setting Environment Secrets. This is obfuscated"
                     . ./context-prod.sh > /dev/null
+                    set -x
                 else
                     echo "Dev"
+                    set +x
+                    echo "Setting Environment Secrets. This is obfuscated"
                     . ./context-dev.sh > /dev/null
+                    set -x
                 fi 
                 '''
                 sh './helmfile/scripts/deleteDatabase.sh'
                 sh '''
                     cd ./helmfile
-                    echo "Setting Environment Secrets. This is obfuscated"
-                    set +x
-
-                    set -x
-                    echo "Done."
+                    if [ "$TARGET" = "prod-blue" ] || [ "$TARGET"= "prod-green" ]
+                        then
+                        echo "Prod"
+                        set +x
+                        echo "Setting Environment Secrets. This is obfuscated"
+                        . ./context-prod.sh > /dev/null
+                        set -x
+                    else
+                        echo "Dev"
+                        set +x
+                        echo "Setting Environment Secrets. This is obfuscated"
+                        . ./context-dev.sh > /dev/null
+                        set -x
+                    fi 
                     helmfile --environment $TARGET --selector tier=$TIER apply
                     '''
                 sh './helmfile/scripts/dataseed.sh'
