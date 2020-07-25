@@ -14,7 +14,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'az login --service-principal -u $JENKINS_SPN -p $JENKINS_SPN_PASS --tenant $AZURE_TENANT_ID'
-                sh '''if [ "$TARGET" = "prod-blue" ] || [ "$TARGET"= "prod-green" ]
+                sh '''
+                cd ./helmfile
+                if [ "$TARGET" = "prod-blue" ] || [ "$TARGET"= "prod-green" ]
                     then
                     echo "Prod"
                     . ./context-prod.sh > /dev/null
@@ -25,13 +27,13 @@ pipeline {
                 '''
                 sh './helmfile/scripts/deleteDatabase.sh'
                 sh '''
-                        cd ./helmfile
-                        echo "Setting Environment Secrets. This is obfuscated"
-                        set +x
+                    cd ./helmfile
+                    echo "Setting Environment Secrets. This is obfuscated"
+                    set +x
 
-                        set -x
-                        echo "Done."
-                        helmfile --environment $TARGET --selector tier=$TIER apply
+                    set -x
+                    echo "Done."
+                    helmfile --environment $TARGET --selector tier=$TIER apply
                     '''
                 sh './helmfile/scripts/dataseed.sh'
             }
