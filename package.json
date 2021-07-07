@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@nuxtjs/auth": "4.9.1",
-    "@nuxtjs/axios": "5.10.2",
+    "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/dotenv": "1.4.1",
     "@nuxtjs/tailwindcss": "2.0.0",
     "bcryptjs": "^2.4.3",
